@@ -1,4 +1,4 @@
-<img align="left" width="116" height="116" src="https://raw.githubusercontent.com/liannoi/wlodzimierz/main/img/favicon.ico?token=AMFDN6ZZB7S7DAUE3GJD5BK7YOXSS"/>
+<img align="left" width="116" height="116" src="https://github.com/liannoi/wlodzimierz/blob/main/img/favicon.ico"/>
 
 # WLODZIMIERZ
 
