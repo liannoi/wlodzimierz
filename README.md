@@ -77,6 +77,10 @@ RESTful Web API.
 | **User**        | Authenticated user an application that is provided with a list of conversations and groups in which he is a member, as well as a list of contacts available for sending messages. |
 | **Group Admin** | An authenticated user of the application who is the administrator of a specific group. Initially, the user who created the group is considered its administrator.                 |
 
+## Database diagram
+
+![](https://github.com/liannoi/wlodzimierz/blob/main/database/wlodzimierz-diagram.png)
+
 ## License
 
 This repository is licensed under [Apache-2.0](https://github.com/liannoi/wlodzimierz/blob/main/LICENSE).
