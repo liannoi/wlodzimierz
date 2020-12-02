@@ -15,12 +15,12 @@
 USE master;
 GO
 
-IF DB_ID('WebChat') IS NOT NULL DROP DATABASE WebChat;
+IF DB_ID('Wlodzimierz') IS NOT NULL DROP DATABASE Wlodzimierz;
 
-CREATE DATABASE WebChat;
+CREATE DATABASE Wlodzimierz;
 GO
 
-USE WebChat;
+USE Wlodzimierz;
 GO
 
 ---------------------------------------------------------------------
