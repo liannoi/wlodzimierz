@@ -3,6 +3,10 @@
 # WLODZIMIERZ
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/21ec38ca8a924fce8b34be1398042f0c)](https://app.codacy.com/gh/liannoi/wlodzimierz?utm_source=github.com&utm_medium=referral&utm_content=liannoi/wlodzimierz&utm_campaign=Badge_Grade)
+[![Code Climate](https://api.codeclimate.com/v1/badges/d20791e6eae10de3149c/maintainability)](https://codeclimate.com/github/liannoi/wlodzimierz/maintainability)
+[![CodeFactor](https://www.codefactor.io/repository/github/liannoi/wlodzimierz/badge)](https://www.codefactor.io/repository/github/liannoi/wlodzimierz)
+[![Codebeat](https://codebeat.co/badges/cce4b35c-4ddd-4d9b-bf1e-289bacb8969c)](https://codebeat.co/projects/github-com-liannoi-sample-android-master)
+[![BetterCode](https://bettercodehub.com/edge/badge/liannoi/wlodzimierz?branch=main)](https://bettercodehub.com/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fliannoi%2Fwlodzimierz.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fliannoi%2Fwlodzimierz?ref=badge_shield)
 
