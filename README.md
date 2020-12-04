@@ -2,6 +2,7 @@
 
 # WLODZIMIERZ
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/21ec38ca8a924fce8b34be1398042f0c)](https://app.codacy.com/gh/liannoi/wlodzimierz?utm_source=github.com&utm_medium=referral&utm_content=liannoi/wlodzimierz&utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fliannoi%2Fwlodzimierz.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fliannoi%2Fwlodzimierz?ref=badge_shield)
 
@@ -38,10 +39,10 @@ The clients are:
 ## Technologies
 
 > To describe the technologies of this project, it was decided to divide them
-into two conditional categories. The first category **Client** refers to
-technologies that are related to the clients of the project, and the second
-category **Server** refers to technologies that are related to the server-side
-RESTful Web API.
+> into two conditional categories. The first category **Client** refers to
+> technologies that are related to the clients of the project, and the second
+> category **Server** refers to technologies that are related to the server-side
+> RESTful Web API.
 
 ### Client:
 
@@ -71,7 +72,7 @@ RESTful Web API.
 ## Classes and characteristics of users
 
 | User class      | Description                                                                                                                                                                       |
-|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Guest**       | Any non-authenticated user of the application.                                                                                                                                    |
 | **User**        | Authenticated user an application that is provided with a list of conversations and groups in which he is a member, as well as a list of contacts available for sending messages. |
 | **Group Admin** | An authenticated user of the application who is the administrator of a specific group. Initially, the user who created the group is considered its administrator.                 |
@@ -82,7 +83,8 @@ RESTful Web API.
 
 ## License
 
-This repository is licensed under [Apache-2.0](https://github.com/liannoi/wlodzimierz/blob/main/LICENSE).
+This repository is licensed under
+[Apache-2.0](https://github.com/liannoi/wlodzimierz/blob/main/LICENSE).
 
 ```
 Copyright 2020 Maksym Liannoi
