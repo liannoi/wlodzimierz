@@ -71,17 +71,9 @@ The clients are:
 - SignalR
 - Swagger
 
-## Classes and characteristics of users
+### Documentation
 
-| User class      | Description                                                                                                                                                                       |
-| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Guest**       | Any non-authenticated user of the application.                                                                                                                                    |
-| **User**        | Authenticated user an application that is provided with a list of conversations and groups in which he is a member, as well as a list of contacts available for sending messages. |
-| **Group Admin** | An authenticated user of the application who is the administrator of a specific group. Initially, the user who created the group is considered its administrator.                 |
-
-## Database diagram
-
-![](https://github.com/liannoi/wlodzimierz/blob/main/database/wlodzimierz-diagram.png)
+For more detailed information about the project - go to the [Wiki](https://github.com/liannoi/wlodzimierz/wiki) section.
 
 ## License
 
