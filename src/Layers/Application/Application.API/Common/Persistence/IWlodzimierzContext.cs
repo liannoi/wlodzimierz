@@ -1,7 +1,7 @@
 using Domain.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.API.Common
+namespace Application.API.Common.Persistence
 {
     public interface IWlodzimierzContext
     {

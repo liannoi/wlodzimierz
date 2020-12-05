@@ -1,4 +1,6 @@
 ﻿using System.Reflection;
+using Application.API.Common;
+using Application.API.Common.Persistence;
 using Domain.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.API.Persistence
 {
-    public class WlodzimierzContext : DbContext
+    public class WlodzimierzContext : DbContext, IWlodzimierzContext
     {
         public WlodzimierzContext(DbContextOptions<WlodzimierzContext> options) : base(options)
         {

@@ -15,6 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Application\Application.API\Application.API.csproj" />
       <ProjectReference Include="..\..\Domain\Domain.API\Domain.API.csproj" />
     </ItemGroup>
 
