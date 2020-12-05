@@ -2,11 +2,11 @@ using AutoMapper;
 
 namespace Wlodzimierz.Tools.Mappings
 {
-    public interface IMapFrom<TSource>
+public interface IMapFrom<TSource>
+{
+    void Mapping(Profile profile)
     {
-        void Mapping(Profile profile)
-        {
-            profile.CreateMap(typeof(TSource), GetType());
-        }
+        profile.CreateMap(typeof(TSource), GetType());
     }
+}
 }

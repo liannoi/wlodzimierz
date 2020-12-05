@@ -5,27 +5,27 @@ using AutoMapper;
 
 namespace Wlodzimierz.Tools.Mappings
 {
-    public class MappingProfile : Profile
+public class MappingProfile : Profile
+{
+    public MappingProfile()
     {
-        public MappingProfile()
-        {
-            ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
-        }
+        ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
+    }
 
-        private void ApplyMappingsFromAssembly(Assembly assembly)
-        {
-            var types = assembly.GetExportedTypes()
-                .Where(t => t.GetInterfaces().Any(i =>
-                    i.IsGenericType &&
-                    i.GetGenericTypeDefinition() == typeof(IMapFrom<>)))
-                .ToList();
+    private void ApplyMappingsFromAssembly(Assembly assembly)
+    {
+        var types = assembly.GetExportedTypes()
+                    .Where(t => t.GetInterfaces().Any(i =>
+                            i.IsGenericType &&
+                            i.GetGenericTypeDefinition() == typeof(IMapFrom<>)))
+                    .ToList();
 
-            foreach (var type in types)
-            {
-                var method = type.GetMethod("Mapping") ?? type.GetInterface("IMapFrom`1")?.GetMethod("Mapping");
-                var instance = Activator.CreateInstance(type);
-                method?.Invoke(instance, new object[] {this});
-            }
+        foreach (var type in types)
+        {
+            var method = type.GetMethod("Mapping") ?? type.GetInterface("IMapFrom`1")?.GetMethod("Mapping");
+            var instance = Activator.CreateInstance(type);
+            method?.Invoke(instance, new object[] {this});
         }
     }
+}
 }
