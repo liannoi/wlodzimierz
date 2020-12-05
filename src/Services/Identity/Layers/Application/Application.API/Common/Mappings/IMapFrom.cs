@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace Wlodzimierz.Tools.Mappings
+namespace Application.API.Common.Mappings
 {
     public interface IMapFrom<TSource>
     {

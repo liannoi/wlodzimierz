@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using AutoMapper;
 
-namespace Wlodzimierz.Tools.Mappings
+namespace Application.API.Common.Mappings
 {
     public class MappingProfile : Profile
     {
