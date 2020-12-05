@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>Wlodzimierz.Tools.Mappings</RootNamespace>
+        <Nullable>enable</Nullable>
+        <Authors>Maksym Liannoi</Authors>
+        <RepositoryUrl>https://github.com/liannoi/wlodzimierz</RepositoryUrl>
+        <PackageId>Wlodzimierz.Tools.Mappings</PackageId>
+        <PackageVersion>1.0.1</PackageVersion>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Title>Mappings</Title>
+        <Description>Utilities for reducing the code of trivial tasks associated with mapping domain models to business types in business applications.</Description>
+        <Copyright>Copyright 2020 Maksym Liannoi</Copyright>
+        <PackageProjectUrl>https://github.com/liannoi/wlodzimierz</PackageProjectUrl>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <PackageTags>wlodzimierz wlodzimierz-tools auto-mapper mappings mapper</PackageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="10.1.1" />
+    </ItemGroup>
+
+</Project>
