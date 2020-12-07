@@ -6,20 +6,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.API.Identity
 {
-    public class WlodzimierzIdentityContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
+public class WlodzimierzIdentityContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
+{
+    public WlodzimierzIdentityContext(DbContextOptions<WlodzimierzIdentityContext> options) : base(options)
     {
-        public WlodzimierzIdentityContext(DbContextOptions<WlodzimierzIdentityContext> options) : base(options)
-        {
-        }
+    }
 
-        // ReSharper disable once UnusedType.Global
-        public class Factory : AbstractDbContextFactory<WlodzimierzIdentityContext>
+    // ReSharper disable once UnusedType.Global
+    public class Factory : AbstractDbContextFactory<WlodzimierzIdentityContext>
+    {
+        protected override WlodzimierzIdentityContext CreateNewInstance(
+            DbContextOptions<WlodzimierzIdentityContext> options)
         {
-            protected override WlodzimierzIdentityContext CreateNewInstance(
-                DbContextOptions<WlodzimierzIdentityContext> options)
-            {
-                return new WlodzimierzIdentityContext(options);
-            }
+            return new WlodzimierzIdentityContext(options);
         }
     }
+}
 }

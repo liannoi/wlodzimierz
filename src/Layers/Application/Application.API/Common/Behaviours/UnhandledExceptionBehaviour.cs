@@ -6,30 +6,30 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.API.Common.Behaviours
 {
-    public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-        where TRequest : IRequest<TResponse>
+public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : IRequest<TResponse>
+{
+    private readonly ILogger<TRequest> _logger;
+
+    public UnhandledExceptionBehaviour(ILogger<TRequest> logger)
     {
-        private readonly ILogger<TRequest> _logger;
+        _logger = logger;
+    }
 
-        public UnhandledExceptionBehaviour(ILogger<TRequest> logger)
+    public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
+                                        RequestHandlerDelegate<TResponse> next)
+    {
+        try
         {
-            _logger = logger;
+            return await next();
         }
-
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken,
-            RequestHandlerDelegate<TResponse> next)
+        catch (Exception exception)
         {
-            try
-            {
-                return await next();
-            }
-            catch (Exception exception)
-            {
-                _logger.LogError(exception,
-                    $"[Wlodzimierz.API] Unhandled Exception for Request: {typeof(TRequest).Name} {request}");
+            _logger.LogError(exception,
+                             $"[Wlodzimierz.API] Unhandled Exception for Request: {typeof(TRequest).Name} {request}");
 
-                throw;
-            }
+            throw;
         }
     }
+}
 }

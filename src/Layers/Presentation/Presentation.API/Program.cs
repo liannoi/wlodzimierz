@@ -9,42 +9,42 @@ using Microsoft.Extensions.Logging;
 
 namespace Presentation.API
 {
-    public class Program
+public class Program
+{
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
-        {
-            var host = CreateWebHostBuilder(args).Build();
+        var host = CreateWebHostBuilder(args).Build();
 
-            using (var scope = host.Services.CreateScope())
+        using (var scope = host.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+
+            try
             {
-                var services = scope.ServiceProvider;
-
-                try
+                var environment = services.GetRequiredService<IWebHostEnvironment>();
+                if (!environment.IsDevelopment())
                 {
-                    var environment = services.GetRequiredService<IWebHostEnvironment>();
-                    if (!environment.IsDevelopment())
-                    {
-                        host.Run();
-                        return;
-                    }
-
-                    services.GetRequiredService<WlodzimierzIdentityContext>().Database.Migrate();
+                    host.Run();
+                    return;
                 }
-                catch (Exception ex)
-                {
-                    services.GetRequiredService<ILogger<Program>>()
-                        .LogError(ex, "Error while executing Program.cs file...");
 
-                    throw;
-                }
+                services.GetRequiredService<WlodzimierzIdentityContext>().Database.Migrate();
             }
+            catch (Exception ex)
+            {
+                services.GetRequiredService<ILogger<Program>>()
+                .LogError(ex, "Error while executing Program.cs file...");
 
-            host.Run();
+                throw;
+            }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
-        {
-            return WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
-        }
+        host.Run();
     }
+
+    public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+    {
+        return WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
+    }
+}
 }

@@ -2,13 +2,13 @@ using FluentValidation;
 
 namespace Application.API.Storage.Identity.Commands.Signup
 {
-    public class SignupCommandValidator : AbstractValidator<SignupCommand>
+public class SignupCommandValidator : AbstractValidator<SignupCommand>
+{
+    public SignupCommandValidator()
     {
-        public SignupCommandValidator()
-        {
-            RuleFor(e => e.UserName)
-                .MinimumLength(1)
-                .NotEmpty();
-        }
+        RuleFor(e => e.UserName)
+        .MinimumLength(1)
+        .NotEmpty();
     }
+}
 }

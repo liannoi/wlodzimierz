@@ -4,11 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.API.Persistence.Configurations
 {
-    public class UserBlacklistConfiguration : IEntityTypeConfiguration<UserBlacklist>
+public class UserBlacklistConfiguration : IEntityTypeConfiguration<UserBlacklist>
+{
+    public void Configure(EntityTypeBuilder<UserBlacklist> builder)
     {
-        public void Configure(EntityTypeBuilder<UserBlacklist> builder)
-        {
-            builder.HasKey(e => new {e.OwnerUserId, e.BlockedUserId});
-        }
+        builder.HasKey(e => new {
+            e.OwnerUserId, e.BlockedUserId
+        });
     }
+}
 }

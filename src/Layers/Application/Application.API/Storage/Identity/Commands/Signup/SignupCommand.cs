@@ -6,26 +6,32 @@ using MediatR;
 
 namespace Application.API.Storage.Identity.Commands.Signup
 {
-    public class SignupCommand : IRequest<JwtToken>
+public class SignupCommand : IRequest<JwtToken>
+{
+    public string UserName {
+        get;
+        set;
+    }
+    public string Password {
+        get;
+        set;
+    }
+
+    private class Handler : IRequestHandler<SignupCommand, JwtToken>
     {
-        public string UserName { get; set; }
-        public string Password { get; set; }
+        private readonly IIdentityService _identityService;
 
-        private class Handler : IRequestHandler<SignupCommand, JwtToken>
+        public Handler(IIdentityService identityService)
         {
-            private readonly IIdentityService _identityService;
+            _identityService = identityService;
+        }
 
-            public Handler(IIdentityService identityService)
-            {
-                _identityService = identityService;
-            }
+        public async Task<JwtToken> Handle(SignupCommand request, CancellationToken cancellationToken)
+        {
+            var (result, token) = await _identityService.SignupAsync(request.UserName, request.Password);
 
-            public async Task<JwtToken> Handle(SignupCommand request, CancellationToken cancellationToken)
-            {
-                var (result, token) = await _identityService.SignupAsync(request.UserName, request.Password);
-
-                return token;
-            }
+            return token;
         }
     }
+}
 }

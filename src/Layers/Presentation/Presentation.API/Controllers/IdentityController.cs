@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.API.Controllers
 {
-    public class IdentityController : AbstractController
+public class IdentityController : AbstractController
+{
+    [HttpPost("signup")]
+    public async Task<ActionResult<JwtToken>> Signup([FromBody] SignupCommand command)
     {
-        [HttpPost("signup")]
-        public async Task<ActionResult<JwtToken>> Signup([FromBody] SignupCommand command)
-        {
-            return await Mediator.Send(command);
-        }
+        return await Mediator.Send(command);
     }
+}
 }
