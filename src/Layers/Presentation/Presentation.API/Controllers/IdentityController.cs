@@ -1,5 +1,8 @@
+using System;
 using System.Threading.Tasks;
+using Application.API.Common.Exceptions;
 using Application.API.Storage.Identity.Commands;
+using Application.API.Storage.Identity.Commands.Signup;
 using Application.API.Storage.Identity.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,7 +13,7 @@ namespace Presentation.API.Controllers
         [HttpPost("signup")]
         public async Task<ActionResult<JwtToken>> Signup([FromBody] SignupCommand command)
         {
-            return Ok(await Mediator.Send(command));
+            return await Mediator.Send(command);
         }
     }
 }

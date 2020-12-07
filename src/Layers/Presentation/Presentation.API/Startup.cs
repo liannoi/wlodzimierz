@@ -1,10 +1,14 @@
 using Application.API;
+using FluentValidation.AspNetCore;
 using Infrastructure.API;
+using Infrastructure.API.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Presentation.API.Filters;
 
 namespace Presentation.API
 {
@@ -20,12 +24,19 @@ namespace Presentation.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddInfrastructureServices(Configuration);
-            services.AddApplicationServices();
+            services.AddApplication(Configuration);
+            services.AddInfrastructure();
+
+            services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddHttpContextAccessor();
 
-            services.AddControllers();
+            services.AddHealthChecks().AddDbContextCheck<WlodzimierzContext>();
+
+            services.AddControllers(options => options.Filters.Add<ApiExceptionFilterAttribute>())
+                .AddFluentValidation();
+
+            services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +54,7 @@ namespace Presentation.API
                 app.UseHsts();
             }
 
+            app.UseHealthChecks("/health");
             app.UseHttpsRedirection();
 
             app.UseRouting();

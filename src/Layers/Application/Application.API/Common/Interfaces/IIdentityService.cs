@@ -5,14 +5,10 @@ namespace Application.API.Common.Interfaces
 {
     public interface IIdentityService : IIdentityServer<ApplicationUser>
     {
-        public Task<ApplicationUser> GetUserAsync(string userName);
-
-        public Task<ApplicationUser> GetUserByIdAsync(string userId);
-
-        public Task<(IdentityResult Result, JwtToken Token)> Login(string userName, string password);
-
-        public Task<(IdentityResult Result, JwtToken Token)> Signup(string userName, string password);
-
-        public Task<bool> UserIsInRole(string userName, string role);
+        public Task<ApplicationUser> FindByIdAsync(string userId);
+        public Task<ApplicationUser> FindByNameAsync(string userName);
+        public Task<bool> IsInRoleAsync(string userId, string role);
+        public Task<(IdentityResult Result, JwtToken Token)> LoginAsync(string userName, string password);
+        public Task<(IdentityResult Result, JwtToken Token)> SignupAsync(string userName, string password);
     }
 }

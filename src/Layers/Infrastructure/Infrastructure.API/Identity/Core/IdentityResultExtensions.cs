@@ -1,7 +1,7 @@
 using System.Linq;
 using Application.API.Storage.Identity.Models;
 
-namespace Infrastructure.API.Identity.Extensions
+namespace Infrastructure.API.Identity.Core
 {
     public static class IdentityResultExtensions
     {

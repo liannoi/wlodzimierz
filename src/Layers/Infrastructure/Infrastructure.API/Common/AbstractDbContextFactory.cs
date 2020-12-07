@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace Infrastructure.API.Core.Factory
+namespace Infrastructure.API.Common
 {
     public abstract class AbstractDbContextFactory<TContext> : IDesignTimeDbContextFactory<TContext>
         where TContext : DbContext

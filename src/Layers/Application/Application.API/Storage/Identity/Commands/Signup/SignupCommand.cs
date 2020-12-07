@@ -4,7 +4,7 @@ using Application.API.Common.Interfaces;
 using Application.API.Storage.Identity.Models;
 using MediatR;
 
-namespace Application.API.Storage.Identity.Commands
+namespace Application.API.Storage.Identity.Commands.Signup
 {
     public class SignupCommand : IRequest<JwtToken>
     {
@@ -22,7 +22,7 @@ namespace Application.API.Storage.Identity.Commands
 
             public async Task<JwtToken> Handle(SignupCommand request, CancellationToken cancellationToken)
             {
-                var (result, token) = await _identityService.Signup(request.UserName, request.Password);
+                var (result, token) = await _identityService.SignupAsync(request.UserName, request.Password);
 
                 return token;
             }

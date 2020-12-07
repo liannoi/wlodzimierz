@@ -4,13 +4,12 @@ using System.Security.Claims;
 using System.Text;
 using Application.API.Common.Interfaces;
 using Application.API.Storage.Identity.Models;
-using Infrastructure.API.Identity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Infrastructure.API.Identity.Services
+namespace Infrastructure.API.Identity.Server
 {
     public abstract class AbstractIdentityServer : IIdentityServer<ApplicationUser>
     {
