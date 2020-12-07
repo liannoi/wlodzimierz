@@ -75,6 +75,18 @@ The clients are:
 
 For more detailed information about the project - go to the [Wiki](https://github.com/liannoi/wlodzimierz/wiki) section.
 
+## Utilities
+
+To simplify the business logic code, to reduce the duplication of the code
+necessary for solving trivial tasks, it was decided to move certain code to the
+appropriate libraries and put them in NuGet. Thus, there were libraries that you
+can install in your projects by selecting the necessary ones from the table below.
+
+| Problem                                     | Library                                                                                 | Version                                                                          |
+|---------------------------------------------|-----------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| Mapping domain entities on a business model | [Wlodzimierz.Tools.Mappings](https://www.nuget.org/packages/Wlodzimierz.Tools.Mappings) | ![](https://img.shields.io/nuget/v/Wlodzimierz.Tools.Mappings?style=flat-square) |
+
+
 ## License
 
 This repository is licensed under
