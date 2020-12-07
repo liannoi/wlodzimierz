@@ -2,34 +2,32 @@
 
 #nullable disable
 
-namespace Domain.API.Entities
-{
-public class GroupMessage
-{
+namespace Domain.API.Entities {
+  public class GroupMessage {
     public int GroupMessageId {
-        get;
-        set;
+      get;
+      set;
     }
     public int GroupId {
-        get;
-        set;
+      get;
+      set;
     }
     public int OwnerUserId {
-        get;
-        set;
+      get;
+      set;
     }
     public string Message {
-        get;
-        set;
+      get;
+      set;
     }
     public DateTime Publish {
-        get;
-        set;
+      get;
+      set;
     }
 
     public Group Group {
-        get;
-        set;
+      get;
+      set;
     }
-}
+  }
 }

@@ -1,20 +1,18 @@
 using Application.API.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 
-namespace Presentation.API.Services
-{
-public class CurrentUserService : ICurrentUserService
-{
-    public CurrentUserService(IHttpContextAccessor httpContextAccessor, IIdentityService identityService)
-    {
-        var stream = httpContextAccessor.HttpContext!.Request.Headers["Authorization"];
-        if (stream.Count == 0) return;
+namespace Presentation.API.Services {
+  public class CurrentUserService : ICurrentUserService {
+    public CurrentUserService(IHttpContextAccessor httpContextAccessor,
+                              IIdentityService identityService) {
+      var stream =
+          httpContextAccessor.HttpContext !.Request.Headers["Authorization"];
+      if (stream.Count == 0)
+        return;
 
-        UserName = identityService.ReadToken(stream);
+      UserName = identityService.ReadToken(stream);
     }
 
-    public string? UserName {
-        get;
-    }
-}
+    public string? UserName { get; }
+  }
 }

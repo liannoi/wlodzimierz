@@ -1,32 +1,30 @@
 ﻿#nullable disable
 
-namespace Domain.API.Entities
-{
-public class Contact
-{
+namespace Domain.API.Entities {
+  public class Contact {
     public int ContactId {
-        get;
-        set;
+      get;
+      set;
     }
     public int OwnerUserId {
-        get;
-        set;
+      get;
+      set;
     }
     public string FirstName {
-        get;
-        set;
+      get;
+      set;
     }
     public string LastName {
-        get;
-        set;
+      get;
+      set;
     }
     public string Email {
-        get;
-        set;
+      get;
+      set;
     }
     public string Photo {
-        get;
-        set;
+      get;
+      set;
     }
-}
+  }
 }

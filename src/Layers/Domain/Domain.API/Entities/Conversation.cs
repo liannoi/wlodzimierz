@@ -2,31 +2,28 @@
 
 #nullable disable
 
-namespace Domain.API.Entities
-{
-public class Conversation
-{
-    public Conversation()
-    {
-        ConversationMessages = new HashSet<ConversationMessage>();
+namespace Domain.API.Entities {
+  public class Conversation {
+    public Conversation() {
+      ConversationMessages = new HashSet<ConversationMessage>();
     }
 
     public int ConversationId {
-        get;
-        set;
+      get;
+      set;
     }
     public int LeftUserId {
-        get;
-        set;
+      get;
+      set;
     }
     public int RightUserId {
-        get;
-        set;
+      get;
+      set;
     }
 
     public ICollection<ConversationMessage> ConversationMessages {
-        get;
-        set;
+      get;
+      set;
     }
-}
+  }
 }

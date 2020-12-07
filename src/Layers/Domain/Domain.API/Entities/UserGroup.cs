@@ -1,21 +1,19 @@
 ﻿#nullable disable
 
-namespace Domain.API.Entities
-{
-public class UserGroup
-{
+namespace Domain.API.Entities {
+  public class UserGroup {
     public int GroupId {
-        get;
-        set;
+      get;
+      set;
     }
     public int UserId {
-        get;
-        set;
+      get;
+      set;
     }
 
     public Group Group {
-        get;
-        set;
+      get;
+      set;
     }
-}
+  }
 }

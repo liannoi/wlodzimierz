@@ -1,14 +1,12 @@
-namespace Infrastructure.API.Identity.Core
-{
-public class IdentitySettings
-{
+namespace Infrastructure.API.Identity.Core {
+  public class IdentitySettings {
     public string Secret {
-        get;
-        set;
+      get;
+      set;
     }
     public string Issuer {
-        get;
-        set;
+      get;
+      set;
     }
-}
+  }
 }

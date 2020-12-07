@@ -15,89 +15,84 @@ using NSwag.Generation.Processors.Security;
 using Presentation.API.Filters;
 using Presentation.API.Services;
 
-namespace Presentation.API
-{
-public class Startup
-{
-    public Startup(IConfiguration configuration)
-    {
-        Configuration = configuration;
+namespace Presentation.API {
+  public class Startup {
+    public Startup(IConfiguration configuration) {
+      Configuration = configuration;
     }
 
-    public IConfiguration Configuration {
-        get;
-    }
+    public IConfiguration Configuration { get; }
 
-    // This method gets called by the runtime. Use this method to add services to the container.
-    public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddApplication(Configuration);
-        services.AddInfrastructure();
+    // This method gets called by the runtime. Use this method to add services
+    // to the container.
+    public void ConfigureServices(IServiceCollection services) {
+      services.AddApplication(Configuration);
+      services.AddInfrastructure();
 
-        services.AddDatabaseDeveloperPageExceptionFilter();
+      services.AddDatabaseDeveloperPageExceptionFilter();
 
-        services.AddSingleton<ICurrentUserService, CurrentUserService>();
+      services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
-        services.AddHttpContextAccessor();
+      services.AddHttpContextAccessor();
 
-        services.AddHealthChecks().AddDbContextCheck<WlodzimierzContext>();
+      services.AddHealthChecks().AddDbContextCheck<WlodzimierzContext>();
 
-        services.AddControllers(options => options.Filters.Add<ApiExceptionFilterAttribute>())
-        .AddFluentValidation();
+      services
+          .AddControllers(
+              options => options.Filters.Add<ApiExceptionFilterAttribute>())
+          .AddFluentValidation();
 
-        services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
+      services.Configure<ApiBehaviorOptions>(
+          options => options.SuppressModelStateInvalidFilter = true);
 
-        services.AddOpenApiDocument(configure =>
-        {
-            configure.Title = "WLODZIMIERZ API";
-            configure.Description =
-                "Thesis at STEP Computer Academy. A cross-platform messenger consisting of a SPA application in Angular, as well as a native mobile application in Kotlin.";
+      services.AddOpenApiDocument(configure => {
+        configure.Title = "WLODZIMIERZ API";
+        configure.Description =
+            "Thesis at STEP Computer Academy. A cross-platform messenger consisting of a SPA application in Angular, as well as a native mobile application in Kotlin.";
 
-            configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
-            {
-                Type = OpenApiSecuritySchemeType.ApiKey,
-                Name = "Authorization",
+        configure.AddSecurity(
+            "JWT", Enumerable.Empty<string>(),
+            new OpenApiSecurityScheme{
+                Type = OpenApiSecuritySchemeType.ApiKey, Name = "Authorization",
                 In = OpenApiSecurityApiKeyLocation.Header,
-                Description = "Type into the textbox: Bearer {your JWT token}."
-            });
+                Description =
+                    "Type into the textbox: Bearer {your JWT token}."});
 
-            configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
-        });
+        configure.OperationProcessors.Add(
+            new AspNetCoreOperationSecurityScopeProcessor("JWT"));
+      });
     }
 
-    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        if (env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
-        else
-        {
-            app.UseExceptionHandler("/Error");
+    // This method gets called by the runtime. Use this method to configure the
+    // HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+      if (env.IsDevelopment()) {
+        app.UseDeveloperExceptionPage();
+      } else {
+        app.UseExceptionHandler("/Error");
 
-            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            app.UseHsts();
-        }
+        // The default HSTS value is 30 days. You may want to change this for
+        // production scenarios, see https://aka.ms/aspnetcore-hsts.
+        app.UseHsts();
+      }
 
-        app.UseHealthChecks("/health");
-        app.UseHttpsRedirection();
+      app.UseHealthChecks("/health");
+      app.UseHttpsRedirection();
 
-        app.UseOpenApi();
-        app.UseSwaggerUi3(settings =>
-        {
-            settings.Path = "/api";
-            settings.DocumentPath = "/swagger/v1/swagger.json";
-        });
+      app.UseOpenApi();
+      app.UseSwaggerUi3(settings => {
+        settings.Path = "/api";
+        settings.DocumentPath = "/swagger/v1/swagger.json";
+      });
 
-        app.UseRouting();
-        app.UseAuthentication();
-        app.UseAuthorization();
+      app.UseRouting();
+      app.UseAuthentication();
+      app.UseAuthorization();
 
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}");
-        });
+      app.UseEndpoints(endpoints => {
+        endpoints.MapControllerRoute("default",
+                                     "{controller}/{action=Index}/{id?}");
+      });
     }
-}
+  }
 }

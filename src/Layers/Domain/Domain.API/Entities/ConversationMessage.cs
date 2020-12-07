@@ -2,34 +2,32 @@
 
 #nullable disable
 
-namespace Domain.API.Entities
-{
-public class ConversationMessage
-{
+namespace Domain.API.Entities {
+  public class ConversationMessage {
     public int ConversationMessageId {
-        get;
-        set;
+      get;
+      set;
     }
     public int ConversationId {
-        get;
-        set;
+      get;
+      set;
     }
     public int OwnerUserId {
-        get;
-        set;
+      get;
+      set;
     }
     public string Message {
-        get;
-        set;
+      get;
+      set;
     }
     public DateTime Publish {
-        get;
-        set;
+      get;
+      set;
     }
 
     public Conversation Conversation {
-        get;
-        set;
+      get;
+      set;
     }
-}
+  }
 }

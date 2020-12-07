@@ -1,45 +1,43 @@
 using Domain.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.API.Common.Interfaces
-{
-public interface IWlodzimierzContext
-{
+namespace Application.API.Common.Interfaces {
+  public interface IWlodzimierzContext {
     public DbSet<Contact> Contacts {
-        get;
-        set;
+      get;
+      set;
     }
     public DbSet<Conversation> Conversations {
-        get;
-        set;
+      get;
+      set;
     }
     public DbSet<ConversationMessage> ConversationMessages {
-        get;
-        set;
+      get;
+      set;
     }
     public DbSet<Group> Groups {
-        get;
-        set;
+      get;
+      set;
     }
     public DbSet<GroupAdministrator> GroupAdministrators {
-        get;
-        set;
+      get;
+      set;
     }
     public DbSet<GroupBlacklist> GroupBlacklists {
-        get;
-        set;
+      get;
+      set;
     }
     public DbSet<GroupMessage> GroupMessages {
-        get;
-        set;
+      get;
+      set;
     }
     public DbSet<UserBlacklist> UserBlacklists {
-        get;
-        set;
+      get;
+      set;
     }
     public DbSet<UserGroup> UserGroups {
-        get;
-        set;
+      get;
+      set;
     }
-}
+  }
 }

@@ -1,16 +1,14 @@
 ﻿#nullable disable
 
-namespace Domain.API.Entities
-{
-public class UserBlacklist
-{
+namespace Domain.API.Entities {
+  public class UserBlacklist {
     public int OwnerUserId {
-        get;
-        set;
+      get;
+      set;
     }
     public int BlockedUserId {
-        get;
-        set;
+      get;
+      set;
     }
-}
+  }
 }
