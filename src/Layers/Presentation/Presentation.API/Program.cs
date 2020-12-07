@@ -1,9 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Infrastructure.API.Identity;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -13,11 +13,38 @@ namespace Presentation.API
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateWebHostBuilder(args).Build();
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                try
+                {
+                    var environment = services.GetRequiredService<IWebHostEnvironment>();
+                    if (!environment.IsDevelopment())
+                    {
+                        host.Run();
+                        return;
+                    }
+
+                    services.GetRequiredService<WlodzimierzIdentityContext>().Database.Migrate();
+                }
+                catch (Exception ex)
+                {
+                    services.GetRequiredService<ILogger<Program>>()
+                        .LogError(ex, "Error while executing Program.cs file...");
+
+                    throw;
+                }
+            }
+
+            host.Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args).UseStartup<Startup>();
+        }
     }
 }
