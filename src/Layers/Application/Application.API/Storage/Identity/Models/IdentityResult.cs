@@ -12,8 +12,8 @@ namespace Application.API.Storage.Identity.Models
             Errors = errors.ToArray();
         }
 
-        public bool Succeeded { get; set; }
-        public string[] Errors { get; set; }
+        public bool Succeeded { get; }
+        public string[] Errors { get; }
 
         public static IdentityResult Success()
         {
@@ -23,6 +23,11 @@ namespace Application.API.Storage.Identity.Models
         public static IdentityResult Failure(IEnumerable<string> errors)
         {
             return new IdentityResult(false, errors);
+        }
+
+        public static IdentityResult Failure()
+        {
+            return Failure(Array.Empty<string>());
         }
     }
 }

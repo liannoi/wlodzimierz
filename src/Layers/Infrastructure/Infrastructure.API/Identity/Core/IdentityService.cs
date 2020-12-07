@@ -35,9 +35,11 @@ namespace Infrastructure.API.Identity.Core
         public async Task<(IdentityResult Result, JwtToken Token)> LoginAsync(string userName, string password)
         {
             var user = await _manager.FindByNameAsync(userName);
-            var isChecked = await _manager.CheckPasswordAsync(user, password);
+            var isCorrectPassword = await _manager.CheckPasswordAsync(user, password);
 
-            return (IdentityResult.Success(), new JwtToken {Value = CreateToken(user)});
+            return (isCorrectPassword
+                ? (IdentityResult.Success(), new JwtToken {Value = CreateToken(user)})
+                : (IdentityResult.Failure(), default))!;
         }
 
         public async Task<(IdentityResult Result, JwtToken Token)> SignupAsync(string userName, string password)
