@@ -33,5 +33,4 @@ namespace Application.API.Common.Mappings
             }
         }
     }
-  }
 }
