@@ -4,7 +4,6 @@ using Application.API.Common.Interfaces;
 using Application.API.Storage.Identity.Models;
 using Infrastructure.API.Identity;
 using Infrastructure.API.Identity.Core;
-using Infrastructure.API.Identity.Server;
 using Infrastructure.API.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;

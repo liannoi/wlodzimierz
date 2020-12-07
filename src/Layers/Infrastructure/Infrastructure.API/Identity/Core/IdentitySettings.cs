@@ -1,4 +1,4 @@
-namespace Infrastructure.API.Identity.Server
+namespace Infrastructure.API.Identity.Core
 {
     public class IdentitySettings
     {

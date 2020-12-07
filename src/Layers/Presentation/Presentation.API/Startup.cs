@@ -1,4 +1,5 @@
 using Application.API;
+using Application.API.Common.Interfaces;
 using FluentValidation.AspNetCore;
 using Infrastructure.API;
 using Infrastructure.API.Persistence;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Presentation.API.Filters;
+using Presentation.API.Services;
 
 namespace Presentation.API
 {
@@ -28,6 +30,8 @@ namespace Presentation.API
             services.AddInfrastructure();
 
             services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
             services.AddHttpContextAccessor();
 

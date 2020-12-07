@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,12 +21,12 @@ namespace Application.API.Common.Behaviours
             RequestHandlerDelegate<TResponse> next)
         {
             if (!_validators.Any()) return await next();
-            
+
             var context = new ValidationContext<TRequest>(request);
 
             var validationResults =
                 await Task.WhenAll(_validators.Select(v => v.ValidateAsync(context, cancellationToken)));
-            
+
             var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
 
             return failures.Count != 0 ? throw new ValidationException(failures) : await next();

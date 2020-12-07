@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using Application.API.Common.Interfaces;
 using Application.API.Storage.Identity.Models;
-using Infrastructure.API.Identity.Server;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using IdentityResult = Application.API.Storage.Identity.Models.IdentityResult;
@@ -28,9 +27,9 @@ namespace Infrastructure.API.Identity.Core
             return await _manager.FindByNameAsync(userName);
         }
 
-        public async Task<bool> IsInRoleAsync(string userId, string role)
+        public async Task<bool> IsInRoleAsync(string userName, string role)
         {
-            return await _manager.IsInRoleAsync(await FindByIdAsync(userId), role);
+            return await _manager.IsInRoleAsync(await FindByNameAsync(userName), role);
         }
 
         public async Task<(IdentityResult Result, JwtToken Token)> LoginAsync(string userName, string password)

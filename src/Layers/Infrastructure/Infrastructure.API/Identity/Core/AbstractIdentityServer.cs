@@ -9,7 +9,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Infrastructure.API.Identity.Server
+namespace Infrastructure.API.Identity.Core
 {
     public abstract class AbstractIdentityServer : IIdentityServer<ApplicationUser>
     {

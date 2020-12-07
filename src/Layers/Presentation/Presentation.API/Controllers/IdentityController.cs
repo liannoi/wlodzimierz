@@ -1,7 +1,4 @@
-using System;
 using System.Threading.Tasks;
-using Application.API.Common.Exceptions;
-using Application.API.Storage.Identity.Commands;
 using Application.API.Storage.Identity.Commands.Signup;
 using Application.API.Storage.Identity.Models;
 using Microsoft.AspNetCore.Mvc;
