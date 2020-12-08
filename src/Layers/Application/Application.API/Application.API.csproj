@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="Common\Core" />
       <Folder Include="Storage\Identity\Queries" />
     </ItemGroup>
 

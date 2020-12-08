@@ -1,6 +1,6 @@
 using System.Linq;
 using Application.API;
-using Application.API.Common.Interfaces;
+using Application.API.Common.Infrastructure.Identity.Interfaces;
 using FluentValidation.AspNetCore;
 using Infrastructure.API;
 using Infrastructure.API.Persistence;
@@ -12,8 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NSwag;
 using NSwag.Generation.Processors.Security;
-using Presentation.API.Filters;
-using Presentation.API.Services;
+using Presentation.API.Core.Filters;
+using Presentation.API.Core.Services;
 
 namespace Presentation.API
 {
@@ -39,7 +39,7 @@ namespace Presentation.API
 
             services.AddHealthChecks().AddDbContextCheck<WlodzimierzContext>();
 
-            services.AddControllers(options => options.Filters.Add<ApiExceptionFilterAttribute>())
+            services.AddControllers(options => options.Filters.Add<ExceptionFilter>())
                 .AddFluentValidation();
 
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);

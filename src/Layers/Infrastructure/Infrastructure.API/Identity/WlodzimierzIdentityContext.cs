@@ -1,5 +1,5 @@
 using Application.API.Storage.Identity.Models;
-using Infrastructure.API.Common;
+using Infrastructure.API.Core;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
