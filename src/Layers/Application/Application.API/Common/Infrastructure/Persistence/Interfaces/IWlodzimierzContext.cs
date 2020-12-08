@@ -1,18 +1,10 @@
-﻿using System.Reflection;
-using Application.API.Common.Infrastructure.Persistence.Interfaces;
 using Domain.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-#nullable disable
-
-namespace Infrastructure.API.Persistence
+namespace Application.API.Common.Infrastructure.Persistence.Interfaces
 {
-    public class WlodzimierzContext : DbContext, IWlodzimierzContext
+    public interface IWlodzimierzContext
     {
-        public WlodzimierzContext(DbContextOptions<WlodzimierzContext> options) : base(options)
-        {
-        }
-
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Conversation> Conversations { get; set; }
         public DbSet<ConversationMessage> ConversationMessages { get; set; }
@@ -22,12 +14,5 @@ namespace Infrastructure.API.Persistence
         public DbSet<GroupMessage> GroupMessages { get; set; }
         public DbSet<UserBlacklist> UserBlacklists { get; set; }
         public DbSet<UserGroup> UserGroups { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
-            base.OnModelCreating(builder);
-        }
     }
 }

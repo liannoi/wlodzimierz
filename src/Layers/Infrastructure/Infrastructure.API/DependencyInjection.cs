@@ -1,9 +1,10 @@
 using System;
 using System.Text;
-using Application.API.Common.Interfaces;
-using Application.API.Storage.Identity.Models;
+using Application.API.Common.Infrastructure.Identity.Interfaces;
+using Application.API.Common.Infrastructure.Persistence.Interfaces;
+using Application.API.Storage.Identity.Entities;
 using Infrastructure.API.Identity;
-using Infrastructure.API.Identity.Core;
+using Infrastructure.API.Identity.Services;
 using Infrastructure.API.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;

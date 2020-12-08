@@ -1,7 +1,9 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Application.API.Common.Interfaces;
-using Application.API.Storage.Identity.Models;
+using Application.API.Common.Infrastructure.Identity.Interfaces;
+using Application.API.Common.Validation.Exceptions;
+using Application.API.Common.Validation.Extensions;
+using Application.API.Storage.Identity.Entities;
 using MediatR;
 
 namespace Application.API.Storage.Identity.Commands.Signup
@@ -24,7 +26,7 @@ namespace Application.API.Storage.Identity.Commands.Signup
             {
                 var (result, token) = await _identityService.SignupAsync(request.UserName, request.Password);
 
-                return token;
+                return result.Succeeded ? token : throw new ValidationException(result.Errors.ToFailures());
             }
         }
     }

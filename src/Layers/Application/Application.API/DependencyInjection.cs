@@ -1,5 +1,7 @@
 using System.Reflection;
-using Application.API.Common.Behaviours;
+using Application.API.Common.Core.Behaviours;
+using Application.API.Common.Infrastructure.Identity.Behaviours;
+using Application.API.Common.Validation.Behaviours;
 using AutoMapper;
 using FluentValidation;
 using MediatR;
