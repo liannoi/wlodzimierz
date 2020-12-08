@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
 using Application.API.Common.Validation.Exceptions;
 using Application.API.Common.Validation.Extensions;
-using Application.API.Storage.Identity.Models;
+using Application.API.Storage.Identity.Entities;
 using MediatR;
 
 namespace Application.API.Storage.Identity.Commands.Signup

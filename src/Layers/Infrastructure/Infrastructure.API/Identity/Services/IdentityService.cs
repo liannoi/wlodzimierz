@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
-using Application.API.Storage.Identity.Models;
+using Application.API.Storage.Identity.Entities;
 using Infrastructure.API.Identity.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -33,7 +33,7 @@ namespace Infrastructure.API.Identity.Services
             return await _manager.IsInRoleAsync(await FindByNameAsync(userName), role);
         }
 
-        public async Task<(IdentityResult Result, JwtToken Token)> LoginAsync(string userName, string password)
+        public async Task<(IdentityResult Result, JwtToken Token)> SigninAsync(string userName, string password)
         {
             var user = await _manager.FindByNameAsync(userName);
             var isCorrectPassword = await _manager.CheckPasswordAsync(user, password);

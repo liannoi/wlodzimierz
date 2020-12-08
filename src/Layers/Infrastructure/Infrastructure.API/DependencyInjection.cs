@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
 using Application.API.Common.Infrastructure.Persistence.Interfaces;
-using Application.API.Storage.Identity.Models;
+using Application.API.Storage.Identity.Entities;
 using Infrastructure.API.Identity;
 using Infrastructure.API.Identity.Services;
 using Infrastructure.API.Persistence;
