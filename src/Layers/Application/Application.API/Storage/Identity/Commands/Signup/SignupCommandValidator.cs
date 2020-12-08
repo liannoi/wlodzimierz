@@ -7,8 +7,8 @@ namespace Application.API.Storage.Identity.Commands.Signup
         public SignupCommandValidator()
         {
             RuleFor(e => e.UserName)
-                .MinimumLength(1)
-                .NotEmpty();
+                .NotEmpty()
+                .MinimumLength(1);
         }
     }
 }

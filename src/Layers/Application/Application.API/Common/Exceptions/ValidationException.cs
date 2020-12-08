@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Application.API.Common.Extensions;
 using FluentValidation.Results;
 
 namespace Application.API.Common.Exceptions
@@ -15,8 +15,7 @@ namespace Application.API.Common.Exceptions
 
         public ValidationException(IEnumerable<ValidationFailure> failures) : this()
         {
-            Errors = failures.GroupBy(e => e.PropertyName, e => e.ErrorMessage)
-                .ToDictionary(failureGroup => failureGroup.Key, failureGroup => failureGroup.ToArray());
+            Errors = failures.ToDictionary();
         }
 
         public IDictionary<string, string[]> Errors { get; }
