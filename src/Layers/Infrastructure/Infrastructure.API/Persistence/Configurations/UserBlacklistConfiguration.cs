@@ -8,7 +8,8 @@ namespace Infrastructure.API.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<UserBlacklist> builder)
         {
-            builder.HasKey(e => new {e.OwnerUserId, e.BlockedUserId});
+            builder.Property(e => e.BlockedUserId).IsRequired().HasMaxLength(450);
+            builder.Property(e => e.OwnerUserId).IsRequired().HasMaxLength(450);
         }
     }
 }

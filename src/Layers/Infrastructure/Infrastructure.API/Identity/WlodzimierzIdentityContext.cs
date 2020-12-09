@@ -1,5 +1,5 @@
 using Application.API.Storage.Identity.Entities;
-using Infrastructure.API.Core;
+using Infrastructure.API.Core.Factories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

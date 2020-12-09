@@ -16,6 +16,7 @@ namespace Domain.API.Entities
 
         public int GroupId { get; set; }
         public string Name { get; set; }
+        public bool IsRemoved { get; set; }
 
         public ICollection<GroupAdministrator> GroupAdministrators { get; set; }
         public ICollection<GroupBlacklist> GroupBlacklists { get; set; }

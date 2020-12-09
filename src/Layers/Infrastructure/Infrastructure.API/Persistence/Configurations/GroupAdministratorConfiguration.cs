@@ -8,7 +8,7 @@ namespace Infrastructure.API.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<GroupAdministrator> builder)
         {
-            builder.HasKey(e => new {e.GroupId, e.AdministratorUserId});
+            builder.Property(e => e.AdministratorUserId).IsRequired().HasMaxLength(450);
 
             builder.HasOne(d => d.Group)
                 .WithMany(p => p.GroupAdministrators)

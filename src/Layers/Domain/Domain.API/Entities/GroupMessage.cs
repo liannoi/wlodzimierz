@@ -8,9 +8,10 @@ namespace Domain.API.Entities
     {
         public int GroupMessageId { get; set; }
         public int GroupId { get; set; }
-        public int OwnerUserId { get; set; }
+        public string OwnerUserId { get; set; }
         public string Message { get; set; }
         public DateTime Publish { get; set; }
+        public bool IsRemoved { get; set; }
 
         public Group Group { get; set; }
     }

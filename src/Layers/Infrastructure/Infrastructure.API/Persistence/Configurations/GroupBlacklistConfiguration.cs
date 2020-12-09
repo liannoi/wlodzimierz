@@ -8,7 +8,7 @@ namespace Infrastructure.API.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<GroupBlacklist> builder)
         {
-            builder.HasKey(e => new {e.GroupId, e.BlockedUserId});
+            builder.Property(e => e.BlockedUserId).IsRequired().HasMaxLength(450);
 
             builder.HasOne(d => d.Group)
                 .WithMany(p => p.GroupBlacklists)

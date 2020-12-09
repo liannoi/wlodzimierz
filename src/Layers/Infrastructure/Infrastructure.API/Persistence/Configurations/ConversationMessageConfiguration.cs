@@ -9,6 +9,7 @@ namespace Infrastructure.API.Persistence.Configurations
         public void Configure(EntityTypeBuilder<ConversationMessage> builder)
         {
             builder.Property(e => e.Message).IsRequired().HasMaxLength(1024);
+            builder.Property(e => e.OwnerUserId).IsRequired().HasMaxLength(450);
             builder.Property(e => e.Publish).HasColumnType("datetime").HasDefaultValueSql("(getdate())");
 
             builder.HasOne(d => d.Conversation)
