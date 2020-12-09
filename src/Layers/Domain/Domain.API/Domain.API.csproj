@@ -5,4 +5,15 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Notifications\ConversationMessages" />
+      <Folder Include="Notifications\Conversations" />
+      <Folder Include="Notifications\GroupAdministrators" />
+      <Folder Include="Notifications\GroupBlacklists" />
+      <Folder Include="Notifications\GroupMessages" />
+      <Folder Include="Notifications\Groups" />
+      <Folder Include="Notifications\UserBlacklists" />
+      <Folder Include="Notifications\UserGroups" />
+    </ItemGroup>
+
 </Project>

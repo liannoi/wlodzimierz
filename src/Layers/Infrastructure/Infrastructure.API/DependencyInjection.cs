@@ -2,9 +2,11 @@ using System;
 using System.Text;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
 using Application.API.Common.Infrastructure.Persistence.Interfaces;
+using Application.API.Common.Notifications.Interfaces;
 using Application.API.Storage.Identity.Entities;
 using Infrastructure.API.Identity;
 using Infrastructure.API.Identity.Services;
+using Infrastructure.API.Notifications.Services;
 using Infrastructure.API.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -26,6 +28,10 @@ namespace Infrastructure.API
                 options.UseSqlServer(configuration.GetConnectionString(InfrastructureDefaults.Database)));
 
             services.AddScoped<IWlodzimierzContext>(provider => provider.GetService<WlodzimierzContext>()!);
+
+            // Events.
+
+            services.AddScoped<INotificationService, NotificationService>();
 
             // Identity.
 
