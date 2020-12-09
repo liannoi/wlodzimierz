@@ -1,12 +1,11 @@
 using System;
 using System.Threading.Tasks;
-using Application.API.Common.Notifications.Interfaces;
-using Application.API.Common.Notifications.Types;
+using Application.API.Common.Infrastructure.Notifications;
 using Domain.API.Common.Notifications;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Infrastructure.API.Notifications.Services
+namespace Infrastructure.API.Notifications
 {
     public class NotificationService : INotificationService
     {

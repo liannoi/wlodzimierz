@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Application.API.Common.Core.Exceptions
+namespace Application.API.Common.Core
 {
     [Serializable]
     public class ForbiddenAccessException : Exception

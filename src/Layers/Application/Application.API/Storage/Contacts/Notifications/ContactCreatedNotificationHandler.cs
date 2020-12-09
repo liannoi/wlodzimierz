@@ -1,12 +1,13 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Application.API.Common.Notifications.Types;
+using Application.API.Common.Infrastructure.Notifications;
 using Domain.API.Notifications.Contacts;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace Application.API.Storage.Contacts.Notifications
 {
+    // ReSharper disable once UnusedType.Global
     public class ContactCreatedNotificationHandler :
         INotificationHandler<EntityChangedNotification<ContactCreatedNotification>>
     {

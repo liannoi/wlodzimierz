@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 
-namespace Application.API.Common.Validation.Behaviours
+namespace Application.API.Common.Validation
 {
     public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
@@ -29,7 +29,7 @@ namespace Application.API.Common.Validation.Behaviours
 
             var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
 
-            return failures.Count != 0 ? throw new ValidationException(failures) : await next();
+            return failures.Count != 0 ? throw new FluentValidation.ValidationException(failures) : await next();
         }
     }
 }

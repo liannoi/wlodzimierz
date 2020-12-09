@@ -1,10 +1,9 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using Application.API.Common.Mappings.Interfaces;
 using AutoMapper;
 
-namespace Application.API.Common.Mappings.Profiles
+namespace Application.API.Common.Mappings
 {
     // ReSharper disable once UnusedType.Global
     public class MappingProfile : Profile

@@ -1,8 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Application.API.Common.Core.Exceptions;
+using Application.API.Common.Core;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
-using Application.API.Storage.Identity.Entities;
+using Application.API.Storage.Identity.Models.Core;
 using MediatR;
 
 namespace Application.API.Storage.Identity.Commands.Signin

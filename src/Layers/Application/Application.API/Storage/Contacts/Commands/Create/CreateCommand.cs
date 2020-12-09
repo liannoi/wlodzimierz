@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Application.API.Common.Infrastructure.Persistence.Interfaces;
+using Application.API.Common.Infrastructure.Persistence;
 using Domain.API.Entities;
 using Domain.API.Notifications.Contacts;
 using MediatR;

@@ -1,5 +1,5 @@
 using System.Linq;
-using Application.API.Storage.Identity.Models;
+using Application.API.Storage.Identity.Models.Core;
 
 namespace Infrastructure.API.Identity.Extensions
 {

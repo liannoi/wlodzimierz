@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
-using Application.API.Storage.Identity.Entities;
+using Application.API.Storage.Identity.Models.Core;
 using Infrastructure.API.Identity.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using IdentityResult = Application.API.Storage.Identity.Models.IdentityResult;
+using IdentityResult = Application.API.Storage.Identity.Models.Core.IdentityResult;
 
 namespace Infrastructure.API.Identity.Services
 {

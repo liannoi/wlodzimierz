@@ -1,4 +1,4 @@
-namespace Application.API.Storage.Identity.Entities
+namespace Application.API.Storage.Identity.Models.Core
 {
     public class JwtToken
     {

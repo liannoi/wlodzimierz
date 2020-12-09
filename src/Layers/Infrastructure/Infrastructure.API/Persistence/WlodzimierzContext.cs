@@ -2,8 +2,8 @@
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.API.Common.Infrastructure.Persistence.Interfaces;
-using Application.API.Common.Notifications.Interfaces;
+using Application.API.Common.Infrastructure.Notifications;
+using Application.API.Common.Infrastructure.Persistence;
 using Domain.API.Common.Notifications;
 using Domain.API.Entities;
 using Microsoft.EntityFrameworkCore;

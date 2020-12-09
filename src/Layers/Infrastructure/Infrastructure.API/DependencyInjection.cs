@@ -1,12 +1,12 @@
 using System;
 using System.Text;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
-using Application.API.Common.Infrastructure.Persistence.Interfaces;
-using Application.API.Common.Notifications.Interfaces;
-using Application.API.Storage.Identity.Entities;
+using Application.API.Common.Infrastructure.Notifications;
+using Application.API.Common.Infrastructure.Persistence;
+using Application.API.Storage.Identity.Models.Core;
 using Infrastructure.API.Identity;
 using Infrastructure.API.Identity.Services;
-using Infrastructure.API.Notifications.Services;
+using Infrastructure.API.Notifications;
 using Infrastructure.API.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
