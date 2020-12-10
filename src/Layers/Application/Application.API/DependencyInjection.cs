@@ -1,5 +1,5 @@
 using System.Reflection;
-using Application.API.Common.Core;
+using Application.API.Common.Core.Behaviours;
 using Application.API.Common.Infrastructure.Identity.Behaviours;
 using Application.API.Common.Validation;
 using AutoMapper;

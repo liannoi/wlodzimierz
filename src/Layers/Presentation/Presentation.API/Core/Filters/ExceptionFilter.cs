@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Application.API.Common.Core;
+using Application.API.Common.Core.Exceptions;
 using Application.API.Common.Validation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +19,7 @@ namespace Presentation.API.Core.Filters
             _exceptionHandlers = new Dictionary<Type, Action<ExceptionContext>>
             {
                 {typeof(ValidationException), HandleValidationException},
+                {typeof(NotFoundException), HandleNotFoundException},
                 {typeof(UnauthorizedAccessException), HandleUnauthorizedAccessException},
                 {typeof(ForbiddenAccessException), HandleForbiddenAccessException}
             };
@@ -90,6 +91,22 @@ namespace Presentation.API.Core.Filters
             };
 
             context.Result = new BadRequestObjectResult(details);
+
+            context.ExceptionHandled = true;
+        }
+
+        private void HandleNotFoundException(ExceptionContext context)
+        {
+            var exception = context.Exception as NotFoundException;
+
+            var details = new ProblemDetails
+            {
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
+                Title = "The specified resource was not found.",
+                Detail = exception.Message
+            };
+
+            context.Result = new NotFoundObjectResult(details);
 
             context.ExceptionHandled = true;
         }

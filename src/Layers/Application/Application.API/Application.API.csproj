@@ -7,7 +7,6 @@
 
     <ItemGroup>
       <Folder Include="Storage\Contacts\Commands\Delete" />
-      <Folder Include="Storage\Contacts\Commands\Update" />
       <Folder Include="Storage\Contacts\Models" />
       <Folder Include="Storage\Contacts\Queries\Details" />
       <Folder Include="Storage\Contacts\Queries\List" />

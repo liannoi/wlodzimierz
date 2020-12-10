@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Application.API.Common.Infrastructure.Notifications;
+using Application.API.Common.Notifications.Interfaces;
+using Application.API.Common.Notifications.Types.EntityChanged;
 using Domain.API.Common.Notifications;
 using MediatR;
 using Microsoft.Extensions.Logging;
