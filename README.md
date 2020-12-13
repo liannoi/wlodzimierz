@@ -62,15 +62,16 @@ The clients are:
 ### Server:
 
 - .NET 5
-- ASP.NET Core Identity 5
-- Microsoft SQL Server 2019
 - Docker 19.03
+- Microsoft SQL Server 2019
 - Entity Framework Core 5
+- ASP.NET Core Identity 5
 - MediatR 9
 - AutoMapper 8.1
-- Swagger 13.9
-- SignalR
 - FluentValidation 9.3
+- Swagger 13.9
+- LinqKit 1.1
+- SignalR
 
 ### Documentation
 
