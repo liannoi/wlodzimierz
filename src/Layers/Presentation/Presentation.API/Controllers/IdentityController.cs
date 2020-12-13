@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Application.API.Storage.Identity.Commands.Signin;
-using Application.API.Storage.Identity.Commands.Signup;
-using Application.API.Storage.Identity.Commands.Verify;
-using Application.API.Storage.Identity.Models;
-using Application.API.Storage.Identity.Models.Core;
+using Application.API.Storage.Users.Core.Commands.Signin;
+using Application.API.Storage.Users.Core.Commands.Signup;
+using Application.API.Storage.Users.Core.Commands.Verify;
+using Application.API.Storage.Users.Core.Models;
+using Application.API.Storage.Users.Core.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.API.Controllers
@@ -23,7 +23,7 @@ namespace Presentation.API.Controllers
         }
 
         [HttpPost("verify")]
-        public async Task<ActionResult<DetailsViewModel>> Verify([FromBody] VerifyCommand command)
+        public async Task<ActionResult<UserDto>> Verify([FromBody] VerifyCommand command)
         {
             return await Mediator.Send(command);
         }
