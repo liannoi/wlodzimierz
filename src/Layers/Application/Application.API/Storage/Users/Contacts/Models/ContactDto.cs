@@ -1,11 +1,15 @@
+using System;
+using System.Linq.Expressions;
+using Application.API.Common.Filtration.Types;
 using Application.API.Common.Mappings.Interfaces;
 using Application.API.Storage.Users.Core.Models;
 using AutoMapper;
 using Domain.API.Entities;
+using LinqKit;
 
-namespace Application.API.Storage.Contacts.Core.Models
+namespace Application.API.Storage.Users.Contacts.Models
 {
-    public class ContactDto : IMapFrom<Contact>
+    public class ContactDto : AbstractFiltration<ContactDto>, IMapFrom<Contact>
     {
         public int ContactId { get; set; }
         public UserDto OwnerUser { get; set; }
@@ -22,6 +26,16 @@ namespace Application.API.Storage.Contacts.Core.Models
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(s => s.LastName))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(s => s.Email))
                 .ForMember(dest => dest.Photo, opt => opt.MapFrom(s => s.Photo));
+        }
+
+        public override Expression<Func<ContactDto, bool>> Filter()
+        {
+            var predicate = PredicateBuilder.New<ContactDto>(true);
+            if (!string.IsNullOrEmpty(FirstName)) predicate = predicate.And(g => g.FirstName.Contains(FirstName));
+            if (!string.IsNullOrEmpty(LastName)) predicate = predicate.And(g => g.LastName.Contains(LastName));
+            if (!string.IsNullOrEmpty(Email)) predicate = predicate.And(g => g.Email.Contains(Email));
+
+            return predicate;
         }
     }
 }

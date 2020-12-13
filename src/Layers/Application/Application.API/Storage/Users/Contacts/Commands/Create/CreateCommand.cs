@@ -6,7 +6,7 @@ using Domain.API.Entities;
 using Domain.API.Notifications.Contacts;
 using MediatR;
 
-namespace Application.API.Storage.Contacts.Core.Commands.Create
+namespace Application.API.Storage.Users.Contacts.Commands.Create
 {
     public class CreateCommand : IRequest<int>
     {

@@ -4,7 +4,7 @@ using Application.API.Common.Core.Exceptions;
 using Application.API.Common.Infrastructure.Persistence;
 using MediatR;
 
-namespace Application.API.Storage.Contacts.Core.Commands.Delete
+namespace Application.API.Storage.Users.Contacts.Commands.Delete
 {
     public class DeleteCommand : IRequest
     {

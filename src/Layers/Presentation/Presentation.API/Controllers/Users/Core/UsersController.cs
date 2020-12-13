@@ -5,10 +5,11 @@ using Application.API.Storage.Users.Core.Commands.Verify;
 using Application.API.Storage.Users.Core.Models;
 using Application.API.Storage.Users.Core.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.API.Core.Controllers;
 
-namespace Presentation.API.Controllers
+namespace Presentation.API.Controllers.Users.Core
 {
-    public class IdentityController : AbstractController
+    public class UsersController : AbstractController
     {
         [HttpPost("signup")]
         public async Task<ActionResult<JwtToken>> Signup([FromBody] SignupCommand command)

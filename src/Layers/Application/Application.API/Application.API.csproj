@@ -13,6 +13,7 @@
       <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
       <PackageReference Include="FluentValidation" Version="9.3.0" />
       <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.3.0" />
+      <PackageReference Include="LinqKit" Version="1.1.21" />
       <PackageReference Include="MediatR" Version="9.0.0" />
       <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
@@ -20,21 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Storage\Contacts" />
-      <Folder Include="Storage\Conversations\Core\Commands\Create" />
-      <Folder Include="Storage\Conversations\Core\Commands\Delete" />
-      <Folder Include="Storage\Conversations\Core\Commands\Update" />
-      <Folder Include="Storage\Conversations\Core\Models" />
-      <Folder Include="Storage\Conversations\Core\Notifications" />
-      <Folder Include="Storage\Conversations\Core\Queries\Details" />
-      <Folder Include="Storage\Conversations\Core\Queries\List" />
-      <Folder Include="Storage\Conversations\Messages\Commands\Create" />
-      <Folder Include="Storage\Conversations\Messages\Commands\Delete" />
-      <Folder Include="Storage\Conversations\Messages\Commands\Update" />
-      <Folder Include="Storage\Conversations\Messages\Models" />
-      <Folder Include="Storage\Conversations\Messages\Notifications" />
-      <Folder Include="Storage\Conversations\Messages\Queries\Details" />
-      <Folder Include="Storage\Conversations\Messages\Queries\List" />
       <Folder Include="Storage\Groups\Administrators\Commands\Create" />
       <Folder Include="Storage\Groups\Administrators\Commands\Delete" />
       <Folder Include="Storage\Groups\Administrators\Commands\Update" />

@@ -1,19 +1,20 @@
 using System.Threading.Tasks;
 using Application.API.Common.Paging.Types;
-using Application.API.Storage.Contacts.Core.Commands.Create;
-using Application.API.Storage.Contacts.Core.Commands.Delete;
-using Application.API.Storage.Contacts.Core.Commands.Update;
-using Application.API.Storage.Contacts.Core.Models;
-using Application.API.Storage.Contacts.Core.Queries.Details;
-using Application.API.Storage.Contacts.Core.Queries.List;
+using Application.API.Storage.Users.Contacts.Commands.Create;
+using Application.API.Storage.Users.Contacts.Commands.Delete;
+using Application.API.Storage.Users.Contacts.Commands.Update;
+using Application.API.Storage.Users.Contacts.Models;
+using Application.API.Storage.Users.Contacts.Queries.Details;
+using Application.API.Storage.Users.Contacts.Queries.List;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.API.Core.Controllers;
 
-namespace Presentation.API.Controllers
+namespace Presentation.API.Controllers.Users.Contacts
 {
     public class ContactsController : AbstractController
     {
         [HttpGet]
-        public async Task<ActionResult<PaginatedList<CompactContactDto>>> GetAll([FromQuery] ListQuery query)
+        public async Task<ActionResult<PaginatedList<ContactDto>>> GetAll([FromQuery] ListQuery query)
         {
             return await Mediator.Send(query);
         }

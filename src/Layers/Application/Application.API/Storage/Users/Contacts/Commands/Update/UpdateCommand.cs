@@ -6,7 +6,7 @@ using Application.API.Storage.Users.Core.Models;
 using Domain.API.Entities;
 using MediatR;
 
-namespace Application.API.Storage.Contacts.Core.Commands.Update
+namespace Application.API.Storage.Users.Contacts.Commands.Update
 {
     public class UpdateCommand : IRequest
     {
