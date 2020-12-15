@@ -77,6 +77,10 @@ The clients are:
 - FluentValidation 9.3
 - Swagger 13.9
 - LinqKit 1.1
+- FluentAssertions 5.10
+- Moq 4.15
+- NUnit
+- Respawn 3.3
 - SignalR
 
 ### Documentation
