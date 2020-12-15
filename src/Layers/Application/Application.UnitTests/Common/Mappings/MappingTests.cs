@@ -1,37 +1,53 @@
+using System;
+using System.Runtime.Serialization;
+using Application.API.Common.Mappings.Profiles;
 using Application.API.Storage.Users.Contacts.Models;
 using AutoMapper;
 using Domain.API.Entities;
-using Shouldly;
-using Xunit;
+using FluentAssertions;
+using NUnit.Framework;
 
 namespace Application.UnitTests.Common.Mappings
 {
-    public class MappingTests : IClassFixture<MappingTestsFixture>
+    public class MappingTests
     {
         private readonly IConfigurationProvider _configuration;
         private readonly IMapper _mapper;
 
-        public MappingTests(MappingTestsFixture fixture)
+        public MappingTests()
         {
-            _configuration = fixture.ConfigurationProvider;
-            _mapper = fixture.Mapper;
+            _configuration = new MapperConfiguration(cfg => { cfg.AddProfile<MappingProfile>(); });
+            _mapper = _configuration.CreateMapper();
         }
 
-        [Fact]
+        [Test]
         public void ShouldHaveValidConfiguration()
         {
             _configuration.AssertConfigurationIsValid();
         }
 
-        [Fact]
-        public void ShouldMapContactToContactDto()
+        [Test]
+        [TestCase(typeof(Contact), typeof(ContactDto))]
+        public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
         {
-            var entity = new Contact();
+            // Arrange
+            var instance = GetInstanceOf(source);
 
-            var result = _mapper.Map<ContactDto>(entity);
+            // Act
+            var result = _mapper.Map(instance, source, destination);
 
-            result.ShouldNotBeNull();
-            result.ShouldBeOfType<ContactDto>();
+            // Assert
+            result.Should().NotBeNull();
+            result.Should().BeOfType(destination);
+        }
+
+        // Helpers.
+
+        private object GetInstanceOf(Type type)
+        {
+            return type.GetConstructor(Type.EmptyTypes) != null
+                ? Activator.CreateInstance(type)
+                : FormatterServices.GetUninitializedObject(type);
         }
     }
 }
