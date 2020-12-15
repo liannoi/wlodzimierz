@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Application.API.Common.Validation.Extensions;
 using FluentValidation.Results;
 
-namespace Application.API.Common.Validation.Exceptions
+namespace Application.API.Common.Validation
 {
     [Serializable]
     public class ValidationException : Exception

@@ -118,7 +118,7 @@ namespace Application.IntegrationTests
         public static async Task<TEntity> FindAsync<TEntity>(params object[] keyValues) where TEntity : class
         {
             using var scope = _scopeFactory.CreateScope();
-            
+
             return await scope.ServiceProvider.GetService<WlodzimierzContext>().FindAsync<TEntity>(keyValues);
         }
 
@@ -133,7 +133,7 @@ namespace Application.IntegrationTests
         public static async Task<int> CountAsync<TEntity>() where TEntity : class
         {
             using var scope = _scopeFactory.CreateScope();
-            
+
             return await scope.ServiceProvider.GetService<WlodzimierzContext>().Set<TEntity>().CountAsync();
         }
     }

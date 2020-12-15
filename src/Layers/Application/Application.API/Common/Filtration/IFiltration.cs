@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Application.API.Common.Filtration.Interfaces
+namespace Application.API.Common.Filtration
 {
     public interface IFiltration<TModel>
     {

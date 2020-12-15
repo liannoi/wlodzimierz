@@ -1,4 +1,4 @@
-using Application.API.Common.Mappings.Interfaces;
+using Application.API.Common.Mappings;
 using Application.API.Storage.Users.Core.Models.Domain;
 using AutoMapper;
 

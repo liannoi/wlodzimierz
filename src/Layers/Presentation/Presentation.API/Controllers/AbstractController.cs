@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Presentation.API.Core.Controllers
+namespace Presentation.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]

@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Application.API.Common.Paging.Types;
+using Application.API.Common.Paging;
 using Application.API.Storage.Users.Contacts.Commands.Create;
 using Application.API.Storage.Users.Contacts.Commands.Delete;
 using Application.API.Storage.Users.Contacts.Commands.Update;
@@ -7,7 +7,6 @@ using Application.API.Storage.Users.Contacts.Models;
 using Application.API.Storage.Users.Contacts.Queries.Details;
 using Application.API.Storage.Users.Contacts.Queries.List;
 using Microsoft.AspNetCore.Mvc;
-using Presentation.API.Core.Controllers;
 
 namespace Presentation.API.Controllers.Users.Contacts
 {

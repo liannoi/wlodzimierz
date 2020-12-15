@@ -3,7 +3,7 @@ using System.Linq;
 using AutoMapper.Internal;
 using FluentValidation.Results;
 
-namespace Application.API.Common.Validation.Extensions
+namespace Application.API.Common.Validation
 {
     public static class ValidationExtensions
     {

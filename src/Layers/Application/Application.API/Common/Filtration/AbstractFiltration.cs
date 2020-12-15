@@ -1,9 +1,8 @@
 using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Application.API.Common.Filtration.Interfaces;
 
-namespace Application.API.Common.Filtration.Types
+namespace Application.API.Common.Filtration
 {
     public abstract class AbstractFiltration<TModel> : IFiltration<TModel>
     {

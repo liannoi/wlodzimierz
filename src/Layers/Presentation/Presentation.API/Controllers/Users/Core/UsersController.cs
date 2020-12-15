@@ -5,7 +5,6 @@ using Application.API.Storage.Users.Core.Commands.Verify;
 using Application.API.Storage.Users.Core.Models;
 using Application.API.Storage.Users.Core.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
-using Presentation.API.Core.Controllers;
 
 namespace Presentation.API.Controllers.Users.Core
 {

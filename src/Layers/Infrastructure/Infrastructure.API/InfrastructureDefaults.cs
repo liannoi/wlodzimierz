@@ -7,21 +7,18 @@ namespace Infrastructure.API
         #region Settings
 
         public static string Environment => "ASPNETCORE_ENVIRONMENT";
-        public static string UseInMemoryDatabase => "UseInMemoryDatabase";
 
         #endregion
 
         #region Persistence
 
         public static string PrimaryDatabase => "WlodzimierzDatabase";
-        public static string MemoryPrimaryDatabase => "WlodzimierzMemoryDatabase";
 
         #endregion
 
         #region Identity
 
         public static string IdentityDatabase => "WlodzimierzIdentityDatabase";
-        public static string MemoryIdentityDatabase => "WlodzimierzMemoryIdentityDatabase";
         public static string JwtSection => "JsonWebToken";
 
         public static string StartDirectory
@@ -35,6 +32,21 @@ namespace Infrastructure.API
                     $"{Directory.GetCurrentDirectory()}{separator}{up}{up}Presentation{separator}Presentation.API{separator}";
             }
         }
+
+        #endregion
+
+        #region Testing
+
+        public static string UseInMemoryDatabase => "UseInMemoryDatabase";
+        public static string MemoryPrimaryDatabase => "WlodzimierzMemoryDatabase";
+        public static string MemoryIdentityDatabase => "WlodzimierzMemoryIdentityDatabase";
+
+        #endregion
+
+        #region Caching
+
+        public static string CachingDatabase => "WlodzimierzCachingDatabase";
+        public static string CachingInstanceName => "Wlodzimierz_";
 
         #endregion
     }

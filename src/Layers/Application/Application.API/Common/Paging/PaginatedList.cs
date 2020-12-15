@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.API.Common.Paging.Types
+namespace Application.API.Common.Paging
 {
     public class PaginatedList<TModel>
     {
@@ -16,12 +17,17 @@ namespace Application.API.Common.Paging.Types
             Items = items;
         }
 
+        public PaginatedList()
+        {
+        }
+
         public IList<TModel> Items { get; }
         public int PageIndex { get; }
         public int TotalPages { get; }
         public int TotalCount { get; }
 
         public bool HasPreviousPage => PageIndex > 1;
+        
         public bool HasNextPage => PageIndex < TotalPages;
 
         public static async Task<PaginatedList<TModel>> CreateAsync(IQueryable<TModel> source, int pageIndex,

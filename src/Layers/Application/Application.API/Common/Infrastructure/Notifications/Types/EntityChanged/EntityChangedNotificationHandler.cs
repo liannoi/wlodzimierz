@@ -4,7 +4,7 @@ using Domain.API.Common.Notifications;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Application.API.Common.Notifications.Types.EntityChanged
+namespace Application.API.Common.Infrastructure.Notifications.Types.EntityChanged
 {
     public abstract class EntityChangedNotificationHandler<TNotification> :
         INotificationHandler<EntityChangedNotification<TNotification>> where TNotification : AbstractNotification

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Application.API.Common.Core.Exceptions;
-using Application.API.Common.Validation.Exceptions;
+using Application.API.Common.Validation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
