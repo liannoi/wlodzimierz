@@ -5,7 +5,6 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/21ec38ca8a924fce8b34be1398042f0c)](https://app.codacy.com/gh/liannoi/wlodzimierz?utm_source=github.com&utm_medium=referral&utm_content=liannoi/wlodzimierz&utm_campaign=Badge_Grade)
 [![Code Climate](https://api.codeclimate.com/v1/badges/d20791e6eae10de3149c/maintainability)](https://codeclimate.com/github/liannoi/wlodzimierz/maintainability)
 [![CodeFactor](https://www.codefactor.io/repository/github/liannoi/wlodzimierz/badge)](https://www.codefactor.io/repository/github/liannoi/wlodzimierz)
-[![Codebeat](https://codebeat.co/badges/cce4b35c-4ddd-4d9b-bf1e-289bacb8969c)](https://codebeat.co/projects/github-com-liannoi-sample-android-master)
 [![BetterCode](https://bettercodehub.com/edge/badge/liannoi/wlodzimierz?branch=main)](https://bettercodehub.com/)
 
 <br/>
@@ -37,6 +36,13 @@ The clients are:
 
 - Single-page application (SPA) in Angular
 - Native mobile application on Kotlin
+
+## GitHub Actions - Build Status
+
+| Type                   | Status                                                                                                 |
+|------------------------|--------------------------------------------------------------------------------------------------------|
+| Classic (dotnet build) | ![.NET 5 - Classic](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Classic/badge.svg) |
+| Docker                 | *[In developing]*                                                                                      |
 
 ## Technologies
 
