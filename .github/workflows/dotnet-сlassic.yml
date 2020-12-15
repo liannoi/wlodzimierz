@@ -20,7 +20,7 @@ jobs:
     - name: Install dotnet ef
       run: dotnet tool install --global dotnet-ef
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore src/WLODZIMIERZ.sln
     - name: Build with dotnet
       run: dotnet build --configuration Release src/WLODZIMIERZ.sln --no-restore
     - name: Test
