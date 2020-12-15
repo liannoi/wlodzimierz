@@ -22,21 +22,36 @@ namespace Infrastructure.API
         public static IServiceCollection AddApplication(this IServiceCollection services,
             IConfiguration configuration)
         {
-            // Persistence.
+            #region Persistence
 
-            services.AddDbContext<WlodzimierzContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString(InfrastructureDefaults.Database)));
+            var useInMemoryDatabase = configuration.GetValue<bool>(InfrastructureDefaults.UseInMemoryDatabase);
+
+            if (useInMemoryDatabase)
+                services.AddDbContext<WlodzimierzContext>(options =>
+                    options.UseInMemoryDatabase(InfrastructureDefaults.MemoryPrimaryDatabase));
+            else
+                services.AddDbContext<WlodzimierzContext>(options =>
+                    options.UseSqlServer(configuration.GetConnectionString(InfrastructureDefaults.PrimaryDatabase)));
 
             services.AddScoped<IWlodzimierzContext>(provider => provider.GetService<WlodzimierzContext>()!);
 
-            // Events.
+            #endregion
+
+            #region Notifications
 
             services.AddScoped<INotificationService, NotificationService>();
 
-            // Identity.
+            #endregion
 
-            services.AddDbContext<WlodzimierzIdentityContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString(InfrastructureDefaults.IdentityDatabase)));
+            #region Identity
+
+            if (useInMemoryDatabase)
+                services.AddDbContext<WlodzimierzIdentityContext>(options =>
+                    options.UseInMemoryDatabase(InfrastructureDefaults.MemoryIdentityDatabase));
+            else
+                services.AddDbContext<WlodzimierzIdentityContext>(options =>
+                    options.UseSqlServer(configuration.GetConnectionString(InfrastructureDefaults.IdentityDatabase),
+                        b => b.MigrationsAssembly(typeof(WlodzimierzIdentityContext).Assembly.FullName)));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<WlodzimierzIdentityContext>();
@@ -44,7 +59,9 @@ namespace Infrastructure.API
             services.AddAuthorization();
             services.AddScoped<IIdentityService, IdentityService>();
 
-            // Json Web Token.
+            #endregion
+
+            #region JSON Web Token
 
             var section = configuration.GetSection(InfrastructureDefaults.JwtSection);
             services.Configure<IdentitySettings>(section);
@@ -65,6 +82,8 @@ namespace Infrastructure.API
                         ClockSkew = TimeSpan.Zero
                     };
                 });
+
+            #endregion
 
             return services;
         }

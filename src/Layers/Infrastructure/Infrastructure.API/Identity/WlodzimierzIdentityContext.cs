@@ -18,7 +18,7 @@ namespace Infrastructure.API.Identity
             protected override WlodzimierzIdentityContext CreateNewInstance(
                 DbContextOptions<WlodzimierzIdentityContext> options)
             {
-                return new WlodzimierzIdentityContext(options);
+                return new(options);
             }
         }
     }

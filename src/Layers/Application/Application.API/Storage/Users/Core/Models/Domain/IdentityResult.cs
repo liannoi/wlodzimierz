@@ -17,12 +17,12 @@ namespace Application.API.Storage.Users.Core.Models.Domain
 
         public static IdentityResult Success()
         {
-            return new IdentityResult(true, Array.Empty<string>());
+            return new(true, Array.Empty<string>());
         }
 
         public static IdentityResult Failure(IEnumerable<string> errors)
         {
-            return new IdentityResult(false, errors);
+            return new(false, errors);
         }
 
         public static IdentityResult Failure()

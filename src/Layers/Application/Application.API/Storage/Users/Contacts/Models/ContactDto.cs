@@ -22,6 +22,7 @@ namespace Application.API.Storage.Users.Contacts.Models
         {
             profile.CreateMap<Contact, ContactDto>()
                 .ForMember(dest => dest.ContactId, opt => opt.MapFrom(s => s.ContactId))
+                .ForMember(dest => dest.OwnerUser, opt => opt.Ignore())
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(s => s.FirstName))
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(s => s.LastName))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(s => s.Email))

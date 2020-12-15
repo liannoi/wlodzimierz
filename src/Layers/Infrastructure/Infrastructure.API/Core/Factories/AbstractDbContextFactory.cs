@@ -24,13 +24,14 @@ namespace Infrastructure.API.Core.Factories
                 .AddJsonFile($"appsettings.{environmentName}.json", true)
                 .AddEnvironmentVariables()
                 .Build()
-                .GetConnectionString(InfrastructureDefaults.Database));
+                .GetConnectionString(InfrastructureDefaults.PrimaryDatabase));
         }
 
         private TContext Create(string connectionString)
         {
             if (string.IsNullOrEmpty(connectionString))
-                throw new ArgumentException($"Connection string '{InfrastructureDefaults.Database}' is null or empty.",
+                throw new ArgumentException(
+                    $"Connection string '{InfrastructureDefaults.PrimaryDatabase}' is null or empty.",
                     nameof(connectionString));
 
             Console.WriteLine($"AbstractDbContextFactory.Create(string): Connection string: '{connectionString}'.");
