@@ -54,7 +54,7 @@ namespace Application.IntegrationTests
             services.Remove(currentUserServiceDescriptor);
 
             // Register testing version
-            services.AddTransient(provider => Mock.Of<ICurrentUserService>(s => s.UserName == _currentUserName));
+            services.AddTransient(_ => Mock.Of<ICurrentUserService>(s => s.UserName == _currentUserName));
 
             _scopeFactory = services.BuildServiceProvider().GetService<IServiceScopeFactory>();
             _checkpoint = new Checkpoint {TablesToIgnore = new[] {"__EFMigrationsHistory"}};
@@ -117,33 +117,24 @@ namespace Application.IntegrationTests
 
         public static async Task<TEntity> FindAsync<TEntity>(params object[] keyValues) where TEntity : class
         {
-            return await PrepareContext().FindAsync<TEntity>(keyValues);
+            using var scope = _scopeFactory.CreateScope();
+            
+            return await scope.ServiceProvider.GetService<WlodzimierzContext>().FindAsync<TEntity>(keyValues);
         }
 
         public static async Task AddAsync<TEntity>(TEntity entity) where TEntity : class
         {
-            var context = PrepareContext();
+            using var scope = _scopeFactory.CreateScope();
+            var context = scope.ServiceProvider.GetService<WlodzimierzContext>();
             await context.AddAsync(entity);
             await context.SaveChangesAsync();
         }
 
         public static async Task<int> CountAsync<TEntity>() where TEntity : class
         {
-            return await PrepareContext().Set<TEntity>().CountAsync();
-        }
-
-        // Helpers.
-
-        private static void EnsureDatabase()
-        {
-            PrepareContext().Database.Migrate();
-        }
-
-        private static WlodzimierzContext PrepareContext()
-        {
             using var scope = _scopeFactory.CreateScope();
-
-            return scope.ServiceProvider.GetService<WlodzimierzContext>();
+            
+            return await scope.ServiceProvider.GetService<WlodzimierzContext>().Set<TEntity>().CountAsync();
         }
     }
 }
