@@ -39,10 +39,10 @@ The clients are:
 
 ## GitHub Actions - Build Status
 
-| Type                   | Status                                                                                                 |
-|------------------------|--------------------------------------------------------------------------------------------------------|
-| Classic (dotnet build) | ![.NET 5 - Classic](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Classic/badge.svg) |
-| Docker                 | *[In developing]*                                                                                      |
+| Type          | Status                                                                                                 |
+|---------------|--------------------------------------------------------------------------------------------------------|
+| Classic (CLI) | ![.NET 5 - Classic](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Classic/badge.svg) |
+| Docker        | ![.NET 5 - Docker](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Docker/badge.svg)   |
 
 ## Technologies
 
