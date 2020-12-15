@@ -1,4 +1,4 @@
-name: .NET 5
+name: .NET 5 - Classic
 
 on:
   push:
@@ -19,5 +19,9 @@ jobs:
         dotnet-version: 5.0.100
     - name: Install dotnet ef
       run: dotnet tool install --global dotnet-ef
+    - name: Restore dependencies
+      run: dotnet restore
     - name: Build with dotnet
-      run: dotnet build --configuration Release src/WLODZIMIERZ.sln
+      run: dotnet build --configuration Release src/WLODZIMIERZ.sln --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
