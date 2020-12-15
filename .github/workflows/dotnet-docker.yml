@@ -14,14 +14,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Pull - Docker Compose 
-      run: docker-compose pull
+      run: src/docker-compose pull
     - name: Build - Docker Compose 
-      run: docker-compose build
+      run: src/docker-compose build
     - name: Deploying Microsoft SQL Server - Docker Compose 
-      run: docker-compose up -d
+      run: src/docker-compose up -d
     - name: Sleep
       uses: jakejarvis/wait-action@master
       with:
         time: 2m
     - name: The entire system is being deployed (including ASP.NET Core Web API) - Docker Compose 
-      run: docker-compose up -d
+      run: src/docker-compose up -d
