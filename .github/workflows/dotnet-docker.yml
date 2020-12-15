@@ -27,7 +27,7 @@ jobs:
     - name: Sleep
       uses: jakejarvis/wait-action@master
       with:
-        time: 2m
+        time: '85s'
     - name: The entire system is being deployed (including ASP.NET Core Web API) - Docker Compose 
       run: docker-compose up -d
       working-directory: ${{env.working-directory}}
