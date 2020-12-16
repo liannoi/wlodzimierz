@@ -2,7 +2,7 @@ namespace Infrastructure.API.Caching
 {
     public static class CachingDefaults
     {
-        public static string CachingDatabase => "WlodzimierzCachingDatabase";
-        public static string CachingInstanceName => "Wlodzimierz_";
+        public const string CachingDatabase = "WlodzimierzCachingDatabase";
+        public const string CachingInstanceName = "Wlodzimierz_";
     }
 }

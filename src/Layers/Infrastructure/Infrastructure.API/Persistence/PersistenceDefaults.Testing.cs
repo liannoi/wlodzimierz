@@ -2,8 +2,8 @@ namespace Infrastructure.API.Persistence
 {
     public static partial class PersistenceDefaults
     {
-        public static string UseInMemoryDatabase => "UseInMemoryDatabase";
-        public static string MemoryPrimaryDatabase => "WlodzimierzMemoryDatabase";
-        public static string MemoryIdentityDatabase => "WlodzimierzMemoryIdentityDatabase";
+        public const string UseInMemoryDatabase = "UseInMemoryDatabase";
+        public const string MemoryPrimaryDatabase = "WlodzimierzMemoryDatabase";
+        public const string MemoryIdentityDatabase = "WlodzimierzMemoryIdentityDatabase";
     }
 }

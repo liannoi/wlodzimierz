@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
 
-  dotnet:
+  web-api:
     build: .
     ports:
       - "8080:80"
@@ -10,6 +10,7 @@ services:
       - default
     depends_on:
       - mssql
+      - redis
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
 

@@ -26,7 +26,7 @@ namespace Application.API.Common.Core.Behaviours
             catch (Exception exception)
             {
                 _logger.LogError(exception,
-                    $"[Wlodzimierz.API] Unhandled Exception for Request: {typeof(TRequest).Name} {request}");
+                    $"{ApplicationDefaults.ApplicationName} Unhandled Exception for Request: {typeof(TRequest).Name} {request}");
 
                 throw;
             }

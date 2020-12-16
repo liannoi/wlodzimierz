@@ -4,8 +4,8 @@ namespace Infrastructure.API.Identity
 {
     public static class IdentityDefaults
     {
-        public static string IdentityDatabase => "WlodzimierzIdentityDatabase";
-        public static string JwtSection => "JsonWebToken";
+        public const string IdentityDatabase = "WlodzimierzIdentityDatabase";
+        public const string JwtSection = "JsonWebToken";
 
         public static string StartDirectory
         {

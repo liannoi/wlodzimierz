@@ -14,7 +14,7 @@ namespace Infrastructure.API.Identity
         {
             var section = configuration.GetSection(IdentityDefaults.JwtSection);
             services.Configure<JwtBearerSettings>(section);
-            var appSettings = section.Get<JwtBearerSettings>();
+            var settings = section.Get<JwtBearerSettings>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -25,9 +25,9 @@ namespace Infrastructure.API.Identity
                         ValidateAudience = true,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = appSettings.Issuer,
-                        ValidAudience = appSettings.Issuer,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.Secret)),
+                        ValidIssuer = settings.Issuer,
+                        ValidAudience = settings.Issuer,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.Secret)),
                         ClockSkew = TimeSpan.Zero
                     };
                 });

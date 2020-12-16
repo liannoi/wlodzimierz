@@ -2,6 +2,6 @@ namespace Infrastructure.API.Identity.Abstractions
 {
     public static class AbstractionsDefaults
     {
-        public static string Environment => "ASPNETCORE_ENVIRONMENT";
+        public const string Environment = "ASPNETCORE_ENVIRONMENT";
     }
 }
