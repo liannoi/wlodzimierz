@@ -2,7 +2,9 @@ using System.Linq;
 using Application.API;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
 using FluentValidation.AspNetCore;
-using Infrastructure.API;
+using Infrastructure.API.Caching;
+using Infrastructure.API.Identity;
+using Infrastructure.API.Notifications;
 using Infrastructure.API.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,8 +31,12 @@ namespace Presentation.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddInfrastructure();
-            services.AddApplication(Configuration);
+            services.AddApplication();
+            services.AddPersistence(Configuration);
+            services.AddNotifications();
+            services.AddJwtIdentity(Configuration);
+            services.AddJsonWebToken(Configuration);
+            services.AddCaching(Configuration);
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

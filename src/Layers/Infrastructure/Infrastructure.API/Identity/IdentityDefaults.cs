@@ -2,7 +2,7 @@ using System.IO;
 
 namespace Infrastructure.API.Identity
 {
-    public static partial class IdentityDefaults
+    public static class IdentityDefaults
     {
         public static string IdentityDatabase => "WlodzimierzIdentityDatabase";
         public static string JwtSection => "JsonWebToken";

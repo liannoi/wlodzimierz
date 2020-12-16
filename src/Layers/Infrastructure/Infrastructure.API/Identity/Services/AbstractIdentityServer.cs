@@ -14,9 +14,9 @@ namespace Infrastructure.API.Identity.Services
 {
     public abstract class AbstractIdentityServer : IIdentityServer<ApplicationUser>
     {
-        private readonly IdentitySettings _settings;
+        private readonly JwtBearerSettings _settings;
 
-        protected AbstractIdentityServer(IOptions<IdentitySettings> settings)
+        protected AbstractIdentityServer(IOptions<JwtBearerSettings> settings)
         {
             _settings = settings.Value;
         }

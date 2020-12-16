@@ -13,7 +13,7 @@ namespace Infrastructure.API.Identity.Services
     {
         private readonly UserManager<ApplicationUser> _manager;
 
-        public IdentityService(IOptions<IdentitySettings> settings, UserManager<ApplicationUser> manager) :
+        public IdentityService(IOptions<JwtBearerSettings> settings, UserManager<ApplicationUser> manager) :
             base(settings)
         {
             _manager = manager;

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace Infrastructure.API.Identity
+namespace Infrastructure.API.Identity.Abstractions
 {
     public abstract class AbstractDbContextFactory<TContext> : IDesignTimeDbContextFactory<TContext>
         where TContext : DbContext
@@ -12,7 +12,7 @@ namespace Infrastructure.API.Identity
         public TContext CreateDbContext(string[] args)
         {
             return Create(IdentityDefaults.StartDirectory,
-                Environment.GetEnvironmentVariable(IdentityDefaults.Environment)!);
+                Environment.GetEnvironmentVariable(AbstractionsDefaults.Environment)!);
         }
 
         protected abstract TContext CreateNewInstance(DbContextOptions<TContext> options);
