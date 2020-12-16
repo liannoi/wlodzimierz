@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
-using Application.API.Common.Filtration.Types;
-using Application.API.Common.Mappings.Interfaces;
+using Application.API.Common.Filtration;
+using Application.API.Common.Mappings;
 using Application.API.Storage.Users.Core.Models;
 using AutoMapper;
 using Domain.API.Entities;

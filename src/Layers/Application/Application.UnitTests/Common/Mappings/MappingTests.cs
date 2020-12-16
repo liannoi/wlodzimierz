@@ -1,6 +1,6 @@
 using System;
 using System.Runtime.Serialization;
-using Application.API.Common.Mappings.Profiles;
+using Application.API.Common.Mappings;
 using Application.API.Storage.Users.Contacts.Models;
 using AutoMapper;
 using Domain.API.Entities;

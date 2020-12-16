@@ -1,8 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
-using Application.API.Common.Validation.Exceptions;
-using Application.API.Common.Validation.Extensions;
+using Application.API.Common.Validation;
 using Application.API.Storage.Users.Core.Models.Domain;
 using MediatR;
 

@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Application.API.Common.Infrastructure.Identity;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
 using Application.API.Storage.Users.Core.Models.Domain;
 using Infrastructure.API.Identity.Extensions;
@@ -12,7 +13,7 @@ namespace Infrastructure.API.Identity.Services
     {
         private readonly UserManager<ApplicationUser> _manager;
 
-        public IdentityService(IOptions<IdentitySettings> settings, UserManager<ApplicationUser> manager) :
+        public IdentityService(IOptions<JwtBearerSettings> settings, UserManager<ApplicationUser> manager) :
             base(settings)
         {
             _manager = manager;

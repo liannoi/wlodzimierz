@@ -1,5 +1,5 @@
 using Application.API.Storage.Users.Core.Models.Domain;
-using Infrastructure.API.Core.Factories;
+using Infrastructure.API.Identity.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

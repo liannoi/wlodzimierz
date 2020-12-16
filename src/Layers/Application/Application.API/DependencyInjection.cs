@@ -1,7 +1,7 @@
 using System.Reflection;
 using Application.API.Common.Core.Behaviours;
 using Application.API.Common.Infrastructure.Identity.Behaviours;
-using Application.API.Common.Validation.Behaviours;
+using Application.API.Common.Validation;
 using AutoMapper;
 using FluentValidation;
 using MediatR;
@@ -11,14 +11,30 @@ namespace Application.API
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+        public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            var assembly = Assembly.GetExecutingAssembly();
+
+            #region AutoMapper - Mappings
+
+            services.AddAutoMapper(assembly);
+
+            #endregion
+
+            #region FluentValidation - Validation
+
+            services.AddValidatorsFromAssembly(assembly);
+
+            #endregion
+
+            #region MediatR - Storage, CQRS
+
+            services.AddMediatR(assembly);
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+
+            #endregion
 
             return services;
         }

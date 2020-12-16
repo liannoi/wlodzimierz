@@ -2,6 +2,7 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Application.API.Common.Infrastructure.Identity;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
 using Application.API.Storage.Users.Core.Models.Domain;
 using Microsoft.AspNetCore.Identity;
@@ -13,9 +14,9 @@ namespace Infrastructure.API.Identity.Services
 {
     public abstract class AbstractIdentityServer : IIdentityServer<ApplicationUser>
     {
-        private readonly IdentitySettings _settings;
+        private readonly JwtBearerSettings _settings;
 
-        protected AbstractIdentityServer(IOptions<IdentitySettings> settings)
+        protected AbstractIdentityServer(IOptions<JwtBearerSettings> settings)
         {
             _settings = settings.Value;
         }

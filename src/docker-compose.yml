@@ -4,7 +4,7 @@ services:
 
   dotnet:
     build: .
-    ports: 
+    ports:
       - "8080:80"
     networks:
       - default
@@ -25,6 +25,18 @@ services:
       ACCEPT_EULA: "Y"
       SA_PASSWORD: "28DAF5358D6E4CEA551A782DCE2E902B4F9F0EA090027D548BD291D8690B9CBD"
       MSSQL_PID: "Developer"
+
+  redis:
+    image: redis:6.0.9
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./.volumes/redis-data:/var/lib/redis
+      - ./.volumes/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - default
+    environment:
+      REDIS_REPLICATION_MODE: "master"
 
 networks:
   default:
