@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
 using Application.API.Storage.Users.Core.Models.Domain;
-using Infrastructure.API;
 using Infrastructure.API.Identity.Extensions;
 using Infrastructure.API.Persistence;
 using MediatR;
@@ -111,7 +110,7 @@ namespace Application.IntegrationTests
 
         public static async Task ResetState()
         {
-            await _checkpoint.Reset(_configuration.GetConnectionString(InfrastructureDefaults.PrimaryDatabase));
+            await _checkpoint.Reset(_configuration.GetConnectionString(PersistenceDefaults.PrimaryDatabase));
             _currentUserName = null;
         }
 

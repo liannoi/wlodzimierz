@@ -1,9 +1,12 @@
 using System;
 using System.Text;
+using Application.API.Common.Infrastructure.Caching;
+using Application.API.Common.Infrastructure.Identity;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
 using Application.API.Common.Infrastructure.Notifications;
 using Application.API.Common.Infrastructure.Persistence;
 using Application.API.Storage.Users.Core.Models.Domain;
+using Infrastructure.API.Caching;
 using Infrastructure.API.Identity;
 using Infrastructure.API.Identity.Services;
 using Infrastructure.API.Notifications;
@@ -24,14 +27,14 @@ namespace Infrastructure.API
         {
             #region Persistence
 
-            var useInMemoryDatabase = configuration.GetValue<bool>(InfrastructureDefaults.UseInMemoryDatabase);
+            var useInMemoryDatabase = configuration.GetValue<bool>(PersistenceDefaults.UseInMemoryDatabase);
 
             if (useInMemoryDatabase)
                 services.AddDbContext<WlodzimierzContext>(options =>
-                    options.UseInMemoryDatabase(InfrastructureDefaults.MemoryPrimaryDatabase));
+                    options.UseInMemoryDatabase(PersistenceDefaults.MemoryPrimaryDatabase));
             else
                 services.AddDbContext<WlodzimierzContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString(InfrastructureDefaults.PrimaryDatabase)));
+                    options.UseSqlServer(configuration.GetConnectionString(PersistenceDefaults.PrimaryDatabase)));
 
             services.AddScoped<IWlodzimierzContext>(provider => provider.GetService<WlodzimierzContext>()!);
 
@@ -47,10 +50,10 @@ namespace Infrastructure.API
 
             if (useInMemoryDatabase)
                 services.AddDbContext<WlodzimierzIdentityContext>(options =>
-                    options.UseInMemoryDatabase(InfrastructureDefaults.MemoryIdentityDatabase));
+                    options.UseInMemoryDatabase(PersistenceDefaults.MemoryIdentityDatabase));
             else
                 services.AddDbContext<WlodzimierzIdentityContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString(InfrastructureDefaults.IdentityDatabase),
+                    options.UseSqlServer(configuration.GetConnectionString(IdentityDefaults.IdentityDatabase),
                         b => b.MigrationsAssembly(typeof(WlodzimierzIdentityContext).Assembly.FullName)));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -63,7 +66,7 @@ namespace Infrastructure.API
 
             #region JSON Web Token
 
-            var section = configuration.GetSection(InfrastructureDefaults.JwtSection);
+            var section = configuration.GetSection(IdentityDefaults.JwtSection);
             services.Configure<IdentitySettings>(section);
             var appSettings = section.Get<IdentitySettings>();
 
@@ -82,6 +85,18 @@ namespace Infrastructure.API
                         ClockSkew = TimeSpan.Zero
                     };
                 });
+
+            #endregion
+
+            #region Caching
+
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = configuration.GetConnectionString(CachingDefaults.CachingDatabase);
+                options.InstanceName = CachingDefaults.CachingInstanceName;
+            });
+
+            services.AddScoped<IWlodzimierzCachingContext, WlodzimierzCachingContext>();
 
             #endregion
 

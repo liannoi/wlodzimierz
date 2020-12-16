@@ -1,4 +1,5 @@
 using System;
+using Infrastructure.API.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -10,8 +11,8 @@ namespace Infrastructure.API.Identity
     {
         public TContext CreateDbContext(string[] args)
         {
-            return Create(InfrastructureDefaults.StartDirectory,
-                Environment.GetEnvironmentVariable(InfrastructureDefaults.Environment)!);
+            return Create(IdentityDefaults.StartDirectory,
+                Environment.GetEnvironmentVariable(IdentityDefaults.Environment)!);
         }
 
         protected abstract TContext CreateNewInstance(DbContextOptions<TContext> options);
@@ -24,14 +25,14 @@ namespace Infrastructure.API.Identity
                 .AddJsonFile($"appsettings.{environmentName}.json", true)
                 .AddEnvironmentVariables()
                 .Build()
-                .GetConnectionString(InfrastructureDefaults.PrimaryDatabase));
+                .GetConnectionString(PersistenceDefaults.PrimaryDatabase));
         }
 
         private TContext Create(string connectionString)
         {
             if (string.IsNullOrEmpty(connectionString))
                 throw new ArgumentException(
-                    $"Connection string '{InfrastructureDefaults.PrimaryDatabase}' is null or empty.",
+                    $"Connection string '{PersistenceDefaults.PrimaryDatabase}' is null or empty.",
                     nameof(connectionString));
 
             Console.WriteLine($"AbstractDbContextFactory.Create(string): Connection string: '{connectionString}'.");

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,7 +26,7 @@ namespace Application.API.Common.Paging
         public int TotalCount { get; }
 
         public bool HasPreviousPage => PageIndex > 1;
-        
+
         public bool HasNextPage => PageIndex < TotalPages;
 
         public static async Task<PaginatedList<TModel>> CreateAsync(IQueryable<TModel> source, int pageIndex,
