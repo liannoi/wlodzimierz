@@ -5,6 +5,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/21ec38ca8a924fce8b34be1398042f0c)](https://app.codacy.com/gh/liannoi/wlodzimierz?utm_source=github.com&utm_medium=referral&utm_content=liannoi/wlodzimierz&utm_campaign=Badge_Grade)
 [![Code Climate](https://api.codeclimate.com/v1/badges/d20791e6eae10de3149c/maintainability)](https://codeclimate.com/github/liannoi/wlodzimierz/maintainability)
 [![CodeFactor](https://www.codefactor.io/repository/github/liannoi/wlodzimierz/badge)](https://www.codefactor.io/repository/github/liannoi/wlodzimierz)
+[![Codebeat](https://codebeat.co/badges/9fb05993-a47e-49f1-8a70-656cb9ddaa57)](https://codebeat.co/projects/github-com-liannoi-wlodzimierz-main)
 [![BetterCode](https://bettercodehub.com/edge/badge/liannoi/wlodzimierz?branch=main)](https://bettercodehub.com/)
 
 <br/>
@@ -73,9 +74,9 @@ The clients are:
 - Entity Framework Core 5
 - ASP.NET Core Identity 5
 - MediatR 9
-- AutoMapper 8.1
+- AutoMapper 10.1
 - FluentValidation 9.3
-- Swagger 13.9
+- Swagger
 - LinqKit 1.1
 - FluentAssertions 5.10
 - Moq 4.15
