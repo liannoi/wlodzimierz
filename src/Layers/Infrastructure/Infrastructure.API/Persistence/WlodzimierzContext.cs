@@ -54,15 +54,15 @@ namespace Infrastructure.API.Persistence
         {
             while (true)
             {
-                var domainEventEntity = ChangeTracker.Entries<INotifiable>()
+                var notification = ChangeTracker.Entries<INotifiable>()
                     .Select(x => x.Entity.Notifications)
                     .SelectMany(x => x)
                     .FirstOrDefault(domainEvent => !domainEvent.IsPublished);
 
-                if (domainEventEntity == null) break;
+                if (notification == null) break;
 
-                domainEventEntity.IsPublished = true;
-                await _notificationService.Publish(domainEventEntity);
+                notification.IsPublished = true;
+                await _notificationService.Publish(notification);
             }
         }
     }

@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using Application.API.Storage.Users.Contacts.Commands.Create;
-using Application.API.Storage.Users.Core.Models;
+using Application.API.Storage.Contacts.Commands.Create;
+using Application.API.Storage.Users.Models;
 using Domain.API.Entities;
 using FluentAssertions;
 using Moq;

@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Application.API.Storage.Users.Core.Models.Domain;
+using Application.API.Storage.Users.Models.Domain;
 
 namespace Application.API.Common.Infrastructure.Identity.Interfaces
 {

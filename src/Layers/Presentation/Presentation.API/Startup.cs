@@ -34,8 +34,8 @@ namespace Presentation.API
             services.AddApplication();
             services.AddPersistence(Configuration);
             services.AddNotifications();
-            services.AddJwtIdentity(Configuration);
-            services.AddJsonWebToken(Configuration);
+            services.AddIdentityInfrastructure(Configuration);
+            services.AddIdentity(Configuration);
             services.AddCaching(Configuration);
 
             services.AddDatabaseDeveloperPageExceptionFilter();

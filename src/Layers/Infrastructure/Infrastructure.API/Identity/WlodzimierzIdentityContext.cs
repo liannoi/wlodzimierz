@@ -1,4 +1,4 @@
-using Application.API.Storage.Users.Core.Models.Domain;
+using Application.API.Storage.Users.Models.Domain;
 using Infrastructure.API.Identity.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;

@@ -1,33 +1,36 @@
-using Application.API.Common.Infrastructure.Identity.Interfaces;
-using Application.API.Storage.Users.Core.Models.Domain;
-using Infrastructure.API.Identity.Services;
-using Infrastructure.API.Persistence;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.Text;
+using Application.API.Common.Infrastructure.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Infrastructure.API.Identity
 {
     public static partial class DependencyInjection
     {
-        public static IServiceCollection AddJwtIdentity(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddIdentity(this IServiceCollection services, IConfiguration configuration)
         {
-            var useInMemoryDatabase = configuration.GetValue<bool>(PersistenceDefaults.UseInMemoryDatabase);
+            var section = configuration.GetSection(IdentityDefaults.JwtSection);
+            services.Configure<JwtBearerSettings>(section);
+            var settings = section.Get<JwtBearerSettings>();
 
-            if (useInMemoryDatabase)
-                services.AddDbContext<WlodzimierzIdentityContext>(options =>
-                    options.UseInMemoryDatabase(PersistenceDefaults.MemoryIdentityDatabase));
-            else
-                services.AddDbContext<WlodzimierzIdentityContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString(IdentityDefaults.IdentityDatabase),
-                        b => b.MigrationsAssembly(typeof(WlodzimierzIdentityContext).Assembly.FullName)));
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<WlodzimierzIdentityContext>();
-
-            services.AddAuthorization();
-            services.AddScoped<IIdentityService, IdentityService>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = settings.Issuer,
+                        ValidAudience = settings.Issuer,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.Secret)),
+                        ClockSkew = TimeSpan.Zero
+                    };
+                });
 
             return services;
         }

@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.API.Common.Infrastructure.Identity.Interfaces;
-using Application.API.Storage.Users.Core.Models.Domain;
+using Application.API.Storage.Users.Models.Domain;
 using Infrastructure.API.Identity.Extensions;
 using Infrastructure.API.Persistence;
 using MediatR;
