@@ -1,11 +1,13 @@
 using System.Threading.Tasks;
-using Application.API.Common.Infrastructure.Persistence;
+using Application.API.Common.Interfaces;
 using Application.API.Storage.Contacts.Mutations.Create;
 using Domain.API.Entities;
 using HotChocolate;
+using HotChocolate.Types;
 
-namespace Application.API.Storage.Contacts
+namespace Application.API.Storage.Contacts.Mutations
 {
+    [ExtendObjectType(Name = "Mutation")]
     public class ContactMutations
     {
         public async Task<CreateContactPayload> CreateContactAsync(CreateContactInput input,

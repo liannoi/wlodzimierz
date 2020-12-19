@@ -1,14 +1,16 @@
+using Application.API.Common.Errors;
 using Domain.API.Entities;
 
 namespace Application.API.Storage.Contacts.Mutations.Create
 {
-    public class CreateContactPayload
+    public class CreateContactPayload : AbstractContactPayload
     {
-        public CreateContactPayload(Contact contact)
+        public CreateContactPayload(Contact contact) : base(contact)
         {
-            Contact = contact;
         }
 
-        public Contact Contact { get; set; }
+        public CreateContactPayload(UserError error) : base(new[] {error})
+        {
+        }
     }
 }

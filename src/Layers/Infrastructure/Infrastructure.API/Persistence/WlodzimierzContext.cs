@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Application.API.Common.Infrastructure.Persistence;
+using Application.API.Common.Interfaces;
 using Domain.API.Entities;
 using Microsoft.EntityFrameworkCore;
 

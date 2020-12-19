@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Application.API;
-using HotChocolate.AspNetCore;
 using HotChocolate.AspNetCore.Voyager;
 using Infrastructure.API.Persistence;
 using Microsoft.AspNetCore.Builder;

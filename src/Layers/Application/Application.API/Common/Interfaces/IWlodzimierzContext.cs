@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Domain.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.API.Common.Infrastructure.Persistence
+namespace Application.API.Common.Interfaces
 {
     public interface IWlodzimierzContext
     {

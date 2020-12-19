@@ -1,15 +1,14 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.API.Common.Infrastructure.Persistence;
+using Application.API.Common.Interfaces;
 using Domain.API.Entities;
 using GreenDonut;
 using HotChocolate.DataLoader;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.API.Storage.Contacts.DataLoaders
+namespace Application.API.Storage.Contacts.Queries
 {
     public class ContactByIdDataLoader : BatchDataLoader<int, Contact>
     {
