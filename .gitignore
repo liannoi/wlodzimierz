@@ -1,4 +1,4 @@
-src/.volumes/
+.volumes/
 nuget.config
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,rider,csharp,kotlin,angular,jetbrains,android,androidstudio,webstorm
