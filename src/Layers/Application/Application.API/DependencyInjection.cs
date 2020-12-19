@@ -1,4 +1,6 @@
 using Application.API.Storage.Contacts;
+using Application.API.Storage.Contacts.DataLoaders;
+using Application.API.Storage.Contacts.Types;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.API
@@ -9,7 +11,9 @@ namespace Application.API
         {
             services.AddGraphQLServer()
                 .AddQueryType<ContactQueries>()
-                .AddMutationType<ContactMutations>();
+                .AddMutationType<ContactMutations>()
+                .AddType<ContactType>()
+                .AddDataLoader<ContactByIdDataLoader>();
 
             return services;
         }

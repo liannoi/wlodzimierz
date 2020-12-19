@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Application.API;
 using HotChocolate.AspNetCore;
 using HotChocolate.AspNetCore.Voyager;
@@ -33,10 +34,21 @@ namespace Presentation.API
 
             app.UseRouting();
 
-            app.UseVoyager();
-            app.UsePlayground();
+            app.UseVoyager(new VoyagerOptions
+            {
+                Path = "/ui/voyager",
+                QueryPath = "/graphql"
+            });
 
-            app.UseEndpoints(endpoints => endpoints.MapGraphQL());
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapGraphQL();
+                endpoints.MapGet("/", context =>
+                {
+                    context.Response.Redirect("/graphql");
+                    return Task.CompletedTask;
+                });
+            });
         }
     }
 }
