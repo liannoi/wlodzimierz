@@ -9,10 +9,11 @@ namespace Infrastructure.API.Persistence
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<WlodzimierzContext>(options =>
+            services.AddPooledDbContextFactory<WlodzimierzContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString(PersistenceDefaults.PrimaryDatabase)));
-            
-            services.AddScoped<IWlodzimierzContext>(provider => provider.GetService<WlodzimierzContext>()!);
+
+            services.AddTransient<IWlodzimierzContext>(provider =>
+                provider.GetRequiredService<IDbContextFactory<WlodzimierzContext>>().CreateDbContext());
 
             return services;
         }

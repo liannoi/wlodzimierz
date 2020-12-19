@@ -1,6 +1,6 @@
 namespace Infrastructure.API.Persistence
 {
-    public static partial class PersistenceDefaults
+    public static class PersistenceDefaults
     {
         public const string PrimaryDatabase = "WlodzimierzDatabase";
     }

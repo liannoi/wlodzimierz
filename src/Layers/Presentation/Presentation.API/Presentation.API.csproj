@@ -10,4 +10,9 @@
       <ProjectReference Include="..\..\Infrastructure\Infrastructure.API\Infrastructure.API.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="HotChocolate.AspNetCore.Playground" Version="10.5.5" />
+      <PackageReference Include="HotChocolate.AspNetCore.Voyager" Version="10.5.5" />
+    </ItemGroup>
+
 </Project>
