@@ -1,17 +1,9 @@
-﻿using System.Collections.Generic;
-using Domain.API.Common.Notifications;
-
-#nullable disable
+﻿#nullable disable
 
 namespace Domain.API.Entities
 {
-    public class Contact : INotifiable
+    public class Contact
     {
-        public Contact()
-        {
-            Notifications = new List<AbstractNotification>();
-        }
-
         public int ContactId { get; set; }
         public string OwnerUserId { get; set; }
         public string FirstName { get; set; }
@@ -19,7 +11,5 @@ namespace Domain.API.Entities
         public string Email { get; set; }
         public string Photo { get; set; }
         public bool IsRemoved { get; set; }
-
-        public IList<AbstractNotification> Notifications { get; set; }
     }
 }

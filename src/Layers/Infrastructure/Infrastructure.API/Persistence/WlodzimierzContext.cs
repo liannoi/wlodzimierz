@@ -1,10 +1,5 @@
-﻿using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-using Application.API.Common.Infrastructure.Notifications;
+﻿using System.Reflection;
 using Application.API.Common.Infrastructure.Persistence;
-using Domain.API.Common.Notifications;
 using Domain.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,13 +9,8 @@ namespace Infrastructure.API.Persistence
 {
     public class WlodzimierzContext : DbContext, IWlodzimierzContext
     {
-        private readonly INotificationService _notificationService;
-
-        public WlodzimierzContext(DbContextOptions<WlodzimierzContext> options,
-            INotificationService notificationService)
-            : base(options)
+        public WlodzimierzContext(DbContextOptions<WlodzimierzContext> options) : base(options)
         {
-            _notificationService = notificationService;
         }
 
         public DbSet<Contact> Contacts { get; set; }
@@ -33,37 +23,12 @@ namespace Infrastructure.API.Persistence
         public DbSet<UserBlacklist> UserBlacklists { get; set; }
         public DbSet<UserGroup> UserGroups { get; set; }
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
-        {
-            var result = await base.SaveChangesAsync(cancellationToken);
-            await DispatchEvents();
-
-            return result;
-        }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             base.OnModelCreating(builder);
-        }
-
-        // Helpers.
-
-        private async Task DispatchEvents()
-        {
-            while (true)
-            {
-                var notification = ChangeTracker.Entries<INotifiable>()
-                    .Select(x => x.Entity.Notifications)
-                    .SelectMany(x => x)
-                    .FirstOrDefault(domainEvent => !domainEvent.IsPublished);
-
-                if (notification == null) break;
-
-                notification.IsPublished = true;
-                await _notificationService.Publish(notification);
-            }
         }
     }
 }
