@@ -9,6 +9,7 @@ namespace Application.API.Storage.Contacts.Mutations
     {
         protected AbstractContactPayload(Contact contact)
         {
+            Contact = contact;
         }
 
         protected AbstractContactPayload(IReadOnlyList<UserError> errors) : base(errors)

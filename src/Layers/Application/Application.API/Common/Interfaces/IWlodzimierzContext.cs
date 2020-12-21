@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Domain.API.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Application.API.Common.Interfaces
 {
@@ -18,5 +19,6 @@ namespace Application.API.Common.Interfaces
         public DbSet<UserGroup> UserGroups { get; set; }
 
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+        public EntityEntry<TEntity> Remove<TEntity>(TEntity entity) where TEntity : class;
     }
 }

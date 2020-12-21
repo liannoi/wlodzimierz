@@ -13,13 +13,13 @@ namespace Application.API.Storage.Contacts.Queries
     [ExtendObjectType(Name = "Query")]
     public class ContactQueries
     {
-        public async Task<IList<Contact>> GetContactsAsync([Service] IWlodzimierzContext context)
+        [UsePaging]
+        public async Task<IList<Contact>> GetContactsAsync([Service] IWlodzimierzContext context,CancellationToken cancellationToken)
         {
-            return await context.Contacts.ToListAsync();
+            return await context.Contacts.ToListAsync(cancellationToken);
         }
 
-        public async Task<Contact> GetContactAsync([ID(nameof(Contact))] int id, ContactByIdDataLoader dataLoader,
-            CancellationToken cancellationToken)
+        public async Task<Contact> GetContactByIdAsync([ID(nameof(Contact))] int id, ContactByIdDataLoader dataLoader, CancellationToken cancellationToken)
         {
             return await dataLoader.LoadAsync(id, cancellationToken);
         }

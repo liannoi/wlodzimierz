@@ -2,6 +2,7 @@
 using Application.API.Common.Interfaces;
 using Domain.API.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 #nullable disable
 
