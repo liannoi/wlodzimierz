@@ -23,7 +23,3 @@ jobs:
       run: dotnet restore src/WLODZIMIERZ.sln
     - name: Build with dotnet
       run: dotnet build src/WLODZIMIERZ.sln --configuration Release --no-restore
-    - name: Application - Integration Tests
-      run: dotnet test src/Layers/Application/Application.IntegrationTests/Application.IntegrationTests.csproj --no-build --verbosity normal
-    - name: Application - Unit Tests
-      run: dotnet test src/Layers/Application/Application.UnitTests/Application.UnitTests.csproj --no-build --verbosity normal
