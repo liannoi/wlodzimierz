@@ -1,4 +1,4 @@
-name: .NET 5 - Classic
+name: .NET 5 - Classic build
 
 on:
   push:
