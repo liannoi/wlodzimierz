@@ -2,6 +2,8 @@
 
 # WLODZIMIERZ
 
+![.NET 5 - Classic build](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Classic%20build/badge.svg)
+![.NET 5 - Deployment in Docker](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Deployment%20in%20Docker/badge.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/21ec38ca8a924fce8b34be1398042f0c)](https://app.codacy.com/gh/liannoi/wlodzimierz?utm_source=github.com&utm_medium=referral&utm_content=liannoi/wlodzimierz&utm_campaign=Badge_Grade)
 [![Code Climate](https://api.codeclimate.com/v1/badges/d20791e6eae10de3149c/maintainability)](https://codeclimate.com/github/liannoi/wlodzimierz/maintainability)
 [![CodeFactor](https://www.codefactor.io/repository/github/liannoi/wlodzimierz/badge)](https://www.codefactor.io/repository/github/liannoi/wlodzimierz)
@@ -30,43 +32,38 @@ Among them:
 
 ### Architecture
 
-The server-side RESTful Web API is written in .NET Core using the MediatR
-library to implement the CQRS design pattern.
+The server-side RESTful Web API is written in .NET Core using MediatR library
+to implement CQRS design pattern.
 
 The clients are:
 
 - Single-page application (SPA) in Angular
 - Native mobile application on Kotlin
 
-## GitHub Actions - Build Status
-
-| Type          | Status                                                                                                 |
-|---------------|--------------------------------------------------------------------------------------------------------|
-| Classic (CLI) | ![.NET 5 - Classic](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Classic/badge.svg) |
-| Docker        | ![.NET 5 - Docker](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Docker/badge.svg)   |
-
 ## Technologies
 
 > To describe the technologies of this project, it was decided to divide them
-> into two conditional categories. The first category **Client** refers to
-> technologies that are related to the clients of the project, and the second
-> category **Server** refers to technologies that are related to the server-side
-> RESTful Web API.
+> into two conditional categories. The first category **External clients**
+> refers to technologies that are related to the clients of the project, and
+> the second category **Server** refers to technologies that are related to the
+> server-side RESTful Web API.
 
-### Client:
+### External clients
+
+#### SPA web app
 
 - Angular 11
 - Bootstrap 4.5 (ng-bootstrap)
 - RxJS 6
 
----
+#### Native mobile app
 
 - Kotlin 1.4
 - Android Jetpack (Hilt, Android Architecture Components)
 - SQLite
 - RxJava (RxKotlin, RxAndroid, RxBinding)
 
-### Server:
+### Server
 
 - .NET 5
 - Docker 19.03
@@ -77,16 +74,91 @@ The clients are:
 - AutoMapper 10.1
 - FluentValidation 9.3
 - Swagger
-- LinqKit 1.1
 - FluentAssertions 5.10
 - Moq 4.15
 - NUnit
 - Respawn 3.3
+- LinqKit 1.1
+- Redis 6
+- Serilog 2.10
+- Sentry 2.1
 - SignalR
 
-### Documentation
+## Getting Started
 
-For more detailed information about the project - go to the [Wiki](https://github.com/liannoi/wlodzimierz/wiki) section.
+To begin with, I would like to note that the project, or rather server RESTful
+Web API, can be deployed in two options:
+
+- Classic (using [.NET CLI](https://docs.microsoft.com/en-us/dotnet/core/tools) and / or Windows operating system).
+- Deploying Docker containers in a composition via Docker Compose.
+
+In any case the requirements will be the same, except for the ways of
+interacting with tools, depending on the chosen strategy.
+
+### Prerequisites
+
+Thus, you will need the following tools:
+
+- [.NET 5 SDK](https://dotnet.microsoft.com/download) (will include .NET CLI)
+- [JetBrains Rider](https://www.jetbrains.com/rider/download) or [Visual Studio](https://visualstudio.microsoft.com/downloads)
+- [JetBrains DataGrip](https://www.jetbrains.com/datagrip/download) or [SSMS](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
+- [GitHub CLI](https://cli.github.com) (optional)
+
+---
+
+- [Docker Engine](https://docs.docker.com/get-docker)
+- [Docker Compose](https://docs.docker.com/compose/install)
+
+### Classic
+
+~~Use the following instructions to deploy locally using .NET CLI and / or
+Windows operating system.~~
+
+> There are no instructions due to technical limitations (during development, a
+> strategy with Docker is used on macOS Big Sur operating system).
+
+### Docker
+
+Use the following instructions to deploy in Docker containers as composition
+using Docker Compose.
+
+1. Clone the repository.
+
+```
+gh repo clone liannoi/wlodzimierz
+```
+
+2. Go to the root directory of the project and then to the directory with the source code.
+
+```
+cd wlodzimierz/src
+```
+
+3. Start the Docker service (for macOS only ```Docker Desktop``` application needs to be started).
+
+4. Download the images necessary for the composition from Docker Registry, on the basis of which Docker Compose will build the container composition.
+
+```
+docker-compose pull
+```
+
+5. Build Web API container from the described Dockerfile.
+
+```
+docker-compose build
+```
+
+6. Bring up the composition in disconnected mode, wait a minute and a half (average time to start a Microsoft SQL Server container to open to third-party client connections) and try the same thing, but only with Microsoft SQL Server running.
+
+```
+docker-compose up -d && sleep 90 && docker-compose up -d
+```
+
+7. Launch ```https://localhost:8080/api``` in your browser and you will see Swagger generated RESTful API documentation.
+
+## Specification
+
+For more specific information about the project - go to [Wiki](https://github.com/liannoi/wlodzimierz/wiki) section.
 
 ## License
 
