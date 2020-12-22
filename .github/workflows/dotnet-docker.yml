@@ -1,4 +1,4 @@
-name: .NET 5 - Deployment in Docker container
+name: .NET 5 - Deployment in Docker
 
 on:
   push:
