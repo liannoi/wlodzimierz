@@ -16,6 +16,7 @@
       <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.1" />
       <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="5.0.1" />
       <PackageReference Include="NSwag.AspNetCore" Version="13.9.4" />
+      <PackageReference Include="Sentry.AspNetCore" Version="2.1.8" />
     </ItemGroup>
 
 </Project>

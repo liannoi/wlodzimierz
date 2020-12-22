@@ -20,6 +20,14 @@ COPY . .
 WORKDIR /src/Layers/Presentation/Presentation.API
 RUN dotnet publish --no-restore -c release -o /app
 
+FROM build as unittests
+WORKDIR /src/Layers/Application/Application.UnitTests
+RUN dotnet test src/Layers/Application/Application.UnitTests --no-build --verbosity normal
+
+FROM build as intergrationtests
+WORKDIR /src/Layers/Application/Application.IntegrationTests
+RUN dotnet test src/Layers/Application/Application.IntegrationTests --no-build --verbosity normal
+
 FROM build AS publish
 
 FROM base AS final
