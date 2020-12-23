@@ -3,16 +3,22 @@ version: "3.8"
 services:
 
   web-api:
-    build: .
+    build:
+      context: .
+      dockerfile: Layers/Presentation/Presentation.API/Dockerfile
     ports:
-      - "8080:80"
+      - "5000:5000"
     networks:
       - default
     depends_on:
       - mssql
       - redis
+    restart: on-failure
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
+      UseInMemoryDatabase: "false"
+      ConnectionStrings__WlodzimierzDatabase: "Server=mssql;Database=Wlodzimierz;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
+      ConnectionStrings__WlodzimierzIdentityDatabase: "Server=mssql;Database=Wlodzimierz.Identity;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
@@ -24,7 +30,7 @@ services:
       - default
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "28DAF5358D6E4CEA551A782DCE2E902B4F9F0EA090027D548BD291D8690B9CBD"
+      SA_PASSWORD: "BufKfVgDMpm9m4ZXHXpGavTAm5B"
       MSSQL_PID: "Developer"
 
   redis:
