@@ -1,11 +1,8 @@
 using System.Linq;
-using Application.API;
-using Application.API.Common.Infrastructure.Identity.Interfaces;
+using Application.Infrastructure.Identity.API.Interfaces;
 using FluentValidation.AspNetCore;
-using Infrastructure.API.Caching;
-using Infrastructure.API.Identity;
-using Infrastructure.API.Notifications;
-using Infrastructure.API.Persistence;
+using Infrastructure.Identity.API;
+using Infrastructure.Persistence.API;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -14,29 +11,31 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NSwag;
 using NSwag.Generation.Processors.Security;
-using Presentation.API.Core.Filters;
-using Presentation.API.Core.Services;
+using Presentation.API.Common.Filters;
+using Presentation.API.Common.Services;
 
 namespace Presentation.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
 
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplication();
-            services.AddPersistence(Configuration);
-            services.AddNotifications();
+            #region System
+
+            services.AddIdentityPersistence(Configuration);
             services.AddIdentityInfrastructure(Configuration);
-            services.AddIdentity(Configuration);
-            services.AddCaching(Configuration);
+
+            #endregion
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

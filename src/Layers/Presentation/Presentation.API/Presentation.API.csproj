@@ -6,8 +6,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Application\Application.API\Application.API.csproj" />
-      <ProjectReference Include="..\..\Infrastructure\Infrastructure.API\Infrastructure.API.csproj" />
+      <ProjectReference Include="..\..\Application\Core\Application.Core.API\Application.Core.API.csproj" />
+      <ProjectReference Include="..\..\Application\Infrastructure\Identity\Application.Infrastructure.Identity.API\Application.Infrastructure.Identity.API.csproj" />
+      <ProjectReference Include="..\..\Application\Mappings\Application.Mappings.API\Application.Mappings.API.csproj" />
+      <ProjectReference Include="..\..\Application\Validation\Application.Validation.API\Application.Validation.API.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Caching\Infrastructure.Caching.API\Infrastructure.Caching.API.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Identity\Infrastructure.Identity.API\Infrastructure.Identity.API.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Notifications\Infrastructure.Notifications.API\Infrastructure.Notifications.API.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Persistence\Infrastructure.Persistence.API\Infrastructure.Persistence.API.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -16,7 +22,11 @@
       <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.1" />
       <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="5.0.1" />
       <PackageReference Include="NSwag.AspNetCore" Version="13.9.4" />
-      <PackageReference Include="Sentry.AspNetCore" Version="2.1.8" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Common" />
+      <Folder Include="Controllers" />
     </ItemGroup>
 
 </Project>

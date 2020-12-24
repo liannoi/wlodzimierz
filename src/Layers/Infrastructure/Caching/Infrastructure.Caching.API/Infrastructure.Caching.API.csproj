@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Application\Core\Application.Core.API\Application.Core.API.csproj" />
+      <ProjectReference Include="..\..\..\Application\Infrastructure\Caching\Application.Infrastructure.Caching.API\Application.Infrastructure.Caching.API.csproj" />
+    </ItemGroup>
+
+</Project>

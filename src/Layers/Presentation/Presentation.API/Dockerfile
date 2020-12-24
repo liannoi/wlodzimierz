@@ -8,11 +8,23 @@ WORKDIR /src
 
 COPY "WLODZIMIERZ.sln" "WLODZIMIERZ.sln"
 
-COPY "Layers/Application/Application.API/Application.API.csproj" "Layers/Application/Application.API/Application.API.csproj"
-COPY "Layers/Application/Application.IntegrationTests/Application.IntegrationTests.csproj" "Layers/Application/Application.IntegrationTests/Application.IntegrationTests.csproj"
-COPY "Layers/Application/Application.UnitTests/Application.UnitTests.csproj" "Layers/Application/Application.UnitTests/Application.UnitTests.csproj"
 COPY "Layers/Domain/Domain.API/Domain.API.csproj" "Layers/Domain/Domain.API/Domain.API.csproj"
-COPY "Layers/Infrastructure/Infrastructure.API/Infrastructure.API.csproj" "Layers/Infrastructure/Infrastructure.API/Infrastructure.API.csproj"
+
+COPY "Layers/Application/Core/Application.Core.API" "Layers/Application/Core/Application.Core.API"
+COPY "Layers/Application/Filtration/Application.Filtration.API" "Layers/Application/Filtration/Application.Filtration.API"
+COPY "Layers/Application/Infrastructure/Caching/Application.Infrastructure.Caching.API" "Layers/Application/Infrastructure/Caching/Application.Infrastructure.Caching.API"
+COPY "Layers/Application/Infrastructure/Identity/Application.Infrastructure.Identity.API" "Layers/Application/Infrastructure/Identity/Application.Infrastructure.Identity.API"
+COPY "Layers/Application/Infrastructure/Notifications/Application.Infrastructure.Notifications.API" "Layers/Application/Infrastructure/Notifications/Application.Infrastructure.Notifications.API"
+COPY "Layers/Application/Infrastructure/Persistence/Application.Infrastructure.Persistence.API" "Layers/Application/Infrastructure/Persistence/Application.Infrastructure.Persistence.API"
+COPY "Layers/Application/Mappings/Application.Mappings.API" "Layers/Application/Mappings/Application.Mappings.API"
+COPY "Layers/Application/Paging/Application.Paging.API" "Layers/Application/Paging/Application.Paging.API"
+COPY "Layers/Application/Validation/Application.Validation.API" "Layers/Application/Validation/Application.Validation.API"
+
+COPY "Layers/Infrastructure/Caching/Infrastructure.Caching.API" "Layers/Infrastructure/Caching/Infrastructure.Caching.API"
+COPY "Layers/Infrastructure/Identity/Infrastructure.Identity.API" "Layers/Infrastructure/Identity/Infrastructure.Identity.API"
+COPY "Layers/Infrastructure/Notifications/Infrastructure.Notifications.API" "Layers/Infrastructure/Notifications/Infrastructure.Notifications.API"
+COPY "Layers/Infrastructure/Persistence/Infrastructure.Persistence.API" "Layers/Infrastructure/Persistence/Infrastructure.Persistence.API"
+
 COPY "Layers/Presentation/Presentation.API/Presentation.API.csproj" "Layers/Presentation/Presentation.API/Presentation.API.csproj"
 
 RUN dotnet restore "WLODZIMIERZ.sln"
