@@ -81,7 +81,6 @@ The clients are:
 - LinqKit 1.1
 - Redis 6
 - Serilog 2.10
-- Sentry 2.1
 - SignalR
 
 ## Getting Started
@@ -136,6 +135,8 @@ cd wlodzimierz/src
 
 3. Start the Docker service (for macOS only ```Docker Desktop``` application needs to be started).
 
+---
+
 4. Download the images necessary for the composition from Docker Registry, on the basis of which Docker Compose will build the container composition.
 
 ```
@@ -148,13 +149,23 @@ docker-compose pull
 docker-compose build
 ```
 
-6. Bring up the composition in disconnected mode, wait a minute and a half (average time to start a Microsoft SQL Server container to open to third-party client connections) and try the same thing, but only with Microsoft SQL Server running.
+6. Deploying a Docker composition.
 
 ```
-docker-compose up -d && sleep 90 && docker-compose up -d
+docker-compose up -d
 ```
 
-7. Launch ```https://localhost:8080/api``` in your browser and you will see Swagger generated RESTful API documentation.
+---
+
+Or just run the simplified command to deploy the composition.
+
+```
+docker-compose pull && docker-compose build && docker-compose up -d
+```
+
+---
+
+7. Launch [```http://localhost:5000/api```](http://localhost:5000/api) in your browser and you will see Swagger generated RESTful API documentation.
 
 ## Specification
 
