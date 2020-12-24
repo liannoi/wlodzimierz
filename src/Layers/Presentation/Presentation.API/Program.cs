@@ -1,20 +1,20 @@
 using System;
+using System.Threading.Tasks;
 using Infrastructure.Identity.API;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Presentation.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            var host = CreateWebHostBuilder(args).Build();
+            var host = CreateHostBuilder(args).Build();
 
             using (var scope = host.Services.CreateScope())
             {
@@ -22,30 +22,23 @@ namespace Presentation.API
 
                 try
                 {
-                    var environment = services.GetRequiredService<IWebHostEnvironment>();
-                    if (!environment.IsDevelopment())
-                    {
-                        host.Run();
-                        return;
-                    }
-
-                    services.GetRequiredService<WlodzimierzIdentityContext>().Database.Migrate();
+                    Log.Information("ASP.NET Core Identity Database Migration");
+                    await services.GetRequiredService<WlodzimierzIdentityContext>().Database.MigrateAsync();
                 }
                 catch (Exception ex)
                 {
-                    services.GetRequiredService<ILogger<Program>>()
-                        .LogError(ex, "Error while executing Program.cs file...");
-
+                    Log.Fatal(ex, ex.Message);
+                    Log.CloseAndFlush();
                     throw;
                 }
             }
 
-            host.Run();
+            await host.RunAsync();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        public static IHostBuilder CreateHostBuilder(string[] args)
         {
-            return WebHost.CreateDefaultBuilder(args)
+            return Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((context, config) =>
                 {
                     var env = context.HostingEnvironment;
@@ -58,7 +51,8 @@ namespace Presentation.API
 
                     config.AddEnvironmentVariables();
                 })
-                .UseStartup<Startup>();
+                .ConfigureWebHostDefaults(builder => builder.UseStartup<Startup>())
+                .UseSerilog((context, config) => config.ReadFrom.Configuration(context.Configuration));
         }
     }
 }
