@@ -21,13 +21,6 @@ jobs:
     - name: Build - Docker Compose 
       run: docker-compose build
       working-directory: ${{env.working-directory}}
-    - name: Deploying Microsoft SQL Server - Docker Compose 
-      run: docker-compose up -d
-      working-directory: ${{env.working-directory}}
-    - name: Sleep
-      uses: jakejarvis/wait-action@master
-      with:
-        time: '85s'
-    - name: The entire system is being deployed (including ASP.NET Core Web API) - Docker Compose 
+    - name: Deploying - Docker Compose 
       run: docker-compose up -d
       working-directory: ${{env.working-directory}}
