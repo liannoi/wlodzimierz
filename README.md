@@ -81,6 +81,7 @@ The clients are:
 - LinqKit 1.1
 - Redis 6
 - Serilog 2.10
+- Seq 2020.1
 - SignalR
 
 ## Getting Started
