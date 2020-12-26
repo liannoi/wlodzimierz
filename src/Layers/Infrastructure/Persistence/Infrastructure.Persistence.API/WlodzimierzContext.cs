@@ -1,26 +1,18 @@
-﻿using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using Application.Infrastructure.Notifications.API.Interfaces;
 using Application.Infrastructure.Persistence.API.Interfaces;
-using Domain.API.Common.Notifications;
 using Domain.API.Entities;
+using Infrastructure.EntityFramework.API.Notifications;
 using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
 namespace Infrastructure.Persistence.API
 {
-    public class WlodzimierzContext : DbContext, IWlodzimierzContext
+    public class WlodzimierzContext : NotifiableContext<WlodzimierzContext>, IWlodzimierzContext
     {
-        private readonly INotificationService _notificationService;
-
-        public WlodzimierzContext(DbContextOptions<WlodzimierzContext> options,
-            INotificationService notificationService)
-            : base(options)
+        public WlodzimierzContext(DbContextOptions<WlodzimierzContext> options, INotificationService notificationService) : base(options, notificationService)
         {
-            _notificationService = notificationService;
         }
 
         public DbSet<Contact> Contacts { get; set; }
@@ -33,37 +25,11 @@ namespace Infrastructure.Persistence.API
         public DbSet<UserBlacklist> UserBlacklists { get; set; }
         public DbSet<UserGroup> UserGroups { get; set; }
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
-        {
-            var result = await base.SaveChangesAsync(cancellationToken);
-            await DispatchEvents();
-
-            return result;
-        }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             base.OnModelCreating(builder);
-        }
-
-        // Helpers.
-
-        private async Task DispatchEvents()
-        {
-            while (true)
-            {
-                var notification = ChangeTracker.Entries<INotifiable>()
-                    .Select(x => x.Entity.Notifications)
-                    .SelectMany(x => x)
-                    .FirstOrDefault(domainEvent => !domainEvent.IsPublished);
-
-                if (notification == null) break;
-
-                notification.IsPublished = true;
-                await _notificationService.Publish(notification);
-            }
         }
     }
 }

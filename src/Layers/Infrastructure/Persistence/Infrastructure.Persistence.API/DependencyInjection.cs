@@ -10,7 +10,8 @@ namespace Infrastructure.Persistence.API
         public static IServiceCollection AddPersistence(this IServiceCollection services,
             IConfiguration configuration)
         {
-            var useInMemoryDatabase = configuration.GetValue<bool>(TestingOptions.UseInMemoryDatabase);
+            var useInMemoryDatabase =
+                configuration.GetValue<bool>(EntityFramework.API.Testing.TestingOptions.UseInMemoryDatabase);
 
             if (useInMemoryDatabase)
                 services.AddDbContext<WlodzimierzContext>(options =>

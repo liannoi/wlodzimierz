@@ -1,18 +1,23 @@
 using System;
-using Infrastructure.Persistence.API;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace Infrastructure.Identity.API.Abstractions
+namespace Infrastructure.EntityFramework.API.Design.Abstractions
 {
     public abstract class AbstractDbContextFactory<TContext> : IDesignTimeDbContextFactory<TContext>
         where TContext : DbContext
     {
+        private readonly string _connectionString;
+
+        protected AbstractDbContextFactory(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
         public TContext CreateDbContext(string[] args)
         {
-            return Create(IdentityOptions.StartDirectory,
-                Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")!);
+            return Create(DesignOptions.StartDirectory, Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")!);
         }
 
         protected abstract TContext CreateNewInstance(DbContextOptions<TContext> options);
@@ -26,20 +31,17 @@ namespace Infrastructure.Identity.API.Abstractions
                 .AddJsonFile("appsettings.Caching.json", false, true)
                 .AddJsonFile("appsettings.Identity.json", false, true)
                 .AddJsonFile("appsettings.Persistence.json", false, true)
-                .AddEnvironmentVariables()
                 .Build()
-                .GetConnectionString(PersistenceOptions.PrimaryDatabase));
+                .GetConnectionString(_connectionString));
         }
 
         private TContext Create(string connectionString)
         {
             if (string.IsNullOrEmpty(connectionString))
-                throw new ArgumentException(
-                    $"Connection string '{PersistenceOptions.PrimaryDatabase}' is null or empty.",
+                throw new ArgumentException($"Connection string '{connectionString}' is null or empty.",
                     nameof(connectionString));
 
             Console.WriteLine($"AbstractDbContextFactory.Create(string): Connection string: '{connectionString}'.");
-
             var optionsBuilder = new DbContextOptionsBuilder<TContext>();
             optionsBuilder.UseSqlServer(connectionString);
 

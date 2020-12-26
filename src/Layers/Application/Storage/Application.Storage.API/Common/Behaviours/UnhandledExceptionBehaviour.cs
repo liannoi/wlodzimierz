@@ -26,7 +26,7 @@ namespace Application.Storage.API.Common.Behaviours
             catch (Exception exception)
             {
                 _logger.LogError(exception,
-                    $"[Wlodzimierz.API] Unhandled Exception for Request: {typeof(TRequest).Name} {request}");
+                    $"{ApplicationOptions.Tag} Unhandled Exception for Request: {typeof(TRequest).Name} {request}");
 
                 throw;
             }

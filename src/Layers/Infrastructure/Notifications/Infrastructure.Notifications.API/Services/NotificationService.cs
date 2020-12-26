@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Application.Infrastructure.Notifications.API.Interfaces;
-using Application.Infrastructure.Notifications.API.Types.EntityChanged;
+using Application.Infrastructure.Notifications.API.Types.Base;
 using Domain.API.Common.Notifications;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -29,7 +29,7 @@ namespace Infrastructure.Notifications.API.Services
 
         private INotification GetNotificationCorrespondingToDomainEvent(AbstractNotification notification)
         {
-            var genericType = typeof(EntityChangedNotification<>).MakeGenericType(notification.GetType());
+            var genericType = typeof(BaseNotification<>).MakeGenericType(notification.GetType());
 
             return (Activator.CreateInstance(genericType, notification) as INotification)!;
         }

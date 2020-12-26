@@ -3,7 +3,6 @@ using System.Text;
 using Application.Infrastructure.Identity.API.Interfaces;
 using Application.Infrastructure.Identity.API.Models;
 using Infrastructure.Identity.API.Services;
-using Infrastructure.Persistence.API;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,14 +18,15 @@ namespace Infrastructure.Identity.API
         public static IServiceCollection AddIdentityPersistence(this IServiceCollection services,
             IConfiguration configuration)
         {
-            var useInMemoryDatabase = configuration.GetValue<bool>(TestingOptions.UseInMemoryDatabase);
+            var useInMemoryDatabase =
+                configuration.GetValue<bool>(EntityFramework.API.Testing.TestingOptions.UseInMemoryDatabase);
 
             if (useInMemoryDatabase)
                 services.AddDbContext<WlodzimierzIdentityContext>(options =>
                     options.UseInMemoryDatabase(TestingOptions.InMemoryIdentityDatabase));
             else
                 services.AddDbContext<WlodzimierzIdentityContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString(IdentityOptions.IdentityDatabase),
+                    options.UseSqlServer(configuration.GetConnectionString(IdentityOptions.Database),
                         b => b.MigrationsAssembly(typeof(WlodzimierzIdentityContext).Assembly.FullName)));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -41,7 +41,7 @@ namespace Infrastructure.Identity.API
         public static IServiceCollection AddIdentityInfrastructure(this IServiceCollection services,
             IConfiguration configuration)
         {
-            var section = configuration.GetSection(IdentityOptions.JwtSection);
+            var section = configuration.GetSection(IdentityOptions.ConfigurationSection);
             services.Configure<JwtBearerOptions>(section);
             var settings = section.Get<JwtBearerOptions>();
 
