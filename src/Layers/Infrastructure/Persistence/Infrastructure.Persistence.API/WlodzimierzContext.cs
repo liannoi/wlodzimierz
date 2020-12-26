@@ -11,7 +11,8 @@ namespace Infrastructure.Persistence.API
 {
     public class WlodzimierzContext : NotifiableContext<WlodzimierzContext>, IWlodzimierzContext
     {
-        public WlodzimierzContext(DbContextOptions<WlodzimierzContext> options, INotificationService notificationService) : base(options, notificationService)
+        public WlodzimierzContext(DbContextOptions<WlodzimierzContext> options,
+            INotificationService notificationService) : base(options, notificationService)
         {
         }
 

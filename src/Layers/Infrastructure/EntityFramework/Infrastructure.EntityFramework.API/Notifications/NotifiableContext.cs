@@ -11,8 +11,8 @@ namespace Infrastructure.EntityFramework.API.Notifications
     {
         private readonly INotificationService _notificationService;
 
-        public NotifiableContext(DbContextOptions<TChild> options, INotificationService notificationService)
-            : base(options)
+        public NotifiableContext(DbContextOptions<TChild> options, INotificationService notificationService) :
+            base(options)
         {
             _notificationService = notificationService;
         }

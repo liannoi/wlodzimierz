@@ -18,7 +18,7 @@ namespace Application.Infrastructure.Notifications.API.Types.Base
 
         public Task Handle(BaseNotification<TNotification> notification, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("[WLODZIMIERZ.API] Domain Event: {DomainEvent}",
+            _logger.LogInformation("[Wlodzimierz.API] Domain Event: {DomainEvent}",
                 notification.Notification.GetType().Name);
 
             return Task.CompletedTask;
