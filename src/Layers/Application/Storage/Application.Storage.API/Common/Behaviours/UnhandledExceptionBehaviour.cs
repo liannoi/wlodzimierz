@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Core.API.Common.Behaviours
+namespace Application.Storage.API.Common.Behaviours
 {
     public class UnhandledExceptionBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
@@ -26,7 +26,7 @@ namespace Application.Core.API.Common.Behaviours
             catch (Exception exception)
             {
                 _logger.LogError(exception,
-                    $"{ApplicationSettings.ApiTag} Unhandled Exception for Request: {typeof(TRequest).Name} {request}");
+                    $"[Wlodzimierz.API] Unhandled Exception for Request: {typeof(TRequest).Name} {request}");
 
                 throw;
             }

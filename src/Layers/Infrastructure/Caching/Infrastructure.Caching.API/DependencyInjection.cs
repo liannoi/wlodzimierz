@@ -11,8 +11,8 @@ namespace Infrastructure.Caching.API
         {
             services.AddStackExchangeRedisCache(options =>
             {
-                options.Configuration = configuration.GetConnectionString(CachingDefaults.CachingDatabase);
-                options.InstanceName = CachingDefaults.CachingInstanceName;
+                options.Configuration = configuration.GetConnectionString(CachingOptions.CachingDatabase);
+                options.InstanceName = CachingOptions.CachingInstanceName;
             });
 
             services.AddScoped<IWlodzimierzCachingContext, WlodzimierzCachingContext>();

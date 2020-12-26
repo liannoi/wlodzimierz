@@ -1,0 +1,95 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+        <PackageReference Include="FluentValidation" Version="9.3.0" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.3.0" />
+        <PackageReference Include="LinqKit" Version="1.1.21" />
+        <PackageReference Include="MediatR" Version="9.0.0" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="5.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Storage\Contacts\Commands\Create" />
+        <Folder Include="Storage\Contacts\Commands\Delete" />
+        <Folder Include="Storage\Contacts\Commands\Update" />
+        <Folder Include="Storage\Contacts\Models" />
+        <Folder Include="Storage\Contacts\Notifications" />
+        <Folder Include="Storage\Contacts\Queries\Details" />
+        <Folder Include="Storage\Contacts\Queries\List" />
+        <Folder Include="Storage\ConversationMessages\Commands\Create" />
+        <Folder Include="Storage\ConversationMessages\Commands\Delete" />
+        <Folder Include="Storage\ConversationMessages\Commands\Update" />
+        <Folder Include="Storage\ConversationMessages\Models" />
+        <Folder Include="Storage\ConversationMessages\Notifications" />
+        <Folder Include="Storage\ConversationMessages\Queries\Details" />
+        <Folder Include="Storage\ConversationMessages\Queries\List" />
+        <Folder Include="Storage\Conversations\Commands\Create" />
+        <Folder Include="Storage\Conversations\Commands\Delete" />
+        <Folder Include="Storage\Conversations\Commands\Update" />
+        <Folder Include="Storage\Conversations\Models" />
+        <Folder Include="Storage\Conversations\Notifications" />
+        <Folder Include="Storage\Conversations\Queries\Details" />
+        <Folder Include="Storage\Conversations\Queries\List" />
+        <Folder Include="Storage\GroupAdministrators\Commands\Create" />
+        <Folder Include="Storage\GroupAdministrators\Commands\Delete" />
+        <Folder Include="Storage\GroupAdministrators\Commands\Update" />
+        <Folder Include="Storage\GroupAdministrators\Models" />
+        <Folder Include="Storage\GroupAdministrators\Notifications" />
+        <Folder Include="Storage\GroupAdministrators\Queries\Details" />
+        <Folder Include="Storage\GroupAdministrators\Queries\List" />
+        <Folder Include="Storage\GroupBlacklists\Commands\Create" />
+        <Folder Include="Storage\GroupBlacklists\Commands\Delete" />
+        <Folder Include="Storage\GroupBlacklists\Commands\Update" />
+        <Folder Include="Storage\GroupBlacklists\Models" />
+        <Folder Include="Storage\GroupBlacklists\Notifications" />
+        <Folder Include="Storage\GroupBlacklists\Queries\Details" />
+        <Folder Include="Storage\GroupBlacklists\Queries\List" />
+        <Folder Include="Storage\GroupMessages\Commands\Create" />
+        <Folder Include="Storage\GroupMessages\Commands\Delete" />
+        <Folder Include="Storage\GroupMessages\Commands\Update" />
+        <Folder Include="Storage\GroupMessages\Models" />
+        <Folder Include="Storage\GroupMessages\Notifications" />
+        <Folder Include="Storage\GroupMessages\Queries\Details" />
+        <Folder Include="Storage\GroupMessages\Queries\List" />
+        <Folder Include="Storage\Groups\Commands\Create" />
+        <Folder Include="Storage\Groups\Commands\Delete" />
+        <Folder Include="Storage\Groups\Commands\Update" />
+        <Folder Include="Storage\Groups\Models" />
+        <Folder Include="Storage\Groups\Notifications" />
+        <Folder Include="Storage\Groups\Queries\Details" />
+        <Folder Include="Storage\Groups\Queries\List" />
+        <Folder Include="Storage\UserBlacklists\Commands\Create" />
+        <Folder Include="Storage\UserBlacklists\Commands\Delete" />
+        <Folder Include="Storage\UserBlacklists\Commands\Update" />
+        <Folder Include="Storage\UserBlacklists\Models" />
+        <Folder Include="Storage\UserBlacklists\Notifications" />
+        <Folder Include="Storage\UserBlacklists\Queries\Details" />
+        <Folder Include="Storage\UserBlacklists\Queries\List" />
+        <Folder Include="Storage\UserGroups\Commands\Create" />
+        <Folder Include="Storage\UserGroups\Commands\Delete" />
+        <Folder Include="Storage\UserGroups\Commands\Update" />
+        <Folder Include="Storage\UserGroups\Models" />
+        <Folder Include="Storage\UserGroups\Notifications" />
+        <Folder Include="Storage\UserGroups\Queries\Details" />
+        <Folder Include="Storage\UserGroups\Queries\List" />
+        <Folder Include="Storage\Users\Models" />
+        <Folder Include="Storage\Users\Notifications" />
+        <Folder Include="Storage\Users\Queries\Details" />
+        <Folder Include="Storage\Users\Queries\List" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Infrastructure\Identity\Application.Infrastructure.Identity.API\Application.Infrastructure.Identity.API.csproj" />
+      <ProjectReference Include="..\..\Validation\Application.Validation.API\Application.Validation.API.csproj" />
+    </ItemGroup>
+
+</Project>

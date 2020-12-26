@@ -14,11 +14,11 @@ namespace Infrastructure.Identity.API.Services
 {
     public abstract class AbstractIdentityServer : IIdentityServer<ApplicationUser>
     {
-        private readonly JwtBearerSettings _settings;
+        private readonly JwtBearerOptions _options;
 
-        protected AbstractIdentityServer(IOptions<JwtBearerSettings> settings)
+        protected AbstractIdentityServer(IOptions<JwtBearerOptions> settings)
         {
-            _settings = settings.Value;
+            _options = settings.Value;
         }
 
         public string CreateToken(ApplicationUser user)
@@ -37,7 +37,7 @@ namespace Infrastructure.Identity.API.Services
 
         private JwtSecurityToken PrepareToken(IdentityUser user)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_settings.Secret));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.Secret));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
@@ -48,7 +48,7 @@ namespace Infrastructure.Identity.API.Services
             };
 
             var expires = DateTime.Now.AddMinutes(15);
-            var issuer = _settings.Issuer;
+            var issuer = _options.Issuer;
 
             return new JwtSecurityToken(issuer, issuer, claims, expires: expires, signingCredentials: credentials);
         }

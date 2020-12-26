@@ -10,7 +10,7 @@ COPY "WLODZIMIERZ.sln" "WLODZIMIERZ.sln"
 
 COPY "Layers/Domain/Domain.API/Domain.API.csproj" "Layers/Domain/Domain.API/Domain.API.csproj"
 
-COPY "Layers/Application/Core/Application.Core.API" "Layers/Application/Core/Application.Core.API"
+COPY "Layers/Application/Storage/Application.Storage.API" "Layers/Application/Storage/Application.Storage.API"
 COPY "Layers/Application/Filtration/Application.Filtration.API" "Layers/Application/Filtration/Application.Filtration.API"
 COPY "Layers/Application/Infrastructure/Caching/Application.Infrastructure.Caching.API" "Layers/Application/Infrastructure/Caching/Application.Infrastructure.Caching.API"
 COPY "Layers/Application/Infrastructure/Identity/Application.Infrastructure.Identity.API" "Layers/Application/Infrastructure/Identity/Application.Infrastructure.Identity.API"

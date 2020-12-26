@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using Infrastructure.Identity.API;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +11,7 @@ namespace Presentation.API
 {
     public class Program
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
 
@@ -23,7 +22,7 @@ namespace Presentation.API
                 try
                 {
                     Log.Information("ASP.NET Core Identity Database Migration");
-                    await services.GetRequiredService<WlodzimierzIdentityContext>().Database.MigrateAsync();
+                    services.GetRequiredService<WlodzimierzIdentityContext>().Database.Migrate();
                 }
                 catch (Exception ex)
                 {
@@ -33,7 +32,7 @@ namespace Presentation.API
                 }
             }
 
-            await host.RunAsync();
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args)

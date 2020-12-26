@@ -1,6 +1,6 @@
 namespace Infrastructure.Persistence.API
 {
-    public static class TestingSettings
+    public static class TestingOptions
     {
         public const string UseInMemoryDatabase = "UseInMemoryDatabase";
         public const string InMemoryPrimaryDatabase = "WlodzimierzMemoryDatabase";

@@ -1,7 +1,12 @@
 using System.Linq;
+using Application.Infrastructure.Identity.API;
 using Application.Infrastructure.Identity.API.Interfaces;
+using Application.Mappings.API;
+using Application.Storage.API;
+using Application.Validation.API;
 using FluentValidation.AspNetCore;
 using Infrastructure.Identity.API;
+using Infrastructure.Notifications.API;
 using Infrastructure.Persistence.API;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +39,13 @@ namespace Presentation.API
 
             services.AddIdentityPersistence(Configuration);
             services.AddIdentityInfrastructure(Configuration);
+            services.AddNotifications();
+            services.AddPersistence(Configuration);
+
+            services.AddIdentityInfrastructureForApplication();
+            services.AddMappings();
+            services.AddValidation();
+            services.AddApplication();
 
             #endregion
 

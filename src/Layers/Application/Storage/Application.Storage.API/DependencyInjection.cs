@@ -1,10 +1,10 @@
 using System.Reflection;
-using Application.Core.API.Common.Behaviours;
+using Application.Storage.API.Common.Behaviours;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.Core.API
+namespace Application.Storage.API
 {
     public static class DependencyInjection
     {

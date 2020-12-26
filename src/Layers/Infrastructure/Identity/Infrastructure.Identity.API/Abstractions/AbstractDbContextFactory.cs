@@ -11,7 +11,7 @@ namespace Infrastructure.Identity.API.Abstractions
     {
         public TContext CreateDbContext(string[] args)
         {
-            return Create(IdentitySettings.StartDirectory,
+            return Create(IdentityOptions.StartDirectory,
                 Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")!);
         }
 
@@ -28,14 +28,14 @@ namespace Infrastructure.Identity.API.Abstractions
                 .AddJsonFile("appsettings.Persistence.json", false, true)
                 .AddEnvironmentVariables()
                 .Build()
-                .GetConnectionString(PersistenceSettings.PrimaryDatabase));
+                .GetConnectionString(PersistenceOptions.PrimaryDatabase));
         }
 
         private TContext Create(string connectionString)
         {
             if (string.IsNullOrEmpty(connectionString))
                 throw new ArgumentException(
-                    $"Connection string '{PersistenceSettings.PrimaryDatabase}' is null or empty.",
+                    $"Connection string '{PersistenceOptions.PrimaryDatabase}' is null or empty.",
                     nameof(connectionString));
 
             Console.WriteLine($"AbstractDbContextFactory.Create(string): Connection string: '{connectionString}'.");

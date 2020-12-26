@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Core.API;
 using Application.Infrastructure.Identity.API.Interfaces;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -40,7 +39,7 @@ namespace Application.Infrastructure.Identity.API.Behaviours
             if (!string.IsNullOrEmpty(userName)) userId = (await _identityService.FindByNameAsync(userName)).Id;
 
             _logger.LogWarning(
-                $"{ApplicationSettings.ApiTag} Long Running Request: {{Name}} ({{ElapsedMilliseconds}} milliseconds) {{@UserId}} {{@UserName}} {{@Request}}",
+                "[Wlodzimierz.API] Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@UserName} {@Request}",
                 typeof(TRequest).Name, elapsedMilliseconds, userName, userId, request);
 
             return response;

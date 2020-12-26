@@ -6,8 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Application\Core\Application.Core.API\Application.Core.API.csproj" />
       <ProjectReference Include="..\..\..\Application\Infrastructure\Caching\Application.Infrastructure.Caching.API\Application.Infrastructure.Caching.API.csproj" />
+      <ProjectReference Include="..\..\..\Application\Storage\Application.Storage.API\Application.Storage.API.csproj" />
     </ItemGroup>
 
 </Project>

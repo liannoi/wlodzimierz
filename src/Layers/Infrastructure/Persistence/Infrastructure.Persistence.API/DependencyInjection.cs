@@ -10,14 +10,14 @@ namespace Infrastructure.Persistence.API
         public static IServiceCollection AddPersistence(this IServiceCollection services,
             IConfiguration configuration)
         {
-            var useInMemoryDatabase = configuration.GetValue<bool>(TestingSettings.UseInMemoryDatabase);
+            var useInMemoryDatabase = configuration.GetValue<bool>(TestingOptions.UseInMemoryDatabase);
 
             if (useInMemoryDatabase)
                 services.AddDbContext<WlodzimierzContext>(options =>
-                    options.UseInMemoryDatabase(TestingSettings.InMemoryPrimaryDatabase));
+                    options.UseInMemoryDatabase(TestingOptions.InMemoryPrimaryDatabase));
             else
                 services.AddDbContext<WlodzimierzContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString(PersistenceSettings.PrimaryDatabase)));
+                    options.UseSqlServer(configuration.GetConnectionString(PersistenceOptions.PrimaryDatabase)));
 
             services.AddScoped<IWlodzimierzContext>(provider => provider.GetService<WlodzimierzContext>()!);
 
