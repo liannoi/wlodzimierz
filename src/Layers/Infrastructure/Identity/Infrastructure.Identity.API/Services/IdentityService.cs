@@ -36,7 +36,7 @@ namespace Infrastructure.Identity.API.Services
 
         public async Task<(IdentityResult Result, JwtToken Token)> SigninAsync(string userName, string password)
         {
-            var user = await _manager.FindByNameAsync(userName);
+            var user = await FindByNameAsync(userName);
             var isCorrectPassword = await _manager.CheckPasswordAsync(user, password);
 
             return (isCorrectPassword
@@ -50,6 +50,16 @@ namespace Infrastructure.Identity.API.Services
             var result = await _manager.CreateAsync(user, password);
 
             return (result.ToApplicationResult(), new JwtToken {Value = CreateToken(user)});
+        }
+
+        public async Task<IdentityResult> DeleteAsync(string userId)
+        {
+            return (await _manager.DeleteAsync(await FindByIdAsync(userId))).ToApplicationResult();
+        }
+
+        public async Task<IdentityResult> UpdateAsync(string userId)
+        {
+            return (await _manager.UpdateAsync(await FindByIdAsync(userId))).ToApplicationResult();
         }
     }
 }

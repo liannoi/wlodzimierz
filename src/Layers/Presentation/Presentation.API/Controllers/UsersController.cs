@@ -2,11 +2,13 @@ using System.Threading.Tasks;
 using Application.Infrastructure.Identity.API.Models;
 using Application.Paging.API.Models;
 using Application.Storage.API.Storage.Contacts.Models;
+using Application.Storage.API.Storage.Users.Commands.Delete;
 using Application.Storage.API.Storage.Users.Commands.Signin;
 using Application.Storage.API.Storage.Users.Commands.Signup;
-using Application.Storage.API.Storage.Users.Commands.Verify;
+using Application.Storage.API.Storage.Users.Commands.Update;
 using Application.Storage.API.Storage.Users.Models;
 using Application.Storage.API.Storage.Users.Queries.Contacts;
+using Application.Storage.API.Storage.Users.Queries.Verify;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.API.Common.Controllers;
 
@@ -26,10 +28,28 @@ namespace Presentation.API.Controllers
             return await Mediator.Send(command);
         }
 
-        [HttpPost("verify")]
-        public async Task<ActionResult<UserDto>> Verify([FromBody] VerifyCommand command)
+        [HttpPut("{userId}")]
+        public async Task<ActionResult> Update(string userId, [FromQuery] UpdateCommand command)
         {
-            return await Mediator.Send(command);
+            if (userId != command.UserId) return BadRequest();
+
+            await Mediator.Send(command);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{userId}")]
+        public async Task<ActionResult> Delete(string userId)
+        {
+            await Mediator.Send(new DeleteCommand {UserId = userId});
+
+            return NoContent();
+        }
+
+        [HttpGet("{jwt}")]
+        public async Task<ActionResult<UserDto>> GetByJwt(string jwt)
+        {
+            return await Mediator.Send(new VerifyQuery {Value = jwt});
         }
 
         [HttpGet("contacts")]

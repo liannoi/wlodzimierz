@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
 using Application.Paging.API.Models;
 using Application.Storage.API.Storage.Contacts.Commands.Create;
+using Application.Storage.API.Storage.Contacts.Commands.Delete;
+using Application.Storage.API.Storage.Contacts.Commands.Update;
 using Application.Storage.API.Storage.Contacts.Models;
 using Application.Storage.API.Storage.Contacts.Queries.Details;
 using Application.Storage.API.Storage.Contacts.Queries.Filter;
@@ -22,6 +24,24 @@ namespace Presentation.API.Controllers
         public async Task<ActionResult<int>> Create([FromBody] CreateCommand command)
         {
             return await Mediator.Send(command);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update(int id, [FromBody] UpdateCommand command)
+        {
+            if (id != command.ContactId) return BadRequest();
+
+            await Mediator.Send(command);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            await Mediator.Send(new DeleteCommand {ContactId = id});
+
+            return NoContent();
         }
 
         [HttpGet("{id}")]

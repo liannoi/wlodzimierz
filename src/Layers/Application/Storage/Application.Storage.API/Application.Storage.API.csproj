@@ -19,8 +19,6 @@
 
     <ItemGroup>
         <Folder Include="Common\Core" />
-        <Folder Include="Storage\Contacts\Commands\Delete" />
-        <Folder Include="Storage\Contacts\Commands\Update" />
         <Folder Include="Storage\ConversationMessages\Commands\Create" />
         <Folder Include="Storage\ConversationMessages\Commands\Delete" />
         <Folder Include="Storage\ConversationMessages\Commands\Update" />
