@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Application.Infrastructure.Caching.API.Interfaces;
 using Application.Infrastructure.Persistence.API.Interfaces;
 using Application.Paging.API.Extensions;
+using Application.Storage.API.Common.Core.Exceptions;
 using Application.Storage.API.Storage.Contacts.Models;
 using AutoMapper;
 using MediatR;
@@ -29,9 +30,32 @@ namespace Application.Storage.API.Storage.Contacts.Queries.Details
 
             public async Task<ContactDto> Handle(DetailsQuery request, CancellationToken cancellationToken)
             {
-                return await _context.Contacts
+                try
+                {
+                    return await ReadFromCache();
+                }
+                catch (NotFoundException)
+                {
+                    return await ReadFromDatabase(request);
+                }
+            }
+
+            // Helpers.
+
+            private async Task<ContactDto> ReadFromDatabase(DetailsQuery request)
+            {
+                var contact = await _context.Contacts
                     .Where(e => e.ContactId == request.ContactId)
                     .ProjectSingleAsync<ContactDto>(_mapper.ConfigurationProvider);
+
+                await _cache.CreateAsync(contact);
+
+                return contact;
+            }
+
+            private async Task<ContactDto> ReadFromCache()
+            {
+                return await _cache.GetAsync<ContactDto>();
             }
         }
     }

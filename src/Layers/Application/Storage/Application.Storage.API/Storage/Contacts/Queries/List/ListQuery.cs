@@ -33,22 +33,34 @@ namespace Application.Storage.API.Storage.Contacts.Queries.List
             {
                 try
                 {
-                    var cache = await _cache.GetAsync<PaginatedList<ContactDto>>();
-                    cache.Restore(request.PageNumber, request.PageSize);
-
-                    return cache;
+                    return await ReadFromCache(request);
                 }
                 catch (NotFoundException)
                 {
-                    var contacts = await _context.Contacts
-                        .OrderBy(x => x.LastName)
-                        .ProjectTo<ContactDto>(_mapper.ConfigurationProvider)
-                        .PaginatedListAsync(request.PageNumber, request.PageSize);
-
-                    await _cache.CreateAsync(contacts);
-
-                    return contacts;
+                    return await ReadFromDatabase(request);
                 }
+            }
+
+            // Helpers.
+
+            private async Task<PaginatedList<ContactDto>> ReadFromDatabase(ListQuery request)
+            {
+                var contacts = await _context.Contacts
+                    .OrderBy(x => x.LastName)
+                    .ProjectTo<ContactDto>(_mapper.ConfigurationProvider)
+                    .PaginatedListAsync(request.PageNumber, request.PageSize);
+
+                await _cache.CreateAsync(contacts);
+
+                return contacts;
+            }
+
+            private async Task<PaginatedList<ContactDto>> ReadFromCache(ListQuery request)
+            {
+                var cache = await _cache.GetAsync<PaginatedList<ContactDto>>();
+                cache.Restore(request.PageNumber, request.PageSize);
+
+                return cache;
             }
         }
 

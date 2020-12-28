@@ -2,10 +2,12 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Filtration.API.Extensions;
+using Application.Infrastructure.Caching.API.Interfaces;
 using Application.Infrastructure.Persistence.API.Interfaces;
 using Application.Paging.API;
 using Application.Paging.API.Extensions;
 using Application.Paging.API.Models;
+using Application.Storage.API.Common.Core.Exceptions;
 using Application.Storage.API.Storage.Contacts.Models;
 using Application.Storage.API.Storage.Users.Models;
 using AutoMapper;
@@ -23,17 +25,33 @@ namespace Application.Storage.API.Storage.Contacts.Queries.Filter
 
         private class Handler : IRequestHandler<FilterQuery, PaginatedList<ContactDto>>
         {
+            private readonly IWlodzimierzCachingContext _cache;
             private readonly IWlodzimierzContext _context;
             private readonly IMapper _mapper;
 
-            public Handler(IWlodzimierzContext context, IMapper mapper)
+            public Handler(IWlodzimierzContext context, IMapper mapper, IWlodzimierzCachingContext cache)
             {
                 _context = context;
                 _mapper = mapper;
+                _cache = cache;
             }
 
             public async Task<PaginatedList<ContactDto>> Handle(FilterQuery request,
                 CancellationToken cancellationToken)
+            {
+                try
+                {
+                    return await ReadFromCache(request);
+                }
+                catch (NotFoundException)
+                {
+                    return await ReadFromDatabase(request);
+                }
+            }
+
+            // Helpers.
+
+            private async Task<PaginatedList<ContactDto>> ReadFromDatabase(FilterQuery request)
             {
                 var model = new ContactDto
                 {
@@ -43,12 +61,24 @@ namespace Application.Storage.API.Storage.Contacts.Queries.Filter
                     Email = request.Email ?? string.Empty
                 };
 
-                return await _context.Contacts
+                var contacts = await _context.Contacts
                     .Where(e => e.OwnerUserId == request.OwnerUser.UserId)
                     .OrderBy(e => e.LastName)
                     .ProjectTo<ContactDto>(_mapper.ConfigurationProvider)
                     .Where(await model.FilterAsync())
                     .PaginatedListAsync(request.PageNumber, request.PageSize);
+
+                await _cache.CreateAsync(contacts);
+
+                return contacts;
+            }
+
+            private async Task<PaginatedList<ContactDto>> ReadFromCache(FilterQuery request)
+            {
+                var cache = await _cache.GetAsync<PaginatedList<ContactDto>>();
+                cache.Restore(request.PageNumber, request.PageSize);
+
+                return cache;
             }
         }
 
