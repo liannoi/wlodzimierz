@@ -6,7 +6,6 @@ using AutoMapper;
 
 namespace Application.Storage.API.Common.Mappings.Profiles
 {
-    // ReSharper disable once UnusedType.Global
     public class MappingProfile : Profile
     {
         public MappingProfile()

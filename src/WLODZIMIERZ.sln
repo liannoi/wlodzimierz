@@ -68,6 +68,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFramework", "EntityFr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.EntityFramework.API", "Layers\Infrastructure\EntityFramework\Infrastructure.EntityFramework.API\Infrastructure.EntityFramework.API.csproj", "{F5DC08D3-96C5-47CC-9A8E-4B12D400808E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Storage.UnitTests", "Layers\Application\Storage\Application.Storage.UnitTests\Application.Storage.UnitTests.csproj", "{A76EDC4B-1141-47EE-B98F-CCFFE1CFB4D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,7 @@ Global
 		{6F081604-5700-4728-8127-967C7DBA56AA} = {F88E26CF-8B04-4125-B1F8-188519E861F0}
 		{E455E84C-0C12-4E49-A69B-6492A3B2E7B2} = {67750F86-DDD4-43C6-A901-2CF0E964BE2F}
 		{F5DC08D3-96C5-47CC-9A8E-4B12D400808E} = {E455E84C-0C12-4E49-A69B-6492A3B2E7B2}
+		{A76EDC4B-1141-47EE-B98F-CCFFE1CFB4D9} = {F88E26CF-8B04-4125-B1F8-188519E861F0}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{83A5CB4D-46AE-408F-AE56-BCDECD19A4EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -169,5 +172,9 @@ Global
 		{F5DC08D3-96C5-47CC-9A8E-4B12D400808E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5DC08D3-96C5-47CC-9A8E-4B12D400808E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5DC08D3-96C5-47CC-9A8E-4B12D400808E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A76EDC4B-1141-47EE-B98F-CCFFE1CFB4D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A76EDC4B-1141-47EE-B98F-CCFFE1CFB4D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A76EDC4B-1141-47EE-B98F-CCFFE1CFB4D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A76EDC4B-1141-47EE-B98F-CCFFE1CFB4D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
