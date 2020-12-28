@@ -27,6 +27,12 @@ namespace Application.Paging.API.Extensions
             return queryable.ProjectTo<TDestination>(configuration).ToListAsync();
         }
 
+        public static Task<TDestination> ProjectSingleAsync<TDestination>(this IQueryable queryable,
+            IConfigurationProvider configuration)
+        {
+            return queryable.ProjectTo<TDestination>(configuration).SingleOrDefaultAsync();
+        }
+
         public static void Restore<TModel>(this IPaginatedList<TModel> list, int pageIndex, int pageSize)
         {
             list.PageIndex = pageIndex;

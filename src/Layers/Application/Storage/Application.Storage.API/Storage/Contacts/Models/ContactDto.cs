@@ -1,11 +1,15 @@
+using System;
+using System.Linq.Expressions;
+using Application.Filtration.API.Interfaces;
 using Application.Storage.API.Common.Mappings.Interfaces;
 using Application.Storage.API.Storage.Users.Models;
 using AutoMapper;
 using Domain.API.Entities;
+using LinqKit;
 
 namespace Application.Storage.API.Storage.Contacts.Models
 {
-    public class ContactDto : IMapFrom<Contact>
+    public class ContactDto : IMapFrom<Contact>, IFilterable<ContactDto>
     {
         public int ContactId { get; set; }
         public string FirstName { get; set; }
@@ -13,6 +17,16 @@ namespace Application.Storage.API.Storage.Contacts.Models
         public string Email { get; set; }
         public string Photo { get; set; }
         public UserDto OwnerUser { get; set; }
+
+        public Expression<Func<ContactDto, bool>> Filter()
+        {
+            var predicate = PredicateBuilder.New<ContactDto>(true);
+            if (!string.IsNullOrEmpty(FirstName)) predicate = predicate.And(g => g.FirstName.Contains(FirstName));
+            if (!string.IsNullOrEmpty(LastName)) predicate = predicate.And(g => g.LastName.Contains(LastName));
+            if (!string.IsNullOrEmpty(Email)) predicate = predicate.And(g => g.Email.Contains(Email));
+
+            return predicate;
+        }
 
         public void Mapping(Profile profile)
         {

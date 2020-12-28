@@ -21,8 +21,6 @@
         <Folder Include="Common\Core" />
         <Folder Include="Storage\Contacts\Commands\Delete" />
         <Folder Include="Storage\Contacts\Commands\Update" />
-        <Folder Include="Storage\Contacts\Queries\Details" />
-        <Folder Include="Storage\Contacts\Queries\Filter" />
         <Folder Include="Storage\ConversationMessages\Commands\Create" />
         <Folder Include="Storage\ConversationMessages\Commands\Delete" />
         <Folder Include="Storage\ConversationMessages\Commands\Update" />
@@ -82,6 +80,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Filtration\Application.Filtration.API\Application.Filtration.API.csproj" />
       <ProjectReference Include="..\..\Infrastructure\Caching\Application.Infrastructure.Caching.API\Application.Infrastructure.Caching.API.csproj" />
       <ProjectReference Include="..\..\Infrastructure\Identity\Application.Infrastructure.Identity.API\Application.Infrastructure.Identity.API.csproj" />
       <ProjectReference Include="..\..\Infrastructure\Notifications\Application.Infrastructure.Notifications.API\Application.Infrastructure.Notifications.API.csproj" />

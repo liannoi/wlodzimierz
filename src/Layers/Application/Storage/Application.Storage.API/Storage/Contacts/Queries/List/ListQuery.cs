@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Infrastructure.Caching.API.Interfaces;
 using Application.Infrastructure.Persistence.API.Interfaces;
+using Application.Paging.API;
 using Application.Paging.API.Extensions;
 using Application.Paging.API.Models;
 using Application.Storage.API.Common.Core.Exceptions;
@@ -15,9 +16,6 @@ namespace Application.Storage.API.Storage.Contacts.Queries.List
 {
     public class ListQuery : IRequest<PaginatedList<ContactDto>>
     {
-        public int PageNumber { get; set; } = 1;
-        public int PageSize { get; set; } = 10;
-
         private class Handler : IRequestHandler<ListQuery, PaginatedList<ContactDto>>
         {
             private readonly IWlodzimierzCachingContext _cache;
@@ -53,5 +51,12 @@ namespace Application.Storage.API.Storage.Contacts.Queries.List
                 }
             }
         }
+
+        #region Paging
+
+        public int PageNumber { get; set; } = PagingOptions.PageNumber;
+        public int PageSize { get; set; } = PagingOptions.PageSize;
+
+        #endregion
     }
 }
