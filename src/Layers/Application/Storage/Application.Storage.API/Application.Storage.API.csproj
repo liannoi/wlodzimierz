@@ -18,10 +18,11 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Common\Core" />
         <Folder Include="Storage\Contacts\Commands\Delete" />
         <Folder Include="Storage\Contacts\Commands\Update" />
         <Folder Include="Storage\Contacts\Queries\Details" />
-        <Folder Include="Storage\Contacts\Queries\List" />
+        <Folder Include="Storage\Contacts\Queries\Filter" />
         <Folder Include="Storage\ConversationMessages\Commands\Create" />
         <Folder Include="Storage\ConversationMessages\Commands\Delete" />
         <Folder Include="Storage\ConversationMessages\Commands\Update" />
@@ -81,10 +82,11 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Infrastructure\Caching\Application.Infrastructure.Caching.API\Application.Infrastructure.Caching.API.csproj" />
       <ProjectReference Include="..\..\Infrastructure\Identity\Application.Infrastructure.Identity.API\Application.Infrastructure.Identity.API.csproj" />
       <ProjectReference Include="..\..\Infrastructure\Notifications\Application.Infrastructure.Notifications.API\Application.Infrastructure.Notifications.API.csproj" />
       <ProjectReference Include="..\..\Infrastructure\Persistence\Application.Infrastructure.Persistence.API\Application.Infrastructure.Persistence.API.csproj" />
-      <ProjectReference Include="..\..\Mappings\Application.Mappings.API\Application.Mappings.API.csproj" />
+      <ProjectReference Include="..\..\Paging\Application.Paging.API\Application.Paging.API.csproj" />
       <ProjectReference Include="..\..\Validation\Application.Validation.API\Application.Validation.API.csproj" />
     </ItemGroup>
 

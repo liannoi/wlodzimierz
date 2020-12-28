@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace Application.Mappings.API.Interfaces
+namespace Application.Storage.API.Common.Mappings.Interfaces
 {
     public interface IMapFrom<T>
     {

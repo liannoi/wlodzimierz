@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Application.Storage.API.Common.Exceptions
+namespace Application.Storage.API.Common.Core.Exceptions
 {
     [Serializable]
     public class NotFoundException : Exception

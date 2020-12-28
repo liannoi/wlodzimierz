@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Application.Infrastructure.Identity.API.Exceptions;
-using Application.Storage.API.Common.Exceptions;
+using Application.Storage.API.Common.Core.Exceptions;
 using Application.Validation.API.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

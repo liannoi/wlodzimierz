@@ -1,5 +1,5 @@
 using Application.Infrastructure.Identity.API.Models;
-using Application.Mappings.API.Interfaces;
+using Application.Storage.API.Common.Mappings.Interfaces;
 using AutoMapper;
 
 namespace Application.Storage.API.Storage.Users.Models

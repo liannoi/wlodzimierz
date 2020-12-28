@@ -1,10 +1,10 @@
 using System.Linq;
 using Application.Infrastructure.Identity.API;
 using Application.Infrastructure.Identity.API.Interfaces;
-using Application.Mappings.API;
 using Application.Storage.API;
 using Application.Validation.API;
 using FluentValidation.AspNetCore;
+using Infrastructure.Caching.API;
 using Infrastructure.Identity.API;
 using Infrastructure.Notifications.API;
 using Infrastructure.Persistence.API;
@@ -41,9 +41,9 @@ namespace Presentation.API
             services.AddIdentityInfrastructure(Configuration);
             services.AddNotifications();
             services.AddPersistence(Configuration);
+            services.AddCaching(Configuration);
 
             services.AddIdentityInfrastructureForApplication();
-            services.AddMappings();
             services.AddValidation();
             services.AddApplication();
 
