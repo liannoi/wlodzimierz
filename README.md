@@ -8,8 +8,6 @@
 [![Codebeat](https://codebeat.co/badges/9fb05993-a47e-49f1-8a70-656cb9ddaa57)](https://codebeat.co/projects/github-com-liannoi-wlodzimierz-main)
 [![BetterCode](https://bettercodehub.com/edge/badge/liannoi/wlodzimierz?branch=main)](https://bettercodehub.com/)
 
-<br/>
-
 The goal of the project is to provide a simple, convenient and cross-platform
 messenger for providing textual communication between users.
 
@@ -110,9 +108,6 @@ Thus, you will need the following tools:
 ### Classic
 
 ![.NET 5 - Classic build](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Classic%20build/badge.svg)
-
-~~Use the following instructions to deploy locally using .NET CLI and / or
-Windows operating system.~~
 
 > There are no instructions due to technical limitations (during development, a
 > strategy with Docker is used on macOS Big Sur operating system).
