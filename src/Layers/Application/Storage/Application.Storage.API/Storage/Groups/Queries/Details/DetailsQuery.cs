@@ -5,30 +5,30 @@ using Application.Infrastructure.Caching.API.Interfaces;
 using Application.Infrastructure.Persistence.API.Interfaces;
 using Application.Paging.API.Extensions;
 using Application.Storage.API.Common.Core.Exceptions;
-using Application.Storage.API.Storage.Contacts.Models;
+using Application.Storage.API.Storage.Groups.Models;
 using AutoMapper;
 using MediatR;
 
-namespace Application.Storage.API.Storage.Contacts.Queries.Details
+namespace Application.Storage.API.Storage.Groups.Queries.Details
 {
-    public class DetailsQuery : IRequest<ContactDto>
+    public class DetailsQuery : IRequest<GroupDto>
     {
-        public int ContactId { get; set; }
+        public int GroupId { get; set; }
 
-        private class Handler : IRequestHandler<DetailsQuery, ContactDto>
+        private class Handler : IRequestHandler<DetailsQuery, GroupDto>
         {
             private readonly IWlodzimierzCachingContext _cache;
             private readonly IWlodzimierzContext _context;
             private readonly IMapper _mapper;
 
-            public Handler(IWlodzimierzCachingContext cache, IWlodzimierzContext context, IMapper mapper)
+            public Handler(IWlodzimierzContext context, IWlodzimierzCachingContext cache, IMapper mapper)
             {
-                _cache = cache;
                 _context = context;
+                _cache = cache;
                 _mapper = mapper;
             }
 
-            public async Task<ContactDto> Handle(DetailsQuery request, CancellationToken cancellationToken)
+            public async Task<GroupDto> Handle(DetailsQuery request, CancellationToken cancellationToken)
             {
                 try
                 {
@@ -40,22 +40,20 @@ namespace Application.Storage.API.Storage.Contacts.Queries.Details
                 }
             }
 
-            // Helpers.
-
-            private async Task<ContactDto> ReadFromDatabase(DetailsQuery query)
+            private async Task<GroupDto> ReadFromDatabase(DetailsQuery query)
             {
-                var contact = await _context.Contacts
-                    .Where(e => e.ContactId == query.ContactId)
-                    .ProjectSingleAsync<ContactDto>(_mapper.ConfigurationProvider);
+                var contact = await _context.Groups
+                    .Where(e => e.GroupId == query.GroupId)
+                    .ProjectSingleAsync<GroupDto>(_mapper.ConfigurationProvider);
 
                 await _cache.CreateAsync(contact);
 
                 return contact;
             }
 
-            private async Task<ContactDto> ReadFromCache()
+            private async Task<GroupDto> ReadFromCache()
             {
-                return await _cache.GetAsync<ContactDto>();
+                return await _cache.GetAsync<GroupDto>();
             }
         }
     }

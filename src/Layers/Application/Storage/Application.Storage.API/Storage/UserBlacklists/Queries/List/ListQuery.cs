@@ -6,29 +6,30 @@ using Application.Paging.API;
 using Application.Paging.API.Extensions;
 using Application.Paging.API.Models;
 using Application.Storage.API.Common.Core.Exceptions;
-using Application.Storage.API.Storage.Contacts.Models;
+using Application.Storage.API.Storage.UserBlacklists.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 
-namespace Application.Storage.API.Storage.Contacts.Queries.List
+namespace Application.Storage.API.Storage.UserBlacklists.Queries.List
 {
-    public class ListQuery : IRequest<PaginatedList<ContactDto>>
+    public class ListQuery : IRequest<PaginatedList<UserBlacklistDto>>
     {
-        private class Handler : IRequestHandler<ListQuery, PaginatedList<ContactDto>>
+        private class Handler : IRequestHandler<ListQuery, PaginatedList<UserBlacklistDto>>
         {
             private readonly IWlodzimierzCachingContext _cache;
             private readonly IWlodzimierzContext _context;
             private readonly IMapper _mapper;
 
-            public Handler(IWlodzimierzCachingContext cache, IWlodzimierzContext context, IMapper mapper)
+            public Handler(IWlodzimierzContext context, IWlodzimierzCachingContext cache, IMapper mapper)
             {
-                _cache = cache;
                 _context = context;
+                _cache = cache;
                 _mapper = mapper;
             }
 
-            public async Task<PaginatedList<ContactDto>> Handle(ListQuery request, CancellationToken cancellationToken)
+            public async Task<PaginatedList<UserBlacklistDto>> Handle(ListQuery request,
+                CancellationToken cancellationToken)
             {
                 try
                 {
@@ -40,12 +41,10 @@ namespace Application.Storage.API.Storage.Contacts.Queries.List
                 }
             }
 
-            // Helpers.
-
-            private async Task<PaginatedList<ContactDto>> ReadFromDatabase(ListQuery query)
+            private async Task<PaginatedList<UserBlacklistDto>> ReadFromDatabase(ListQuery query)
             {
-                var contacts = await _context.Contacts
-                    .ProjectTo<ContactDto>(_mapper.ConfigurationProvider)
+                var contacts = await _context.UserBlacklists
+                    .ProjectTo<UserBlacklistDto>(_mapper.ConfigurationProvider)
                     .PaginatedListAsync(query.PageNumber, query.PageSize);
 
                 await _cache.CreateAsync(contacts);
@@ -53,9 +52,9 @@ namespace Application.Storage.API.Storage.Contacts.Queries.List
                 return contacts;
             }
 
-            private async Task<PaginatedList<ContactDto>> ReadFromCache(ListQuery query)
+            private async Task<PaginatedList<UserBlacklistDto>> ReadFromCache(ListQuery query)
             {
-                var cache = await _cache.GetAsync<PaginatedList<ContactDto>>();
+                var cache = await _cache.GetAsync<PaginatedList<UserBlacklistDto>>();
                 cache.Restore(query.PageNumber, query.PageSize);
 
                 return cache;
