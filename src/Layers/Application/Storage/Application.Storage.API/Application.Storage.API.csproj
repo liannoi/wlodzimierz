@@ -19,14 +19,8 @@
 
     <ItemGroup>
         <Folder Include="Common\Core" />
-        <Folder Include="Storage\ConversationMessages\Commands\Create" />
-        <Folder Include="Storage\ConversationMessages\Commands\Delete" />
-        <Folder Include="Storage\ConversationMessages\Commands\Update" />
-        <Folder Include="Storage\ConversationMessages\Models" />
         <Folder Include="Storage\ConversationMessages\Notifications" />
-        <Folder Include="Storage\ConversationMessages\Queries\Details" />
         <Folder Include="Storage\ConversationMessages\Queries\Filter" />
-        <Folder Include="Storage\ConversationMessages\Queries\List" />
         <Folder Include="Storage\Conversations\Notifications" />
         <Folder Include="Storage\Conversations\Queries\Filter" />
         <Folder Include="Storage\GroupAdministrators\Commands\Create" />

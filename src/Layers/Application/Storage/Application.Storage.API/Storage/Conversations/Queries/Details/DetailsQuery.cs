@@ -55,8 +55,6 @@ namespace Application.Storage.API.Storage.Conversations.Queries.Details
             {
                 return await _cache.GetAsync<ConversationDto>();
             }
-
-            // Helpers.
         }
     }
 }
