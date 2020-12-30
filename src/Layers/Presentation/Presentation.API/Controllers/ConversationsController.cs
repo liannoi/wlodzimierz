@@ -1,11 +1,13 @@
 using System.Threading.Tasks;
 using Application.Paging.API.Models;
+using Application.Storage.API.Storage.ConversationMessages.Models;
 using Application.Storage.API.Storage.Conversations.Commands.Create;
 using Application.Storage.API.Storage.Conversations.Commands.Delete;
 using Application.Storage.API.Storage.Conversations.Commands.Update;
 using Application.Storage.API.Storage.Conversations.Models;
 using Application.Storage.API.Storage.Conversations.Queries.Details;
 using Application.Storage.API.Storage.Conversations.Queries.List;
+using Application.Storage.API.Storage.Conversations.Queries.Messages;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.API.Common.Controllers;
 
@@ -47,6 +49,12 @@ namespace Presentation.API.Controllers
         public async Task<ActionResult<ConversationDto>> GetById(int id)
         {
             return await Mediator.Send(new DetailsQuery {ConversationId = id});
+        }
+
+        [HttpGet("{conversation}/messages")]
+        public async Task<ActionResult<PaginatedList<ConversationMessageDto>>> GetAllMessages(int conversation)
+        {
+            return await Mediator.Send(new MessagesQuery {ConversationId = conversation});
         }
     }
 }
