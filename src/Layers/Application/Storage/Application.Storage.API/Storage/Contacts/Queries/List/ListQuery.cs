@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Infrastructure.Caching.API.Interfaces;
@@ -46,7 +45,6 @@ namespace Application.Storage.API.Storage.Contacts.Queries.List
             private async Task<PaginatedList<ContactDto>> ReadFromDatabase(ListQuery request)
             {
                 var contacts = await _context.Contacts
-                    .OrderBy(x => x.LastName)
                     .ProjectTo<ContactDto>(_mapper.ConfigurationProvider)
                     .PaginatedListAsync(request.PageNumber, request.PageSize);
 

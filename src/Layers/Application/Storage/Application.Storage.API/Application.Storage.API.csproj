@@ -27,11 +27,7 @@
         <Folder Include="Storage\ConversationMessages\Queries\Details" />
         <Folder Include="Storage\ConversationMessages\Queries\Filter" />
         <Folder Include="Storage\ConversationMessages\Queries\List" />
-        <Folder Include="Storage\Conversations\Commands\Create" />
-        <Folder Include="Storage\Conversations\Commands\Delete" />
-        <Folder Include="Storage\Conversations\Commands\Update" />
         <Folder Include="Storage\Conversations\Notifications" />
-        <Folder Include="Storage\Conversations\Queries\Details" />
         <Folder Include="Storage\Conversations\Queries\Filter" />
         <Folder Include="Storage\GroupAdministrators\Commands\Create" />
         <Folder Include="Storage\GroupAdministrators\Commands\Delete" />
