@@ -2,8 +2,6 @@
 
 # WLODZIMIERZ
 
-![.NET 5 - Classic build](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Classic%20build/badge.svg)
-![.NET 5 - Deployment in Docker](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Deployment%20in%20Docker/badge.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/21ec38ca8a924fce8b34be1398042f0c)](https://app.codacy.com/gh/liannoi/wlodzimierz?utm_source=github.com&utm_medium=referral&utm_content=liannoi/wlodzimierz&utm_campaign=Badge_Grade)
 [![Code Climate](https://api.codeclimate.com/v1/badges/d20791e6eae10de3149c/maintainability)](https://codeclimate.com/github/liannoi/wlodzimierz/maintainability)
 [![CodeFactor](https://www.codefactor.io/repository/github/liannoi/wlodzimierz/badge)](https://www.codefactor.io/repository/github/liannoi/wlodzimierz)
@@ -111,6 +109,8 @@ Thus, you will need the following tools:
 
 ### Classic
 
+![.NET 5 - Classic build](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Classic%20build/badge.svg)
+
 ~~Use the following instructions to deploy locally using .NET CLI and / or
 Windows operating system.~~
 
@@ -118,6 +118,8 @@ Windows operating system.~~
 > strategy with Docker is used on macOS Big Sur operating system).
 
 ### Docker
+
+![.NET 5 - Deployment in Docker](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Deployment%20in%20Docker/badge.svg)
 
 Use the following instructions to deploy in Docker containers as composition
 using Docker Compose.
