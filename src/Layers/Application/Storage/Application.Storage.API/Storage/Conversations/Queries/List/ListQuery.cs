@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Infrastructure.Caching.API.Interfaces;
@@ -7,19 +6,16 @@ using Application.Paging.API;
 using Application.Paging.API.Extensions;
 using Application.Paging.API.Models;
 using Application.Storage.API.Common.Core.Exceptions;
-using Application.Storage.API.Storage.Contacts.Models;
-using Application.Storage.API.Storage.Users.Models;
+using Application.Storage.API.Storage.Conversations.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 
-namespace Application.Storage.API.Storage.Users.Queries.Contacts
+namespace Application.Storage.API.Storage.Conversations.Queries.List
 {
-    public class ContactsQuery : IRequest<PaginatedList<ContactDto>>
+    public class ListQuery : IRequest<PaginatedList<ConversationDto>>
     {
-        public UserDto OwnerUser { get; set; }
-
-        private class Handler : IRequestHandler<ContactsQuery, PaginatedList<ContactDto>>
+        private class Handler : IRequestHandler<ListQuery, PaginatedList<ConversationDto>>
         {
             private readonly IWlodzimierzCachingContext _cache;
             private readonly IWlodzimierzContext _context;
@@ -32,7 +28,7 @@ namespace Application.Storage.API.Storage.Users.Queries.Contacts
                 _mapper = mapper;
             }
 
-            public async Task<PaginatedList<ContactDto>> Handle(ContactsQuery request,
+            public async Task<PaginatedList<ConversationDto>> Handle(ListQuery request,
                 CancellationToken cancellationToken)
             {
                 try
@@ -47,24 +43,23 @@ namespace Application.Storage.API.Storage.Users.Queries.Contacts
 
             // Helpers.
 
-            private async Task<PaginatedList<ContactDto>> ReadFromCache(ContactsQuery request)
+            private async Task<PaginatedList<ConversationDto>> ReadFromDatabase(ListQuery request)
             {
-                var cache = await _cache.GetAsync<PaginatedList<ContactDto>>();
+                var conversations = await _context.Conversations
+                    .ProjectTo<ConversationDto>(_mapper.ConfigurationProvider)
+                    .PaginatedListAsync(request.PageNumber, request.PageSize);
+
+                await _cache.CreateAsync(conversations);
+
+                return conversations;
+            }
+
+            private async Task<PaginatedList<ConversationDto>> ReadFromCache(ListQuery request)
+            {
+                var cache = await _cache.GetAsync<PaginatedList<ConversationDto>>();
                 cache.Restore(request.PageNumber, request.PageSize);
 
                 return cache;
-            }
-
-            private async Task<PaginatedList<ContactDto>> ReadFromDatabase(ContactsQuery request)
-            {
-                var contacts = await _context.Contacts
-                    .Where(e => e.OwnerUserId == request.OwnerUser.UserId)
-                    .ProjectTo<ContactDto>(_mapper.ConfigurationProvider)
-                    .PaginatedListAsync(request.PageNumber, request.PageSize);
-
-                await _cache.CreateAsync(contacts);
-
-                return contacts;
             }
         }
 

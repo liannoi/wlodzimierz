@@ -16,9 +16,7 @@ namespace Application.Paging.API.Extensions
         public static Task<PaginatedList<TDestination>> PaginatedListAsync<TDestination>(
             this IQueryable<TDestination> queryable, int pageNumber, int pageSize)
         {
-            var factory = new PaginatedListFactory<TDestination>();
-
-            return factory.CreateAsync(queryable, pageNumber, pageSize);
+            return new PaginatedListFactory<TDestination>().CreateAsync(queryable, pageNumber, pageSize);
         }
 
         public static Task<List<TDestination>> ProjectToListAsync<TDestination>(this IQueryable queryable,

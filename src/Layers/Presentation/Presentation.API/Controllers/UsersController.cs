@@ -28,20 +28,20 @@ namespace Presentation.API.Controllers
             return await Mediator.Send(command);
         }
 
-        [HttpPut("{userId}")]
-        public async Task<ActionResult> Update(string userId, [FromQuery] UpdateCommand command)
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update(string id, [FromQuery] UpdateCommand command)
         {
-            if (userId != command.UserId) return BadRequest();
+            if (id != command.UserId) return BadRequest();
 
             await Mediator.Send(command);
 
             return NoContent();
         }
 
-        [HttpDelete("{userId}")]
-        public async Task<ActionResult> Delete(string userId)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(string id)
         {
-            await Mediator.Send(new DeleteCommand {UserId = userId});
+            await Mediator.Send(new DeleteCommand {UserId = id});
 
             return NoContent();
         }
