@@ -49,6 +49,7 @@ The clients are:
 #### SPA web app
 
 - Angular 11
+- Sass
 - Bootstrap 4.5 (ng-bootstrap)
 - RxJS 6
 
