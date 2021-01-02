@@ -17,7 +17,7 @@ namespace Infrastructure.Identity.API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("Application.Core.API.Storage.Identity.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Application.Storage.API.Storage.Identity.Models.ApplicationUser", b =>
             {
                 b.Property<string>("Id")
                     .HasColumnType("nvarchar(450)");
@@ -224,7 +224,7 @@ namespace Infrastructure.Identity.API.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
             {
-                b.HasOne("Application.Core.API.Storage.Identity.Models.ApplicationUser", null)
+                b.HasOne("Application.Storage.API.Storage.Identity.Models.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -233,7 +233,7 @@ namespace Infrastructure.Identity.API.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
             {
-                b.HasOne("Application.Core.API.Storage.Identity.Models.ApplicationUser", null)
+                b.HasOne("Application.Storage.API.Storage.Identity.Models.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -248,7 +248,7 @@ namespace Infrastructure.Identity.API.Migrations
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
 
-                b.HasOne("Application.Core.API.Storage.Identity.Models.ApplicationUser", null)
+                b.HasOne("Application.Storage.API.Storage.Identity.Models.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -257,7 +257,7 @@ namespace Infrastructure.Identity.API.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
             {
-                b.HasOne("Application.Core.API.Storage.Identity.Models.ApplicationUser", null)
+                b.HasOne("Application.Storage.API.Storage.Identity.Models.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)

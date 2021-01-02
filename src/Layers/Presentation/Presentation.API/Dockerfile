@@ -10,13 +10,14 @@ COPY "WLODZIMIERZ.sln" "WLODZIMIERZ.sln"
 
 COPY "Layers/Domain/Domain.API/Domain.API.csproj" "Layers/Domain/Domain.API/Domain.API.csproj"
 
-COPY "Layers/Application/Core/Application.Core.API" "Layers/Application/Core/Application.Core.API"
+COPY "Layers/Application/Storage/Application.Storage.API" "Layers/Application/Storage/Application.Storage.API"
+COPY "Layers/Application/Storage/Application.Storage.UnitTests" "Layers/Application/Storage/Application.Storage.UnitTests"
 COPY "Layers/Application/Filtration/Application.Filtration.API" "Layers/Application/Filtration/Application.Filtration.API"
 COPY "Layers/Application/Infrastructure/Caching/Application.Infrastructure.Caching.API" "Layers/Application/Infrastructure/Caching/Application.Infrastructure.Caching.API"
+COPY "Layers/Infrastructure/EntityFramework/Infrastructure.EntityFramework.API" "Layers/Infrastructure/EntityFramework/Infrastructure.EntityFramework.API"
 COPY "Layers/Application/Infrastructure/Identity/Application.Infrastructure.Identity.API" "Layers/Application/Infrastructure/Identity/Application.Infrastructure.Identity.API"
 COPY "Layers/Application/Infrastructure/Notifications/Application.Infrastructure.Notifications.API" "Layers/Application/Infrastructure/Notifications/Application.Infrastructure.Notifications.API"
 COPY "Layers/Application/Infrastructure/Persistence/Application.Infrastructure.Persistence.API" "Layers/Application/Infrastructure/Persistence/Application.Infrastructure.Persistence.API"
-COPY "Layers/Application/Mappings/Application.Mappings.API" "Layers/Application/Mappings/Application.Mappings.API"
 COPY "Layers/Application/Paging/Application.Paging.API" "Layers/Application/Paging/Application.Paging.API"
 COPY "Layers/Application/Validation/Application.Validation.API" "Layers/Application/Validation/Application.Validation.API"
 

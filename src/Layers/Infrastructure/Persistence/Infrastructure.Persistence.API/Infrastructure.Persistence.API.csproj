@@ -16,6 +16,7 @@
       <ProjectReference Include="..\..\..\Application\Infrastructure\Notifications\Application.Infrastructure.Notifications.API\Application.Infrastructure.Notifications.API.csproj" />
       <ProjectReference Include="..\..\..\Application\Infrastructure\Persistence\Application.Infrastructure.Persistence.API\Application.Infrastructure.Persistence.API.csproj" />
       <ProjectReference Include="..\..\..\Domain\Domain.API\Domain.API.csproj" />
+      <ProjectReference Include="..\..\EntityFramework\Infrastructure.EntityFramework.API\Infrastructure.EntityFramework.API.csproj" />
     </ItemGroup>
 
 </Project>

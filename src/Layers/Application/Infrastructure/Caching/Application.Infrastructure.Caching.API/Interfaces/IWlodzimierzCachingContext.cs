@@ -4,7 +4,7 @@ namespace Application.Infrastructure.Caching.API.Interfaces
 {
     public interface IWlodzimierzCachingContext
     {
-        public Task CreateAsync<TModel>(TModel model, CachingSettings settings);
+        public Task CreateAsync<TModel>(TModel model, CachingOptions options);
 
         public Task CreateAsync<TModel>(TModel model);
 

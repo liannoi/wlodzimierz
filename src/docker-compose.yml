@@ -13,10 +13,10 @@ services:
     depends_on:
       - mssql
       - redis
+      - seq
     restart: on-failure
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
-      UseInMemoryDatabase: "false"
       ConnectionStrings__WlodzimierzDatabase: "Server=mssql;Database=Wlodzimierz;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
       ConnectionStrings__WlodzimierzIdentityDatabase: "Server=mssql;Database=Wlodzimierz.Identity;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
 

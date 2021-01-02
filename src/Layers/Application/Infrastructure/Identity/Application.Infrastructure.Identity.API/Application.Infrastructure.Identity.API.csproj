@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Core\Application.Core.API\Application.Core.API.csproj" />
+      <ProjectReference Include="..\..\..\..\Domain\Domain.API\Domain.API.csproj" />
     </ItemGroup>
 
 </Project>

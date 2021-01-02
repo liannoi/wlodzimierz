@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+        <PackageReference Include="FluentValidation" Version="9.3.0" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.3.0" />
+        <PackageReference Include="LinqKit" Version="1.1.21" />
+        <PackageReference Include="MediatR" Version="9.0.0" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="5.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Common\Core" />
+        <Folder Include="Storage\ConversationMessages\Notifications" />
+        <Folder Include="Storage\ConversationMessages\Queries\Filter" />
+        <Folder Include="Storage\Conversations\Notifications" />
+        <Folder Include="Storage\Conversations\Queries\Filter" />
+        <Folder Include="Storage\GroupAdministrators\Notifications" />
+        <Folder Include="Storage\GroupAdministrators\Queries\Filter" />
+        <Folder Include="Storage\GroupBlacklists\Notifications" />
+        <Folder Include="Storage\GroupBlacklists\Queries\Filter" />
+        <Folder Include="Storage\GroupMessages\Notifications" />
+        <Folder Include="Storage\GroupMessages\Queries\Filter" />
+        <Folder Include="Storage\Groups\Notifications" />
+        <Folder Include="Storage\Groups\Queries\Filter" />
+        <Folder Include="Storage\UserBlacklists\Notifications" />
+        <Folder Include="Storage\UserBlacklists\Queries\Filter" />
+        <Folder Include="Storage\UserGroups\Commands\Create" />
+        <Folder Include="Storage\UserGroups\Commands\Delete" />
+        <Folder Include="Storage\UserGroups\Commands\Update" />
+        <Folder Include="Storage\UserGroups\Models" />
+        <Folder Include="Storage\UserGroups\Notifications" />
+        <Folder Include="Storage\UserGroups\Queries\Details" />
+        <Folder Include="Storage\UserGroups\Queries\Filter" />
+        <Folder Include="Storage\UserGroups\Queries\List" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Filtration\Application.Filtration.API\Application.Filtration.API.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Caching\Application.Infrastructure.Caching.API\Application.Infrastructure.Caching.API.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Identity\Application.Infrastructure.Identity.API\Application.Infrastructure.Identity.API.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Notifications\Application.Infrastructure.Notifications.API\Application.Infrastructure.Notifications.API.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Persistence\Application.Infrastructure.Persistence.API\Application.Infrastructure.Persistence.API.csproj" />
+      <ProjectReference Include="..\..\Paging\Application.Paging.API\Application.Paging.API.csproj" />
+      <ProjectReference Include="..\..\Validation\Application.Validation.API\Application.Validation.API.csproj" />
+    </ItemGroup>
+
+</Project>

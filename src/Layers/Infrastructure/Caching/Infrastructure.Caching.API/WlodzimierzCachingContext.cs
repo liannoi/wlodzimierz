@@ -1,10 +1,9 @@
 using System;
-using System.Text.Json;
 using System.Threading.Tasks;
-using Application.Core.API.Common.Exceptions;
-using Application.Infrastructure.Caching.API;
 using Application.Infrastructure.Caching.API.Interfaces;
+using Application.Storage.API.Common.Core.Exceptions;
 using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 
 namespace Infrastructure.Caching.API
 {
@@ -17,21 +16,23 @@ namespace Infrastructure.Caching.API
             _cache = cache;
         }
 
-        public async Task CreateAsync<TModel>(TModel model, CachingSettings settings)
+        public async Task CreateAsync<TModel>(TModel model,
+            Application.Infrastructure.Caching.API.CachingOptions options)
         {
-            var options = new DistributedCacheEntryOptions
+            var distributedOptions = new DistributedCacheEntryOptions
             {
-                AbsoluteExpirationRelativeToNow = settings.AbsoluteExpireTime,
-                SlidingExpiration = settings.UnusedExpireTime
+                AbsoluteExpirationRelativeToNow = options.AbsoluteExpireTime,
+                SlidingExpiration = options.UnusedExpireTime
             };
 
-            var json = JsonSerializer.Serialize(model);
-            await _cache.SetStringAsync(CacheKey<TModel>(), json, options);
+            var json = JsonConvert.SerializeObject(model);
+            await _cache.SetStringAsync(CacheKey<TModel>(), json, distributedOptions);
         }
 
         public async Task CreateAsync<TModel>(TModel model)
         {
-            await CreateAsync(model, new CachingSettings {AbsoluteExpireTime = TimeSpan.FromSeconds(60)});
+            await CreateAsync(model, new Application.Infrastructure.Caching.API.CachingOptions
+                {AbsoluteExpireTime = TimeSpan.FromSeconds(60)});
         }
 
         public async Task<TModel> GetAsync<TModel>()
@@ -39,7 +40,7 @@ namespace Infrastructure.Caching.API
             var key = CacheKey<TModel>();
             var json = await _cache.GetStringAsync(key) ?? throw new NotFoundException(nameof(TModel), key);
 
-            return JsonSerializer.Deserialize<TModel>(json)!;
+            return JsonConvert.DeserializeObject<TModel>(json);
         }
 
         // Helpers.

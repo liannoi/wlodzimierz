@@ -1,16 +1,15 @@
 using System;
 using System.Text;
-using Application.Infrastructure.Identity.API;
 using Application.Infrastructure.Identity.API.Interfaces;
 using Application.Infrastructure.Identity.API.Models;
 using Infrastructure.Identity.API.Services;
-using Infrastructure.Persistence.API;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using JwtBearerOptions = Application.Infrastructure.Identity.API.JwtBearerOptions;
 
 namespace Infrastructure.Identity.API
 {
@@ -19,14 +18,15 @@ namespace Infrastructure.Identity.API
         public static IServiceCollection AddIdentityPersistence(this IServiceCollection services,
             IConfiguration configuration)
         {
-            var useInMemoryDatabase = configuration.GetValue<bool>(TestingSettings.UseInMemoryDatabase);
+            var useInMemoryDatabase =
+                configuration.GetValue<bool>(EntityFramework.API.Testing.TestingOptions.UseInMemoryDatabase);
 
             if (useInMemoryDatabase)
                 services.AddDbContext<WlodzimierzIdentityContext>(options =>
-                    options.UseInMemoryDatabase(TestingSettings.InMemoryIdentityDatabase));
+                    options.UseInMemoryDatabase(TestingOptions.InMemoryIdentityDatabase));
             else
                 services.AddDbContext<WlodzimierzIdentityContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString(IdentitySettings.IdentityDatabase),
+                    options.UseSqlServer(configuration.GetConnectionString(IdentityOptions.Database),
                         b => b.MigrationsAssembly(typeof(WlodzimierzIdentityContext).Assembly.FullName)));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
@@ -41,9 +41,9 @@ namespace Infrastructure.Identity.API
         public static IServiceCollection AddIdentityInfrastructure(this IServiceCollection services,
             IConfiguration configuration)
         {
-            var section = configuration.GetSection(IdentitySettings.JwtSection);
-            services.Configure<JwtBearerSettings>(section);
-            var settings = section.Get<JwtBearerSettings>();
+            var section = configuration.GetSection(IdentityOptions.ConfigurationSection);
+            services.Configure<JwtBearerOptions>(section);
+            var settings = section.Get<JwtBearerOptions>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

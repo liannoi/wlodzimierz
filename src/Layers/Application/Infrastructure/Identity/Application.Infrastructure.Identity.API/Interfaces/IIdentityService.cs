@@ -10,5 +10,7 @@ namespace Application.Infrastructure.Identity.API.Interfaces
         public Task<bool> IsInRoleAsync(string userName, string role);
         public Task<(IdentityResult Result, JwtToken Token)> SigninAsync(string userName, string password);
         public Task<(IdentityResult Result, JwtToken Token)> SignupAsync(string userName, string password);
+        public Task<IdentityResult> DeleteAsync(string userId);
+        public Task<IdentityResult> UpdateAsync(string userId);
     }
 }

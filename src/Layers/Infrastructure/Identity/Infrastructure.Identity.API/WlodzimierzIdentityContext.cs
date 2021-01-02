@@ -1,5 +1,6 @@
+using System.Reflection;
 using Application.Infrastructure.Identity.API.Models;
-using Infrastructure.Identity.API.Abstractions;
+using Infrastructure.EntityFramework.API.Design.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +13,20 @@ namespace Infrastructure.Identity.API
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            base.OnModelCreating(builder);
+        }
+
         // ReSharper disable once UnusedType.Global
         public class Factory : AbstractDbContextFactory<WlodzimierzIdentityContext>
         {
+            public Factory() : base(IdentityOptions.Database)
+            {
+            }
+
             protected override WlodzimierzIdentityContext CreateNewInstance(
                 DbContextOptions<WlodzimierzIdentityContext> options)
             {
