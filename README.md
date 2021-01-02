@@ -177,7 +177,7 @@ This repository is licensed under
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fliannoi%2Fwlodzimierz.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fliannoi%2Fwlodzimierz?ref=badge_large)
 
 ```
-Copyright 2020 Maksym Liannoi
+Copyright 2020-2021 Maksym Liannoi
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
