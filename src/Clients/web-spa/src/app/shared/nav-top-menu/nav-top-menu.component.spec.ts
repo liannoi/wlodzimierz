@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NavTopMenuComponent } from './nav-top-menu.component';
+import {NavTopMenuComponent} from './nav-top-menu.component';
 
 describe('NavTopMenuComponent', () => {
   let component: NavTopMenuComponent;
@@ -8,9 +8,9 @@ describe('NavTopMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavTopMenuComponent ]
+      declarations: [NavTopMenuComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

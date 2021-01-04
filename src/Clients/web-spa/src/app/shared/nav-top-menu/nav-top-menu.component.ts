@@ -8,7 +8,7 @@ import {Component} from '@angular/core';
 export class NavTopMenuComponent {
   public isExpanded = true;
 
-  public verifiedToken(): boolean {
-    return false;
+  public isTokenVerified(): boolean {
+    return true;
   }
 }
