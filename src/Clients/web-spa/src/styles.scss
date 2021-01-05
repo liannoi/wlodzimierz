@@ -5,3 +5,8 @@ body {
   font-family: "SF Pro Display", "Helvetica Neue", -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
+
+html {
+  position: relative;
+  min-height: 100%;
+}
