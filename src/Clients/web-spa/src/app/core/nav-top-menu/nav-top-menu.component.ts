@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 
+import {ApplicationPaths} from '../../shared/app.constants';
+
 @Component({
   selector: 'app-nav-top-menu',
   templateUrl: './nav-top-menu.component.html',
@@ -7,6 +9,7 @@ import {Component} from '@angular/core';
 })
 export class NavTopMenuComponent {
   public isExpanded = true;
+  public paths = ApplicationPaths;
 
   public isTokenVerified(): boolean {
     return false;

@@ -1,15 +1,16 @@
 <footer class="text-muted text-center small my-5">
   <div class="container border-top pt-5 pl-3 pr-3">
     <p class="mb-3">&copy; 2020-2021 Maksym Liannoi</p>
+
     <ul class="list-inline">
-      <li class="list-inline-item mr-3"><a href="https://github.com/liannoi/wlodzimierz/blob/main/LICENSE">License</a>
+      <li class="list-inline-item mr-3">
+        <a href="https://github.com/liannoi/wlodzimierz/blob/main/LICENSE">License</a>
       </li>
+
       <li class="list-inline-item mr-3"><a href="https://github.com/liannoi/wlodzimierz">Repository</a></li>
-      <li class="list-inline-item mr-3"><a href="#">Help</a></li>
-      <li class="list-inline-item mr-3"><a href="#">Feedback</a></li>
-      <li class="list-inline-item mr-3"><a href="#">API</a></li>
-      <li class="list-inline-item mr-3"><a href="#">Blog</a></li>
-      <li class="list-inline-item mr-3"><a href="#">About</a></li>
+      <li class="list-inline-item mr-3"><a [routerLink]="paths.Docs">Help</a></li>
+      <li class="list-inline-item mr-3"><a [routerLink]="paths.Feedback">Feedback</a></li>
+      <li class="list-inline-item mr-3"><a [routerLink]="paths.Api">API</a></li>
     </ul>
   </div>
 </footer>
