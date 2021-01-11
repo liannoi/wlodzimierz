@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-docs-root',
@@ -6,4 +7,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./docs.component.scss']
 })
 export class DocsComponent {
+  constructor(private titleService: Title) {
+    titleService.setTitle('Wlodzimierz Documentation');
+  }
 }
