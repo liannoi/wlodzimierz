@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {FormGroup} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
+import {UserModel} from '../shared/user.model';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,7 +10,8 @@ import {FormGroup} from '@angular/forms';
 })
 export class SignInComponent implements OnInit {
 
-  public signInFormGroup: FormGroup | undefined;
+  public signInFormGroup!: FormGroup;
+  private user: UserModel = new UserModel();
 
   constructor(private titleService: Title) {
     titleService.setTitle('Sign in to Wlodzimierz - Wlodzimierz');
@@ -25,7 +27,8 @@ export class SignInComponent implements OnInit {
 
   private setupForm(): void {
     this.signInFormGroup = new FormGroup({
-      username: new FormGroup({})
+      username: new FormControl(this.user.username),
+      password: new FormControl(this.user.password)
     });
   }
 }
