@@ -3,10 +3,12 @@ import {CommonModule} from '@angular/common';
 
 import {DocsComponent} from './docs.component';
 import {DocsRoutingModule} from './docs-routing.module';
+import {ApiComponent} from './api/api.component';
 
 @NgModule({
   declarations: [
-    DocsComponent
+    DocsComponent,
+    ApiComponent
   ],
   imports: [
     CommonModule,

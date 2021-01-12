@@ -164,7 +164,7 @@ docker-compose pull && docker-compose build && docker-compose up -d
 
 ---
 
-7. Launch [```http://localhost:5000/api```](http://localhost:5000/api) in your browser and you will see Swagger generated RESTful API documentation.
+7. Launch [```https://localhost:5001/api```](https://localhost:5001/api) in your browser and you will see Swagger generated RESTful API documentation.
 
 ## Specification
 
