@@ -1,7 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <p>sign-in works!</p>
+      <h2 class="text-center font-weight-light">Sign in to Wlodzimierz</h2>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-center align-content-center">
+    <div class="col-sm-4">
+      <form method="post" [formGroup]="signInFormGroup">
+        <div class="form-group">
+          <label class="font-weight-bold" for="user_username">Username</label>
+          <input class="form-control" formControlName="username" id="user_username" required type="text">
+        </div>
+      </form>
     </div>
   </div>
 </div>

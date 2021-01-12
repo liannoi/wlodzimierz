@@ -5,12 +5,9 @@ services:
   web-api:
     build:
       context: .
-      dockerfile: Layers/Presentation/Presentation.API/Dockerfile
+      dockerfile: Layers/Presentation/Presentation.API/Dockerfile.develop
     ports:
       - "5000:5000"
-      - "5001:5001"
-    volumes:
-      - ~/.aspnet/https:/https:ro
     networks:
       - default
     depends_on:
@@ -22,8 +19,6 @@ services:
       ASPNETCORE_ENVIRONMENT: "Development"
       ConnectionStrings__WlodzimierzDatabase: "Server=mssql;Database=Wlodzimierz;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
       ConnectionStrings__WlodzimierzIdentityDatabase: "Server=mssql;Database=Wlodzimierz.Identity;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
-      ASPNETCORE_Kestrel__Certificates__Default__Password: "1234"
-      ASPNETCORE_Kestrel__Certificates__Default__Path: "/https/aspnetapp.pfx"
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
@@ -51,13 +46,13 @@ services:
     restart: unless-stopped
     environment:
       REDIS_REPLICATION_MODE: "master"
-
+    
   seq:
     image: datalust/seq:2020.5
     ports:
       - "5341:80"
     volumes:
-      - ./.volumes/seq/data:/data
+    - ./.volumes/seq/data:/data
     networks:
       - default
     restart: unless-stopped

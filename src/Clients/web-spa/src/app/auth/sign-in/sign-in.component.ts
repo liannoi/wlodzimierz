@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,10 +9,23 @@ import {Component, OnInit} from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
-  constructor() {
+  public signInFormGroup: FormGroup | undefined;
+
+  constructor(private titleService: Title) {
+    titleService.setTitle('Sign in to Wlodzimierz - Wlodzimierz');
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.setupForm();
   }
 
+  ///////////////////////////////////////////////////////////////////////////
+  // Helpers
+  ///////////////////////////////////////////////////////////////////////////
+
+  private setupForm(): void {
+    this.signInFormGroup = new FormGroup({
+      username: new FormGroup({})
+    });
+  }
 }
