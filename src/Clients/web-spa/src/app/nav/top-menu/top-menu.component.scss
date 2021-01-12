@@ -1,4 +1,7 @@
-@media only screen and (min-width: 768px) {
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+@media only screen and (min-width: 992px) {
   .navbar {
     height: 80px;
   }
@@ -34,4 +37,8 @@
 
 .zindex-dropdown {
   z-index: 1000;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
