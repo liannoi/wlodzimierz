@@ -18,10 +18,16 @@
           <input class="form-control" formControlName="password" id="user_password" required type="password">
         </div>
 
+        <div class="form-check mb-3">
+          <input class="form-check-input" formControlName="shouldRemember" id="user_remember" type="checkbox" value="">
+          <label class="form-check-label" for="user_remember">Remember me</label>
+        </div>
+
         <div class="form-row">
           <div class="col-sm-12">
-            <button [disabled]="signInFormGroup.invalid" class="btn btn-success w-100 font-weight-bold" type="submit">
-              Sign in
+            <button [disabled]="signInFormGroup.invalid"
+                    class="btn btn-success w-100 font-weight-bold"
+                    type="submit">Sign in
             </button>
           </div>
         </div>

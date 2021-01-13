@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+
+import {AuthService} from '../shared/services/auth.service';
+import {ApplicationPaths} from '../../shared/app.constants';
 
 @Component({
   selector: 'app-sign-out',
@@ -7,10 +11,11 @@ import {Component, OnInit} from '@angular/core';
 })
 export class SignOutComponent implements OnInit {
 
-  constructor() {
+  public constructor(private authService: AuthService, private router: Router) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.authService.clearToken();
+    this.router.navigate([ApplicationPaths.Home]);
   }
-
 }

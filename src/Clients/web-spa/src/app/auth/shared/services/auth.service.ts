@@ -67,12 +67,11 @@ export class AuthService extends AbstractService {
     return {value: this.cookie.get(ApplicationOptions.JwtToken)};
   }
 
-  // tslint:disable-next-line:typedef
-  public writeToken(token: JwtTokenModel) {
-    this.cookie.set(ApplicationOptions.JwtToken, token.value, {path: '/'});
+  // tslint:disable-next-line:no-unnecessary-initializer
+  public writeToken(token: JwtTokenModel, expires: Date | undefined = undefined) {
+    this.cookie.set(ApplicationOptions.JwtToken, token.value, {path: '/', expires});
   }
 
-  // tslint:disable-next-line:typedef
   public clearToken() {
     this.cookie.delete(ApplicationOptions.JwtToken);
   }

@@ -11,6 +11,7 @@ namespace Application.Storage.API.Storage.Users.Commands.Signup
     public class SignupCommand : IRequest<JwtToken>
     {
         public string UserName { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
 
         private class Handler : IRequestHandler<SignupCommand, JwtToken>
@@ -24,7 +25,8 @@ namespace Application.Storage.API.Storage.Users.Commands.Signup
 
             public async Task<JwtToken> Handle(SignupCommand request, CancellationToken cancellationToken)
             {
-                var (result, token) = await _identityService.SignupAsync(request.UserName, request.Password);
+                var (result, token) =
+                    await _identityService.SignupAsync(request.UserName, request.Email, request.Password);
 
                 return result.Succeeded ? token : throw new ValidationException(result.Errors.ToFailures());
             }

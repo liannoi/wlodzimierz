@@ -44,9 +44,10 @@ namespace Infrastructure.Identity.API.Services
                 : (IdentityResult.Failure(), default))!;
         }
 
-        public async Task<(IdentityResult Result, JwtToken Token)> SignupAsync(string userName, string password)
+        public async Task<(IdentityResult Result, JwtToken Token)> SignupAsync(string userName, string email,
+            string password)
         {
-            var user = new ApplicationUser {UserName = userName, Email = userName};
+            var user = new ApplicationUser {UserName = userName, Email = email};
             var result = await _manager.CreateAsync(user, password);
 
             return (result.ToApplicationResult(), new JwtToken {Value = CreateToken(user)});

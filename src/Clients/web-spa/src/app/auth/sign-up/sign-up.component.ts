@@ -68,7 +68,8 @@ export class SignUpComponent implements OnInit, OnDestroy, OnSignUp {
   private setupForm(): void {
     this.signUpFormGroup = new FormGroup({
       username: new FormControl(this.user.username),
-      password: new FormControl(this.user.password)
+      email: new FormControl(this.user.email),
+      password: new FormControl(this.user.password),
     });
   }
 }

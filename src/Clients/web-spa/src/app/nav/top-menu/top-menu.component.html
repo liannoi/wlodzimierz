@@ -20,7 +20,7 @@
            class="navbar-collapse collapse d-lg-inline-flex zindex-dropdown">
         <ul class="navbar-nav">
           <li class="nav-item ml-lg-4 pr-md-4 right-border">
-            <a [routerLink]="webPaths.App" class="nav-link text-primary">Application</a>
+            <a [routerLinkActive]="['text-active']" [routerLink]="webPaths.App" class="nav-link text-primary">Application</a>
           </li>
 
           <li class="nav-item ml-lg-4">
@@ -52,7 +52,7 @@
               <div class="dropdown-divider"></div>
               <a [routerLink]="" ngbDropdownItem>Help</a>
               <a [routerLink]="" ngbDropdownItem>Settings</a>
-              <a [routerLink]="" ngbDropdownItem>Sign out</a>
+              <a [routerLink]="authenticationPaths.SignOut" ngbDropdownItem>Sign out</a>
             </div>
           </li>
         </ul>
