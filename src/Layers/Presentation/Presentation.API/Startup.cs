@@ -56,6 +56,7 @@ namespace Presentation.API
 
             services.AddHealthChecks().AddDbContextCheck<WlodzimierzContext>();
 
+            services.AddCors();
             services.AddControllers(options => options.Filters.Add<ExceptionFilter>())
                 .AddFluentValidation();
 
@@ -104,6 +105,11 @@ namespace Presentation.API
                 settings.DocumentPath = "/swagger/v1/swagger.json";
             });
 
+            app.UseCors(options => options.WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+            
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

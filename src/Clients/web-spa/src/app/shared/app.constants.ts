@@ -1,5 +1,6 @@
 const applicationOptions: ApplicationOptions = {
-  Name: 'Wlodzimierz'
+  Name: 'Wlodzimierz',
+  JwtToken: 'WlodzimierzJwtToken'
 };
 
 const applicationPaths: ApplicationPaths = {
@@ -10,6 +11,7 @@ const applicationPaths: ApplicationPaths = {
 
 interface ApplicationOptions {
   readonly Name: string;
+  readonly JwtToken: string;
 }
 
 interface ApplicationPaths {
