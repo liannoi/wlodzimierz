@@ -19,7 +19,8 @@
   height: 69px;
 }
 
-.navbar a:hover {
+.navbar a:hover,
+.navbar a.text-body {
   opacity: 1;
 }
 

@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup} from '@angular/forms';
 import {HttpErrorResponse} from '@angular/common/http';
 
 import {UserModel} from '../shared/models/user.model';
@@ -26,15 +26,11 @@ export class SignInComponent implements OnInit, OnDestroy, OnSignIn {
     titleService.setTitle('Sign in to Wlodzimierz - Wlodzimierz');
   }
 
-  ///////////////////////////////////////////////////////////////////////////
-  // Event handlers
-  ///////////////////////////////////////////////////////////////////////////
-
-  get username() {
+  get username(): AbstractControl | null {
     return this.signInFormGroup.get('username');
   }
 
-  get password() {
+  get password(): AbstractControl | null {
     return this.signInFormGroup.get('password');
   }
 
@@ -46,17 +42,9 @@ export class SignInComponent implements OnInit, OnDestroy, OnSignIn {
     this.authService.onDispose();
   }
 
-  ///////////////////////////////////////////////////////////////////////////
-  // Basic methods
-  ///////////////////////////////////////////////////////////////////////////
-
   public onSignInSuccess(token: JwtTokenModel): void {
     this.authService.writeToken(token);
   }
-
-  ///////////////////////////////////////////////////////////////////////////
-  // Getters for the form
-  ///////////////////////////////////////////////////////////////////////////
 
   public onSignInFailed(error: HttpErrorResponse): void {
     this.username?.setValue(this.user.username);
