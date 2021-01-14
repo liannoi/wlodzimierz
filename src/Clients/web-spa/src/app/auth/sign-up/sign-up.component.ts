@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {AbstractControl, FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 
@@ -26,12 +26,16 @@ export class SignUpComponent implements OnInit, OnDestroy, OnSignUp {
     titleService.setTitle('Join Wlodzimierz - Wlodzimierz');
   }
 
-  get username(): AbstractControl | null {
-    return this.signUpFormGroup.get('username');
+  get username(): AbstractControl {
+    return this.signUpFormGroup.get('username') as AbstractControl;
   }
 
-  get password(): AbstractControl | null {
-    return this.signUpFormGroup.get('password');
+  get password(): AbstractControl {
+    return this.signUpFormGroup.get('password') as AbstractControl;
+  }
+
+  get email(): AbstractControl {
+    return this.signUpFormGroup.get('email') as AbstractControl;
   }
 
   public ngOnInit(): void {
@@ -43,8 +47,8 @@ export class SignUpComponent implements OnInit, OnDestroy, OnSignUp {
   }
 
   public onSignUpFailed(error: HttpErrorResponse): void {
-    this.username?.setValue(this.user.username);
-    this.password?.setValue('');
+    this.username.setValue(this.user.username);
+    this.password.setValue('');
   }
 
   public onSignUpSuccess(token: JwtTokenModel): void {
@@ -67,9 +71,18 @@ export class SignUpComponent implements OnInit, OnDestroy, OnSignUp {
 
   private setupForm(): void {
     this.signUpFormGroup = new FormGroup({
-      username: new FormControl(this.user.username),
-      email: new FormControl(this.user.email),
-      password: new FormControl(this.user.password),
+      username: new FormControl(this.user.username, [
+        Validators.required,
+      ]),
+      email: new FormControl(this.user.email, [
+        Validators.required,
+        Validators.minLength(6)
+      ]),
+      password: new FormControl(this.user.password, [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$')
+      ]),
     });
   }
 }
