@@ -48,6 +48,11 @@
               <span>Password must contain at least one uppercase and lowercase letter, as well as one special character.</span>
             </div>
           </div>
+
+          <div
+            *ngIf="haveFirstAttempt && (signUpFormGroup.errors?.identity && (signUpFormGroup.touched || signUpFormGroup.dirty))"
+            class="text-danger mt-3"><span [innerText]="identityError.message"></span>
+          </div>
         </div>
 
         <div class="form-row">

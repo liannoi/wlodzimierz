@@ -19,6 +19,8 @@ import {ApplicationPaths} from '../../shared/app.constants';
 export class SignUpComponent implements OnInit, OnDestroy, OnSignUp {
 
   public signUpFormGroup!: FormGroup;
+  public haveFirstAttempt = false;
+  public identityError!: HttpErrorResponse;
 
   private user: UserModel = new UserModel();
 
@@ -49,6 +51,9 @@ export class SignUpComponent implements OnInit, OnDestroy, OnSignUp {
   public onSignUpFailed(error: HttpErrorResponse): void {
     this.username.setValue(this.user.username);
     this.password.setValue('');
+    this.haveFirstAttempt = true;
+    this.identityError = error;
+    this.signUpFormGroup.setErrors({identity: true});
   }
 
   public onSignUpSuccess(token: JwtTokenModel): void {

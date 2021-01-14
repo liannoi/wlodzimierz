@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {AbstractControl, FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 
@@ -11,6 +11,7 @@ import {SignInCommand} from '../shared/commands/sign-in/sign-in.command';
 import {OnSignIn} from '../shared/commands/sign-in/on-sign-in.interface';
 import {JwtTokenModel} from '../shared/models/jwt-token.model';
 import {ApplicationPaths} from '../../shared/app.constants';
+import {unauthorizedValidator} from '../shared/unauthorized.validator';
 
 @Component({
   selector: 'app-sign-in',
@@ -21,6 +22,7 @@ export class SignInComponent implements OnInit, OnDestroy, OnSignIn {
 
   public signInFormGroup!: FormGroup;
   public authenticationPaths = AuthenticationPaths;
+  public haveFirstAttempt = false;
 
   private user: UserModel = new UserModel();
 
@@ -28,16 +30,12 @@ export class SignInComponent implements OnInit, OnDestroy, OnSignIn {
     titleService.setTitle('Sign in to Wlodzimierz - Wlodzimierz');
   }
 
-  get username(): AbstractControl | null {
-    return this.signInFormGroup.get('username');
+  get username(): AbstractControl {
+    return this.signInFormGroup.get('username') as AbstractControl;
   }
 
-  get email(): AbstractControl | null {
-    return this.signInFormGroup.get('email');
-  }
-
-  get password(): AbstractControl | null {
-    return this.signInFormGroup.get('password');
+  get password(): AbstractControl {
+    return this.signInFormGroup.get('password') as AbstractControl;
   }
 
   public ngOnInit(): void {
@@ -55,8 +53,8 @@ export class SignInComponent implements OnInit, OnDestroy, OnSignIn {
 
   public onSignInFailed(error: HttpErrorResponse): void {
     this.username?.setValue(this.user.username);
-    this.email?.setValue(this.user.email);
     this.password?.setValue('');
+    this.haveFirstAttempt = true;
   }
 
   public onSignIn(): void {
@@ -74,11 +72,16 @@ export class SignInComponent implements OnInit, OnDestroy, OnSignIn {
 
   private setupForm(): void {
     this.signInFormGroup = new FormGroup({
-      username: new FormControl(this.user.username),
-      email: new FormControl(this.user.email),
-      password: new FormControl(this.user.password),
+      username: new FormControl(this.user.username, [
+        Validators.required,
+      ]),
+      password: new FormControl(this.user.password, [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$')
+      ]),
       shouldRemember: new FormControl(this.user.shouldRemember),
-    });
+    }, {validators: unauthorizedValidator});
   }
 
   private writeToken(token: JwtTokenModel) {
