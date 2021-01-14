@@ -12,6 +12,7 @@ import {FeedbackComponent} from './core/feedback/feedback.component';
 import {WebModule} from './web/web.module';
 import {NavModule} from './nav/nav.module';
 import {DocsModule} from './docs/docs.module';
+import {StatusesModule} from './statuses/statuses.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {DocsModule} from './docs/docs.module';
     DocsModule,
     AuthModule,
     WebModule,
-    NgbModule
+    NgbModule,
+    StatusesModule
   ],
   bootstrap: [AppComponent]
 })
