@@ -51,10 +51,11 @@ namespace Presentation.API.Controllers
             return await Mediator.Send(new DetailsQuery {ConversationId = id});
         }
 
-        [HttpGet("{conversation}/messages")]
-        public async Task<ActionResult<PaginatedList<ConversationMessageDto>>> GetAllMessages(int conversation)
+        [HttpGet("conversation-messages")]
+        public async Task<ActionResult<PaginatedList<ConversationMessageDto>>> GetAllMessages(
+            [FromQuery] MessagesQuery query)
         {
-            return await Mediator.Send(new MessagesQuery {ConversationId = conversation});
+            return await Mediator.Send(query);
         }
     }
 }

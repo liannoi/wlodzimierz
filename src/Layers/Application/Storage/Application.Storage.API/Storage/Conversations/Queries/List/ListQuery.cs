@@ -43,21 +43,21 @@ namespace Application.Storage.API.Storage.Conversations.Queries.List
 
             // Helpers.
 
-            private async Task<PaginatedList<ConversationDto>> ReadFromDatabase(ListQuery request)
+            private async Task<PaginatedList<ConversationDto>> ReadFromDatabase(ListQuery query)
             {
                 var conversations = await _context.Conversations
                     .ProjectTo<ConversationDto>(_mapper.ConfigurationProvider)
-                    .PaginatedListAsync(request.PageNumber, request.PageSize);
+                    .PaginatedListAsync(query.PageNumber, query.PageSize);
 
                 await _cache.CreateAsync(conversations);
 
                 return conversations;
             }
 
-            private async Task<PaginatedList<ConversationDto>> ReadFromCache(ListQuery request)
+            private async Task<PaginatedList<ConversationDto>> ReadFromCache(ListQuery query)
             {
                 var cache = await _cache.GetAsync<PaginatedList<ConversationDto>>();
-                cache.Restore(request.PageNumber, request.PageSize);
+                cache.Restore(query.PageNumber, query.PageSize);
 
                 return cache;
             }

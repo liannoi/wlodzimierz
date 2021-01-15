@@ -33,6 +33,12 @@ namespace Presentation.API.Controllers
             return await Mediator.Send(command);
         }
 
+        [HttpPost("verify")]
+        public async Task<ActionResult<UserDto>> Verify([FromBody] VerifyCommand command)
+        {
+            return await Mediator.Send(command);
+        }
+
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(string id, [FromQuery] UpdateCommand command)
         {
@@ -49,12 +55,6 @@ namespace Presentation.API.Controllers
             await Mediator.Send(new DeleteCommand {UserId = id});
 
             return NoContent();
-        }
-
-        [HttpGet("{jwt}")]
-        public async Task<ActionResult<UserDto>> GetByJwt(string jwt)
-        {
-            return await Mediator.Send(new VerifyQuery {Value = jwt});
         }
 
         [HttpGet("{user}/contacts")]

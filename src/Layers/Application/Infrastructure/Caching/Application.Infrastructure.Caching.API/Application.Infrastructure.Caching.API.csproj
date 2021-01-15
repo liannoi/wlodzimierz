@@ -5,4 +5,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Paging\Application.Paging.API\Application.Paging.API.csproj" />
+    </ItemGroup>
+
 </Project>

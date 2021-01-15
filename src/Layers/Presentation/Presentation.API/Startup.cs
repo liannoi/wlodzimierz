@@ -109,7 +109,7 @@ namespace Presentation.API
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials());
-            
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

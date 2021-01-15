@@ -27,12 +27,6 @@
             <div *ngIf="password.errors?.required">
               <span>Password cannot be empty.</span>
             </div>
-            <div *ngIf="password.errors?.minLength">
-              <span>Password must be at least 6 characters.</span>
-            </div>
-            <div *ngIf="password.errors?.pattern">
-              <span>Password must contain at least one uppercase and lowercase letter, as well as one special character.</span>
-            </div>
           </div>
 
           <div

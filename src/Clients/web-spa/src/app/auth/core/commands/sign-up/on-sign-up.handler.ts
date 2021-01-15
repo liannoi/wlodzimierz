@@ -2,7 +2,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 
 import {JwtTokenModel} from '../../models/jwt-token.model';
 
-export interface OnSignUp {
+export interface OnSignUpHandler {
 
   onSignUpSuccess(token: JwtTokenModel): void;
 

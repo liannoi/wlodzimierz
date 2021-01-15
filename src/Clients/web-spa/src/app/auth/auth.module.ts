@@ -8,7 +8,7 @@ import {SignOutComponent} from './sign-out/sign-out.component';
 import {SignInComponent} from './sign-in/sign-in.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
 import {AuthRoutingModule} from './auth-routing.module';
-import {AuthService} from './shared/services/auth.service';
+import {AuthService} from './core/auth.service';
 import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({

@@ -4,7 +4,7 @@ import {ApplicationPaths} from '../../shared/app.constants';
 import {AuthenticationPaths} from '../../auth/shared/auth.constants';
 import {WebPaths} from '../../web/shared/web.constants';
 import {DocsPaths} from '../../docs/shared/docs.constants';
-import {AuthService} from '../../auth/shared/services/auth.service';
+import {AuthService} from '../../auth/core/auth.service';
 
 @Component({
   selector: 'app-nav-top-menu',

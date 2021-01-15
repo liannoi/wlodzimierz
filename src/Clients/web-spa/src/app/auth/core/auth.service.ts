@@ -1,56 +1,50 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-
-import {Subject} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, takeUntil} from 'rxjs/operators';
 import {CookieService} from 'ngx-cookie-service';
 
-import {SignInCommand} from '../commands/sign-in/sign-in.command';
-import {OnSignIn} from '../commands/sign-in/on-sign-in.interface';
-import {JwtTokenModel} from '../models/jwt-token.model';
-import {ApiControllers, ApiEndpoints} from '../../../shared/api.constants';
-import {AbstractService} from '../../../shared/abstract.service';
-import {ApplicationOptions} from '../../../shared/app.constants';
-import {SignUpCommand} from '../commands/sign-up/sign-up.command';
-import {OnSignUp} from '../commands/sign-up/on-sign-up.interface';
-import {VerifyCommand} from '../queries/verify/verify.command';
-import {OnVerify} from '../queries/verify/on-verify.interface';
-import {UserModel} from '../models/user.model';
+import {SignInCommand} from './commands/sign-in/sign-in.command';
+import {OnSignInHandler} from './commands/sign-in/on-sign-in.handler';
+import {JwtTokenModel} from './models/jwt-token.model';
+import {ApiEndpoints} from '../../shared/api.constants';
+import {AbstractService} from '../../shared/abstract.service';
+import {ApplicationOptions} from '../../shared/app.constants';
+import {SignUpCommand} from './commands/sign-up/sign-up.command';
+import {OnSignUpHandler} from './commands/sign-up/on-sign-up.handler';
+import {VerifyCommand} from './commands/verify/verify.command';
+import {OnVerifyHandler} from './commands/verify/on-verify.handler';
+import {UserModel} from './models/user.model';
 
 @Injectable()
 export class AuthService extends AbstractService {
 
-  private stop$: Subject<void> = new Subject<void>();
-
-  public constructor(private http: HttpClient, private cookie: CookieService) {
-    super();
+  public constructor(http: HttpClient, private cookie: CookieService) {
+    super(http);
   }
 
   ///////////////////////////////////////////////////////////////////////////
   // Commands
   ///////////////////////////////////////////////////////////////////////////
 
-  public signIn(request: SignInCommand, handler: OnSignIn): void {
+  public signIn(request: SignInCommand, handler: OnSignInHandler): void {
     this.http.post<JwtTokenModel>(ApiEndpoints.UsersSignIn, request.user)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(token => handler.onSignInSuccess(token), error => handler.onSignInFailed(error));
   }
 
-  public signUp(request: SignUpCommand, handler: OnSignUp): void {
+  public signUp(request: SignUpCommand, handler: OnSignUpHandler): void {
     this.http.post<JwtTokenModel>(ApiEndpoints.UsersSignUp, request.user)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(token => handler.onSignUpSuccess(token), error => handler.onSignUpFailed(error));
   }
 
-  public verify(request: VerifyCommand, handler: OnVerify) {
+  public verify(request: VerifyCommand, handler: OnVerifyHandler): void {
     const token: JwtTokenModel = request.token;
 
-    this.http.get<UserModel>(ApiControllers.Users, {
-      headers: this.withAuthorization(token),
-      params: new HttpParams().set('jwt', token.value)
-    }).pipe(catchError(this.handleError))
+    this.http.post<UserModel>(ApiEndpoints.UsersVerify, token, this.withAuthorization(token))
+      .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(user => handler.onVerifySuccess(user), error => handler.onVerifyFailed(error));
   }
@@ -76,20 +70,12 @@ export class AuthService extends AbstractService {
     this.cookie.delete(ApplicationOptions.JwtToken);
   }
 
-  ///////////////////////////////////////////////////////////////////////////
-  // Helpers
-  ///////////////////////////////////////////////////////////////////////////
-
   public onDispose(): void {
     this.stop$.next();
     this.stop$.complete();
   }
 
-  ///////////////////////////////////////////////////////////////////////////
-  // Dispose
-  ///////////////////////////////////////////////////////////////////////////
-
-  private withAuthorization(token: JwtTokenModel): HttpHeaders {
-    return new HttpHeaders({Authorization: `Bearer ${token.value}`});
+  private withAuthorization(token: JwtTokenModel): { headers: HttpHeaders } {
+    return {headers: new HttpHeaders({Authorization: `Bearer ${token.value}`})};
   }
 }

@@ -4,21 +4,21 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
 import {HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 
-import {UserModel} from '../shared/models/user.model';
+import {UserModel} from '../core/models/user.model';
 import {AuthenticationPaths} from '../shared/auth.constants';
-import {AuthService} from '../shared/services/auth.service';
-import {SignInCommand} from '../shared/commands/sign-in/sign-in.command';
-import {OnSignIn} from '../shared/commands/sign-in/on-sign-in.interface';
-import {JwtTokenModel} from '../shared/models/jwt-token.model';
+import {AuthService} from '../core/auth.service';
+import {SignInCommand} from '../core/commands/sign-in/sign-in.command';
+import {OnSignInHandler} from '../core/commands/sign-in/on-sign-in.handler';
+import {JwtTokenModel} from '../core/models/jwt-token.model';
 import {ApplicationPaths} from '../../shared/app.constants';
-import {unauthorizedValidator} from '../shared/unauthorized.validator';
+import {unauthorizedValidator} from '../core/validators/unauthorized.validator';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit, OnDestroy, OnSignIn {
+export class SignInComponent implements OnInit, OnDestroy, OnSignInHandler {
 
   public signInFormGroup!: FormGroup;
   public authenticationPaths = AuthenticationPaths;
@@ -72,14 +72,8 @@ export class SignInComponent implements OnInit, OnDestroy, OnSignIn {
 
   private setupForm(): void {
     this.signInFormGroup = new FormGroup({
-      username: new FormControl(this.user.username, [
-        Validators.required,
-      ]),
-      password: new FormControl(this.user.password, [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$')
-      ]),
+      username: new FormControl(this.user.username, [Validators.required]),
+      password: new FormControl(this.user.password, [Validators.required]),
       shouldRemember: new FormControl(this.user.shouldRemember),
     }, {validators: unauthorizedValidator});
   }

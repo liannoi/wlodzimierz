@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {WebPaths} from './shared/web.constants';
-import {WebAppComponent} from './web-app/web-app.component';
+import {WebAppComponent} from './web-app.component';
 
 const routes: Routes = [
   {path: WebPaths.App, component: WebAppComponent},

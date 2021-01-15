@@ -36,7 +36,7 @@ namespace Application.Storage.API.Storage.Users.Queries.Conversations
             {
                 try
                 {
-                    return await ReadFromCache(request);
+                    return await ReadFromCache();
                 }
                 catch (NotFoundException)
                 {
@@ -44,24 +44,24 @@ namespace Application.Storage.API.Storage.Users.Queries.Conversations
                 }
             }
 
-            private async Task<PaginatedList<ConversationDto>> ReadFromCache(ConversationsQuery query)
-            {
-                var cache = await _cache.GetAsync<PaginatedList<ConversationDto>>();
-                cache.Restore(query.PageNumber, query.PageSize);
-
-                return cache;
-            }
+            // Helpers.
 
             private async Task<PaginatedList<ConversationDto>> ReadFromDatabase(ConversationsQuery query)
             {
                 var contacts = await _context.Conversations
                     .Where(e => e.LeftUserId == query.OwnerUserId || e.RightUserId == query.OwnerUserId)
+                    .OrderBy(x => x.ConversationId)
                     .ProjectTo<ConversationDto>(_mapper.ConfigurationProvider)
                     .PaginatedListAsync(query.PageNumber, query.PageSize);
 
                 await _cache.CreateAsync(contacts);
 
                 return contacts;
+            }
+
+            private async Task<PaginatedList<ConversationDto>> ReadFromCache()
+            {
+                return await _cache.GetAsync<PaginatedList<ConversationDto>>();
             }
         }
 

@@ -4,11 +4,11 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 
-import {UserModel} from '../shared/models/user.model';
-import {AuthService} from '../shared/services/auth.service';
-import {OnSignUp} from '../shared/commands/sign-up/on-sign-up.interface';
-import {JwtTokenModel} from '../shared/models/jwt-token.model';
-import {SignUpCommand} from '../shared/commands/sign-up/sign-up.command';
+import {UserModel} from '../core/models/user.model';
+import {AuthService} from '../core/auth.service';
+import {OnSignUpHandler} from '../core/commands/sign-up/on-sign-up.handler';
+import {JwtTokenModel} from '../core/models/jwt-token.model';
+import {SignUpCommand} from '../core/commands/sign-up/sign-up.command';
 import {ApplicationPaths} from '../../shared/app.constants';
 
 @Component({
@@ -16,7 +16,7 @@ import {ApplicationPaths} from '../../shared/app.constants';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit, OnDestroy, OnSignUp {
+export class SignUpComponent implements OnInit, OnDestroy, OnSignUpHandler {
 
   public signUpFormGroup!: FormGroup;
   public haveFirstAttempt = false;

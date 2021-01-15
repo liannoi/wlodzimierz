@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Infrastructure.Caching.API.Interfaces;
@@ -35,7 +36,7 @@ namespace Application.Storage.API.Storage.Conversations.Queries.Messages
             {
                 try
                 {
-                    return await ReadFromCache(request);
+                    return await ReadFromCache();
                 }
                 catch (NotFoundException)
                 {
@@ -46,20 +47,19 @@ namespace Application.Storage.API.Storage.Conversations.Queries.Messages
             private async Task<PaginatedList<ConversationMessageDto>> ReadFromDatabase(MessagesQuery query)
             {
                 var conversations = await _context.ConversationMessages
+                    .Where(e => e.Conversation.ConversationId == query.ConversationId)
+                    .OrderBy(x => x.Publish)
                     .ProjectTo<ConversationMessageDto>(_mapper.ConfigurationProvider)
                     .PaginatedListAsync(query.PageNumber, query.PageSize);
 
-                await _cache.CreateAsync(conversations);
+                await _cache.CreateAsync<PaginatedList<ConversationMessageDto>, ConversationMessageDto>(conversations);
 
                 return conversations;
             }
 
-            private async Task<PaginatedList<ConversationMessageDto>> ReadFromCache(MessagesQuery query)
+            private async Task<PaginatedList<ConversationMessageDto>> ReadFromCache()
             {
-                var cache = await _cache.GetAsync<PaginatedList<ConversationMessageDto>>();
-                cache.Restore(query.PageNumber, query.PageSize);
-
-                return cache;
+                return await _cache.GetAsync<PaginatedList<ConversationMessageDto>, ConversationMessageDto>();
             }
         }
 
