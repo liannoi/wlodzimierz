@@ -52,19 +52,12 @@ export class UsersConversationsComponent implements OnInit, OnConversationsHandl
   }
 
   public onConversationsFetchedSuccess(conversations: ConversationsListModel): void {
-    console.log(conversations);
     this.conversations = conversations;
   }
 
   public isThisSelected(conversation: ConversationModel) {
     return this.selectedConversation?.conversationId === conversation.conversationId;
   }
-
-  /*public conversationUser(conversation: ConversationModel): string {
-    return conversation.rightUser?.userId === this.userModel?.userId
-      ? conversation.leftUser?.userName
-      : conversation.rightUser?.userName;
-  }*/
 
   public onConversationChanged(conversation: ConversationModel) {
     this.selectedConversation = conversation;

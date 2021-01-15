@@ -9,6 +9,8 @@ import {ApiEndpointBuilder} from '../shared/api.constants';
 import {HttpClientModule} from '@angular/common/http';
 import {ConversationMessagesComponent} from './conversations/messages/conversation-messages.component';
 import {ConversationsService} from './conversations/conversations.service';
+import {ConversationMessagesService} from './conversation-messages/shared/conversation-messages.service';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import {ConversationsService} from './conversations/conversations.service';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    WebRoutingModule
+    WebRoutingModule,
   ],
   providers: [
     ApiEndpointBuilder,
     UsersService,
     ConversationsService,
+    ConversationMessagesService,
   ]
 })
 export class WebModule {
