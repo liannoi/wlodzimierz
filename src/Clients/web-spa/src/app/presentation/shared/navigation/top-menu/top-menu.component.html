@@ -26,16 +26,16 @@
           <li class="nav-item ml-lg-4">
             <a [routerLinkActiveOptions]="{exact: true}"
                [routerLinkActive]="['text-body']"
-               [routerLink]=""
+               [routerLink]="docsRoutingConstants.Root"
                class="nav-link">Documentation</a>
           </li>
 
           <li class="nav-item ml-lg-3">
-            <a [routerLinkActive]="['text-body']" [routerLink]="" class="nav-link">Apps</a>
+            <a [routerLinkActive]="['text-body']" [routerLink]="docsRoutingConstants.Apps" class="nav-link">Apps</a>
           </li>
 
           <li class="nav-item ml-lg-3">
-            <a [routerLinkActive]="['text-body']" [routerLink]="" class="nav-link">API</a>
+            <a [routerLinkActive]="['text-body']" [routerLink]="docsRoutingConstants.Api" class="nav-link">API</a>
           </li>
         </ul>
 
@@ -52,7 +52,7 @@
               <div class="dropdown-divider"></div>
               <a [routerLink]="" ngbDropdownItem>Help</a>
               <a [routerLink]="" ngbDropdownItem>Settings</a>
-              <a [routerLink]="" ngbDropdownItem>Sign out</a>
+              <a [routerLink]="usersRoutingConstants.SignOut" ngbDropdownItem>Sign out</a>
             </div>
           </li>
         </ul>
@@ -82,13 +82,13 @@
 
             <li class="nav-item mr-lg-2">
               <a [routerLinkActive]="['text-body']"
-                 [routerLink]=""
+                 [routerLink]="usersRoutingConstants.SignIn"
                  class="nav-link">Sign in</a>
             </li>
 
             <li class="nav-item">
               <a [routerLinkActive]="['text-body']"
-                 [routerLink]=""
+                 [routerLink]="usersRoutingConstants.SignUp"
                  class="nav-link">Sign up</a>
             </li>
           </ul>
