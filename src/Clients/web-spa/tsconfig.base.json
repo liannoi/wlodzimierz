@@ -17,7 +17,23 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@wlodzimierz/presentation": [
+        "libs/presentation/src/index.ts"
+      ],
+      "@wlodzimierz/infrastructure": [
+        "libs/infrastructure/src/index.ts"
+      ],
+      "@wlodzimierz/domain": [
+        "libs/domain/src/index.ts"
+      ],
+      "@wlodzimierz/app": [
+        "libs/app/src/index.ts"
+      ],
+      "@wlodzimierz/presentation/navigation": [
+        "libs/presentation/navigation/src/index.ts"
+      ]
+    }
   },
   "exclude": [
     "node_modules",

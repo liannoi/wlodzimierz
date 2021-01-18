@@ -36,6 +36,21 @@
       "implicitDependencies": [
         "wlodzimierz"
       ]
+    },
+    "presentation": {
+      "tags": []
+    },
+    "infrastructure": {
+      "tags": []
+    },
+    "domain": {
+      "tags": []
+    },
+    "app": {
+      "tags": []
+    },
+    "presentation-navigation": {
+      "tags": []
     }
   }
 }
