@@ -1,27 +1,37 @@
 {
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "newProjectRoot": "projects",
   "projects": {
-    "wlodzimierz": {
+    "Wlodzimierz": {
       "projectType": "application",
-      "root": "apps/wlodzimierz",
-      "sourceRoot": "apps/wlodzimierz/src",
-      "prefix": "wlodzimierz",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apps/wlodzimierz",
-            "index": "apps/wlodzimierz/src/index.html",
-            "main": "apps/wlodzimierz/src/main.ts",
-            "polyfills": "apps/wlodzimierz/src/polyfills.ts",
-            "tsConfig": "apps/wlodzimierz/tsconfig.app.json",
+            "outputPath": "dist/Wlodzimierz",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/wlodzimierz/src/favicon.ico",
-              "apps/wlodzimierz/src/assets"
+              "src/favicon.ico",
+              "src/assets"
             ],
             "styles": [
-              "apps/wlodzimierz/src/styles.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -29,8 +39,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/wlodzimierz/src/environments/environment.ts",
-                  "with": "apps/wlodzimierz/src/environments/environment.prod.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -43,13 +53,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ]
             }
@@ -58,230 +68,64 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "wlodzimierz:build"
+            "browserTarget": "Wlodzimierz:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "wlodzimierz:build:production"
+              "browserTarget": "Wlodzimierz:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "wlodzimierz:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/wlodzimierz/src/**/*.ts",
-              "apps/wlodzimierz/src/**/*.html"
-            ]
+            "browserTarget": "Wlodzimierz:build"
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/wlodzimierz"
-          ],
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "jestConfig": "apps/wlodzimierz/jest.config.js",
-            "passWithNoTests": true
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
           }
-        }
-      }
-    },
-    "wlodzimierz-e2e": {
-      "root": "apps/wlodzimierz-e2e",
-      "sourceRoot": "apps/wlodzimierz-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "cypressConfig": "apps/wlodzimierz-e2e/cypress.json",
-            "tsConfig": "apps/wlodzimierz-e2e/tsconfig.e2e.json",
-            "devServerTarget": "wlodzimierz:serve"
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "Wlodzimierz:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "wlodzimierz:serve:production"
+              "devServerTarget": "Wlodzimierz:serve:production"
             }
           }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/wlodzimierz-e2e/**/*.{js,ts}"
-            ]
-          }
-        }
-      }
-    },
-    "presentation": {
-      "projectType": "library",
-      "root": "libs/presentation",
-      "sourceRoot": "libs/presentation/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/presentation/src/**/*.ts",
-              "libs/presentation/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/presentation"
-          ],
-          "options": {
-            "jestConfig": "libs/presentation/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "infrastructure": {
-      "projectType": "library",
-      "root": "libs/infrastructure",
-      "sourceRoot": "libs/infrastructure/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/infrastructure/src/**/*.ts",
-              "libs/infrastructure/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/infrastructure"
-          ],
-          "options": {
-            "jestConfig": "libs/infrastructure/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "domain": {
-      "projectType": "library",
-      "root": "libs/domain",
-      "sourceRoot": "libs/domain/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/domain/src/**/*.ts",
-              "libs/domain/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/domain"
-          ],
-          "options": {
-            "jestConfig": "libs/domain/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "app": {
-      "projectType": "library",
-      "root": "libs/app",
-      "sourceRoot": "libs/app/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/app/src/**/*.ts",
-              "libs/app/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/app"
-          ],
-          "options": {
-            "jestConfig": "libs/app/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "presentation-navigation": {
-      "projectType": "library",
-      "root": "libs/presentation/navigation",
-      "sourceRoot": "libs/presentation/navigation/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/presentation/navigation/src/**/*.ts",
-              "libs/presentation/navigation/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/presentation/navigation"
-          ],
-          "options": {
-            "jestConfig": "libs/presentation/navigation/jest.config.js",
-            "passWithNoTests": true
-          }
         }
       }
     }
   },
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
-  "schematics": {
-    "@nrwl/angular": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/angular:application": {
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "scss"
-    }
-  },
-  "defaultProject": "wlodzimierz"
+  "defaultProject": "Wlodzimierz"
 }
