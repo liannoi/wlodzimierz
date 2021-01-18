@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "projects": {
+    "wlodzimierz": {
+      "projectType": "application",
+      "root": "apps/wlodzimierz",
+      "sourceRoot": "apps/wlodzimierz/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/wlodzimierz",
+            "index": "apps/wlodzimierz/src/index.html",
+            "main": "apps/wlodzimierz/src/main.ts",
+            "polyfills": "apps/wlodzimierz/src/polyfills.ts",
+            "tsConfig": "apps/wlodzimierz/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/wlodzimierz/src/favicon.ico",
+              "apps/wlodzimierz/src/assets"
+            ],
+            "styles": [
+              "apps/wlodzimierz/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/wlodzimierz/src/environments/environment.ts",
+                  "with": "apps/wlodzimierz/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "wlodzimierz:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "wlodzimierz:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "wlodzimierz:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/wlodzimierz/src/**/*.ts",
+              "apps/wlodzimierz/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/wlodzimierz"
+          ],
+          "options": {
+            "jestConfig": "apps/wlodzimierz/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "wlodzimierz-e2e": {
+      "root": "apps/wlodzimierz-e2e",
+      "sourceRoot": "apps/wlodzimierz-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/wlodzimierz-e2e/cypress.json",
+            "tsConfig": "apps/wlodzimierz-e2e/tsconfig.e2e.json",
+            "devServerTarget": "wlodzimierz:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "wlodzimierz:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/wlodzimierz-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "wlodzimierz"
+}
