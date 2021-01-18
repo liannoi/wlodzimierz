@@ -50,6 +50,7 @@ The clients are:
 
 - Angular 11
 - Sass
+- [Nx](https://nx.dev/)
 - Bootstrap 4.5 (ng-bootstrap)
 - RxJS 6
 
