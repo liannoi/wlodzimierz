@@ -14,9 +14,7 @@ import {LayoutModule} from './layout/layout.module';
     HomeModule,
     LayoutModule,
   ],
-  exports: [
-    LayoutModule
-  ]
+  exports: [LayoutModule]
 })
 export class PresentationModule {
 }

@@ -1,8 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 
 import {AuthRoutingConstants} from '../../auth/auth-routing.constants';
 import {DocsRoutingConstants} from '../../docs/docs-routing.constants';
 import {HomeRoutingConstants} from '../../home/home-routing.constants';
+import {AuthFacadeImpl} from '../../../infrastructure/storage/users/auth.facade';
+import {AuthFacade} from '../../../application/storage/users/auth.facade';
 
 @Component({
   selector: 'app-nav-top-menu',
@@ -17,7 +19,10 @@ export class NavTopMenuComponent {
   public docs = DocsRoutingConstants;
   public home = HomeRoutingConstants;
 
+  public constructor(@Inject(AuthFacadeImpl) private authFacade: AuthFacade) {
+  }
+
   public isTokenVerified(): boolean {
-    return false;
+    return this.authFacade.checkToken();
   }
 }

@@ -1,7 +1,7 @@
 const authRoutingConstants: AuthRoutingConstants = {
-  SignIn: 'auth/sign-in',
-  SignUp: 'auth/sign-up',
-  SignOut: 'auth/sign-out',
+  SignIn: 'sign-in',
+  SignUp: 'sign-up',
+  SignOut: 'sign-out',
 };
 
 interface AuthRoutingConstants {
