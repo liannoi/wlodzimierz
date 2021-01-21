@@ -1,4 +1,4 @@
-namespace Infrastructure.Identity.API
+namespace Infrastructure.Identity.API.Options
 {
     public class TestingOptions
     {

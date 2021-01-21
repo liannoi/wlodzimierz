@@ -14,6 +14,18 @@ namespace Presentation.API.Controllers
 {
     public class ContactsController : AbstractController
     {
+        #region Filtration
+
+        [HttpGet("filter")]
+        public async Task<ActionResult<PaginatedList<ContactDto>>> GetByFilter([FromQuery] FilterQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        #endregion
+
+        #region CRUD
+
         [HttpGet]
         public async Task<ActionResult<PaginatedList<ContactDto>>> GetAll([FromQuery] ListQuery query)
         {
@@ -50,10 +62,6 @@ namespace Presentation.API.Controllers
             return await Mediator.Send(new DetailsQuery {ContactId = id});
         }
 
-        [HttpGet("filter")]
-        public async Task<ActionResult<PaginatedList<ContactDto>>> GetByFilter([FromQuery] FilterQuery query)
-        {
-            return await Mediator.Send(query);
-        }
+        #endregion
     }
 }

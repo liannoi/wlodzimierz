@@ -8,7 +8,6 @@ using Application.Paging.API.Extensions;
 using Application.Paging.API.Models;
 using Application.Storage.API.Common.Core.Exceptions;
 using Application.Storage.API.Storage.Conversations.Models;
-using Application.Storage.API.Storage.Users.Extensions;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;

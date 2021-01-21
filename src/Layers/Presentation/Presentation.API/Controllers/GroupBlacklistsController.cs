@@ -13,6 +13,8 @@ namespace Presentation.API.Controllers
 {
     public class GroupBlacklistsController : AbstractController
     {
+        #region CRUD
+
         [HttpGet]
         public async Task<ActionResult<PaginatedList<GroupBlacklistDto>>> GetAll([FromQuery] ListQuery query)
         {
@@ -48,5 +50,7 @@ namespace Presentation.API.Controllers
         {
             return await Mediator.Send(new DetailsQuery {GroupBlacklistId = id});
         }
+
+        #endregion
     }
 }

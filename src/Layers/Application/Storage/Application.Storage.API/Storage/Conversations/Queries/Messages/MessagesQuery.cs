@@ -7,7 +7,7 @@ using Application.Paging.API;
 using Application.Paging.API.Extensions;
 using Application.Paging.API.Models;
 using Application.Storage.API.Storage.ConversationMessages.Models;
-using Application.Storage.API.Storage.Users.Extensions;
+using Application.Storage.API.Storage.Users;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;

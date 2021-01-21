@@ -1,7 +1,9 @@
 using Application.Infrastructure.Persistence.API.Interfaces;
+using Infrastructure.Persistence.API.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TestingOptions = Infrastructure.EntityFramework.API.Testing.TestingOptions;
 
 namespace Infrastructure.Persistence.API
 {
@@ -11,11 +13,11 @@ namespace Infrastructure.Persistence.API
             IConfiguration configuration)
         {
             var useInMemoryDatabase =
-                configuration.GetValue<bool>(EntityFramework.API.Testing.TestingOptions.UseInMemoryDatabase);
+                configuration.GetValue<bool>(TestingOptions.UseInMemoryDatabase);
 
             if (useInMemoryDatabase)
                 services.AddDbContext<WlodzimierzContext>(options =>
-                    options.UseInMemoryDatabase(TestingOptions.InMemoryPrimaryDatabase));
+                    options.UseInMemoryDatabase(Options.TestingOptions.InMemoryPrimaryDatabase));
             else
                 services.AddDbContext<WlodzimierzContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString(PersistenceOptions.PrimaryDatabase)));
