@@ -6,8 +6,8 @@ using Application.Infrastructure.Persistence.API.Interfaces;
 using Application.Paging.API;
 using Application.Paging.API.Extensions;
 using Application.Paging.API.Models;
-using Application.Storage.API.Common.Core.Exceptions;
 using Application.Storage.API.Storage.ConversationMessages.Models;
+using Application.Storage.API.Storage.Users.Extensions;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -23,43 +23,34 @@ namespace Application.Storage.API.Storage.Conversations.Queries.Messages
             private readonly IWlodzimierzCachingContext _cache;
             private readonly IWlodzimierzContext _context;
             private readonly IMapper _mapper;
+            private readonly IUsersFacade _usersFacade;
 
-            public Handler(IWlodzimierzCachingContext cache, IWlodzimierzContext context, IMapper mapper)
+            public Handler(IWlodzimierzCachingContext cache, IWlodzimierzContext context, IMapper mapper,
+                IUsersFacade usersFacade)
             {
                 _cache = cache;
                 _context = context;
                 _mapper = mapper;
+                _usersFacade = usersFacade;
             }
 
             public async Task<PaginatedList<ConversationMessageDto>> Handle(MessagesQuery request,
                 CancellationToken cancellationToken)
             {
-                try
-                {
-                    return await ReadFromCache();
-                }
-                catch (NotFoundException)
-                {
-                    return await ReadFromDatabase(request);
-                }
+                return await ReadFromDatabase(request);
             }
 
             private async Task<PaginatedList<ConversationMessageDto>> ReadFromDatabase(MessagesQuery query)
             {
-                var conversations = await _context.ConversationMessages
+                var messages = await _context.ConversationMessages
                     .Where(e => e.Conversation.ConversationId == query.ConversationId)
-                    .OrderBy(x => x.Publish)
+                    .OrderByDescending(x => x.Publish)
                     .ProjectTo<ConversationMessageDto>(_mapper.ConfigurationProvider)
                     .PaginatedListAsync(query.PageNumber, query.PageSize);
 
-                await _cache.CreateAsync<PaginatedList<ConversationMessageDto>, ConversationMessageDto>(conversations);
+                await _usersFacade.MapAsync(messages);
 
-                return conversations;
-            }
-
-            private async Task<PaginatedList<ConversationMessageDto>> ReadFromCache()
-            {
-                return await _cache.GetAsync<PaginatedList<ConversationMessageDto>, ConversationMessageDto>();
+                return messages;
             }
         }
 

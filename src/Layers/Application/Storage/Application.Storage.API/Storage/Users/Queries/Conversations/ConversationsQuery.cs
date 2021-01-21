@@ -2,14 +2,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Infrastructure.Caching.API.Interfaces;
-using Application.Infrastructure.Identity.API.Interfaces;
 using Application.Infrastructure.Persistence.API.Interfaces;
 using Application.Paging.API;
 using Application.Paging.API.Extensions;
 using Application.Paging.API.Models;
 using Application.Storage.API.Common.Core.Exceptions;
 using Application.Storage.API.Storage.Conversations.Models;
-using Application.Storage.API.Storage.Users.Models;
+using Application.Storage.API.Storage.Users.Extensions;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -24,16 +23,16 @@ namespace Application.Storage.API.Storage.Users.Queries.Conversations
         {
             private readonly IWlodzimierzCachingContext _cache;
             private readonly IWlodzimierzContext _context;
-            private readonly IIdentityService _identityService;
             private readonly IMapper _mapper;
+            private readonly IUsersFacade _usersFacade;
 
             public Handler(IWlodzimierzContext context, IWlodzimierzCachingContext cache, IMapper mapper,
-                IIdentityService identityService)
+                IUsersFacade usersFacade)
             {
                 _context = context;
                 _cache = cache;
                 _mapper = mapper;
-                _identityService = identityService;
+                _usersFacade = usersFacade;
             }
 
             public async Task<PaginatedList<ConversationDto>> Handle(ConversationsQuery request,
@@ -53,24 +52,16 @@ namespace Application.Storage.API.Storage.Users.Queries.Conversations
 
             private async Task<PaginatedList<ConversationDto>> ReadFromDatabase(ConversationsQuery query)
             {
-                var contacts = await _context.Conversations
+                var conversations = await _context.Conversations
                     .Where(e => e.LeftUserId == query.OwnerUserId || e.RightUserId == query.OwnerUserId)
                     .OrderBy(x => x.ConversationId)
                     .ProjectTo<ConversationDto>(_mapper.ConfigurationProvider)
                     .PaginatedListAsync(query.PageNumber, query.PageSize);
 
-                foreach (var conversation in contacts.Items)
-                {
-                    conversation.LeftUser =
-                        _mapper.Map<UserDto>(await _identityService.FindByIdAsync(conversation.LeftUserId));
+                await _usersFacade.MapAsync(conversations);
+                await _cache.CreateAsync(conversations);
 
-                    conversation.RightUser =
-                        _mapper.Map<UserDto>(await _identityService.FindByIdAsync(conversation.RightUserId));
-                }
-
-                await _cache.CreateAsync(contacts);
-
-                return contacts;
+                return conversations;
             }
 
             private async Task<PaginatedList<ConversationDto>> ReadFromCache()

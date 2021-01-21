@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using Application.Infrastructure.Identity.API.Interfaces;
 using Application.Infrastructure.Identity.API.Models;
+using Application.Storage.API.Storage.Users.Extensions;
 using Infrastructure.Identity.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -34,6 +35,7 @@ namespace Infrastructure.Identity.API
 
             services.AddAuthorization();
             services.AddScoped<IIdentityService, IdentityService>();
+            services.AddScoped<IUsersFacade, UsersFacade>();
 
             return services;
         }

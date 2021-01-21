@@ -7,7 +7,7 @@
        class="card mb-2">
     <div class="card-body">
       <h5 class="card-title">{{conversationUser(conversation)?.userName}}</h5>
-      <app-conversation-message></app-conversation-message>
+      <app-conversation-message [conversation]="conversation"></app-conversation-message>
     </div>
   </div>
 </div>

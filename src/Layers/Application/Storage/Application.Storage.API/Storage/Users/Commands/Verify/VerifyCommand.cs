@@ -4,7 +4,7 @@ using Application.Infrastructure.Identity.API.Interfaces;
 using Application.Storage.API.Storage.Users.Models;
 using MediatR;
 
-namespace Application.Storage.API.Storage.Users.Queries.Verify
+namespace Application.Storage.API.Storage.Users.Commands.Verify
 {
     public class VerifyCommand : IRequest<UserDto>
     {

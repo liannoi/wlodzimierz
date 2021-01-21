@@ -8,12 +8,12 @@ using Application.Storage.API.Storage.Users.Commands.Delete;
 using Application.Storage.API.Storage.Users.Commands.Signin;
 using Application.Storage.API.Storage.Users.Commands.Signup;
 using Application.Storage.API.Storage.Users.Commands.Update;
+using Application.Storage.API.Storage.Users.Commands.Verify;
 using Application.Storage.API.Storage.Users.Models;
 using Application.Storage.API.Storage.Users.Queries.Contacts;
 using Application.Storage.API.Storage.Users.Queries.ConversationMessages;
 using Application.Storage.API.Storage.Users.Queries.Conversations;
 using Application.Storage.API.Storage.Users.Queries.Details;
-using Application.Storage.API.Storage.Users.Queries.Verify;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.API.Common.Controllers;
 

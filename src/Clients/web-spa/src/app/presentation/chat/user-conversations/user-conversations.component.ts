@@ -47,7 +47,7 @@ export class UserConversationsComponent implements OnInit, UserConversationsNoti
       }
 
       this.userModel = model;
-      this.conversationsService.getConversations(new UserConversationsQuery(model.userId), this);
+      this.conversationsService.getUserConversations(new UserConversationsQuery(model.userId), this);
     });
   }
 
