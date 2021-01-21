@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <div (click)="onConversationChanged(conversation)"
+       *ngFor="let conversation; of conversations?.items; index as i;"
+       [ngClass]="{'bg-white': isThisSelected(conversation),
+       'bg-transparent': !isThisSelected(conversation),
+       'selected': isThisSelected(conversation)}"
+       class="card mb-2">
+    <div class="card-body">
+      <h5 class="card-title">{{conversationUser(conversation)?.userName}}</h5>
+      <app-conversation-message></app-conversation-message>
+    </div>
+  </div>
+</div>

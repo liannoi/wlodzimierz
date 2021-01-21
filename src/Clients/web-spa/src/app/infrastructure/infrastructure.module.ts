@@ -6,6 +6,8 @@ import {ApplicationModule} from '../application/application.module';
 import {AuthServiceImpl} from './storage/users/services/auth.service';
 import {JwtTokenServiceImpl} from './storage/users/services/jwt-token.service';
 import {AuthFacadeImpl} from './storage/users/auth.facade';
+import {ConversationsServiceImpl} from './storage/conversations/conversations.service';
+import {UsersServiceImpl} from './storage/users/services/users.service';
 
 @NgModule({
   imports: [
@@ -15,8 +17,10 @@ import {AuthFacadeImpl} from './storage/users/auth.facade';
   ],
   providers: [
     AuthServiceImpl,
+    UsersServiceImpl,
     JwtTokenServiceImpl,
-    AuthFacadeImpl
+    AuthFacadeImpl,
+    ConversationsServiceImpl
   ]
 })
 export class InfrastructureModule {

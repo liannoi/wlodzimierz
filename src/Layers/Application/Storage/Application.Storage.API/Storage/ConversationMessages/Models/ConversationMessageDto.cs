@@ -1,6 +1,7 @@
 using System;
 using Application.Storage.API.Common.Mappings.Interfaces;
 using Application.Storage.API.Storage.Conversations.Models;
+using Application.Storage.API.Storage.Users.Models;
 using AutoMapper;
 using Domain.API.Entities;
 
@@ -11,6 +12,7 @@ namespace Application.Storage.API.Storage.ConversationMessages.Models
         public int ConversationMessageId { get; set; }
         public ConversationDto Conversation { get; set; }
         public string OwnerUserId { get; set; }
+        public UserDto OwnerUser { get; set; }
         public string Message { get; set; }
         public DateTime Publish { get; set; }
 

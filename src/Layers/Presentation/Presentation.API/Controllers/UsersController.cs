@@ -12,6 +12,7 @@ using Application.Storage.API.Storage.Users.Models;
 using Application.Storage.API.Storage.Users.Queries.Contacts;
 using Application.Storage.API.Storage.Users.Queries.ConversationMessages;
 using Application.Storage.API.Storage.Users.Queries.Conversations;
+using Application.Storage.API.Storage.Users.Queries.Details;
 using Application.Storage.API.Storage.Users.Queries.Verify;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.API.Common.Controllers;
@@ -21,6 +22,8 @@ namespace Presentation.API.Controllers
     // TODO: Refactoring is possible by transferring the code to inherited classes.
     public class UsersController : AbstractController
     {
+        #region Authentication
+
         [HttpPost("signup")]
         public async Task<ActionResult<JwtToken>> Signup([FromBody] SignupCommand command)
         {
@@ -38,6 +41,10 @@ namespace Presentation.API.Controllers
         {
             return await Mediator.Send(command);
         }
+
+        #endregion
+
+        #region *RUD
 
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(string id, [FromQuery] UpdateCommand command)
@@ -57,6 +64,16 @@ namespace Presentation.API.Controllers
             return NoContent();
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserDto>> GetById(string id)
+        {
+            return await Mediator.Send(new DetailsQuery {UserId = id});
+        }
+
+        #endregion
+
+        #region Relationships
+
         [HttpGet("{user}/contacts")]
         public async Task<ActionResult<PaginatedList<ContactDto>>> GetContacts(string user)
         {
@@ -74,5 +91,7 @@ namespace Presentation.API.Controllers
         {
             return await Mediator.Send(new ConversationsQuery {OwnerUserId = user});
         }
+
+        #endregion
     }
 }

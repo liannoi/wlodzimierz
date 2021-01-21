@@ -57,7 +57,7 @@ export class SignInComponent implements OnInit, OnDestroy, UserSignInNotificatio
   }
 
   public onSignInFailed(error: HttpErrorResponse): void {
-    this.username?.setValue(this.user.username);
+    this.username?.setValue(this.user.userName);
     this.password?.setValue('');
     this.haveFirstAttempt = true;
   }
@@ -69,7 +69,7 @@ export class SignInComponent implements OnInit, OnDestroy, UserSignInNotificatio
 
   private setupForm(): void {
     this.signInFormGroup = new FormGroup({
-      username: new FormControl(this.user.username, [Validators.required]),
+      username: new FormControl(this.user.userName, [Validators.required]),
       password: new FormControl(this.user.password, [Validators.required]),
       shouldRemember: new FormControl(this.user.shouldRemember),
     }, {validators: unauthorizedValidator});

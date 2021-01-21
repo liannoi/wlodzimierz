@@ -1,5 +1,6 @@
-import {JwtTokenModel} from '../../../../domain/models/jwt-token.model';
 import {HttpErrorResponse} from '@angular/common/http';
+
+import {JwtTokenModel} from '../../../../domain/models/jwt-token.model';
 
 export interface UserSignInNotification {
 

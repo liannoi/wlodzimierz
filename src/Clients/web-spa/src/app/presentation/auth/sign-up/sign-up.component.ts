@@ -59,7 +59,7 @@ export class SignUpComponent implements OnInit, OnDestroy, UserSignUpNotificatio
   }
 
   public onSignUpFailed(error: HttpErrorResponse): void {
-    this.username.setValue(this.user.username);
+    this.username.setValue(this.user.userName);
     this.password.setValue('');
     this.haveFirstAttempt = true;
     this.identityError = error;
@@ -73,7 +73,7 @@ export class SignUpComponent implements OnInit, OnDestroy, UserSignUpNotificatio
 
   private setupForm(): void {
     this.signUpFormGroup = new FormGroup({
-      username: new FormControl(this.user.username, [
+      username: new FormControl(this.user.userName, [
         Validators.required,
       ]),
       email: new FormControl(this.user.email, [

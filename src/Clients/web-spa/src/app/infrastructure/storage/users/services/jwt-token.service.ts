@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 import {CookieService} from 'ngx-cookie-service';
 
-import {JwtTokenService} from '../../../../application/storage/users/jwt-token.service';
+import {JwtTokenService} from '../../../../application/storage/users/services/jwt-token.service';
 import {JwtTokenModel} from '../../../../domain/models/jwt-token.model';
 
 @Injectable()

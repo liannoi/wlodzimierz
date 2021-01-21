@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 
 import {catchError, takeUntil} from 'rxjs/operators';
 
-import {AuthService} from '../../../../application/storage/users/auth.service';
+import {AuthService} from '../../../../application/storage/users/services/auth.service';
 import {SignInCommand} from '../../../../application/storage/users/commands/sign-in.command';
 import {AbstractService} from '../../abstract.service';
 import {UserSignInNotification} from '../../../../application/storage/users/notifications/user-sign-in.notification';
@@ -13,7 +13,7 @@ import {UserSignUpNotification} from '../../../../application/storage/users/noti
 import {UserVerifyNotification} from '../../../../application/storage/users/notifications/user-verify.notification';
 import {JwtTokenModel} from '../../../../domain/models/jwt-token.model';
 import {UserModel} from '../../../../domain/models/user.model';
-import {ApiEndpoints} from '../auth.endpoints';
+import {UsersEndpoints} from '../users.endpoints';
 
 @Injectable()
 export class AuthServiceImpl extends AbstractService implements AuthService {
@@ -23,14 +23,14 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
   }
 
   public signIn(request: SignInCommand, notification: UserSignInNotification): void {
-    this.http.post<JwtTokenModel>(ApiEndpoints.UsersSignIn, request.user)
+    this.http.post<JwtTokenModel>(UsersEndpoints.UsersSignIn, request.user)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(token => notification.onSignInSuccess(token), error => notification.onSignInFailed(error));
   }
 
   public signUp(request: SignUpCommand, notification: UserSignUpNotification): void {
-    this.http.post<JwtTokenModel>(ApiEndpoints.UsersSignUp, request.user)
+    this.http.post<JwtTokenModel>(UsersEndpoints.UsersSignUp, request.user)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(token => notification.onSignUpSuccess(token), error => notification.onSignUpFailed(error));
@@ -39,7 +39,7 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
   public verify(request: VerifyCommand, notification: UserVerifyNotification): void {
     const token: JwtTokenModel = request.token;
 
-    this.http.post<UserModel>(ApiEndpoints.UsersVerify, token, this.withAuthorization(token))
+    this.http.post<UserModel>(UsersEndpoints.UsersVerify, token, this.withAuthorization(token))
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(user => notification.onVerifySuccess(user), error => notification.onVerifyFailed(error));

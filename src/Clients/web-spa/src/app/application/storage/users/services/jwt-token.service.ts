@@ -1,4 +1,4 @@
-import {JwtTokenModel} from '../../../domain/models/jwt-token.model';
+import {JwtTokenModel} from '../../../../domain/models/jwt-token.model';
 
 export interface JwtTokenService {
 

@@ -1,4 +1,5 @@
 using Application.Storage.API.Common.Mappings.Interfaces;
+using Application.Storage.API.Storage.Users.Models;
 using AutoMapper;
 using Domain.API.Entities;
 
@@ -7,8 +8,12 @@ namespace Application.Storage.API.Storage.Conversations.Models
     public class ConversationDto : IMapFrom<Conversation>
     {
         public int ConversationId { get; set; }
+
         public string LeftUserId { get; set; }
+        public UserDto LeftUser { get; set; }
+
         public string RightUserId { get; set; }
+        public UserDto RightUser { get; set; }
 
         public void Mapping(Profile profile)
         {

@@ -8,8 +8,8 @@ import {UserSignUpNotification} from '../../../application/storage/users/notific
 import {SignUpCommand} from '../../../application/storage/users/commands/sign-up.command';
 import {SignInCommand} from '../../../application/storage/users/commands/sign-in.command';
 import {UserSignInNotification} from '../../../application/storage/users/notifications/user-sign-in.notification';
-import {JwtTokenService} from '../../../application/storage/users/jwt-token.service';
-import {AuthService} from '../../../application/storage/users/auth.service';
+import {JwtTokenService} from '../../../application/storage/users/services/jwt-token.service';
+import {AuthService} from '../../../application/storage/users/services/auth.service';
 import {AuthServiceImpl} from './services/auth.service';
 import {JwtTokenServiceImpl} from './services/jwt-token.service';
 

@@ -1,16 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-docs',
   templateUrl: './docs.component.html',
   styleUrls: ['./docs.component.scss']
 })
-export class DocsComponent implements OnInit {
+export class DocsComponent {
 
-  constructor() {
+  constructor(private titleService: Title) {
+    titleService.setTitle('Wlodzimierz Documentation');
   }
-
-  ngOnInit(): void {
-  }
-
 }
