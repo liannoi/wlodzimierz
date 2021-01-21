@@ -3,13 +3,13 @@ import {HttpErrorResponse} from '@angular/common/http';
 
 import {BehaviorSubject} from 'rxjs';
 
-import {ConversationMessageModel} from '../../../domain/models/conversation-message.model';
-import {ConversationModel} from '../../../domain/models/conversation.model';
-import {ConversationsService} from '../../../application/storage/conversations/conversations.service';
-import {ConversationsServiceImpl} from '../../../infrastructure/storage/conversations/conversations.service';
-import {MessagesQuery} from '../../../application/storage/conversations/queries/messages.query';
-import {MessagesNotification} from '../../../application/storage/conversations/notifications/messages.notification';
-import {ConversationMessagesListModel} from '../../../domain/models/conversation-messages-list.model';
+import {ConversationMessageModel} from '../../../../domain/models/conversation-message.model';
+import {ConversationModel} from '../../../../domain/models/conversation.model';
+import {ConversationsService} from '../../../../application/storage/conversations/conversations.service';
+import {ConversationsServiceImpl} from '../../../../infrastructure/storage/conversations/conversations.service';
+import {MessagesQuery} from '../../../../application/storage/conversations/queries/messages.query';
+import {MessagesNotification} from '../../../../application/storage/conversations/notifications/messages.notification';
+import {ConversationMessagesListModel} from '../../../../domain/models/conversation-messages-list.model';
 
 @Component({
   selector: 'app-conversation-message',

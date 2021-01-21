@@ -10,6 +10,8 @@ import {ConversationsQuery} from '../../../application/storage/users/queries/con
 import {ConversationsNotification} from '../../../application/storage/users/notifications/conversations.notification';
 import {UsersServiceImpl} from '../../../infrastructure/storage/users/services/users.service';
 import {UsersService} from '../../../application/storage/users/services/users.service';
+import {ConversationsService} from '../../../application/storage/conversations/conversations.service';
+import {ConversationsServiceImpl} from '../../../infrastructure/storage/conversations/conversations.service';
 
 @Component({
   selector: 'app-user-conversations',
@@ -24,7 +26,9 @@ export class UserConversationsComponent implements OnInit, ConversationsNotifica
   @Output() conversationChanged: EventEmitter<ConversationModel> = new EventEmitter<ConversationModel>();
   private userSubject = new BehaviorSubject<UserModel>(new UserModel());
 
-  public constructor(@Inject(UsersServiceImpl) private usersService: UsersService) {
+  public constructor(
+    @Inject(UsersServiceImpl) private usersService: UsersService,
+    @Inject(ConversationsServiceImpl) private conversationsService: ConversationsService) {
   }
 
   public get user(): UserModel {
@@ -59,11 +63,11 @@ export class UserConversationsComponent implements OnInit, ConversationsNotifica
     this.conversationChanged.emit(conversation);
   }
 
-  public isThisSelected(conversation: ConversationModel): boolean {
+  public hasBeenSelected(conversation: ConversationModel): boolean {
     return this.selectedConversation?.conversationId === conversation.conversationId;
   }
 
-  public takeUser(conversation: ConversationModel): UserModel {
-    return conversation.rightUserId === this.userModel.userId ? conversation.leftUser : conversation.rightUser;
+  public takeUserName(conversation: ConversationModel): string {
+    return this.conversationsService.takeUserName(conversation, this.user);
   }
 }

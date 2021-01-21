@@ -1,0 +1,17 @@
+<div class="container-fluid container-scroll-header mb-4">
+  <div class="row bg-dark sticky-top p-3 mb-5">
+    <div class="col-sm-12">
+      <h5 class="text-white mt-2">{{takeUserName()}}</h5>
+    </div>
+
+    <div *ngFor="let message; of messages.items; index as i;" class="row mt-4 ml-3">
+      <div class="col-sm-12">
+        <p *ngIf="isMyMessage(message.ownerUserId); else otherMessage"
+           class="alert alert-primary rounded">{{message.message}}</p>
+        <ng-template #otherMessage>
+          <p class="alert alert-light rounded">{{message.message}}</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

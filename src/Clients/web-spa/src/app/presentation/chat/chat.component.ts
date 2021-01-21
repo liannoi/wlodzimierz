@@ -18,7 +18,7 @@ import {AuthRoutingConstants} from '../auth/auth-routing.constants';
 })
 export class ChatComponent implements OnInit, UserVerifyNotification {
 
-  public currentConversation!: ConversationModel;
+  public conversation!: ConversationModel;
   public user!: UserModel;
 
   public constructor(private titleService: Title, @Inject(AuthFacadeImpl) private authFacade: AuthFacade, private router: Router) {
@@ -30,7 +30,7 @@ export class ChatComponent implements OnInit, UserVerifyNotification {
   }
 
   public onConversationChanged(conversation: ConversationModel): void {
-    this.currentConversation = conversation;
+    this.conversation = conversation;
   }
 
   public onVerifyFailed(error: HttpErrorResponse): void {

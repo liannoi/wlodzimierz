@@ -1,12 +1,12 @@
 <div class="container-fluid">
   <div (click)="onConversationChanged(conversation)"
        *ngFor="let conversation; of conversations?.items; index as i;"
-       [ngClass]="{'bg-white': isThisSelected(conversation),
-       'bg-transparent': !isThisSelected(conversation),
-       'selected': isThisSelected(conversation)}"
+       [ngClass]="{'bg-white': hasBeenSelected(conversation),
+       'bg-transparent': !hasBeenSelected(conversation),
+       'selected': hasBeenSelected(conversation)}"
        class="card mb-2">
     <div class="card-body">
-      <h5 class="card-title">{{takeUser(conversation)?.userName}}</h5>
+      <h5 class="card-title">{{takeUserName(conversation)}}</h5>
       <app-conversation-message [conversation]="conversation"></app-conversation-message>
     </div>
   </div>

@@ -9,6 +9,8 @@ import {MessagesQuery} from '../../../application/storage/conversations/queries/
 import {MessagesNotification} from '../../../application/storage/conversations/notifications/messages.notification';
 import {ConversationMessagesListModel} from '../../../domain/models/conversation-messages-list.model';
 import {ConversationsController} from './conversations.endpoints';
+import {UserModel} from '../../../domain/models/user.model';
+import {ConversationModel} from '../../../domain/models/conversation.model';
 
 @Injectable()
 export class ConversationsServiceImpl extends AbstractService implements ConversationsService {
@@ -24,5 +26,9 @@ export class ConversationsServiceImpl extends AbstractService implements Convers
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(result => notification.onMessagesSuccess(result), error => notification.onMessagesFailed(error));
+  }
+
+  public takeUserName(conversation: ConversationModel, user: UserModel): string {
+    return conversation.rightUserId === user?.userId ? conversation.leftUser.userName : conversation.rightUser.userName;
   }
 }
