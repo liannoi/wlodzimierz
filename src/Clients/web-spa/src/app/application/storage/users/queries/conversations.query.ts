@@ -1,4 +1,4 @@
-export class UserConversationsQuery {
+export class ConversationsQuery {
   public constructor(public userId: string = '') {
   }
 }

@@ -6,10 +6,8 @@ import {BehaviorSubject} from 'rxjs';
 import {ConversationsListModel} from '../../../domain/models/conversations-list.model';
 import {UserModel} from '../../../domain/models/user.model';
 import {ConversationModel} from '../../../domain/models/conversation.model';
-import {ConversationsService} from '../../../application/storage/conversations/conversations.service';
-import {ConversationsServiceImpl} from '../../../infrastructure/storage/conversations/conversations.service';
-import {UserConversationsQuery} from '../../../application/storage/conversations/queries/user-conversations.query';
-import {UserConversationsNotification} from '../../../application/storage/conversations/notifications/user-conversations.notification';
+import {ConversationsQuery} from '../../../application/storage/users/queries/conversations.query';
+import {ConversationsNotification} from '../../../application/storage/users/notifications/conversations.notification';
 import {UsersServiceImpl} from '../../../infrastructure/storage/users/services/users.service';
 import {UsersService} from '../../../application/storage/users/services/users.service';
 
@@ -18,7 +16,7 @@ import {UsersService} from '../../../application/storage/users/services/users.se
   templateUrl: './user-conversations.component.html',
   styleUrls: ['./user-conversations.component.scss']
 })
-export class UserConversationsComponent implements OnInit, UserConversationsNotification {
+export class UserConversationsComponent implements OnInit, ConversationsNotification {
 
   public conversations!: ConversationsListModel;
   public userModel!: UserModel;
@@ -26,9 +24,7 @@ export class UserConversationsComponent implements OnInit, UserConversationsNoti
   @Output() conversationChanged: EventEmitter<ConversationModel> = new EventEmitter<ConversationModel>();
   private userSubject = new BehaviorSubject<UserModel>(new UserModel());
 
-  public constructor(
-    @Inject(ConversationsServiceImpl) private conversationsService: ConversationsService,
-    @Inject(UsersServiceImpl) private usersService: UsersService) {
+  public constructor(@Inject(UsersServiceImpl) private usersService: UsersService) {
   }
 
   public get user(): UserModel {
@@ -36,7 +32,7 @@ export class UserConversationsComponent implements OnInit, UserConversationsNoti
   }
 
   @Input()
-  public set user(value) {
+  public set user(value: UserModel) {
     this.userSubject.next(value);
   }
 
@@ -47,15 +43,15 @@ export class UserConversationsComponent implements OnInit, UserConversationsNoti
       }
 
       this.userModel = model;
-      this.conversationsService.getUserConversations(new UserConversationsQuery(model.userId), this);
+      this.usersService.getConversations(new ConversationsQuery(model.userId), this);
     });
   }
 
-  public onUserConversationsSuccess(conversations: ConversationsListModel): void {
+  public onConversationsSuccess(conversations: ConversationsListModel): void {
     this.conversations = conversations;
   }
 
-  public onUserConversationsFailed(error: HttpErrorResponse): void {
+  public onConversationsFailed(error: HttpErrorResponse): void {
   }
 
   public onConversationChanged(conversation: ConversationModel): void {
@@ -67,7 +63,7 @@ export class UserConversationsComponent implements OnInit, UserConversationsNoti
     return this.selectedConversation?.conversationId === conversation.conversationId;
   }
 
-  public conversationUser(conversation: ConversationModel): UserModel {
+  public takeUser(conversation: ConversationModel): UserModel {
     return conversation.rightUserId === this.userModel.userId ? conversation.leftUser : conversation.rightUser;
   }
 }
