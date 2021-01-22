@@ -7,7 +7,7 @@ module.exports = {
     '<rootDir>/libs/docs-api',
     '<rootDir>/libs/apps',
     '<rootDir>/libs/chat',
-    '<rootDir>/libs/applications',
+    '<rootDir>/libs/apps',
     '<rootDir>/libs/auth',
     '<rootDir>/libs/infrastructure',
     '<rootDir>/libs/domain',

@@ -13,5 +13,6 @@ interface Endpoints {
   readonly Verify: string;
 }
 
+export const ApiAddress: string = BaseAddress;
 export const UsersController: string = Controller;
 export const UsersEndpoints: Endpoints = endpoints;

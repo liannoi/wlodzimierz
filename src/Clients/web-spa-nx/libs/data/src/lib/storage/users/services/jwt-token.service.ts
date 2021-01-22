@@ -2,7 +2,7 @@ import { JwtTokenModel } from '@wlodzimierz/domain/src/lib/models/jwt-token.mode
 
 export interface JwtTokenService {
 
-  write(token: JwtTokenModel, expires?: Date | undefined): void;
+  write(token: JwtTokenModel, expires?: Date): void;
 
   read(): JwtTokenModel;
 

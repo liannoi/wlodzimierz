@@ -3,9 +3,9 @@
     <p class='mb-3'>&copy; 2020-2021 Maksym Liannoi</p>
 
     <ul class='list-inline'>
-      <li class='list-inline-item mr-3'><a routerLink='docs'>Help</a></li>
-      <li class='list-inline-item mr-3'><a routerLink='feedback'>Feedback</a></li>
-      <li class='list-inline-item mr-3'><a routerLink='docs/api'>API</a></li>
+      <li class='list-inline-item mr-3'><a [routerLink]='docsRouting.Root'>Help</a></li>
+      <li class='list-inline-item mr-3'><a [routerLink]='homeRouting.Feedback'>Feedback</a></li>
+      <li class='list-inline-item mr-3'><a [routerLink]='docsRouting.Api'>API</a></li>
     </ul>
   </div>
 </footer>

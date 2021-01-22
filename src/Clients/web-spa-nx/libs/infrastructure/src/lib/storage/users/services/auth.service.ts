@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { catchError, takeUntil } from 'rxjs/operators';
@@ -13,24 +13,24 @@ import { UserSignUpNotification } from '@wlodzimierz/data/src/lib/storage/users/
 import { VerifyCommand } from '@wlodzimierz/data/src/lib/storage/users/commands/verify.command';
 import { UserVerifyNotification } from '@wlodzimierz/data/src/lib/storage/users/notifications/user-verify.notification';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
+import { UsersEndpoints } from '@wlodzimierz/infrastructure/src/lib/storage/users/users.endpoints';
 
-Injectable();
-
+@Injectable()
 export class AuthServiceImpl extends AbstractService implements AuthService {
 
-  public constructor(http: HttpClient, @Inject('api_url') public api: string) {
+  public constructor(http: HttpClient) {
     super(http);
   }
 
   public signIn(request: SignInCommand, notification: UserSignInNotification): void {
-    this.http.post<JwtTokenModel>(`${this.api}/Users/SignIn`, request.user)
+    this.http.post<JwtTokenModel>(UsersEndpoints.SignIn, request.user)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(token => notification.onSignInSuccess(token), error => notification.onSignInFailed(error));
   }
 
   public signUp(request: SignUpCommand, notification: UserSignUpNotification): void {
-    this.http.post<JwtTokenModel>(`${this.api}/Users/SignUp`, request.user)
+    this.http.post<JwtTokenModel>(UsersEndpoints.SignUp, request.user)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(token => notification.onSignUpSuccess(token), error => notification.onSignUpFailed(error));
@@ -39,7 +39,7 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
   public verify(request: VerifyCommand, notification: UserVerifyNotification): void {
     const token: JwtTokenModel = request.token;
 
-    this.http.post<UserModel>(`${this.api}/Users/Verify`, token, this.withAuthorization(token))
+    this.http.post<UserModel>(UsersEndpoints.Verify, token, this.withAuthorization(token))
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(user => notification.onVerifySuccess(user), error => notification.onVerifyFailed(error));

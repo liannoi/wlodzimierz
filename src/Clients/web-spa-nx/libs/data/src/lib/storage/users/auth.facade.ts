@@ -15,7 +15,7 @@ export interface AuthFacade extends OnDispose {
 
   verify(request: VerifyCommand, notification: UserVerifyNotification): void;
 
-  writeToken(token: JwtTokenModel, expires: Date): void;
+  writeToken(token: JwtTokenModel, expires?: Date): void;
 
   readToken(): JwtTokenModel;
 

@@ -33,7 +33,7 @@ export class AuthFacadeImpl implements AuthFacade {
     return this.jwtTokenService.read();
   }
 
-  public writeToken(token: JwtTokenModel, expires?: Date | undefined): void {
+  public writeToken(token: JwtTokenModel, expires?: Date): void {
     this.jwtTokenService.write(token, expires);
   }
 

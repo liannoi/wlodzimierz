@@ -4,7 +4,7 @@
   <nav class='navbar navbar-expand-lg navbar-light'>
     <!-- container -->
     <div class='container'>
-      <a class='navbar-brand' routerLink='/'>
+      <a [routerLink]='homeRouting.Root' class='navbar-brand'>
         <img alt='Brand' height='34px' src='favicon.ico' width='120px'>
       </a>
 
@@ -27,14 +27,14 @@
           <li class='nav-item ml-lg-4'>
             <a [routerLinkActiveOptions]='{exact: true}'
                [routerLinkActive]="['text-body']"
-               class='nav-link'
-               routerLink='docs'>Documentation</a>
+               [routerLink]='docsRouting.Root'
+               class='nav-link'>Documentation</a>
           </li>
           <li class='nav-item ml-lg-3'>
-            <a [routerLinkActive]="['text-body']" class='nav-link' routerLink='apps'>Apps</a>
+            <a [routerLinkActive]="['text-body']" [routerLink]='homeRouting.Apps' class='nav-link'>Apps</a>
           </li>
           <li class='nav-item ml-lg-3'>
-            <a [routerLinkActive]="['text-body']" class='nav-link' routerLink='docs/api'>API</a>
+            <a [routerLinkActive]="['text-body']" [routerLink]='docsRouting.Api' class='nav-link'>API</a>
           </li>
         </ul>
 
@@ -50,7 +50,7 @@
               <div class='dropdown-divider'></div>
               <a [routerLink]='' ngbDropdownItem>Help</a>
               <a [routerLink]='' ngbDropdownItem>Settings</a>
-              <a [routerLink]='' ngbDropdownItem>Sign out</a>
+              <a [routerLink]='authRouting.SignOut' ngbDropdownItem>Sign out</a>
             </div>
           </li>
         </ul>
@@ -78,10 +78,10 @@
               </div>
             </li>
             <li class='nav-item mr-lg-2'>
-              <a [routerLinkActive]="['text-body']" class='nav-link' routerLink='sign-in'>Sign in</a>
+              <a [routerLinkActive]="['text-body']" [routerLink]='authRouting.SignIn' class='nav-link'>Sign in</a>
             </li>
             <li class='nav-item'>
-              <a [routerLinkActive]="['text-body']" class='nav-link' routerLink='sign-up'>Sign up</a>
+              <a [routerLinkActive]="['text-body']" [routerLink]='authRouting.SignUp' class='nav-link'>Sign up</a>
             </li>
           </ul>
         </ng-template>
