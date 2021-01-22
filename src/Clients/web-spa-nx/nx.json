@@ -36,6 +36,9 @@
       "implicitDependencies": [
         "wlodzimierz"
       ]
+    },
+    "home": {
+      "tags": []
     }
   }
 }
