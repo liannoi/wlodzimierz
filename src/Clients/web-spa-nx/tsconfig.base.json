@@ -18,8 +18,26 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@wlodzimierz/*": [
+        "libs/*"
+      ],
       "@wlodzimierz/home": [
         "libs/home/src/index.ts"
+      ],
+      "@wlodzimierz/feedback": [
+        "libs/feedback/src/index.ts"
+      ],
+      "@wlodzimierz/docs": [
+        "libs/docs/src/index.ts"
+      ],
+      "@wlodzimierz/docs-api": [
+        "libs/docs-api/src/index.ts"
+      ],
+      "@wlodzimierz/chat": [
+        "libs/chat/src/index.ts"
+      ],
+      "@wlodzimierz/applications": [
+        "libs/applications/src/index.ts"
       ]
     }
   },

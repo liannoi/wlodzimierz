@@ -147,6 +147,168 @@
           }
         }
       }
+    },
+    "feedback": {
+      "projectType": "library",
+      "root": "libs/feedback",
+      "sourceRoot": "libs/feedback/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/feedback/src/**/*.ts",
+              "libs/feedback/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/feedback"
+          ],
+          "options": {
+            "jestConfig": "libs/feedback/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "docs": {
+      "projectType": "library",
+      "root": "libs/docs",
+      "sourceRoot": "libs/docs/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/docs/src/**/*.ts",
+              "libs/docs/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/docs"
+          ],
+          "options": {
+            "jestConfig": "libs/docs/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "docs-api": {
+      "projectType": "library",
+      "root": "libs/docs-api",
+      "sourceRoot": "libs/docs-api/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/docs-api/src/**/*.ts",
+              "libs/docs-api/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/docs-api"
+          ],
+          "options": {
+            "jestConfig": "libs/docs-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "apps": {
+      "projectType": "library",
+      "root": "libs/apps",
+      "sourceRoot": "libs/apps/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/apps/src/**/*.ts",
+              "libs/apps/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/apps"
+          ],
+          "options": {
+            "jestConfig": "libs/apps/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "chat": {
+      "projectType": "library",
+      "root": "libs/chat",
+      "sourceRoot": "libs/chat/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/chat/src/**/*.ts",
+              "libs/chat/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/chat"
+          ],
+          "options": {
+            "jestConfig": "libs/chat/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "applications": {
+      "projectType": "library",
+      "root": "libs/applications",
+      "sourceRoot": "libs/applications/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/applications/src/**/*.ts",
+              "libs/applications/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/applications"
+          ],
+          "options": {
+            "jestConfig": "libs/applications/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

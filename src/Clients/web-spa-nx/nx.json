@@ -39,6 +39,24 @@
     },
     "home": {
       "tags": []
+    },
+    "feedback": {
+      "tags": []
+    },
+    "docs": {
+      "tags": []
+    },
+    "docs-api": {
+      "tags": []
+    },
+    "apps": {
+      "tags": []
+    },
+    "chat": {
+      "tags": []
+    },
+    "applications": {
+      "tags": []
     }
   }
 }
