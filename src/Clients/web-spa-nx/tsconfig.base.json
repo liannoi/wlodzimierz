@@ -22,22 +22,34 @@
         "libs/*"
       ],
       "@wlodzimierz/home": [
-        "libs/home/src/index.ts"
+        "libs/presentation/home/src/index.ts"
       ],
       "@wlodzimierz/feedback": [
-        "libs/feedback/src/index.ts"
+        "libs/presentation/feedback/src/index.ts"
       ],
       "@wlodzimierz/docs": [
-        "libs/docs/src/index.ts"
+        "libs/presentation/docs/src/index.ts"
       ],
       "@wlodzimierz/docs-api": [
-        "libs/docs-api/src/index.ts"
+        "libs/presentation/docs-api/src/index.ts"
       ],
       "@wlodzimierz/chat": [
-        "libs/chat/src/index.ts"
+        "libs/presentation/chat/src/index.ts"
       ],
       "@wlodzimierz/applications": [
-        "libs/applications/src/index.ts"
+        "libs/presentation/applications/src/index.ts"
+      ],
+      "@wlodzimierz/auth": [
+        "libs/presentation/auth/src/index.ts"
+      ],
+      "@wlodzimierz/infrastructure": [
+        "libs/infrastructure/src/index.ts"
+      ],
+      "@wlodzimierz/domain": [
+        "libs/domain/src/index.ts"
+      ],
+      "@wlodzimierz/data": [
+        "libs/data/src/index.ts"
       ]
     }
   },

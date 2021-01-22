@@ -57,6 +57,18 @@
     },
     "applications": {
       "tags": []
+    },
+    "auth": {
+      "tags": []
+    },
+    "infrastructure": {
+      "tags": []
+    },
+    "domain": {
+      "tags": []
+    },
+    "data": {
+      "tags": []
     }
   }
 }
