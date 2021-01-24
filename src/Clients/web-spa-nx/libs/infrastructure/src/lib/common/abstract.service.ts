@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 
 import { Observable, Subject, throwError } from 'rxjs';
 
-import { OnDispose } from '@wlodzimierz/data/src/lib/common/on-dispose.interface';
+import { OnDispose } from '@wlodzimierz/application/src/lib/common/on-dispose.interface';
 import { JwtTokenModel } from '@wlodzimierz/domain/src/lib/models/jwt-token.model';
 
 export abstract class AbstractService implements OnDispose {

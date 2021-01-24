@@ -4,12 +4,12 @@ import { Inject, Injectable } from '@angular/core';
 import { catchError, takeUntil } from 'rxjs/operators';
 
 import { AbstractService } from '@wlodzimierz/infrastructure/src/lib/common/abstract.service';
-import { UsersService } from '@wlodzimierz/data/src/lib/storage/users/services/users.service';
-import { DetailsQuery } from '@wlodzimierz/data/src/lib/storage/users/queries/details-query';
-import { UserDetailsNotification } from '@wlodzimierz/data/src/lib/storage/users/notifications/user-details.notification';
+import { UsersService } from '@wlodzimierz/application/src/lib/storage/users/services/users.service';
+import { DetailsQuery } from '@wlodzimierz/application/src/lib/storage/users/queries/details-query';
+import { UserDetailsNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/user-details.notification';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
-import { ConversationsQuery } from '@wlodzimierz/data/src/lib/storage/users/queries/conversations-query';
-import { ConversationsNotification } from '@wlodzimierz/data/src/lib/storage/users/notifications/conversations-notification';
+import { ConversationsQuery } from '@wlodzimierz/application/src/lib/storage/users/queries/conversations-query';
+import { ConversationsNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/conversations-notification';
 import { ConversationsListModel } from '@wlodzimierz/domain/src/lib/models/conversations-list.model';
 
 @Injectable()

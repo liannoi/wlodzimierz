@@ -11,6 +11,6 @@ module.exports = {
     '<rootDir>/libs/auth',
     '<rootDir>/libs/infrastructure',
     '<rootDir>/libs/domain',
-    '<rootDir>/libs/data'
+    '<rootDir>/libs/application'
   ]
 };
