@@ -1,16 +1,16 @@
 import { SignInCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/sign-in.command';
-import { UserSignInNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/user-sign-in.notification';
+import { SignInNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/sign-in.notification';
 import { SignUpCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/sign-up.command';
-import { UserSignUpNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/user-sign-up.notification';
+import { SignUpNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/sign-up.notification';
 import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/verify.command';
-import { UserVerifyNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/user-verify.notification';
-import { OnDispose } from '@wlodzimierz/application/src/lib/common/on-dispose.interface';
+import { VerifyNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/verify.notification';
+import { OnDispose } from '@wlodzimierz/application/src/lib/common/interfaces/dispose.interface';
 
 export interface AuthService extends OnDispose {
 
-  signIn(request: SignInCommand, notification: UserSignInNotification): void;
+  signIn(request: SignInCommand, notification: SignInNotification): void;
 
-  signUp(request: SignUpCommand, notification: UserSignUpNotification): void;
+  signUp(request: SignUpCommand, notification: SignUpNotification): void;
 
-  verify(request: VerifyCommand, notification: UserVerifyNotification): void;
+  verify(request: VerifyCommand, notification: VerifyNotification): void;
 }

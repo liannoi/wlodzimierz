@@ -18,7 +18,7 @@ namespace Presentation.API.Controllers
         #region Relations
 
         [HttpGet("{conversation}/messages")]
-        public async Task<ActionResult<PaginatedList<ConversationMessageDto>>> GetAllMessages(int conversation,
+        public async Task<ActionResult<PaginatedList<ConversationMessageDto>>> GetMessages(int conversation,
             [FromQuery] MessagesQuery query)
         {
             query.ConversationId = conversation;

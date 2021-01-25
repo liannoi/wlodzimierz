@@ -21,8 +21,8 @@
         <ul class='navbar-nav'>
           <li class='nav-item ml-lg-4 pr-md-4 right-border'>
             <a [routerLinkActive]="['text-active']"
-               class='nav-link text-primary'
-               routerLink='app'>Application</a>
+               [routerLink]='chatRouting.Root'
+               class='nav-link text-primary'>Application</a>
           </li>
           <li class='nav-item ml-lg-4'>
             <a [routerLinkActiveOptions]='{exact: true}'

@@ -10,10 +10,11 @@ import { NavFooterComponent } from './layout/nav-footer/nav-footer.component';
 import { HomeModule } from './home/home.module';
 import { DocsModule } from './docs/docs.module';
 import { AuthModule } from './auth/auth.module';
+import { ChatModule } from './chat/chat.module';
 
 @NgModule({
   declarations: [AppComponent, NavTopMenuComponent, NavFooterComponent],
-  imports: [BrowserModule, NgbModule, HomeModule, DocsModule, AuthModule, AppRoutingModule],
+  imports: [BrowserModule, NgbModule, HomeModule, DocsModule, AuthModule, ChatModule, AppRoutingModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {

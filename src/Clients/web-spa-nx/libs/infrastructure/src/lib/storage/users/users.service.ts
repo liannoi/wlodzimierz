@@ -1,35 +1,43 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { catchError, takeUntil } from 'rxjs/operators';
 
-import { AbstractService } from '@wlodzimierz/infrastructure/src/lib/common/abstract.service';
-import { UsersService } from '@wlodzimierz/application/src/lib/storage/users/services/users.service';
+import { AbstractService } from '@wlodzimierz/infrastructure/src/lib/common/services/abstract.service';
+import { UsersService } from '@wlodzimierz/application/src/lib/storage/users/users.service';
 import { DetailsQuery } from '@wlodzimierz/application/src/lib/storage/users/queries/details-query';
-import { UserDetailsNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/user-details.notification';
+import { DetailsNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/details.notification';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
 import { ConversationsQuery } from '@wlodzimierz/application/src/lib/storage/users/queries/conversations-query';
 import { ConversationsNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/conversations-notification';
 import { ConversationsListModel } from '@wlodzimierz/domain/src/lib/models/conversations-list.model';
+import { UsersEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storage/users/users-endpoint.builder';
 
 @Injectable()
 export class UsersServiceImpl extends AbstractService implements UsersService {
 
-  public constructor(http: HttpClient, @Inject('api_url') public api: string) {
+  public constructor(http: HttpClient, private endpointBuilder: UsersEndpointBuilder) {
     super(http);
   }
 
-  public getById(request: DetailsQuery, notification: UserDetailsNotification): void {
-    this.http.get<UserModel>(`${this.api}/Users`, { params: { id: request.userId } })
+  public getById(request: DetailsQuery, notification: DetailsNotification): void {
+    const endpoint = this.endpointBuilder
+      .withAction(request.userId)
+      .build();
+
+    this.http.get<UserModel>(endpoint.url)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(user => notification.onUserDetailsSuccess(user), error => notification.onUserDetailsFailed(error));
   }
 
   public getConversations(request: ConversationsQuery, notification: ConversationsNotification): void {
-    const url = `${this.api}Users/${request.userId}/conversations`;
+    const endpoint = this.endpointBuilder
+      .withParameter(request.userId)
+      .withAction('Conversations')
+      .build();
 
-    this.http.get<ConversationsListModel>(url)
+    this.http.get<ConversationsListModel>(endpoint.url)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(result => notification.onConversationsSuccess(result), error => notification.onConversationsFailed(error));

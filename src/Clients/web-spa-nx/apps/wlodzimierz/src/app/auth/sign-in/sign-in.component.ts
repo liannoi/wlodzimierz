@@ -9,7 +9,7 @@ import { unauthorizedValidator } from '@wlodzimierz/application/src/lib/storage/
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
 import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth.facade';
 import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
-import { UserSignInNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/user-sign-in.notification';
+import { SignInNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/sign-in.notification';
 import { SignInCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/sign-in.command';
 
 import { HomeRouting } from '../../home/home.routing';
@@ -20,7 +20,7 @@ import { AuthRouting } from '../auth.routing';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit, OnDestroy, UserSignInNotification {
+export class SignInComponent implements OnInit, OnDestroy, SignInNotification {
 
   public signInFormGroup!: FormGroup;
   public auth = AuthRouting;

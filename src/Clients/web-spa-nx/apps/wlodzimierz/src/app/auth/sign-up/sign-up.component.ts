@@ -4,7 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
-import { UserSignUpNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/user-sign-up.notification';
+import { SignUpNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/sign-up.notification';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
 import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth.facade';
 import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
@@ -18,7 +18,7 @@ import { HomeRouting } from '../../home/home.routing';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit, OnDestroy, UserSignUpNotification {
+export class SignUpComponent implements OnInit, OnDestroy, SignUpNotification {
 
   public signUpFormGroup!: FormGroup;
   public haveFirstAttempt = false;
