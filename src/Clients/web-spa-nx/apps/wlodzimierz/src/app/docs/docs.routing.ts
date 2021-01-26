@@ -1,6 +1,6 @@
 const docsRouting: DocsRouting = {
   Root: 'docs',
-  Api: 'docs/endpoints'
+  Api: 'docs/api'
 };
 
 interface DocsRouting {

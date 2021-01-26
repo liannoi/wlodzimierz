@@ -1,1 +1,13 @@
-<p>conversation-list works!</p>
+<div class='container-fluid'>
+  <div (click)='onConversationChanged(conversation)'
+       *ngFor='let conversation; of conversations?.items; index as i;'
+       [ngClass]="{'bg-white': hasBeenSelected(conversation),
+       'bg-transparent': !hasBeenSelected(conversation),
+       'selected': hasBeenSelected(conversation)}"
+       class='card mb-2'>
+    <div class='card-body'>
+      <h5 class='card-title'>{{takeUserName(conversation)}}</h5>
+      <wlodzimierz-conversation-message [conversation]='conversation'></wlodzimierz-conversation-message>
+    </div>
+  </div>
+</div>

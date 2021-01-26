@@ -8,14 +8,18 @@ import { JwtTokenServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage
 import { UsersEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storage/users/users-endpoint.builder';
 import { ConversationsServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/conversations/conversations.service';
 import { ConversationsEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storage/conversations/conversations-endpoint.builder';
+import { UsersServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/users.service';
+import { UsernameExtractorImpl } from '@wlodzimierz/infrastructure/src/lib/extractors/username.extractor';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
   providers: [
     AuthServiceImpl,
+    UsersServiceImpl,
     JwtTokenServiceImpl,
     AuthFacadeImpl,
     UsersEndpointBuilder,
+    UsernameExtractorImpl,
     ConversationsServiceImpl,
     ConversationsEndpointBuilder
   ]
