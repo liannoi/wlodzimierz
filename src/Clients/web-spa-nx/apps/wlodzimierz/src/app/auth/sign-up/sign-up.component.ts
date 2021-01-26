@@ -6,7 +6,7 @@ import { Title } from '@angular/platform-browser';
 
 import { SignUpNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/sign-up.notification';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
-import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth.facade';
+import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth/auth.facade';
 import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
 import { SignUpCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/sign-up.command';
 import { JwtTokenModel } from '@wlodzimierz/domain/src/lib/models/jwt-token.model';

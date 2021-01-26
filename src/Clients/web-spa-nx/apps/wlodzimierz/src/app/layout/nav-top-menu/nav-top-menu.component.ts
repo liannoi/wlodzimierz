@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 
-import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth.facade';
+import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth/auth.facade';
 
 import { HomeRouting } from '../../home/home.routing';
 import { DocsRouting } from '../../docs/docs.routing';

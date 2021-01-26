@@ -3,7 +3,7 @@ import { Endpoint } from '@wlodzimierz/application/src/lib/common/endpoints/endp
 
 export abstract class AbstractEndpointBuilder implements EndpointBuilder {
 
-  private initialUrl: string;
+  private readonly initialUrl: string;
   private parameter: string;
   private action: string;
   private pageSize: number;
@@ -14,7 +14,8 @@ export abstract class AbstractEndpointBuilder implements EndpointBuilder {
 
   public withParameter(parameter: string): EndpointBuilder {
     if (!parameter) {
-      return;
+      this.parameter = '';
+      return this;
     }
 
     this.parameter = parameter;
@@ -24,7 +25,7 @@ export abstract class AbstractEndpointBuilder implements EndpointBuilder {
 
   public withAction(action: string): EndpointBuilder {
     if (!action) {
-      return;
+      return this;
     }
 
     this.action = action;
@@ -34,7 +35,7 @@ export abstract class AbstractEndpointBuilder implements EndpointBuilder {
 
   public withPageSize(pageSize: number): EndpointBuilder {
     if (pageSize <= 0) {
-      return;
+      return this;
     }
 
     this.pageSize = pageSize;

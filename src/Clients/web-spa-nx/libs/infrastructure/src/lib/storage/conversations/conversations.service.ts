@@ -21,7 +21,7 @@ export class ConversationsServiceImpl extends AbstractService implements Convers
     const endpoint = this.endpointBuilder
       .withParameter(request.conversationId.toString())
       .withAction('messages')
-      .withPageSize(1)
+      .withPageSize(request.pageSize)
       .build();
 
     this.http.get<ConversationMessagesListModel>(endpoint.url)
