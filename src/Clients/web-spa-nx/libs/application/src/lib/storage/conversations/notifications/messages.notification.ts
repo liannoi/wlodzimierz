@@ -4,7 +4,7 @@ import { ConversationMessagesListModel } from '@wlodzimierz/domain/src/lib/model
 
 export interface MessagesNotification {
 
-  onMessagesSuccess(conversations: ConversationMessagesListModel): void;
+  onMessagesSuccess(messages: ConversationMessagesListModel): void;
 
   onMessagesFailed(error: HttpErrorResponse): void;
 }

@@ -1,8 +1,7 @@
 import { ApiBaseAddress } from '@wlodzimierz/infrastructure/src/lib/common/endpoints/api.endpoint';
-// eslint-disable-next-line max-len
-import { AbstractPagingEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/common/endpoints/builders/abstract-paging-endpoint.builder';
+import { AbstractEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/common/endpoints/abstract-endpoint.builder';
 
-export class ConversationsEndpointBuilder extends AbstractPagingEndpointBuilder {
+export class ConversationsEndpointBuilder extends AbstractEndpointBuilder {
 
   public constructor() {
     super(ApiBaseAddress, 'Conversations');

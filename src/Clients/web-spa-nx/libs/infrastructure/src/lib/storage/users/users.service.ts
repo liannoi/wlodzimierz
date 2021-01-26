@@ -25,7 +25,7 @@ export class UsersServiceImpl extends AbstractService implements UsersService {
       .withAction(request.userId)
       .build();
 
-    this.http.get<UserModel>(endpoint.url)
+    this.http.get<UserModel>(endpoint)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(user => notification.onUserDetailsSuccess(user), error => notification.onUserDetailsFailed(error));
@@ -37,7 +37,7 @@ export class UsersServiceImpl extends AbstractService implements UsersService {
       .withAction('Conversations')
       .build();
 
-    this.http.get<ConversationsListModel>(endpoint.url)
+    this.http.get<ConversationsListModel>(endpoint)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(result => notification.onConversationsSuccess(result), error => notification.onConversationsFailed(error));

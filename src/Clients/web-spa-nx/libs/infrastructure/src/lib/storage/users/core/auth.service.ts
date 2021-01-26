@@ -14,7 +14,7 @@ import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/co
 import { VerifyNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/verify.notification';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
 import { UsersEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storage/users/users-endpoint.builder';
-import { AbstractEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/common/endpoints/builders/abstract-endpoint.builder';
+import { AbstractEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/common/endpoints/abstract-endpoint.builder';
 
 @Injectable()
 export class AuthServiceImpl extends AbstractService implements AuthService {
@@ -28,7 +28,7 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
       .withAction('SignIn')
       .build();
 
-    this.http.post<JwtTokenModel>(endpoint, request.user)
+    this.http.post<JwtTokenModel>(endpoint.url, request.user)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(token => notification.onSignInSuccess(token), error => notification.onSignInFailed(error));
@@ -39,7 +39,7 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
       .withAction('SignUp')
       .build();
 
-    this.http.post<JwtTokenModel>(endpoint, request.user)
+    this.http.post<JwtTokenModel>(endpoint.url, request.user)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(token => notification.onSignUpSuccess(token), error => notification.onSignUpFailed(error));
@@ -52,7 +52,7 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
 
     const token: JwtTokenModel = request.token;
 
-    this.http.post<UserModel>(endpoint, token, this.withAuthorization(token))
+    this.http.post<UserModel>(endpoint.url, token, this.withAuthorization(token))
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(user => notification.onVerifySuccess(user), error => notification.onVerifyFailed(error));
