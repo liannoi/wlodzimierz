@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using Application.Infrastructure.Identity.API.Interfaces;
 using Application.Infrastructure.Identity.API.Models;
-using Application.Storage.API.Storage.Users.Extensions;
+using Application.Storage.API.Storage.Users;
 using Infrastructure.Identity.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -10,7 +10,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using IdentityOptions = Infrastructure.Identity.API.Options.IdentityOptions;
 using JwtBearerOptions = Application.Infrastructure.Identity.API.JwtBearerOptions;
+using TestingOptions = Infrastructure.EntityFramework.API.Testing.TestingOptions;
 
 namespace Infrastructure.Identity.API
 {
@@ -20,11 +22,11 @@ namespace Infrastructure.Identity.API
             IConfiguration configuration)
         {
             var useInMemoryDatabase =
-                configuration.GetValue<bool>(EntityFramework.API.Testing.TestingOptions.UseInMemoryDatabase);
+                configuration.GetValue<bool>(TestingOptions.UseInMemoryDatabase);
 
             if (useInMemoryDatabase)
                 services.AddDbContext<WlodzimierzIdentityContext>(options =>
-                    options.UseInMemoryDatabase(TestingOptions.InMemoryIdentityDatabase));
+                    options.UseInMemoryDatabase(Options.TestingOptions.InMemoryIdentityDatabase));
             else
                 services.AddDbContext<WlodzimierzIdentityContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString(IdentityOptions.Database),

@@ -23,14 +23,14 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
   }
 
   public signIn(request: SignInCommand, notification: UserSignInNotification): void {
-    this.http.post<JwtTokenModel>(UsersEndpoints.UsersSignIn, request.user)
+    this.http.post<JwtTokenModel>(UsersEndpoints.SignIn, request.user)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(token => notification.onSignInSuccess(token), error => notification.onSignInFailed(error));
   }
 
   public signUp(request: SignUpCommand, notification: UserSignUpNotification): void {
-    this.http.post<JwtTokenModel>(UsersEndpoints.UsersSignUp, request.user)
+    this.http.post<JwtTokenModel>(UsersEndpoints.SignUp, request.user)
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(token => notification.onSignUpSuccess(token), error => notification.onSignUpFailed(error));
@@ -39,7 +39,7 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
   public verify(request: VerifyCommand, notification: UserVerifyNotification): void {
     const token: JwtTokenModel = request.token;
 
-    this.http.post<UserModel>(UsersEndpoints.UsersVerify, token, this.withAuthorization(token))
+    this.http.post<UserModel>(UsersEndpoints.Verify, token, this.withAuthorization(token))
       .pipe(catchError(this.handleError))
       .pipe(takeUntil(this.stop$))
       .subscribe(user => notification.onVerifySuccess(user), error => notification.onVerifyFailed(error));

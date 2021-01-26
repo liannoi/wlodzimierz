@@ -13,6 +13,8 @@ namespace Presentation.API.Controllers
 {
     public class GroupAdministratorController : AbstractController
     {
+        #region CRUD
+
         [HttpGet]
         public async Task<ActionResult<PaginatedList<GroupAdministratorDto>>> GetAll([FromQuery] ListQuery query)
         {
@@ -48,5 +50,7 @@ namespace Presentation.API.Controllers
         {
             return await Mediator.Send(new DetailsQuery {GroupAdministratorId = id});
         }
+
+        #endregion
     }
 }

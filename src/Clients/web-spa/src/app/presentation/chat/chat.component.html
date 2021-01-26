@@ -1,6 +1,19 @@
-<div class="row">
-  <div class="col-sm-3">
+<div class="row pb-3">
+  <div class="col-sm-3 ml-n3 min-vh-100 overflow-auto container-scroll">
     <app-user-conversations (conversationChanged)="onConversationChanged($event)"
                             [user]="user"></app-user-conversations>
   </div>
+  <section *ngIf="conversation != null; then conversationBlock else attentionBlock"></section>
 </div>
+
+<ng-template #conversationBlock>
+  <div class="col-sm-9 w-100 min-vh-100 container-scroll overflow-auto border bg-primary-soft">
+    <app-conversation-message-list [conversation]="conversation"></app-conversation-message-list>
+  </div>
+</ng-template>
+
+<ng-template #attentionBlock>
+  <div class="col-sm-9 d-flex align-items-center justify-content-center">
+    <h6 class="alert alert-light bg-transparent rounded box-shadow">Select a chat to start messaging</h6>
+  </div>
+</ng-template>

@@ -1,0 +1,74 @@
+{
+  "npmScope": "wlodzimierz",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "wlodzimierz": {
+      "tags": []
+    },
+    "wlodzimierz-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "wlodzimierz"
+      ]
+    },
+    "home": {
+      "tags": []
+    },
+    "feedback": {
+      "tags": []
+    },
+    "docs": {
+      "tags": []
+    },
+    "docs-api": {
+      "tags": []
+    },
+    "apps": {
+      "tags": []
+    },
+    "chat": {
+      "tags": []
+    },
+    "applications": {
+      "tags": []
+    },
+    "auth": {
+      "tags": []
+    },
+    "infrastructure": {
+      "tags": []
+    },
+    "domain": {
+      "tags": []
+    },
+    "data": {
+      "tags": []
+    }
+  }
+}

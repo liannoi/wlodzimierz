@@ -1,4 +1,4 @@
-namespace Infrastructure.Persistence.API
+namespace Infrastructure.Persistence.API.Options
 {
     public static class TestingOptions
     {

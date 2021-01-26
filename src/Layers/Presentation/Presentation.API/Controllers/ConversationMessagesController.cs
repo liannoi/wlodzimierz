@@ -13,6 +13,8 @@ namespace Presentation.API.Controllers
 {
     public class ConversationMessagesController : AbstractController
     {
+        #region CRUD
+
         [HttpGet]
         public async Task<ActionResult<PaginatedList<ConversationMessageDto>>> GetAll([FromQuery] ListQuery query)
         {
@@ -48,5 +50,7 @@ namespace Presentation.API.Controllers
         {
             return await Mediator.Send(new DetailsQuery {ConversationMessageId = id});
         }
+
+        #endregion
     }
 }

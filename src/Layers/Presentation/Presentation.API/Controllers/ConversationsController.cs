@@ -15,6 +15,21 @@ namespace Presentation.API.Controllers
 {
     public class ConversationsController : AbstractController
     {
+        #region Relations
+
+        [HttpGet("{conversation}/messages")]
+        public async Task<ActionResult<PaginatedList<ConversationMessageDto>>> GetMessages(int conversation,
+            [FromQuery] MessagesQuery query)
+        {
+            query.ConversationId = conversation;
+
+            return await Mediator.Send(query);
+        }
+
+        #endregion
+
+        #region CRUD
+
         [HttpGet]
         public async Task<ActionResult<PaginatedList<ConversationDto>>> GetAll([FromQuery] ListQuery query)
         {
@@ -51,11 +66,6 @@ namespace Presentation.API.Controllers
             return await Mediator.Send(new DetailsQuery {ConversationId = id});
         }
 
-        [HttpGet("conversation-messages")]
-        public async Task<ActionResult<PaginatedList<ConversationMessageDto>>> GetAllMessages(
-            [FromQuery] MessagesQuery query)
-        {
-            return await Mediator.Send(query);
-        }
+        #endregion
     }
 }

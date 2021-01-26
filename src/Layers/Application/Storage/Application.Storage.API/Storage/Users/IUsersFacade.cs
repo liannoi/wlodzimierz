@@ -3,7 +3,7 @@ using Application.Paging.API.Interfaces;
 using Application.Storage.API.Storage.ConversationMessages.Models;
 using Application.Storage.API.Storage.Conversations.Models;
 
-namespace Application.Storage.API.Storage.Users.Extensions
+namespace Application.Storage.API.Storage.Users
 {
     public interface IUsersFacade
     {

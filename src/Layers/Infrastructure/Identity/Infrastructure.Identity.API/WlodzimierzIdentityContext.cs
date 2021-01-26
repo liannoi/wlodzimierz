@@ -4,6 +4,7 @@ using Infrastructure.EntityFramework.API.Design.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using IdentityOptions = Infrastructure.Identity.API.Options.IdentityOptions;
 
 namespace Infrastructure.Identity.API
 {

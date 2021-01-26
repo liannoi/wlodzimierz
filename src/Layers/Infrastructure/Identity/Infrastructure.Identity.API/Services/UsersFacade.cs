@@ -3,10 +3,11 @@ using Application.Infrastructure.Identity.API.Interfaces;
 using Application.Paging.API.Interfaces;
 using Application.Storage.API.Storage.ConversationMessages.Models;
 using Application.Storage.API.Storage.Conversations.Models;
+using Application.Storage.API.Storage.Users;
 using Application.Storage.API.Storage.Users.Models;
 using AutoMapper;
 
-namespace Application.Storage.API.Storage.Users.Extensions
+namespace Infrastructure.Identity.API.Services
 {
     public class UsersFacade : IUsersFacade
     {

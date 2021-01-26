@@ -52,7 +52,7 @@ The clients are:
 - Sass
 - [Nx](https://nx.dev/)
 - Bootstrap 4.5 (ng-bootstrap)
-- RxJS 6
+- RxJS 6.6
 
 #### Native mobile app
 

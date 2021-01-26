@@ -19,7 +19,6 @@ using Presentation.API.Common.Controllers;
 
 namespace Presentation.API.Controllers
 {
-    // TODO: Refactoring is possible by transferring the code to inherited classes.
     public class UsersController : AbstractController
     {
         #region Authentication
@@ -72,7 +71,7 @@ namespace Presentation.API.Controllers
 
         #endregion
 
-        #region Relationships
+        #region Relations
 
         [HttpGet("{user}/contacts")]
         public async Task<ActionResult<PaginatedList<ContactDto>>> GetContacts(string user)
