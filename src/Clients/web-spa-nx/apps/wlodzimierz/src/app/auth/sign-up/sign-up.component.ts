@@ -20,13 +20,15 @@ import { HomeRouting } from '../../home/home.routing';
 })
 export class SignUpComponent implements OnInit, OnDestroy, SignUpNotification {
 
-  public signUpFormGroup!: FormGroup;
+  public signUpFormGroup: FormGroup;
   public haveFirstAttempt = false;
-  public identityError!: HttpErrorResponse;
-
+  public identityError: HttpErrorResponse;
   private user: UserModel = new UserModel();
 
-  constructor(@Inject(AuthFacadeImpl) private authFacade: AuthFacade, private router: Router, private titleService: Title) {
+  public constructor(
+    @Inject(AuthFacadeImpl) private authFacade: AuthFacade,
+    private router: Router,
+    private titleService: Title) {
     titleService.setTitle('Join Wlodzimierz - Wlodzimierz');
   }
 
@@ -51,7 +53,7 @@ export class SignUpComponent implements OnInit, OnDestroy, SignUpNotification {
   }
 
   public onSignUp(): void {
-    if (!this.signUpFormGroup.valid) {
+    if (this.signUpFormGroup.invalid) {
       return;
     }
 

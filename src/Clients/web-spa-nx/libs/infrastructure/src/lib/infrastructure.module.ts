@@ -9,7 +9,6 @@ import { UsersEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storag
 import { ConversationsServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/conversations/conversations.service';
 import { ConversationsEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storage/conversations/conversations-endpoint.builder';
 import { UsersServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/users.service';
-import { UsernameExtractorImpl } from '@wlodzimierz/infrastructure/src/lib/extractors/username.extractor';
 import { ConversationMessagesServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/conversation-messages/conversation-messages.service';
 import { ConversationMessagesEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storage/conversation-messages/conversation-messages-endpoint.builder';
 
@@ -21,7 +20,6 @@ import { ConversationMessagesEndpointBuilder } from '@wlodzimierz/infrastructure
     UsersServiceImpl,
     JwtTokenServiceImpl,
     UsersEndpointBuilder,
-    UsernameExtractorImpl,
     ConversationsServiceImpl,
     ConversationsEndpointBuilder,
     ConversationMessagesServiceImpl,

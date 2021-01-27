@@ -24,15 +24,18 @@
                [routerLink]='chatRouting.Root'
                class='nav-link text-primary'>Application</a>
           </li>
+
           <li class='nav-item ml-lg-4'>
             <a [routerLinkActiveOptions]='{exact: true}'
                [routerLinkActive]="['text-body']"
                [routerLink]='docsRouting.Root'
                class='nav-link'>Documentation</a>
           </li>
+
           <li class='nav-item ml-lg-3'>
             <a [routerLinkActive]="['text-body']" [routerLink]='homeRouting.Apps' class='nav-link'>Apps</a>
           </li>
+
           <li class='nav-item ml-lg-3'>
             <a [routerLinkActive]="['text-body']" [routerLink]='docsRouting.Api' class='nav-link'>API</a>
           </li>
@@ -66,6 +69,7 @@
                        for='language-switch'>Dark</label>
               </div>
             </li>
+
             <li class='nav-item dropdown mr-lg-3 mt-2 mb-2 mb-lg-0'
                 display='dynamic'
                 ngbDropdown
@@ -77,9 +81,11 @@
                 <a [routerLink]='' ngbDropdownItem>Українська</a>
               </div>
             </li>
+
             <li class='nav-item mr-lg-2'>
               <a [routerLinkActive]="['text-body']" [routerLink]='authRouting.SignIn' class='nav-link'>Sign in</a>
             </li>
+
             <li class='nav-item'>
               <a [routerLinkActive]="['text-body']" [routerLink]='authRouting.SignUp' class='nav-link'>Sign up</a>
             </li>

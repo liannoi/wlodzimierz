@@ -22,13 +22,13 @@ import { AuthRouting } from '../auth.routing';
 })
 export class SignInComponent implements OnInit, OnDestroy, SignInNotification {
 
-  public signInFormGroup: FormGroup;
   public auth = AuthRouting;
+  public signInFormGroup: FormGroup;
   public haveFirstAttempt = false;
   private user: UserModel = new UserModel();
 
-  public constructor(@Inject(AuthFacadeImpl) private authFacade: AuthFacade, private router: Router, private title: Title) {
-    title.setTitle('Sign in to Wlodzimierz - Wlodzimierz');
+  public constructor(@Inject(AuthFacadeImpl) private authFacade: AuthFacade, private router: Router, private titleService: Title) {
+    titleService.setTitle('Sign in to Wlodzimierz - Wlodzimierz');
   }
 
   get username(): AbstractControl {
@@ -56,6 +56,7 @@ export class SignInComponent implements OnInit, OnDestroy, SignInNotification {
     this.authFacade.signIn(new SignInCommand(this.user), this);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public onSignInFailed(error: HttpErrorResponse): void {
     this.username?.setValue(this.user.userName);
     this.password?.setValue('');

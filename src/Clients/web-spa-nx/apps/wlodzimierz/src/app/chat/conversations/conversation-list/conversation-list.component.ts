@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
-
-import { BehaviorSubject } from 'rxjs';
+import { Component, EventEmitter, Inject, OnDestroy, OnInit, Output } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
 import { ConversationModel } from '@wlodzimierz/domain/src/lib/models/conversation.model';
@@ -10,68 +9,59 @@ import { UsersService } from '@wlodzimierz/application/src/lib/storage/users/use
 import { UsersServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/users.service';
 import { ConversationsQuery } from '@wlodzimierz/application/src/lib/storage/users/queries/conversations-query';
 import { ConversationsNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/conversations-notification';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ConversationsListModel } from '@wlodzimierz/domain/src/lib/models/conversations-list.model';
-import { UsernameExtractorImpl } from '@wlodzimierz/infrastructure/src/lib/extractors/username.extractor';
-import { UsernameExtractor } from '@wlodzimierz/application/src/lib/common/extractors/username.extractor';
+import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
+import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth/auth.facade';
+import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/verify.command';
+import { VerifyNotification } from '@wlodzimierz/application/src/lib/storage/users/notifications/verify.notification';
 
 @Component({
   selector: 'wlodzimierz-conversation-list',
   templateUrl: './conversation-list.component.html',
   styleUrls: ['./conversation-list.component.scss']
 })
-export class ConversationListComponent implements OnInit, ConversationsNotification {
+export class ConversationListComponent implements OnInit, OnDestroy, ConversationsNotification, VerifyNotification {
 
   @Output() conversationChanged: EventEmitter<ConversationModel> = new EventEmitter<ConversationModel>();
-  public userModel: UserModel;
-  public selectedConversation!: ConversationModel;
   public conversations: ConversationsListModel;
-  private userSubject = new BehaviorSubject<UserModel>(new UserModel());
+  public currentConversation: ConversationModel;
+  public currentUser: UserModel;
 
   public constructor(
+    @Inject(AuthFacadeImpl) private authFacade: AuthFacade,
     @Inject(UsersServiceImpl) private usersService: UsersService,
-    @Inject(ConversationsServiceImpl) private conversationsService: ConversationsService,
-    @Inject(UsernameExtractorImpl) private usernameExtractor: UsernameExtractor) {
-  }
-
-  public get user(): UserModel {
-    return this.userSubject.getValue();
-  }
-
-  @Input()
-  public set user(value: UserModel) {
-    this.userSubject.next(value);
+    @Inject(ConversationsServiceImpl) private conversationsService: ConversationsService) {
   }
 
   public ngOnInit(): void {
-    this.userSubject.subscribe((model: UserModel) => {
-      if (!model) {
-        return;
-      }
+    this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
+  }
 
-      this.userModel = model;
-      this.usersService.getConversations(new ConversationsQuery(model.userId), this);
-    });
+  public ngOnDestroy(): void {
+    this.usersService.onDispose();
+    this.conversationsService.onDispose();
+    this.authFacade.onDispose();
+  }
+
+  public onConversationChanged(conversation: ConversationModel): void {
+    this.currentConversation = conversation;
+    this.conversationChanged.emit(conversation);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
+  public onVerifyFailed(error: HttpErrorResponse): void {
+  }
+
+  public onVerifySuccess(user: UserModel): void {
+    this.currentUser = user;
+    this.usersService.getConversations(new ConversationsQuery(user.userId), this);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-function
+  public onConversationsFailed(error: HttpErrorResponse): void {
   }
 
   public onConversationsSuccess(conversations: ConversationsListModel): void {
     this.conversations = conversations;
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  public onConversationsFailed(error: HttpErrorResponse): void {
-  }
-
-  public onConversationChanged(conversation: ConversationModel): void {
-    this.selectedConversation = conversation;
-    this.conversationChanged.emit(conversation);
-  }
-
-  public hasBeenSelected(conversation: ConversationModel): boolean {
-    return this.selectedConversation?.conversationId === conversation.conversationId;
-  }
-
-  public takeUserName(conversation: ConversationModel): string {
-    return this.usernameExtractor.extract(conversation, this.user);
   }
 }

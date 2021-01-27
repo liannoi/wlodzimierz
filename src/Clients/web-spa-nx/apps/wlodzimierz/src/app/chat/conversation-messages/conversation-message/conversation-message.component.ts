@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { BehaviorSubject } from 'rxjs';
@@ -16,7 +16,7 @@ import { ConversationModel } from '@wlodzimierz/domain/src/lib/models/conversati
   templateUrl: './conversation-message.component.html',
   styleUrls: ['./conversation-message.component.scss']
 })
-export class ConversationMessageComponent implements OnInit, MessagesNotification {
+export class ConversationMessageComponent implements OnInit, OnDestroy, MessagesNotification {
 
   public model: ConversationMessageModel;
   private currentConversation: ConversationModel;
@@ -35,7 +35,14 @@ export class ConversationMessageComponent implements OnInit, MessagesNotificatio
   }
 
   public ngOnInit(): void {
-    this.refresh();
+    this.conversationSubject.subscribe((model: ConversationModel) => {
+      this.currentConversation = model;
+      this.conversationsService.getMessages(new MessagesQuery(model.conversationId), this);
+    });
+  }
+
+  public ngOnDestroy(): void {
+    this.conversationsService.onDispose();
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -44,12 +51,5 @@ export class ConversationMessageComponent implements OnInit, MessagesNotificatio
 
   public onMessagesSuccess(messages: ConversationMessagesListModel): void {
     this.model = messages.items[0];
-  }
-
-  private refresh(): void {
-    this.conversationSubject.subscribe((model: ConversationModel) => {
-      this.currentConversation = model;
-      this.conversationsService.getMessages(new MessagesQuery(model.conversationId), this);
-    });
   }
 }

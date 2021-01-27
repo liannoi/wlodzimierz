@@ -9,8 +9,6 @@ import { ConversationsService } from '@wlodzimierz/application/src/lib/storage/c
 import { ConversationMessagesListModel } from '@wlodzimierz/domain/src/lib/models/conversation-messages-list.model';
 import { ConversationModel } from '@wlodzimierz/domain/src/lib/models/conversation.model';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
-import { UsernameExtractorImpl } from '@wlodzimierz/infrastructure/src/lib/extractors/username.extractor';
-import { UsernameExtractor } from '@wlodzimierz/application/src/lib/common/extractors/username.extractor';
 import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/verify.command';
 import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
 import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth/auth.facade';
@@ -27,15 +25,13 @@ import { AuthRouting } from '../../../auth/auth.routing';
 })
 export class ConversationMessageListComponent implements OnInit, OnDestroy, VerifyNotification, MessagesNotification {
 
+  public currentConversation: ConversationModel;
+  public currentUser: UserModel;
   private messagesSubject = new BehaviorSubject<ConversationMessagesListModel>(new ConversationMessagesListModel());
   private conversationSubject = new BehaviorSubject<ConversationModel>(new ConversationModel());
-  private user: UserModel;
-  private conversationModel: ConversationModel;
-  private isRefreshed = false;
 
   public constructor(
     @Inject(ConversationsServiceImpl) private conversationsService: ConversationsService,
-    @Inject(UsernameExtractorImpl) private usernameExtractor: UsernameExtractor,
     @Inject(AuthFacadeImpl) private authFacade: AuthFacade,
     private router: Router) {
   }
@@ -58,10 +54,13 @@ export class ConversationMessageListComponent implements OnInit, OnDestroy, Veri
     this.conversationSubject.next(value);
   }
 
-  public async ngOnInit() {
-    if (!this.isRefreshed) {
-      this.refresh();
-    }
+  public ngOnInit() {
+    this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
+
+    this.conversationSubject.subscribe(model => {
+      this.currentConversation = model;
+      this.conversationsService.getMessages(new MessagesQuery(this.currentConversation.conversationId, 99), this);
+    });
   }
 
   public ngOnDestroy(): void {
@@ -69,21 +68,14 @@ export class ConversationMessageListComponent implements OnInit, OnDestroy, Veri
     this.authFacade.onDispose();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public onVerifyFailed(error: HttpErrorResponse): void {
     this.authFacade.clearToken();
     this.router.navigate([AuthRouting.SignIn]);
   }
 
   public onVerifySuccess(user: UserModel): void {
-    this.user = user;
-  }
-
-  public isMyMessage(ownerUserId: string): boolean {
-    return ownerUserId === this.user.userId;
-  }
-
-  public takeUserName(): string {
-    return this.usernameExtractor.extract(this.conversation, this.user);
+    this.currentUser = user;
   }
 
   public onMessagesSuccess(messages: ConversationMessagesListModel): void {
@@ -91,16 +83,7 @@ export class ConversationMessageListComponent implements OnInit, OnDestroy, Veri
     this.messagesSubject.next(messages);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   public onMessagesFailed(error: HttpErrorResponse): void {
-  }
-
-  private refresh(): void {
-    this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
-
-    this.conversationSubject.subscribe(model => {
-      this.conversationModel = model;
-      this.conversationsService.getMessages(new MessagesQuery(this.conversationModel.conversationId, 10), this);
-    });
   }
 }
