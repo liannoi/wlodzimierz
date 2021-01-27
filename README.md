@@ -51,7 +51,7 @@ The clients are:
 - Angular 11.1
 - Sass
 - [Nx](https://nx.dev/)
-- Bootstrap 4.5 (ng-bootstrap)
+- Bootstrap 4.6 (ng-bootstrap)
 - RxJS 6.6
 
 #### Native mobile app
@@ -100,6 +100,7 @@ Thus, you will need the following tools:
 - [.NET 5 SDK](https://dotnet.microsoft.com/download) (will include .NET CLI)
 - [JetBrains Rider](https://www.jetbrains.com/rider/download) or [Visual Studio](https://visualstudio.microsoft.com/downloads)
 - [JetBrains DataGrip](https://www.jetbrains.com/datagrip/download) or [SSMS](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
+- [JetBrains WebStorm](https://www.jetbrains.com/webstorm/download) or [Visual Studio Code](https://code.visualstudio.com/download)
 - [GitHub CLI](https://cli.github.com) (optional)
 
 ---
@@ -166,6 +167,12 @@ docker-compose pull && docker-compose build && docker-compose up -d
 ---
 
 7. Launch [```https://localhost:5001/api```](https://localhost:5001/api) in your browser and you will see Swagger generated RESTful API documentation.
+
+8. Next, within the ```/src/Clients/web-spa``` directory, install all application dependencies locally and launch the frontend.
+
+```
+npm install && npm run start-nx
+```
 
 ## Specification
 
