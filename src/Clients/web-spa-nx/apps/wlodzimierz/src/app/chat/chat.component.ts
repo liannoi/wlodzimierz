@@ -19,8 +19,8 @@ import { AuthRouting } from '../auth/auth.routing';
 })
 export class ChatComponent implements OnInit, VerifyNotification {
 
-  public conversation!: ConversationModel;
-  public user!: UserModel;
+  public conversation: ConversationModel;
+  public user: UserModel;
 
   public constructor(private titleService: Title, @Inject(AuthFacadeImpl) private authFacade: AuthFacade, private router: Router) {
     titleService.setTitle('Wlodzimierz');
