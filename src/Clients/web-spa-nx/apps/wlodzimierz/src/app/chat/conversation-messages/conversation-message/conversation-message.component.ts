@@ -17,13 +17,18 @@ import { ConversationModel } from '@wlodzimierz/domain/src/lib/models/conversati
   styleUrls: ['./conversation-message.component.scss']
 })
 export class ConversationMessageComponent implements OnInit, OnDestroy, MessagesNotification {
-
-  public model: ConversationMessageModel;
+  public currentMessage: ConversationMessageModel;
   private currentConversation: ConversationModel;
-  private conversationSubject: BehaviorSubject<ConversationModel> = new BehaviorSubject<ConversationModel>(new ConversationModel());
+  private conversationSubject: BehaviorSubject<ConversationModel> = new BehaviorSubject<ConversationModel>(
+    new ConversationModel()
+  );
 
   public constructor(@Inject(ConversationsServiceImpl) private conversationsService: ConversationsService) {
   }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Processing the received conversation from a parent component
+  ///////////////////////////////////////////////////////////////////////////
 
   public get conversation(): ConversationModel {
     return this.conversationSubject.getValue();
@@ -34,11 +39,12 @@ export class ConversationMessageComponent implements OnInit, OnDestroy, Messages
     this.conversationSubject.next(value);
   }
 
+  ///////////////////////////////////////////////////////////////////////////
+  // Interface handlers
+  ///////////////////////////////////////////////////////////////////////////
+
   public ngOnInit(): void {
-    this.conversationSubject.subscribe((model: ConversationModel) => {
-      this.currentConversation = model;
-      this.conversationsService.getMessages(new MessagesQuery(model.conversationId), this);
-    });
+    this.fetchMessages();
   }
 
   public ngOnDestroy(): void {
@@ -50,6 +56,17 @@ export class ConversationMessageComponent implements OnInit, OnDestroy, Messages
   }
 
   public onMessagesSuccess(messages: ConversationMessagesListModel): void {
-    this.model = messages.items[0];
+    this.currentMessage = messages.items[0];
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Helpers
+  ///////////////////////////////////////////////////////////////////////////
+
+  private fetchMessages(): void {
+    this.conversationSubject.subscribe((model: ConversationModel) => {
+      this.currentConversation = model;
+      this.conversationsService.getMessages(new MessagesQuery(model.conversationId), this);
+    });
   }
 }

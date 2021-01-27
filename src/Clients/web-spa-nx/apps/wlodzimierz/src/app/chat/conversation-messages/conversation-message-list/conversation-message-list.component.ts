@@ -24,7 +24,6 @@ import { AuthRouting } from '../../../auth/auth.routing';
   styleUrls: ['./conversation-message-list.component.scss']
 })
 export class ConversationMessageListComponent implements OnInit, OnDestroy, VerifyNotification, MessagesNotification {
-
   public currentConversation: ConversationModel;
   public currentUser: UserModel;
   private messagesSubject = new BehaviorSubject<ConversationMessagesListModel>(new ConversationMessagesListModel());
@@ -33,8 +32,13 @@ export class ConversationMessageListComponent implements OnInit, OnDestroy, Veri
   public constructor(
     @Inject(ConversationsServiceImpl) private conversationsService: ConversationsService,
     @Inject(AuthFacadeImpl) private authFacade: AuthFacade,
-    private router: Router) {
+    private router: Router
+  ) {
   }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Processing the received messages from a parent component
+  ///////////////////////////////////////////////////////////////////////////
 
   public get messages(): ConversationMessagesListModel {
     return this.messagesSubject.getValue();
@@ -45,6 +49,10 @@ export class ConversationMessageListComponent implements OnInit, OnDestroy, Veri
     this.messagesSubject.next(value);
   }
 
+  ///////////////////////////////////////////////////////////////////////////
+  // Processing the received conversation from a parent component
+  ///////////////////////////////////////////////////////////////////////////
+
   public get conversation(): ConversationModel {
     return this.conversationSubject.getValue();
   }
@@ -54,13 +62,13 @@ export class ConversationMessageListComponent implements OnInit, OnDestroy, Veri
     this.conversationSubject.next(value);
   }
 
-  public ngOnInit() {
-    this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
+  ///////////////////////////////////////////////////////////////////////////
+  // Interface handlers
+  ///////////////////////////////////////////////////////////////////////////
 
-    this.conversationSubject.subscribe(model => {
-      this.currentConversation = model;
-      this.conversationsService.getMessages(new MessagesQuery(this.currentConversation.conversationId, 99), this);
-    });
+  public ngOnInit(): void {
+    this.verify();
+    this.fetchMessages();
   }
 
   public ngOnDestroy(): void {
@@ -85,5 +93,20 @@ export class ConversationMessageListComponent implements OnInit, OnDestroy, Veri
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   public onMessagesFailed(error: HttpErrorResponse): void {
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Helpers
+  ///////////////////////////////////////////////////////////////////////////
+
+  private verify() {
+    this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
+  }
+
+  private fetchMessages() {
+    this.conversationSubject.subscribe((model) => {
+      this.currentConversation = model;
+      this.conversationsService.getMessages(new MessagesQuery(this.currentConversation.conversationId, 99), this);
+    });
   }
 }

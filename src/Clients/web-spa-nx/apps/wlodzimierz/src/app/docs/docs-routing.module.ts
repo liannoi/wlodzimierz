@@ -5,7 +5,6 @@ import { DocsRouting } from './docs.routing';
 import { DocsComponent } from './docs.component';
 import { DocsApiComponent } from './docs-api/docs-api.component';
 
-
 const routes: Routes = [
   { path: DocsRouting.Root, component: DocsComponent },
   { path: DocsRouting.Api, component: DocsApiComponent }

@@ -25,7 +25,7 @@ import { UsersEqualsPipe } from './conversations/shared/users-equals.pipe';
     ConversationsEqualsPipe,
     UsersEqualsPipe
   ],
-  imports: [CommonModule, ChatRoutingModule, ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule, ChatRoutingModule]
 })
 export class ChatModule {
 }

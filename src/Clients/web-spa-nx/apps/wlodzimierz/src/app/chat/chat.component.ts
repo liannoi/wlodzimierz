@@ -9,7 +9,6 @@ import { ConversationModel } from '@wlodzimierz/domain/src/lib/models/conversati
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent {
-
   public currentConversation: ConversationModel;
 
   public constructor(private titleService: Title) {

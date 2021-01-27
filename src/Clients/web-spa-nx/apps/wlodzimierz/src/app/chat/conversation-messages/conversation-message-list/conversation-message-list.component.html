@@ -1,17 +1,27 @@
 <div class='container-fluid container-scroll-header mb-4'>
   <div class='row bg-dark sticky-top p-3 mb-5'>
     <div class='col-sm-12'>
-      <h5 class='text-white mt-2'>{{ currentConversation | interlocutor: currentUser }}</h5>
+      <h5 class='text-white mt-2'>
+        {{ currentConversation | interlocutor: currentUser }}
+      </h5>
     </div>
   </div>
-
-  <div *ngFor='let message; of messages.items | reverse; index as i;' class='row mt-4 ml-3'>
+  <div
+    *ngFor='let message of messages.items | reverse; index as i'
+    class='row mt-4 ml-3'
+  >
     <div class='col-sm-12'>
-      <p *ngIf='message.ownerUser | uequals: currentUser; else otherMessage'
-         class='alert alert-primary rounded'>{{message.message}}</p>
+      <p
+        *ngIf='message.ownerUser | uequals: currentUser; else otherMessage'
+        class='alert alert-primary rounded'
+      >
+        {{ message.message }}
+      </p>
       <ng-template #otherMessage>
-        <p class='alert alert-light rounded'>{{message.message}}</p>
-      </ng-template>
+        <p class='alert alert-light rounded'>
+          {{ message.message }}
+        </p></ng-template
+      >
     </div>
   </div>
 </div>

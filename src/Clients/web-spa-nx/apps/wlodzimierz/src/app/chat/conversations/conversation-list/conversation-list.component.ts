@@ -21,31 +21,30 @@ import { VerifyNotification } from '@wlodzimierz/application/src/lib/storage/use
   styleUrls: ['./conversation-list.component.scss']
 })
 export class ConversationListComponent implements OnInit, OnDestroy, ConversationsNotification, VerifyNotification {
-
   @Output() conversationChanged: EventEmitter<ConversationModel> = new EventEmitter<ConversationModel>();
-  public conversations: ConversationsListModel;
+  public currentConversations: ConversationsListModel;
   public currentConversation: ConversationModel;
   public currentUser: UserModel;
 
   public constructor(
     @Inject(AuthFacadeImpl) private authFacade: AuthFacade,
     @Inject(UsersServiceImpl) private usersService: UsersService,
-    @Inject(ConversationsServiceImpl) private conversationsService: ConversationsService) {
+    @Inject(ConversationsServiceImpl) private conversationsService: ConversationsService
+  ) {
   }
 
+  ///////////////////////////////////////////////////////////////////////////
+  // Interface handlers
+  ///////////////////////////////////////////////////////////////////////////
+
   public ngOnInit(): void {
-    this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
+    this.verify();
   }
 
   public ngOnDestroy(): void {
     this.usersService.onDispose();
-    this.conversationsService.onDispose();
     this.authFacade.onDispose();
-  }
-
-  public onConversationChanged(conversation: ConversationModel): void {
-    this.currentConversation = conversation;
-    this.conversationChanged.emit(conversation);
+    this.conversationsService.onDispose();
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
@@ -62,6 +61,23 @@ export class ConversationListComponent implements OnInit, OnDestroy, Conversatio
   }
 
   public onConversationsSuccess(conversations: ConversationsListModel): void {
-    this.conversations = conversations;
+    this.currentConversations = conversations;
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Ignition events
+  ///////////////////////////////////////////////////////////////////////////
+
+  public onConversationChanged(conversation: ConversationModel): void {
+    this.currentConversation = conversation;
+    this.conversationChanged.emit(conversation);
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Helpers
+  ///////////////////////////////////////////////////////////////////////////
+
+  private verify(): void {
+    this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
   }
 }

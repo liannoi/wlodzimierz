@@ -12,9 +12,12 @@ import { HomeRouting } from '../../home/home.routing';
   styleUrls: ['./sign-out.component.scss']
 })
 export class SignOutComponent implements OnInit, OnDestroy {
-
   public constructor(@Inject(AuthFacadeImpl) private authFacade: AuthFacade, private router: Router) {
   }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Interface handlers
+  ///////////////////////////////////////////////////////////////////////////
 
   public ngOnInit(): void {
     this.authFacade.clearToken();

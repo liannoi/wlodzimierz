@@ -23,22 +23,31 @@ import { VerifyNotification } from '@wlodzimierz/application/src/lib/storage/use
   templateUrl: './conversation-message-create.component.html',
   styleUrls: ['./conversation-message-create.component.scss']
 })
-export class ConversationMessageCreateComponent implements OnInit, ConversationMessageCreatedNotification, VerifyNotification {
-
-  public messageForm: FormGroup;
+export class ConversationMessageCreateComponent
+  implements OnInit, ConversationMessageCreatedNotification, VerifyNotification {
+  public group: FormGroup;
   private currentUser: UserModel;
   private currentConversation: ConversationModel;
-  private conversationMessage: ConversationMessageModel;
+  private currentMessage: ConversationMessageModel;
   private conversationSubject = new BehaviorSubject<ConversationModel>(new ConversationModel());
 
   public constructor(
     @Inject(ConversationMessagesServiceImpl) private conversationMessagesService: ConversationMessagesService,
-    @Inject(AuthFacadeImpl) private authFacade: AuthFacade) {
+    @Inject(AuthFacadeImpl) private authFacade: AuthFacade
+  ) {
   }
 
-  get message(): AbstractControl {
-    return this.messageForm.get('message') as AbstractControl;
+  ///////////////////////////////////////////////////////////////////////////
+  // Form controls
+  ///////////////////////////////////////////////////////////////////////////
+
+  public get message(): AbstractControl {
+    return this.group.get('message') as AbstractControl;
   }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Processing the received conversation from a parent component
+  ///////////////////////////////////////////////////////////////////////////
 
   public get conversation(): ConversationModel {
     return this.conversationSubject.getValue();
@@ -49,20 +58,24 @@ export class ConversationMessageCreateComponent implements OnInit, ConversationM
     this.conversationSubject.next(value);
   }
 
+  ///////////////////////////////////////////////////////////////////////////
+  // Interface handlers
+  ///////////////////////////////////////////////////////////////////////////
+
   public ngOnInit(): void {
     this.setupForm();
     this.refresh();
   }
 
   public onSendMessage(): void {
-    if (!this.messageForm.valid) {
+    if (this.group.invalid) {
       return;
     }
 
-    this.conversationMessage = this.messageForm.getRawValue() as ConversationMessageModel;
-    this.conversationMessage.conversation = this.currentConversation;
-    this.conversationMessage.ownerUserId = this.currentUser.userId;
-    this.conversationMessagesService.create(new CreateCommand(this.conversationMessage), this);
+    this.currentMessage = this.group.getRawValue() as ConversationMessageModel;
+    this.currentMessage.conversation = this.currentConversation;
+    this.currentMessage.ownerUserId = this.currentUser.userId;
+    this.conversationMessagesService.create(new CreateCommand(this.currentMessage), this);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-function
@@ -71,10 +84,10 @@ export class ConversationMessageCreateComponent implements OnInit, ConversationM
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public onCreatedSuccess(id: number): void {
-    this.messageForm.reset();
+    this.group.reset();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-function
   public onVerifyFailed(error: HttpErrorResponse): void {
   }
 
@@ -82,17 +95,18 @@ export class ConversationMessageCreateComponent implements OnInit, ConversationM
     this.currentUser = user;
   }
 
+  ///////////////////////////////////////////////////////////////////////////
+  // Helpers
+  ///////////////////////////////////////////////////////////////////////////
+
   private refresh(): void {
     this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
-
-    this.conversationSubject.subscribe((model: ConversationModel) => {
-      this.currentConversation = model;
-    });
+    this.conversationSubject.subscribe((model: ConversationModel) => this.currentConversation = model);
   }
 
-  private setupForm() {
-    this.messageForm = new FormGroup({
-      message: new FormControl(this.conversationMessage?.message, [Validators.required])
+  private setupForm(): void {
+    this.group = new FormGroup({
+      message: new FormControl(this.currentMessage?.message, [Validators.required])
     });
   }
 }

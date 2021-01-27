@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -12,6 +12,7 @@ import { SignUpCommand } from '@wlodzimierz/application/src/lib/storage/users/co
 import { JwtTokenModel } from '@wlodzimierz/domain/src/lib/models/jwt-token.model';
 
 import { HomeRouting } from '../../home/home.routing';
+import { AuthFormGroup } from '../shared/auth-form-group.class';
 
 @Component({
   selector: 'wlodzimierz-sign-up',
@@ -19,30 +20,36 @@ import { HomeRouting } from '../../home/home.routing';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit, OnDestroy, SignUpNotification {
-
-  public signUpFormGroup: FormGroup;
-  public haveFirstAttempt = false;
-  public identityError: HttpErrorResponse;
-  private user: UserModel = new UserModel();
+  public group: AuthFormGroup;
+  private currentUser: UserModel = new UserModel();
 
   public constructor(
     @Inject(AuthFacadeImpl) private authFacade: AuthFacade,
     private router: Router,
-    private titleService: Title) {
+    private titleService: Title
+  ) {
     titleService.setTitle('Join Wlodzimierz - Wlodzimierz');
   }
 
-  get username(): AbstractControl {
-    return this.signUpFormGroup.get('username') as AbstractControl;
+  ///////////////////////////////////////////////////////////////////////////
+  // Form controls
+  ///////////////////////////////////////////////////////////////////////////
+
+  public get userName(): AbstractControl {
+    return this.group.get('userName') as AbstractControl;
   }
 
-  get password(): AbstractControl {
-    return this.signUpFormGroup.get('password') as AbstractControl;
+  public get password(): AbstractControl {
+    return this.group.get('password') as AbstractControl;
   }
 
-  get email(): AbstractControl {
-    return this.signUpFormGroup.get('email') as AbstractControl;
+  public get email(): AbstractControl {
+    return this.group.get('email') as AbstractControl;
   }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Interface handlers
+  ///////////////////////////////////////////////////////////////////////////
 
   public ngOnInit(): void {
     this.setupForm();
@@ -53,20 +60,18 @@ export class SignUpComponent implements OnInit, OnDestroy, SignUpNotification {
   }
 
   public onSignUp(): void {
-    if (this.signUpFormGroup.invalid) {
+    if (this.group.invalid) {
       return;
     }
 
-    this.user = this.signUpFormGroup.getRawValue() as UserModel;
-    this.authFacade.signUp(new SignUpCommand(this.user), this);
+    this.currentUser = this.group.getRawValue() as UserModel;
+    this.authFacade.signUp(new SignUpCommand(this.currentUser), this);
   }
 
   public onSignUpFailed(error: HttpErrorResponse): void {
-    this.username.setValue(this.user.userName);
+    this.userName.setValue(this.currentUser.userName);
     this.password.setValue('');
-    this.haveFirstAttempt = true;
-    this.identityError = error;
-    this.signUpFormGroup.setErrors({ identity: true });
+    this.group.identityFailed(error);
   }
 
   public onSignUpSuccess(token: JwtTokenModel): void {
@@ -74,16 +79,15 @@ export class SignUpComponent implements OnInit, OnDestroy, SignUpNotification {
     this.router.navigate([HomeRouting.Root]);
   }
 
+  ///////////////////////////////////////////////////////////////////////////
+  // Helpers
+  ///////////////////////////////////////////////////////////////////////////
+
   private setupForm(): void {
-    this.signUpFormGroup = new FormGroup({
-      username: new FormControl(this.user.userName, [
-        Validators.required
-      ]),
-      email: new FormControl(this.user.email, [
-        Validators.required,
-        Validators.minLength(6)
-      ]),
-      password: new FormControl(this.user.password, [
+    this.group = new AuthFormGroup({
+      userName: new FormControl(this.currentUser.userName, [Validators.required]),
+      email: new FormControl(this.currentUser.email, [Validators.required, Validators.minLength(6)]),
+      password: new FormControl(this.currentUser.password, [
         Validators.required,
         Validators.minLength(6),
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$')
@@ -91,4 +95,3 @@ export class SignUpComponent implements OnInit, OnDestroy, SignUpNotification {
     });
   }
 }
-

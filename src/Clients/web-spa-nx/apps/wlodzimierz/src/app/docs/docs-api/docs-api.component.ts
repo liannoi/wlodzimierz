@@ -10,7 +10,7 @@ import { ApiBaseAddress } from '@wlodzimierz/infrastructure/src/lib/common/endpo
 })
 export class DocsApiComponent {
 
-  public api = ApiBaseAddress;
+  public baseAddress = ApiBaseAddress;
 
   public constructor(private titleService: Title) {
     titleService.setTitle('Wlodzimierz API');

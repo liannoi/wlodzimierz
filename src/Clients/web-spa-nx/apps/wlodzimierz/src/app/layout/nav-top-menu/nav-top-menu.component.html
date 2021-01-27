@@ -1,53 +1,79 @@
-<!-- HEADER -->
 <header>
-  <!-- NAVIGATION -->
   <nav class='navbar navbar-expand-lg navbar-light'>
-    <!-- container -->
     <div class='container'>
       <a [routerLink]='homeRouting.Root' class='navbar-brand'>
-        <img alt='Brand' height='34px' src='favicon.ico' width='120px'>
+        <img alt='Brand' height='34px' src='favicon.ico' width='120px' />
       </a>
-
-      <!-- toggler -->
       <button (click)='isExpanded = !isExpanded' class='navbar-toggler'>
         <span class='navbar-toggler-icon'></span>
       </button>
-      <!-- /toggler -->
-
-      <!-- menu -->
-      <div [ngClass]="[!isExpanded ? 'box-shadow' : '', !isExpanded ? 'p-4' : '', !isExpanded ? 'bg-white' : '']"
-           [ngbCollapse]='isExpanded'
-           class='navbar-collapse collapse d-lg-inline-flex zindex-dropdown'>
+      <div
+        [ngClass]="[
+          !isExpanded ? 'box-shadow' : '',
+          !isExpanded ? 'p-4' : '',
+          !isExpanded ? 'bg-white' : ''
+        ]"
+        [ngbCollapse]='isExpanded'
+        class='navbar-collapse collapse d-lg-inline-flex zindex-dropdown'
+      >
         <ul class='navbar-nav'>
           <li class='nav-item ml-lg-4 pr-md-4 right-border'>
-            <a [routerLinkActive]="['text-active']"
-               [routerLink]='chatRouting.Root'
-               class='nav-link text-primary'>Application</a>
+            <a
+              [routerLinkActive]="['text-active']"
+              [routerLink]='chatRouting.Root'
+              class='nav-link text-primary'
+            >Application</a
+            >
           </li>
-
           <li class='nav-item ml-lg-4'>
-            <a [routerLinkActiveOptions]='{exact: true}'
-               [routerLinkActive]="['text-body']"
-               [routerLink]='docsRouting.Root'
-               class='nav-link'>Documentation</a>
+            <a
+              [routerLinkActiveOptions]='{ exact: true }'
+              [routerLinkActive]="['text-body']"
+              [routerLink]='docsRouting.Root'
+              class='nav-link'
+            >Documentation</a
+            >
           </li>
-
           <li class='nav-item ml-lg-3'>
-            <a [routerLinkActive]="['text-body']" [routerLink]='homeRouting.Apps' class='nav-link'>Apps</a>
+            <a
+              [routerLinkActive]="['text-body']"
+              [routerLink]='homeRouting.Apps'
+              class='nav-link'
+            >Apps</a
+            >
           </li>
-
           <li class='nav-item ml-lg-3'>
-            <a [routerLinkActive]="['text-body']" [routerLink]='docsRouting.Api' class='nav-link'>API</a>
+            <a
+              [routerLinkActive]="['text-body']"
+              [routerLink]='docsRouting.Api'
+              class='nav-link'
+            >API</a
+            >
           </li>
         </ul>
-
-        <hr>
-
-        <!-- account -->
-        <ul *ngIf='isTokenVerified(); else unverifiedToken' class='navbar-nav ml-auto'>
-          <li class='nav-item dropdown pb-1 pb-lg-0' display='dynamic' ngbDropdown placement='bottom-left'>
-            <a class='btn p-0' id='account-dropdown' ngbDropdownToggle role='button'>My Account</a>
-            <div aria-labelledby='account-dropdown' class='dropdown-menu mt-1 box-shadow' ngbDropdownMenu>
+        <hr />
+        <ul
+          *ngIf='isTokenVerified(); else unverifiedToken'
+          class='navbar-nav ml-auto'
+        >
+          <li
+            class='nav-item dropdown pb-1 pb-lg-0'
+            display='dynamic'
+            ngbDropdown
+            placement='bottom-left'
+          >
+            <a
+              class='btn p-0'
+              id='account-dropdown'
+              ngbDropdownToggle
+              role='button'
+            >My Account</a
+            >
+            <div
+              aria-labelledby='account-dropdown'
+              class='dropdown-menu mt-1 box-shadow'
+              ngbDropdownMenu
+            >
               <a [routerLink]='' ngbDropdownItem>Your profile</a>
               <a [routerLink]='' ngbDropdownItem>Your contacts</a>
               <div class='dropdown-divider'></div>
@@ -57,46 +83,66 @@
             </div>
           </li>
         </ul>
-        <!-- /account -->
-
-        <!-- account - unverifiedToken -->
         <ng-template #unverifiedToken>
           <ul class='navbar-nav ml-auto'>
             <li class='nav-item mt-2 mb-2 mb-lg-0 mr-lg-4'>
               <div class='custom-control custom-switch cursor-pointer'>
-                <input class='custom-control-input' id='language-switch' type='checkbox'>
-                <label class='custom-control-label text-secondary cursor-pointer pl-1'
-                       for='language-switch'>Dark</label>
+                <input
+                  class='custom-control-input'
+                  id='language-switch'
+                  type='checkbox'
+                />
+                <label
+                  class='custom-control-label text-secondary cursor-pointer pl-1'
+                  for='language-switch'
+                >Dark</label
+                >
               </div>
             </li>
-
-            <li class='nav-item dropdown mr-lg-3 mt-2 mb-2 mb-lg-0'
-                display='dynamic'
-                ngbDropdown
-                placement='bottom-left'>
-              <a class='btn p-0 text-secondary' id='language-dropdown' ngbDropdownToggle role='button'>EN</a>
-              <div aria-labelledby='language-dropdown' class='dropdown-menu mt-1 box-shadow' ngbDropdownMenu>
-                <a [routerLink]='' class='bg-primary text-white' ngbDropdownItem>English</a>
+            <li
+              class='nav-item dropdown mr-lg-3 mt-2 mb-2 mb-lg-0'
+              display='dynamic'
+              ngbDropdown
+              placement='bottom-left'
+            >
+              <a
+                class='btn p-0 text-secondary'
+                id='language-dropdown'
+                ngbDropdownToggle
+                role='button'
+              >EN</a
+              >
+              <div
+                aria-labelledby='language-dropdown'
+                class='dropdown-menu mt-1 box-shadow'
+                ngbDropdownMenu
+              >
+                <a [routerLink]='' class='bg-primary text-white' ngbDropdownItem
+                >English</a
+                >
                 <a [routerLink]='' ngbDropdownItem>Русский</a>
                 <a [routerLink]='' ngbDropdownItem>Українська</a>
               </div>
             </li>
-
             <li class='nav-item mr-lg-2'>
-              <a [routerLinkActive]="['text-body']" [routerLink]='authRouting.SignIn' class='nav-link'>Sign in</a>
+              <a
+                [routerLinkActive]="['text-body']"
+                [routerLink]='authRouting.SignIn'
+                class='nav-link'
+              >Sign in</a
+              >
             </li>
-
             <li class='nav-item'>
-              <a [routerLinkActive]="['text-body']" [routerLink]='authRouting.SignUp' class='nav-link'>Sign up</a>
+              <a
+                [routerLinkActive]="['text-body']"
+                [routerLink]='authRouting.SignUp'
+                class='nav-link'
+              >Sign up</a
+              >
             </li>
           </ul>
         </ng-template>
-        <!-- /account - unverifiedToken -->
       </div>
-      <!-- /menu -->
     </div>
-    <!-- /container -->
   </nav>
-  <!-- /NAVIGATION -->
 </header>
-<!-- /HEADER -->
