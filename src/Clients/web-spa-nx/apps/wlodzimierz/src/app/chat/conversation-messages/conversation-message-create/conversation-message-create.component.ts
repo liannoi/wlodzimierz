@@ -1,5 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { BehaviorSubject } from 'rxjs';
 
@@ -12,7 +13,6 @@ import { ConversationMessagesService } from '@wlodzimierz/application/src/lib/st
 import { CreateCommand } from '@wlodzimierz/application/src/lib/storage/conversation-messages/commands/create.command';
 // eslint-disable-next-line max-len
 import { ConversationMessageCreatedNotification } from '@wlodzimierz/application/src/lib/storage/conversation-messages/notifications/conversation-message-created.notification';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'wlodzimierz-conversation-message-create',
@@ -22,17 +22,17 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ConversationMessageCreateComponent implements OnInit, ConversationMessageCreatedNotification {
 
   public sendMessageForm: FormGroup;
-  private conversationModel: ConversationModel;
-  private conversationSubject = new BehaviorSubject<ConversationModel>(new ConversationModel());
   private userModel: UserModel;
-  private userSubject = new BehaviorSubject<UserModel>(new UserModel());
+  private conversationModel: ConversationModel;
   private conversationMessage: ConversationMessageModel;
+  private conversationSubject = new BehaviorSubject<ConversationModel>(new ConversationModel());
+  private userSubject = new BehaviorSubject<UserModel>(new UserModel());
 
   public constructor(@Inject(ConversationMessagesServiceImpl) private conversationMessagesService: ConversationMessagesService) {
   }
 
-  get message() {
-    return this.sendMessageForm.get('message');
+  get message(): AbstractControl {
+    return this.sendMessageForm.get('message') as AbstractControl;
   }
 
   public get conversation(): ConversationModel {
@@ -54,8 +54,8 @@ export class ConversationMessageCreateComponent implements OnInit, ConversationM
   }
 
   public ngOnInit(): void {
-    this.refresh();
     this.setupForm();
+    this.refresh();
   }
 
   public onSendMessage(): void {

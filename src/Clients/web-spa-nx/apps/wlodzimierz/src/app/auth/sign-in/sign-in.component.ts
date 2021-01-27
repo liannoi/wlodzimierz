@@ -22,13 +22,12 @@ import { AuthRouting } from '../auth.routing';
 })
 export class SignInComponent implements OnInit, OnDestroy, SignInNotification {
 
-  public signInFormGroup!: FormGroup;
+  public signInFormGroup: FormGroup;
   public auth = AuthRouting;
   public haveFirstAttempt = false;
-
   private user: UserModel = new UserModel();
 
-  constructor(@Inject(AuthFacadeImpl) private authFacade: AuthFacade, private router: Router, private title: Title) {
+  public constructor(@Inject(AuthFacadeImpl) private authFacade: AuthFacade, private router: Router, private title: Title) {
     title.setTitle('Sign in to Wlodzimierz - Wlodzimierz');
   }
 

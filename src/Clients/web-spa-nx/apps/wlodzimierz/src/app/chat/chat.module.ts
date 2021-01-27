@@ -8,6 +8,7 @@ import { ConversationListComponent } from './conversations/conversation-list/con
 import { ConversationMessageListComponent } from './conversation-messages/conversation-message-list/conversation-message-list.component';
 import { ConversationMessageComponent } from './conversation-messages/conversation-message/conversation-message.component';
 import { ConversationMessageCreateComponent } from './conversation-messages/conversation-message-create/conversation-message-create.component';
+import { ReversePipe } from './shared/reverse.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ConversationMessageCreateComponent } from './conversation-messages/conv
     ConversationListComponent,
     ConversationMessageComponent,
     ConversationMessageListComponent,
-    ConversationMessageCreateComponent
+    ConversationMessageCreateComponent,
+    ReversePipe
   ],
   imports: [CommonModule, ChatRoutingModule, ReactiveFormsModule]
 })

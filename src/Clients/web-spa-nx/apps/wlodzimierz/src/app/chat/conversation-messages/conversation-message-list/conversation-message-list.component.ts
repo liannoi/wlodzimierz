@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -25,7 +25,7 @@ import { AuthRouting } from '../../../auth/auth.routing';
   templateUrl: './conversation-message-list.component.html',
   styleUrls: ['./conversation-message-list.component.scss']
 })
-export class ConversationMessageListComponent implements OnInit, VerifyNotification, MessagesNotification {
+export class ConversationMessageListComponent implements OnInit, OnDestroy, VerifyNotification, MessagesNotification {
 
   private messagesSubject = new BehaviorSubject<ConversationMessagesListModel>(new ConversationMessagesListModel());
   private conversationSubject = new BehaviorSubject<ConversationModel>(new ConversationModel());
@@ -62,6 +62,11 @@ export class ConversationMessageListComponent implements OnInit, VerifyNotificat
     if (!this.isRefreshed) {
       this.refresh();
     }
+  }
+
+  public ngOnDestroy(): void {
+    this.conversationsService.onDispose();
+    this.authFacade.onDispose();
   }
 
   public onVerifyFailed(error: HttpErrorResponse): void {
