@@ -5,11 +5,17 @@
   </div>
   <section *ngIf='conversation != null; then conversationBlock else attentionBlock'></section>
 </div>
+<section *ngIf='conversation != null; then createBlock'></section>
 
 <ng-template #conversationBlock>
   <div class='col-sm-9 w-100 min-vh-100 container-scroll overflow-auto border bg-primary-soft'>
     <wlodzimierz-conversation-message-list [conversation]='conversation'></wlodzimierz-conversation-message-list>
   </div>
+</ng-template>
+
+<ng-template #createBlock>
+  <wlodzimierz-conversation-message-create [conversation]='conversation'
+                                           [user]='user'></wlodzimierz-conversation-message-create>
 </ng-template>
 
 <ng-template #attentionBlock>
