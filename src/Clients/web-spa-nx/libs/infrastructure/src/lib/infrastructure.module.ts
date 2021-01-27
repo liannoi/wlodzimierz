@@ -10,18 +10,22 @@ import { ConversationsServiceImpl } from '@wlodzimierz/infrastructure/src/lib/st
 import { ConversationsEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storage/conversations/conversations-endpoint.builder';
 import { UsersServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/users.service';
 import { UsernameExtractorImpl } from '@wlodzimierz/infrastructure/src/lib/extractors/username.extractor';
+import { ConversationMessagesServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/conversation-messages/conversation-messages.service';
+import { ConversationMessagesEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storage/conversation-messages/conversation-messages-endpoint.builder';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
   providers: [
+    AuthFacadeImpl,
     AuthServiceImpl,
     UsersServiceImpl,
     JwtTokenServiceImpl,
-    AuthFacadeImpl,
     UsersEndpointBuilder,
     UsernameExtractorImpl,
     ConversationsServiceImpl,
-    ConversationsEndpointBuilder
+    ConversationsEndpointBuilder,
+    ConversationMessagesServiceImpl,
+    ConversationMessagesEndpointBuilder
   ]
 })
 export class InfrastructureModule {
