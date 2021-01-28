@@ -1,0 +1,29 @@
+<ng-container
+  *ngIf='
+    currentMessage.ownerUser | uequals: currentUser;
+    then primaryMessage;
+    else lightMessage
+  '
+></ng-container>
+
+<ng-template #primaryMessage>
+  <div class='row mt-2'>
+    <div class='offset-sm-6'></div>
+    <div class='col-sm-6'>
+      <p class='alert rounded alert-primary d-inline-block float-right'>
+        {{ currentMessage.message }}
+      </p>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #lightMessage>
+  <div class='row mt-2'>
+    <div class='col-sm-6'>
+      <p class='alert rounded alert-light d-inline-block float-left'>
+        {{ currentMessage.message }}
+      </p>
+    </div>
+    <div class='offset-sm-6'></div>
+  </div>
+</ng-template>

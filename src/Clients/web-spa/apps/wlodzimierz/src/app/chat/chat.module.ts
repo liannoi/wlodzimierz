@@ -13,15 +13,17 @@ import { InterlocutorPipe } from './conversations/shared/interlocutor.pipe';
 import { ConversationsEqualsPipe } from './conversations/shared/conversations-equals.pipe';
 import { UsersEqualsPipe } from './conversations/shared/users-equals.pipe';
 import { ConversationComponent } from './conversations/conversation/conversation.component';
+import { ConversationMessageComponent } from './conversation-messages/conversation-message/conversation-message.component';
 
 @NgModule({
   declarations: [
     ChatComponent,
+    ConversationComponent,
     ConversationListComponent,
+    ConversationMessageComponent,
     ConversationMessageLastComponent,
     ConversationMessageListComponent,
     ConversationMessageCreateComponent,
-    ConversationComponent,
     ReversePipe,
     InterlocutorPipe,
     ConversationsEqualsPipe,
