@@ -1,19 +1,9 @@
 <div class='container-fluid'>
-  <div
-    (click)='onConversationChanged(conversation)'
-    *ngFor='let conversation of currentConversations?.items; index as i'
-    [ngClass]="{
-      'bg-white': conversation | cequals: currentConversation,
-      'bg-transparent': !(conversation | cequals: currentConversation),
-      selected: conversation | cequals: currentConversation
-    }"
-    class='card mb-2'
-  >
-    <div class='card-body'>
-      <h5 class='card-title'>{{ conversation | interlocutor: currentUser }}</h5>
-      <wlodzimierz-conversation-message
-        [conversation]='conversation'
-      ></wlodzimierz-conversation-message>
-    </div>
-  </div>
+  <wlodzimierz-conversation
+    (conversationChanged)='onConversationChanged($event)'
+    *ngFor='let conversation of conversations?.items; index as i'
+    [conversation]='conversation'
+    [currentConversation]='currentConversation'
+    [user]='currentUser'
+  ></wlodzimierz-conversation>
 </div>

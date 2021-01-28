@@ -12,11 +12,11 @@ import { ConversationMessagesListModel } from '@wlodzimierz/domain/src/lib/model
 import { ConversationModel } from '@wlodzimierz/domain/src/lib/models/conversation.model';
 
 @Component({
-  selector: 'wlodzimierz-conversation-message',
-  templateUrl: './conversation-message.component.html',
-  styleUrls: ['./conversation-message.component.scss']
+  selector: 'wlodzimierz-conversation-message-last',
+  templateUrl: './conversation-message-last.component.html',
+  styleUrls: ['./conversation-message-last.component.scss']
 })
-export class ConversationMessageComponent implements OnInit, OnDestroy, MessagesNotification {
+export class ConversationMessageLastComponent implements OnInit, OnDestroy, MessagesNotification {
   public currentMessage: ConversationMessageModel;
   private currentConversation: ConversationModel;
   private conversationSubject: BehaviorSubject<ConversationModel> = new BehaviorSubject<ConversationModel>(
@@ -44,14 +44,14 @@ export class ConversationMessageComponent implements OnInit, OnDestroy, Messages
   ///////////////////////////////////////////////////////////////////////////
 
   public ngOnInit(): void {
-    this.fetchMessages();
+    this.followMessages();
   }
 
   public ngOnDestroy(): void {
     this.conversationsService.onDispose();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   public onMessagesFailed(error: HttpErrorResponse): void {
   }
 
@@ -63,7 +63,7 @@ export class ConversationMessageComponent implements OnInit, OnDestroy, Messages
   // Helpers
   ///////////////////////////////////////////////////////////////////////////
 
-  private fetchMessages(): void {
+  private followMessages(): void {
     this.conversationSubject.subscribe((model: ConversationModel) => {
       this.currentConversation = model;
       this.conversationsService.getMessages(new MessagesQuery(model.conversationId), this);

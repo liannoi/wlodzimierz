@@ -13,27 +13,22 @@ import { ConversationMessagesService } from '@wlodzimierz/application/src/lib/st
 import { CreateCommand } from '@wlodzimierz/application/src/lib/storage/conversation-messages/commands/create.command';
 // eslint-disable-next-line max-len
 import { ConversationMessageCreatedNotification } from '@wlodzimierz/domain/src/lib/notifications/conversation-messages/conversation-message-created.notification';
-import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/verify.command';
-import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth.facade';
-import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
-import { VerifyNotification } from '@wlodzimierz/domain/src/lib/notifications/users/verify.notification';
 
 @Component({
   selector: 'wlodzimierz-conversation-message-create',
   templateUrl: './conversation-message-create.component.html',
   styleUrls: ['./conversation-message-create.component.scss']
 })
-export class ConversationMessageCreateComponent
-  implements OnInit, ConversationMessageCreatedNotification, VerifyNotification {
+export class ConversationMessageCreateComponent implements OnInit, ConversationMessageCreatedNotification {
   public group: FormGroup;
   private currentUser: UserModel;
   private currentConversation: ConversationModel;
   private currentMessage: ConversationMessageModel;
   private conversationSubject = new BehaviorSubject<ConversationModel>(new ConversationModel());
+  private userSubject: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(new UserModel());
 
   public constructor(
-    @Inject(ConversationMessagesServiceImpl) private conversationMessagesService: ConversationMessagesService,
-    @Inject(AuthFacadeImpl) private authFacade: AuthFacade
+    @Inject(ConversationMessagesServiceImpl) private conversationMessagesService: ConversationMessagesService
   ) {
   }
 
@@ -43,6 +38,19 @@ export class ConversationMessageCreateComponent
 
   public get message(): AbstractControl {
     return this.group.get('message') as AbstractControl;
+  }
+
+  ///////////////////////////////////////////////////////////////////////////
+  // Processing the received user from a parent component
+  ///////////////////////////////////////////////////////////////////////////
+
+  public get user(): UserModel {
+    return this.userSubject.getValue();
+  }
+
+  @Input()
+  public set user(value: UserModel) {
+    this.userSubject.next(value);
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -64,7 +72,8 @@ export class ConversationMessageCreateComponent
 
   public ngOnInit(): void {
     this.setupForm();
-    this.refresh();
+    this.followUser();
+    this.followConversation();
   }
 
   public onSendMessage(): void {
@@ -87,26 +96,21 @@ export class ConversationMessageCreateComponent
     this.group.reset();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-function
-  public onVerifyFailed(error: HttpErrorResponse): void {
-  }
-
-  public onVerifySuccess(user: UserModel): void {
-    this.currentUser = user;
-  }
-
   ///////////////////////////////////////////////////////////////////////////
   // Helpers
   ///////////////////////////////////////////////////////////////////////////
-
-  private refresh(): void {
-    this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
-    this.conversationSubject.subscribe((model: ConversationModel) => this.currentConversation = model);
-  }
 
   private setupForm(): void {
     this.group = new FormGroup({
       message: new FormControl(this.currentMessage?.message, [Validators.required])
     });
+  }
+
+  private followConversation() {
+    this.conversationSubject.subscribe((model: ConversationModel) => (this.currentConversation = model));
+  }
+
+  private followUser() {
+    this.userSubject.subscribe((user: UserModel) => (this.currentUser = user));
   }
 }
