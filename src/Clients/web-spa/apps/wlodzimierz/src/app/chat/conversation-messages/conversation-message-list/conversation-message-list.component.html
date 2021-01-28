@@ -6,7 +6,7 @@
       </h5>
     </div>
   </div>
-  <ng-container *ngFor='let message of messages.items | reverse; index as i'>
+  <ng-container *ngFor='let message of messages.items | reverse; trackBy: identify'>
     <wlodzimierz-conversation-message
       [message]='message'
       [user]='currentUser'

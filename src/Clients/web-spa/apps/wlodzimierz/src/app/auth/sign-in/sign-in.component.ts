@@ -7,8 +7,8 @@ import { AbstractControl, FormControl, Validators } from '@angular/forms';
 import { JwtTokenModel } from '@wlodzimierz/domain/src/lib/models/jwt-token.model';
 import { unauthorizedValidator } from '@wlodzimierz/application/src/lib/storage/users/validators/unauthorized.validator';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
-import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth.facade';
-import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
+import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/services/auth.facade';
+import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/services/auth.facade';
 import { SignInNotification } from '@wlodzimierz/domain/src/lib/notifications/users/sign-in.notification';
 import { SignInCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/sign-in.command';
 

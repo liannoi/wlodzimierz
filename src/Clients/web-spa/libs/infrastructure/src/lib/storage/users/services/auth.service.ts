@@ -29,8 +29,7 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
 
     this.http
       .post<JwtTokenModel>(endpoint.url, request.user)
-      .pipe(catchError(this.handleError))
-      .pipe(takeUntil(this.stop$))
+      .pipe(catchError(this.handleError), takeUntil(this.subject))
       .subscribe(
         (token: JwtTokenModel) => notification.onSignInSuccess(token),
         (error) => notification.onSignInFailed(error)
@@ -44,8 +43,7 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
 
     this.http
       .post<JwtTokenModel>(endpoint.url, request.user)
-      .pipe(catchError(this.handleError))
-      .pipe(takeUntil(this.stop$))
+      .pipe(catchError(this.handleError), takeUntil(this.subject))
       .subscribe(
         (token: JwtTokenModel) => notification.onSignUpSuccess(token),
         (error) => notification.onSignUpFailed(error)
@@ -60,8 +58,7 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
 
     this.http
       .post<UserModel>(endpoint.url, token, this.withAuthorization(token))
-      .pipe(catchError(this.handleError))
-      .pipe(takeUntil(this.stop$))
+      .pipe(catchError(this.handleError), takeUntil(this.subject))
       .subscribe(
         (user: UserModel) => notification.onVerifySuccess(user),
         (error) => notification.onVerifyFailed(error)

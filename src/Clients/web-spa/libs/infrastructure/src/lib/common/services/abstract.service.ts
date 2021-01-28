@@ -6,14 +6,14 @@ import { OnDispose } from '@wlodzimierz/application/src/lib/common/interfaces/di
 import { JwtTokenModel } from '@wlodzimierz/domain/src/lib/models/jwt-token.model';
 
 export abstract class AbstractService implements OnDispose {
-  protected stop$: Subject<void> = new Subject<void>();
+  protected subject: Subject<void> = new Subject<void>();
 
   protected constructor(protected http: HttpClient) {
   }
 
   public onDispose(): void {
-    this.stop$.next();
-    this.stop$.complete();
+    this.subject.next();
+    this.subject.complete();
   }
 
   protected handleError(error: HttpErrorResponse): Observable<never> {

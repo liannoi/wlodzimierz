@@ -1,8 +1,8 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth.facade';
-import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
+import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/services/auth.facade';
+import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/services/auth.facade';
 
 import { HomeRouting } from '../../home/home.routing';
 

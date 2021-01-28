@@ -1,31 +1,32 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { ConversationMessageModel } from '@wlodzimierz/domain/src/lib/models/conversation-message.model';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
-import { BehaviorSubject } from 'rxjs';
+import { ConversationMessageSubscriber } from '@wlodzimierz/application/src/lib/storage/conversation-messages/subscribers/conversation-message.subscriber';
+import { UserSubscriber } from '@wlodzimierz/application/src/lib/storage/users/subscribers/user.subscriber';
 
 @Component({
   selector: 'wlodzimierz-conversation-message',
   templateUrl: './conversation-message.component.html',
   styleUrls: ['./conversation-message.component.scss']
 })
-export class ConversationMessageComponent implements OnInit {
+export class ConversationMessageComponent implements OnInit, OnDestroy {
   public currentMessage: ConversationMessageModel;
   public currentUser: UserModel;
-  private messageSubject: BehaviorSubject<ConversationMessageModel> = new BehaviorSubject<ConversationMessageModel>(new ConversationMessageModel());
-  private userSubject: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(new UserModel());
+  private messageSubscriber: ConversationMessageSubscriber = new ConversationMessageSubscriber();
+  private userSubscriber: UserSubscriber = new UserSubscriber();
 
   ///////////////////////////////////////////////////////////////////////////
   // Processing the received message from a parent component
   ///////////////////////////////////////////////////////////////////////////
 
   public get message(): ConversationMessageModel {
-    return this.messageSubject.getValue();
+    return this.messageSubscriber.model;
   }
 
   @Input()
   public set message(value: ConversationMessageModel) {
-    this.messageSubject.next(value);
+    this.messageSubscriber.model = value;
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -33,12 +34,12 @@ export class ConversationMessageComponent implements OnInit {
   ///////////////////////////////////////////////////////////////////////////
 
   public get user(): UserModel {
-    return this.userSubject.getValue();
+    return this.userSubscriber.model;
   }
 
   @Input()
   public set user(value: UserModel) {
-    this.userSubject.next(value);
+    this.userSubscriber.model = value;
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -50,15 +51,20 @@ export class ConversationMessageComponent implements OnInit {
     this.followMessage();
   }
 
+  public ngOnDestroy(): void {
+    this.messageSubscriber.onDispose();
+    this.userSubscriber.onDispose();
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Helpers
   ///////////////////////////////////////////////////////////////////////////
 
   private followUser(): void {
-    this.userSubject.subscribe((user: UserModel) => this.currentUser = user);
+    this.userSubscriber.follow((user: UserModel) => this.currentUser = user);
   }
 
   private followMessage(): void {
-    this.messageSubject.subscribe((message: ConversationMessageModel) => this.currentMessage = message);
+    this.messageSubscriber.follow((message: ConversationMessageModel) => this.currentMessage = message);
   }
 }

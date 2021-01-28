@@ -22,8 +22,7 @@ export class ConversationMessagesServiceImpl extends AbstractService implements 
 
     this.http
       .post(endpoint.url, request.model)
-      .pipe(catchError(this.handleError))
-      .pipe(takeUntil(this.stop$))
+      .pipe(catchError(this.handleError), takeUntil(this.subject))
       .subscribe(
         (result: number) => notification.onCreatedSuccess(result),
         (error) => notification.onCreatedFailed(error)

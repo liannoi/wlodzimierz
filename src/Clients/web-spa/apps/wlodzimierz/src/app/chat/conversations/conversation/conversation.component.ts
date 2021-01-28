@@ -1,33 +1,35 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+
 import { ConversationModel } from '@wlodzimierz/domain/src/lib/models/conversation.model';
-import { BehaviorSubject } from 'rxjs';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
+import { ConversationSubscriber } from '@wlodzimierz/application/src/lib/storage/conversations/subscribers/conversation.subscriber';
+import { UserSubscriber } from '@wlodzimierz/application/src/lib/storage/users/subscribers/user.subscriber';
 
 @Component({
   selector: 'wlodzimierz-conversation',
   templateUrl: './conversation.component.html',
   styleUrls: ['./conversation.component.scss']
 })
-export class ConversationComponent implements OnInit {
+export class ConversationComponent implements OnInit, OnDestroy {
   @Output() conversationChanged: EventEmitter<ConversationModel> = new EventEmitter<ConversationModel>();
   public conversationModel: ConversationModel;
   public currentConversationModel: ConversationModel;
   public currentUser: UserModel;
-  private conversationSubject: BehaviorSubject<ConversationModel> = new BehaviorSubject<ConversationModel>(new ConversationModel());
-  private currentConversationSubject: BehaviorSubject<ConversationModel> = new BehaviorSubject<ConversationModel>(new ConversationModel());
-  private userSubject: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(new UserModel());
+  private conversationSubscriber: ConversationSubscriber = new ConversationSubscriber();
+  private currentConversationSubscriber: ConversationSubscriber = new ConversationSubscriber();
+  private userSubscriber: UserSubscriber = new UserSubscriber();
 
   ///////////////////////////////////////////////////////////////////////////
   // Processing the received another conversation from a parent component
   ///////////////////////////////////////////////////////////////////////////
 
   public get conversation(): ConversationModel {
-    return this.conversationSubject.getValue();
+    return this.conversationSubscriber.model;
   }
 
   @Input()
   public set conversation(value: ConversationModel) {
-    this.conversationSubject.next(value);
+    this.conversationSubscriber.model = value;
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -35,12 +37,12 @@ export class ConversationComponent implements OnInit {
   ///////////////////////////////////////////////////////////////////////////
 
   public get currentConversation(): ConversationModel {
-    return this.currentConversationSubject.getValue();
+    return this.currentConversationSubscriber.model;
   }
 
   @Input()
   public set currentConversation(value: ConversationModel) {
-    this.currentConversationSubject.next(value);
+    this.currentConversationSubscriber.model = value;
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -48,12 +50,12 @@ export class ConversationComponent implements OnInit {
   ///////////////////////////////////////////////////////////////////////////
 
   public get user(): UserModel {
-    return this.userSubject.getValue();
+    return this.userSubscriber.model;
   }
 
   @Input()
   public set user(value: UserModel) {
-    this.userSubject.next(value);
+    this.userSubscriber.model = value;
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -63,6 +65,12 @@ export class ConversationComponent implements OnInit {
   public ngOnInit(): void {
     this.followConversation();
     this.followUser();
+  }
+
+  public ngOnDestroy(): void {
+    this.conversationSubscriber.onDispose();
+    this.currentConversationSubscriber.onDispose();
+    this.userSubscriber.onDispose();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -79,11 +87,11 @@ export class ConversationComponent implements OnInit {
   ///////////////////////////////////////////////////////////////////////////
 
   private followConversation() {
-    this.conversationSubject.subscribe((model: ConversationModel) => (this.conversationModel = model));
-    this.currentConversationSubject.subscribe((model: ConversationModel) => (this.currentConversationModel = model));
+    this.conversationSubscriber.follow((model: ConversationModel) => (this.conversationModel = model));
+    this.currentConversationSubscriber.follow((model: ConversationModel) => (this.currentConversationModel = model));
   }
 
   private followUser() {
-    this.userSubject.subscribe((model: UserModel) => (this.currentUser = model));
+    this.userSubscriber.follow((model: UserModel) => (this.currentUser = model));
   }
 }

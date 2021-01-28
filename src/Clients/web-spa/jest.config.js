@@ -8,7 +8,7 @@ module.exports = {
     '<rootDir>/libs/apps',
     '<rootDir>/libs/chat',
     '<rootDir>/libs/apps',
-    '<rootDir>/libs/auth',
+    '<rootDir>/libs/services',
     '<rootDir>/libs/infrastructure',
     '<rootDir>/libs/domain',
     '<rootDir>/libs/application'

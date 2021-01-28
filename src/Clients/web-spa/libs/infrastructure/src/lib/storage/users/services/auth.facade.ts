@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
 
-import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
+import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/services/auth.facade';
 import { AuthService } from '@wlodzimierz/application/src/lib/storage/users/services/auth.service';
-import { AuthServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth/auth.service';
+import { AuthServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/services/auth.service';
 import { JwtTokenService } from '@wlodzimierz/application/src/lib/storage/users/services/jwt-token.service';
 import { JwtTokenModel } from '@wlodzimierz/domain/src/lib/models/jwt-token.model';
-import { JwtTokenServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth/jwt-token.service';
+import { JwtTokenServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/services/jwt-token.service';
 import { SignInCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/sign-in.command';
 import { SignInNotification } from '@wlodzimierz/domain/src/lib/notifications/users/sign-in.notification';
 import { SignUpCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/sign-up.command';

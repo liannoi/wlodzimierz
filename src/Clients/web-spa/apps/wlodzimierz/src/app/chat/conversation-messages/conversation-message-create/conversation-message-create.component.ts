@@ -1,31 +1,29 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-
-import { BehaviorSubject } from 'rxjs';
 
 import { ConversationMessageModel } from '@wlodzimierz/domain/src/lib/models/conversation-message.model';
 import { ConversationModel } from '@wlodzimierz/domain/src/lib/models/conversation.model';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
-// eslint-disable-next-line max-len
 import { ConversationMessagesServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/conversation-messages/conversation-messages.service';
 import { ConversationMessagesService } from '@wlodzimierz/application/src/lib/storage/conversation-messages/conversation-messages.service';
 import { CreateCommand } from '@wlodzimierz/application/src/lib/storage/conversation-messages/commands/create.command';
-// eslint-disable-next-line max-len
 import { ConversationMessageCreatedNotification } from '@wlodzimierz/domain/src/lib/notifications/conversation-messages/conversation-message-created.notification';
+import { ConversationSubscriber } from '@wlodzimierz/application/src/lib/storage/conversations/subscribers/conversation.subscriber';
+import { UserSubscriber } from '@wlodzimierz/application/src/lib/storage/users/subscribers/user.subscriber';
 
 @Component({
   selector: 'wlodzimierz-conversation-message-create',
   templateUrl: './conversation-message-create.component.html',
   styleUrls: ['./conversation-message-create.component.scss']
 })
-export class ConversationMessageCreateComponent implements OnInit, ConversationMessageCreatedNotification {
+export class ConversationMessageCreateComponent implements OnInit, OnDestroy, ConversationMessageCreatedNotification {
   public group: FormGroup;
   private currentUser: UserModel;
   private currentConversation: ConversationModel;
   private currentMessage: ConversationMessageModel;
-  private conversationSubject = new BehaviorSubject<ConversationModel>(new ConversationModel());
-  private userSubject: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(new UserModel());
+  private conversationSubscriber: ConversationSubscriber = new ConversationSubscriber();
+  private userSubscriber: UserSubscriber = new UserSubscriber();
 
   public constructor(
     @Inject(ConversationMessagesServiceImpl) private conversationMessagesService: ConversationMessagesService
@@ -45,12 +43,12 @@ export class ConversationMessageCreateComponent implements OnInit, ConversationM
   ///////////////////////////////////////////////////////////////////////////
 
   public get user(): UserModel {
-    return this.userSubject.getValue();
+    return this.userSubscriber.model;
   }
 
   @Input()
   public set user(value: UserModel) {
-    this.userSubject.next(value);
+    this.userSubscriber.model = value;
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -58,12 +56,12 @@ export class ConversationMessageCreateComponent implements OnInit, ConversationM
   ///////////////////////////////////////////////////////////////////////////
 
   public get conversation(): ConversationModel {
-    return this.conversationSubject.getValue();
+    return this.conversationSubscriber.model;
   }
 
   @Input()
   public set conversation(value: ConversationModel) {
-    this.conversationSubject.next(value);
+    this.conversationSubscriber.model = value;
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -74,6 +72,12 @@ export class ConversationMessageCreateComponent implements OnInit, ConversationM
     this.setupForm();
     this.followUser();
     this.followConversation();
+  }
+
+  public ngOnDestroy(): void {
+    this.conversationMessagesService.onDispose();
+    this.conversationSubscriber.onDispose();
+    this.userSubscriber.onDispose();
   }
 
   public onSendMessage(): void {
@@ -107,10 +111,10 @@ export class ConversationMessageCreateComponent implements OnInit, ConversationM
   }
 
   private followConversation() {
-    this.conversationSubject.subscribe((model: ConversationModel) => (this.currentConversation = model));
+    this.conversationSubscriber.follow((model: ConversationModel) => (this.currentConversation = model));
   }
 
   private followUser() {
-    this.userSubject.subscribe((user: UserModel) => (this.currentUser = user));
+    this.userSubscriber.follow((user: UserModel) => (this.currentUser = user));
   }
 }

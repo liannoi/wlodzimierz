@@ -25,8 +25,7 @@ export class ConversationsServiceImpl extends AbstractService implements Convers
 
     this.http
       .get<ConversationMessagesListModel>(endpoint.url)
-      .pipe(catchError(this.handleError))
-      .pipe(takeUntil(this.stop$))
+      .pipe(catchError(this.handleError), takeUntil(this.subject))
       .subscribe(
         (result: ConversationMessagesListModel) => notification.onMessagesSuccess(result),
         (error) => notification.onMessagesFailed(error)

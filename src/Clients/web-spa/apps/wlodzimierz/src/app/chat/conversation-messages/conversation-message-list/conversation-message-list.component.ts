@@ -1,8 +1,6 @@
 import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { BehaviorSubject } from 'rxjs';
-
 import { ConversationsServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/conversations/conversations.service';
 import { ConversationsService } from '@wlodzimierz/application/src/lib/storage/conversations/conversations.service';
 import { ConversationMessagesListModel } from '@wlodzimierz/domain/src/lib/models/conversation-messages-list.model';
@@ -10,18 +8,24 @@ import { ConversationModel } from '@wlodzimierz/domain/src/lib/models/conversati
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
 import { MessagesQuery } from '@wlodzimierz/application/src/lib/storage/conversations/queries/messages.query';
 import { MessagesNotification } from '@wlodzimierz/domain/src/lib/notifications/conversations/messages.notification';
+import { ConversationMessageModel } from '@wlodzimierz/domain/src/lib/models/conversation-message.model';
+import { Identifiable } from '@wlodzimierz/application/src/lib/common/interfaces/identifiable.interface';
+import { ConversationMessageListSubscriber } from '@wlodzimierz/application/src/lib/storage/conversation-messages/subscribers/conversation-message-list.subscriber';
+import { ConversationSubscriber } from '@wlodzimierz/application/src/lib/storage/conversations/subscribers/conversation.subscriber';
+import { UserSubscriber } from '@wlodzimierz/application/src/lib/storage/users/subscribers/user.subscriber';
 
 @Component({
   selector: 'wlodzimierz-conversation-message-list',
   templateUrl: './conversation-message-list.component.html',
   styleUrls: ['./conversation-message-list.component.scss']
 })
-export class ConversationMessageListComponent implements OnInit, OnDestroy, MessagesNotification {
+export class ConversationMessageListComponent
+  implements OnInit, OnDestroy, Identifiable<ConversationMessageModel, number>, MessagesNotification {
   public currentConversation: ConversationModel;
   public currentUser: UserModel;
-  private messagesSubject = new BehaviorSubject<ConversationMessagesListModel>(new ConversationMessagesListModel());
-  private conversationSubject = new BehaviorSubject<ConversationModel>(new ConversationModel());
-  private userSubject: BehaviorSubject<UserModel> = new BehaviorSubject<UserModel>(new UserModel());
+  private messagesSubscriber: ConversationMessageListSubscriber = new ConversationMessageListSubscriber();
+  private conversationSubscriber: ConversationSubscriber = new ConversationSubscriber();
+  private userSubscriber: UserSubscriber = new UserSubscriber();
 
   public constructor(@Inject(ConversationsServiceImpl) private conversationsService: ConversationsService) {
   }
@@ -31,12 +35,12 @@ export class ConversationMessageListComponent implements OnInit, OnDestroy, Mess
   ///////////////////////////////////////////////////////////////////////////
 
   public get user(): UserModel {
-    return this.userSubject.getValue();
+    return this.userSubscriber.model;
   }
 
   @Input()
   public set user(value: UserModel) {
-    this.userSubject.next(value);
+    this.userSubscriber.model = value;
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -44,12 +48,12 @@ export class ConversationMessageListComponent implements OnInit, OnDestroy, Mess
   ///////////////////////////////////////////////////////////////////////////
 
   public get messages(): ConversationMessagesListModel {
-    return this.messagesSubject.getValue();
+    return this.messagesSubscriber.model;
   }
 
   @Input()
   public set messages(value: ConversationMessagesListModel) {
-    this.messagesSubject.next(value);
+    this.messagesSubscriber.model = value;
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -57,12 +61,12 @@ export class ConversationMessageListComponent implements OnInit, OnDestroy, Mess
   ///////////////////////////////////////////////////////////////////////////
 
   public get conversation(): ConversationModel {
-    return this.conversationSubject.getValue();
+    return this.conversationSubscriber.model;
   }
 
   @Input()
   public set conversation(value: ConversationModel) {
-    this.conversationSubject.next(value);
+    this.conversationSubscriber.model = value;
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -76,14 +80,21 @@ export class ConversationMessageListComponent implements OnInit, OnDestroy, Mess
 
   public ngOnDestroy(): void {
     this.conversationsService.onDispose();
+    this.messagesSubscriber.onDispose();
+    this.conversationSubscriber.onDispose();
+    this.userSubscriber.onDispose();
   }
 
   public onMessagesSuccess(messages: ConversationMessagesListModel): void {
-    this.messagesSubject.next(messages);
+    this.messagesSubscriber.publish(messages);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   public onMessagesFailed(error: HttpErrorResponse): void {
+  }
+
+  public identify(index: number, message: ConversationMessageModel): number {
+    return message.conversationMessageId;
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -91,11 +102,11 @@ export class ConversationMessageListComponent implements OnInit, OnDestroy, Mess
   ///////////////////////////////////////////////////////////////////////////
 
   private followUser(): void {
-    this.userSubject.subscribe((user: UserModel) => (this.currentUser = user));
+    this.userSubscriber.follow((user: UserModel) => (this.currentUser = user));
   }
 
   private followMessages(): void {
-    this.conversationSubject.subscribe((conversationModel: ConversationModel) => {
+    this.conversationSubscriber.follow((conversationModel: ConversationModel) => {
       this.currentConversation = conversationModel;
       this.conversationsService.getMessages(new MessagesQuery(this.currentConversation.conversationId, 99), this);
     });
