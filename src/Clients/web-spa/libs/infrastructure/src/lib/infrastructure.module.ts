@@ -11,6 +11,7 @@ import { ConversationsServiceImpl } from '@wlodzimierz/infrastructure/src/lib/st
 import { ConversationsEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storage/conversations/conversations-endpoint.builder';
 import { ConversationMessagesServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/conversation-messages/conversation-messages.service';
 import { ConversationMessagesEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storage/conversation-messages/conversation-messages-endpoint.builder';
+import { AppSettingsServiceImpl } from '@wlodzimierz/infrastructure/src/lib/settings/app-settings.service';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
@@ -23,7 +24,11 @@ import { ConversationMessagesEndpointBuilder } from '@wlodzimierz/infrastructure
     ConversationsServiceImpl,
     ConversationsEndpointBuilder,
     ConversationMessagesServiceImpl,
-    ConversationMessagesEndpointBuilder
+    ConversationMessagesEndpointBuilder,
+    {
+      provide: AppSettingsServiceImpl,
+      useValue: { AppSettingsServiceImpl }
+    }
   ]
 })
 export class InfrastructureModule {

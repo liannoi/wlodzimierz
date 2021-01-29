@@ -1,5 +1,5 @@
-import { EndpointBuilder } from '@wlodzimierz/application/src/lib/common/endpoints/endpoint.builder';
-import { Endpoint } from '@wlodzimierz/application/src/lib/common/endpoints/endpoint.model';
+import { EndpointBuilder } from '@wlodzimierz/application/src/lib/core/endpoints/endpoint.builder';
+import { Endpoint } from '@wlodzimierz/application/src/lib/core/endpoints/endpoint.model';
 
 export abstract class AbstractEndpointBuilder implements EndpointBuilder {
   private readonly initialUrl: string;
@@ -7,7 +7,7 @@ export abstract class AbstractEndpointBuilder implements EndpointBuilder {
   private action: string;
   private pageSize: number;
 
-  protected constructor(private baseAddress: string, private controller: string) {
+  protected constructor(private controller: string, private baseAddress: string = 'https://localhost:5001/api') {
     this.initialUrl = `${baseAddress}/${controller}`;
   }
 

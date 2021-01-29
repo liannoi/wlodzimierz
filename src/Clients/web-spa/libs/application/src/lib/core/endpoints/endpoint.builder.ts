@@ -1,4 +1,4 @@
-import { Endpoint } from '@wlodzimierz/application/src/lib/common/endpoints/endpoint.model';
+import { Endpoint } from '@wlodzimierz/application/src/lib/core/endpoints/endpoint.model';
 
 export interface EndpointBuilder {
   withParameter(parameter: string): EndpointBuilder;

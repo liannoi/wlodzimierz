@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { catchError, takeUntil } from 'rxjs/operators';
 
-import { AbstractService } from '@wlodzimierz/infrastructure/src/lib/common/services/abstract.service';
+import { AbstractService } from '@wlodzimierz/infrastructure/src/lib/common/abstract.service';
 import { AuthService } from '@wlodzimierz/application/src/lib/storage/users/services/auth.service';
 import { SignInCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/sign-in.command';
 import { SignInNotification } from '@wlodzimierz/domain/src/lib/notifications/users/sign-in.notification';
@@ -14,7 +14,7 @@ import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/co
 import { VerifyNotification } from '@wlodzimierz/domain/src/lib/notifications/users/verify.notification';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
 import { UsersEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storage/users/users-endpoint.builder';
-import { AbstractEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/common/endpoints/abstract-endpoint.builder';
+import { AbstractEndpointBuilder } from '@wlodzimierz/application/src/lib/core/endpoints/abstract-endpoint.builder';
 
 @Injectable()
 export class AuthServiceImpl extends AbstractService implements AuthService {

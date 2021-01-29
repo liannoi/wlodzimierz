@@ -6,7 +6,7 @@ import { catchError, takeUntil } from 'rxjs/operators';
 import { ConversationsService } from '@wlodzimierz/application/src/lib/storage/conversations/conversations.service';
 import { MessagesQuery } from '@wlodzimierz/application/src/lib/storage/conversations/queries/messages.query';
 import { MessagesNotification } from '@wlodzimierz/domain/src/lib/notifications/conversations/messages.notification';
-import { AbstractService } from '@wlodzimierz/infrastructure/src/lib/common/services/abstract.service';
+import { AbstractService } from '@wlodzimierz/infrastructure/src/lib/common/abstract.service';
 import { ConversationsEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storage/conversations/conversations-endpoint.builder';
 import { ConversationMessagesListModel } from '@wlodzimierz/domain/src/lib/models/conversation-messages-list.model';
 
