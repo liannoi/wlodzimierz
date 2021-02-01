@@ -10,17 +10,24 @@ import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/servi
 import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/verify.command';
 
 import { AuthRouting } from '../../auth/auth.routing';
+import { AppSettingsServiceImpl } from '@wlodzimierz/infrastructure/src/lib/settings/app-settings.service';
+import { AppSettingsService } from '@wlodzimierz/application/src/lib/core/settings/app-settings.service';
+import { AppSettingsQuery } from '@wlodzimierz/application/src/lib/core/settings/app-settings.query';
+import { AppSettings } from '@wlodzimierz/application/src/lib/core/settings/app-settings.model';
+import { AppSettingsNotification } from '@wlodzimierz/application/src/lib/core/settings/app-settings.notification';
 
 @Component({
   selector: 'wlodzimierz-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit, OnDestroy, VerifyNotification {
+export class ProfileComponent implements OnInit, OnDestroy, VerifyNotification, AppSettingsNotification {
   public currentUser: UserModel;
+  public photo: string;
 
   public constructor(
     @Inject(AuthFacadeImpl) private authFacade: AuthFacade,
+    @Inject(AppSettingsServiceImpl) private settingsService: AppSettingsService,
     private router: Router,
     private titleService: Title
   ) {
@@ -31,12 +38,18 @@ export class ProfileComponent implements OnInit, OnDestroy, VerifyNotification {
   // Interface handlers
   ///////////////////////////////////////////////////////////////////////////
 
-  public ngOnInit(): void {
-    this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
+  public async ngOnInit() {
+    await this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
   }
 
   public ngOnDestroy(): void {
     this.authFacade.onDispose();
+    this.settingsService.onDispose();
+  }
+
+  public onSettingsSuccess(settings: AppSettings): void {
+    const baseAddress = settings.api.baseAddress.slice(0, -4);
+    this.photo = `${baseAddress}${this.currentUser.photo}`;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -45,8 +58,8 @@ export class ProfileComponent implements OnInit, OnDestroy, VerifyNotification {
     this.router.navigate([AuthRouting.SignIn]);
   }
 
-  public onVerifySuccess(user: UserModel): void {
+  public async onVerifySuccess(user: UserModel) {
     this.currentUser = user;
-    console.log(user);
+    await this.settingsService.getAll(new AppSettingsQuery(), this);
   }
 }

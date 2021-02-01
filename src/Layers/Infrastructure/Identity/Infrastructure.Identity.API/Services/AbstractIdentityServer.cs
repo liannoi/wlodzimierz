@@ -31,10 +31,7 @@ namespace Infrastructure.Identity.API.Services
         {
             var parsed = stream.ToString().Replace("Bearer ", string.Empty);
             var token = new JwtSecurityTokenHandler().ReadJwtToken(parsed);
-            if (token.ValidTo < DateTime.UtcNow.AddMinutes(1))
-            {
-                throw new ForbiddenAccessException();
-            }
+            if (token.ValidTo < DateTime.UtcNow.AddMinutes(1)) throw new ForbiddenAccessException();
 
             return token.Subject;
         }

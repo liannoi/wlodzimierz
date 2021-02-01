@@ -29,8 +29,8 @@ export class NavTopMenuComponent implements OnInit, OnDestroy, VerifyNotificatio
   public constructor(@Inject(AuthFacadeImpl) private authFacade: AuthFacade) {
   }
 
-  public ngOnInit(): void {
-    this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
+  public async ngOnInit() {
+    await this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
   }
 
   public ngOnDestroy(): void {
