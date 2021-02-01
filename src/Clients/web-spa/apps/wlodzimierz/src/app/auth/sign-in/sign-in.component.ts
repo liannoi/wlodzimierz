@@ -75,7 +75,7 @@ export class SignInComponent implements OnInit, OnDestroy, SignInNotification {
   }
 
   public onSignInSuccess(token: JwtTokenModel): void {
-    this.writeToken(token);
+    this.group.writeToken(this.currentUser, this.authFacade, token);
     this.router.navigate([HomeRouting.Root]);
   }
 
@@ -92,11 +92,5 @@ export class SignInComponent implements OnInit, OnDestroy, SignInNotification {
       },
       { validators: unauthorizedValidator }
     );
-  }
-
-  private writeToken(token: JwtTokenModel) {
-    const date = new Date();
-    date.setDate(date.getDate() + 7);
-    this.authFacade.writeToken(token, this.currentUser.shouldRemember ? date : null);
   }
 }

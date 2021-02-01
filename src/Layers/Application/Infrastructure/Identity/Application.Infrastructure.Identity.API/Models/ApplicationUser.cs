@@ -6,6 +6,10 @@ namespace Application.Infrastructure.Identity.API.Models
 {
     public class ApplicationUser : IdentityUser, INotifiable
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Photo { get; set; }
+
         public IList<AbstractNotification> Notifications { get; set; } = new List<AbstractNotification>();
     }
 }

@@ -1,32 +1,30 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { ConversationModel } from '@wlodzimierz/domain/src/lib/models/conversation.model';
+import { VerifyNotification } from '@wlodzimierz/domain/src/lib/notifications/users/verify.notification';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
 import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/services/auth.facade';
 import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/services/auth.facade';
 import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/verify.command';
-import { VerifyNotification } from '@wlodzimierz/domain/src/lib/notifications/users/verify.notification';
 
-import { AuthRouting } from '../auth/auth.routing';
+import { AuthRouting } from '../../auth/auth.routing';
 
 @Component({
-  selector: 'wlodzimierz-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss']
+  selector: 'wlodzimierz-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class ChatComponent implements OnInit, OnDestroy, VerifyNotification {
-  public currentConversation: ConversationModel;
+export class ProfileComponent implements OnInit, OnDestroy, VerifyNotification {
   public currentUser: UserModel;
 
   public constructor(
     @Inject(AuthFacadeImpl) private authFacade: AuthFacade,
-    private titleService: Title,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) {
-    titleService.setTitle('Wlodzimierz');
+    titleService.setTitle('Profile - Wlodzimierz');
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -34,7 +32,7 @@ export class ChatComponent implements OnInit, OnDestroy, VerifyNotification {
   ///////////////////////////////////////////////////////////////////////////
 
   public ngOnInit(): void {
-    this.verify();
+    this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
   }
 
   public ngOnDestroy(): void {
@@ -49,21 +47,6 @@ export class ChatComponent implements OnInit, OnDestroy, VerifyNotification {
 
   public onVerifySuccess(user: UserModel): void {
     this.currentUser = user;
-  }
-
-  ///////////////////////////////////////////////////////////////////////////
-  // Ignition events
-  ///////////////////////////////////////////////////////////////////////////
-
-  public onConversationChanged(conversation: ConversationModel): void {
-    this.currentConversation = conversation;
-  }
-
-  ///////////////////////////////////////////////////////////////////////////
-  // Helpers
-  ///////////////////////////////////////////////////////////////////////////
-
-  private verify(): void {
-    this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
+    console.log(user);
   }
 }

@@ -19,6 +19,25 @@ namespace Infrastructure.Identity.API.Services
             _manager = manager;
         }
 
+        public async Task<(IdentityResult Result, JwtToken Token)> SignUpAsync(string userName, string email,
+            string password)
+        {
+            var user = new ApplicationUser {UserName = userName, Email = email};
+            var result = await _manager.CreateAsync(user, password);
+
+            return (result.ToApplicationResult(), new JwtToken {Value = CreateToken(user)});
+        }
+
+        public async Task<(IdentityResult Result, JwtToken Token)> SignInAsync(string userName, string password)
+        {
+            var user = await FindByNameAsync(userName);
+            var isCorrectPassword = await _manager.CheckPasswordAsync(user, password);
+
+            return (isCorrectPassword
+                ? (IdentityResult.Success(), new JwtToken {Value = CreateToken(user)})
+                : (IdentityResult.Failure(), default))!;
+        }
+
         public async Task<ApplicationUser> FindByIdAsync(string userId)
         {
             return await _manager.FindByIdAsync(userId);
@@ -34,33 +53,27 @@ namespace Infrastructure.Identity.API.Services
             return await _manager.IsInRoleAsync(await FindByNameAsync(userName), role);
         }
 
-        public async Task<(IdentityResult Result, JwtToken Token)> SigninAsync(string userName, string password)
+        public async Task<IdentityResult> UpdateAsync(ApplicationUser user)
         {
-            var user = await FindByNameAsync(userName);
-            var isCorrectPassword = await _manager.CheckPasswordAsync(user, password);
-
-            return (isCorrectPassword
-                ? (IdentityResult.Success(), new JwtToken {Value = CreateToken(user)})
-                : (IdentityResult.Failure(), default))!;
+            return (await _manager.UpdateAsync(user)).ToApplicationResult();
         }
 
-        public async Task<(IdentityResult Result, JwtToken Token)> SignupAsync(string userName, string email,
-            string password)
+        public async Task<IdentityResult> UpdateAsync(ApplicationUser user, string password)
         {
-            var user = new ApplicationUser {UserName = userName, Email = email};
-            var result = await _manager.CreateAsync(user, password);
+            var token = await _manager.GeneratePasswordResetTokenAsync(user);
 
-            return (result.ToApplicationResult(), new JwtToken {Value = CreateToken(user)});
+            return (await _manager.ResetPasswordAsync(user, token, password)).ToApplicationResult();
+        }
+
+        public IdentityResult VerifyPassword(ApplicationUser user, string password)
+        {
+            return _manager.PasswordHasher.VerifyHashedPassword(user, user.PasswordHash, password)
+                .ToApplicationResult();
         }
 
         public async Task<IdentityResult> DeleteAsync(string userId)
         {
             return (await _manager.DeleteAsync(await FindByIdAsync(userId))).ToApplicationResult();
-        }
-
-        public async Task<IdentityResult> UpdateAsync(string userId)
-        {
-            return (await _manager.UpdateAsync(await FindByIdAsync(userId))).ToApplicationResult();
         }
     }
 }

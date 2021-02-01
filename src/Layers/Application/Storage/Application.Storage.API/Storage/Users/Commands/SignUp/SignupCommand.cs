@@ -6,7 +6,7 @@ using Application.Validation.API.Extensions;
 using FluentValidation;
 using MediatR;
 
-namespace Application.Storage.API.Storage.Users.Commands.Signup
+namespace Application.Storage.API.Storage.Users.Commands.SignUp
 {
     public class SignupCommand : IRequest<JwtToken>
     {
@@ -26,7 +26,7 @@ namespace Application.Storage.API.Storage.Users.Commands.Signup
             public async Task<JwtToken> Handle(SignupCommand request, CancellationToken cancellationToken)
             {
                 var (result, token) =
-                    await _identityService.SignupAsync(request.UserName, request.Email, request.Password);
+                    await _identityService.SignUpAsync(request.UserName, request.Email, request.Password);
 
                 return result.Succeeded ? token : throw new ValidationException(result.Errors.ToFailures());
             }

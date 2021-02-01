@@ -1,5 +1,6 @@
 using System.Linq;
-using Application.Infrastructure.Identity.API.Models;
+using Microsoft.AspNetCore.Identity;
+using IdentityResult = Application.Infrastructure.Identity.API.Models.IdentityResult;
 
 namespace Infrastructure.Identity.API.Extensions
 {
@@ -10,6 +11,13 @@ namespace Infrastructure.Identity.API.Extensions
             return result.Succeeded
                 ? IdentityResult.Success()
                 : IdentityResult.Failure(result.Errors.Select(e => e.Description));
+        }
+
+        public static IdentityResult ToApplicationResult(this PasswordVerificationResult result)
+        {
+            return result == PasswordVerificationResult.Success
+                ? IdentityResult.Success()
+                : IdentityResult.Failures("The current password is incorrect.");
         }
     }
 }

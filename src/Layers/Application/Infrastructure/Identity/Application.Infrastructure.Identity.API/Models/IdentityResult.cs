@@ -25,6 +25,11 @@ namespace Application.Infrastructure.Identity.API.Models
             return new(false, errors);
         }
 
+        public static IdentityResult Failures(params string[] errors)
+        {
+            return Failure(errors);
+        }
+
         public static IdentityResult Failure()
         {
             return Failure(Array.Empty<string>());

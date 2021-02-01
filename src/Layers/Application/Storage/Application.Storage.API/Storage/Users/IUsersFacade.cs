@@ -8,6 +8,7 @@ namespace Application.Storage.API.Storage.Users
     public interface IUsersFacade
     {
         Task MapAsync(IPaginatedList<ConversationMessageDto> list);
+
         Task MapAsync(IPaginatedList<ConversationDto> list);
     }
 }

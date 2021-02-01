@@ -24,7 +24,7 @@ export class JwtTokenServiceImpl implements JwtTokenService {
     return { value: this.cookieService.get(this.cookieName) };
   }
 
-  public write(token: JwtTokenModel, expires?: Date): void {
+  public write(token: JwtTokenModel, expires: Date): void {
     this.cookieService.set(this.cookieName, token.value, { path: '/', expires });
   }
 }

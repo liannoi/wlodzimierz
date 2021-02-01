@@ -15,9 +15,9 @@ namespace Infrastructure.Identity.API.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.2");
 
-            modelBuilder.Entity("Application.Storage.API.Storage.Identity.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Application.Infrastructure.Identity.API.Models.ApplicationUser", b =>
             {
                 b.Property<string>("Id")
                     .HasColumnType("nvarchar(450)");
@@ -35,6 +35,14 @@ namespace Infrastructure.Identity.API.Migrations
 
                 b.Property<bool>("EmailConfirmed")
                     .HasColumnType("bit");
+
+                b.Property<string>("FirstName")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("LastName")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
                 b.Property<bool>("LockoutEnabled")
                     .HasColumnType("bit");
@@ -58,6 +66,10 @@ namespace Infrastructure.Identity.API.Migrations
 
                 b.Property<bool>("PhoneNumberConfirmed")
                     .HasColumnType("bit");
+
+                b.Property<string>("Photo")
+                    .IsRequired()
+                    .HasColumnType("nvarchar(max)");
 
                 b.Property<string>("SecurityStamp")
                     .HasColumnType("nvarchar(max)");
@@ -224,7 +236,7 @@ namespace Infrastructure.Identity.API.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
             {
-                b.HasOne("Application.Storage.API.Storage.Identity.Models.ApplicationUser", null)
+                b.HasOne("Application.Infrastructure.Identity.API.Models.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -233,7 +245,7 @@ namespace Infrastructure.Identity.API.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
             {
-                b.HasOne("Application.Storage.API.Storage.Identity.Models.ApplicationUser", null)
+                b.HasOne("Application.Infrastructure.Identity.API.Models.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -248,7 +260,7 @@ namespace Infrastructure.Identity.API.Migrations
                     .OnDelete(DeleteBehavior.Cascade)
                     .IsRequired();
 
-                b.HasOne("Application.Storage.API.Storage.Identity.Models.ApplicationUser", null)
+                b.HasOne("Application.Infrastructure.Identity.API.Models.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)
@@ -257,7 +269,7 @@ namespace Infrastructure.Identity.API.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
             {
-                b.HasOne("Application.Storage.API.Storage.Identity.Models.ApplicationUser", null)
+                b.HasOne("Application.Infrastructure.Identity.API.Models.ApplicationUser", null)
                     .WithMany()
                     .HasForeignKey("UserId")
                     .OnDelete(DeleteBehavior.Cascade)

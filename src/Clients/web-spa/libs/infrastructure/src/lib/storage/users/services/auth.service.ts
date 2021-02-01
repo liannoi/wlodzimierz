@@ -23,9 +23,10 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
   }
 
   public signIn(request: SignInCommand, notification: SignInNotification): void {
-    const endpoint = this.endpointBuilder.withParameter('').withAction('SignIn').build();
-
-    console.log(endpoint);
+    const endpoint = this.endpointBuilder
+      .withParameter('')
+      .withAction('SignIn')
+      .build();
 
     this.http
       .post<JwtTokenModel>(endpoint.url, request.user)
@@ -37,9 +38,10 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
   }
 
   public signUp(request: SignUpCommand, notification: SignUpNotification): void {
-    const endpoint = this.endpointBuilder.withParameter('').withAction('SignUp').build();
-
-    console.log(endpoint);
+    const endpoint = this.endpointBuilder
+      .withParameter('')
+      .withAction('SignUp')
+      .build();
 
     this.http
       .post<JwtTokenModel>(endpoint.url, request.user)
@@ -51,9 +53,11 @@ export class AuthServiceImpl extends AbstractService implements AuthService {
   }
 
   public verify(request: VerifyCommand, notification: VerifyNotification): void {
-    const endpoint = this.endpointBuilder.withParameter('').withAction('Verify').build();
+    const endpoint = this.endpointBuilder
+      .withParameter('')
+      .withAction('Verify')
+      .build();
 
-    console.log(endpoint);
     const token: JwtTokenModel = request.token;
 
     this.http

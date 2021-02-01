@@ -1,6 +1,10 @@
 import { FormGroup } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 
+import { JwtTokenModel } from '@wlodzimierz/domain/src/lib/models/jwt-token.model';
+import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
+import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/services/auth.facade';
+
 export class AuthFormGroup extends FormGroup {
   private hasFirstAttempt = false;
   private identityError: HttpErrorResponse;
@@ -21,5 +25,12 @@ export class AuthFormGroup extends FormGroup {
 
   public errorMessage(): string {
     return this.identityError.message;
+  }
+
+  public writeToken(currentUser: UserModel, authFacade: AuthFacade, token: JwtTokenModel) {
+    const date = new Date();
+    const minutes = currentUser.shouldRemember ? 15 : 5;
+    date.setMinutes(date.getMinutes() + minutes);
+    authFacade.writeToken(token, date);
   }
 }

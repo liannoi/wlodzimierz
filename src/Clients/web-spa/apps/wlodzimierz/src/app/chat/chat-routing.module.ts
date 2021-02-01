@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ChatComponent } from './chat.component';
 import { ChatRouting } from './chat.routing';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
-  { path: ChatRouting.Root, component: ChatComponent }
+  { path: ChatRouting.Root, component: ChatComponent },
+  { path: ChatRouting.Profile, component: ProfileComponent }
 ];
 
 @NgModule({

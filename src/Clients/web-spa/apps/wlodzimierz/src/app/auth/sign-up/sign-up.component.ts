@@ -75,7 +75,7 @@ export class SignUpComponent implements OnInit, OnDestroy, SignUpNotification {
   }
 
   public onSignUpSuccess(token: JwtTokenModel): void {
-    this.authFacade.writeToken(token);
+    this.group.writeToken(this.currentUser, this.authFacade, token);
     this.router.navigate([HomeRouting.Root]);
   }
 

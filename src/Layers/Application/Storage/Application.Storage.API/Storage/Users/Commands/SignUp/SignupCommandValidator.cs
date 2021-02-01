@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Application.Storage.API.Storage.Users.Commands.Signup
+namespace Application.Storage.API.Storage.Users.Commands.SignUp
 {
     public class SignupCommandValidator : AbstractValidator<SignupCommand>
     {

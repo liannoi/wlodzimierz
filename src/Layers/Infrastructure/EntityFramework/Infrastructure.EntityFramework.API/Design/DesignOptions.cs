@@ -12,7 +12,7 @@ namespace Infrastructure.EntityFramework.API.Design
                 var up = $"..{separator}";
 
                 return
-                    $"{Directory.GetCurrentDirectory()}{separator}{up}{up}Presentation{separator}Presentation.API{separator}";
+                    $"{Directory.GetCurrentDirectory()}{separator}{up}{up}{up}Presentation{separator}Presentation.API{separator}";
             }
         }
     }

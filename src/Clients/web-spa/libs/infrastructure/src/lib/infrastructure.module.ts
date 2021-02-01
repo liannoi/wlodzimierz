@@ -25,10 +25,7 @@ import { AppSettingsServiceImpl } from '@wlodzimierz/infrastructure/src/lib/sett
     ConversationsEndpointBuilder,
     ConversationMessagesServiceImpl,
     ConversationMessagesEndpointBuilder,
-    {
-      provide: AppSettingsServiceImpl,
-      useValue: { AppSettingsServiceImpl }
-    }
+    AppSettingsServiceImpl
   ]
 })
 export class InfrastructureModule {

@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Application.Infrastructure.Identity.API;
+using Application.Infrastructure.Identity.API.Exceptions;
 using Application.Infrastructure.Identity.API.Interfaces;
 using Application.Infrastructure.Identity.API.Models;
 using Microsoft.AspNetCore.Identity;
@@ -29,8 +30,13 @@ namespace Infrastructure.Identity.API.Services
         public string ReadToken(StringValues stream)
         {
             var parsed = stream.ToString().Replace("Bearer ", string.Empty);
+            var token = new JwtSecurityTokenHandler().ReadJwtToken(parsed);
+            if (token.ValidTo < DateTime.UtcNow.AddMinutes(1))
+            {
+                throw new ForbiddenAccessException();
+            }
 
-            return new JwtSecurityTokenHandler().ReadJwtToken(parsed).Subject;
+            return token.Subject;
         }
 
         // Helpers.

@@ -1,16 +1,16 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/services/auth.facade';
 import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/services/auth.facade';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
+import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/verify.command';
+import { VerifyNotification } from '@wlodzimierz/domain/src/lib/notifications/users/verify.notification';
 
 import { HomeRouting } from '../../home/home.routing';
 import { DocsRouting } from '../../docs/docs.routing';
 import { AuthRouting } from '../../auth/auth.routing';
 import { ChatRouting } from '../../chat/chat.routing';
-import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/verify.command';
-import { VerifyNotification } from '@wlodzimierz/domain/src/lib/notifications/users/verify.notification';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'wlodzimierz-nav-top-menu',

@@ -11,10 +11,11 @@ import { ChatModule } from './chat/chat.module';
 import { DocsModule } from './docs/docs.module';
 import { HomeModule } from './home/home.module';
 import { AppRoutingModule } from './app-routing.module';
+import { StatusesModule } from './statuses/statuses.module';
 
 @NgModule({
   declarations: [AppComponent, NavTopMenuComponent, NavFooterComponent],
-  imports: [BrowserModule, NgbModule, AuthModule, ChatModule, DocsModule, HomeModule, AppRoutingModule],
+  imports: [BrowserModule, NgbModule, AuthModule, ChatModule, DocsModule, HomeModule, AppRoutingModule, StatusesModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {

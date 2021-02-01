@@ -33,7 +33,8 @@ namespace Infrastructure.Identity.API
                         b => b.MigrationsAssembly(typeof(WlodzimierzIdentityContext).Assembly.FullName)));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<WlodzimierzIdentityContext>();
+                .AddEntityFrameworkStores<WlodzimierzIdentityContext>()
+                .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>(TokenOptions.DefaultProvider);
 
             services.AddAuthorization();
             services.AddScoped<IIdentityService, IdentityService>();

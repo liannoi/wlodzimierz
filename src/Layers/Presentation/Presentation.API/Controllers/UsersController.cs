@@ -5,8 +5,8 @@ using Application.Storage.API.Storage.Contacts.Models;
 using Application.Storage.API.Storage.ConversationMessages.Models;
 using Application.Storage.API.Storage.Conversations.Models;
 using Application.Storage.API.Storage.Users.Commands.Delete;
-using Application.Storage.API.Storage.Users.Commands.Signin;
-using Application.Storage.API.Storage.Users.Commands.Signup;
+using Application.Storage.API.Storage.Users.Commands.SignIn;
+using Application.Storage.API.Storage.Users.Commands.SignUp;
 using Application.Storage.API.Storage.Users.Commands.Update;
 using Application.Storage.API.Storage.Users.Commands.Verify;
 using Application.Storage.API.Storage.Users.Models;
@@ -46,10 +46,18 @@ namespace Presentation.API.Controllers
         #region *RUD
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(string id, [FromQuery] UpdateCommand command)
+        public async Task<ActionResult> Update(string id, [FromBody] UpdateCommand command)
         {
             if (id != command.UserId) return BadRequest();
+            await Mediator.Send(command);
 
+            return NoContent();
+        }
+
+        [HttpPut("{id}/password")]
+        public async Task<ActionResult> Update(string id, [FromBody] UpdatePasswordCommand command)
+        {
+            if (id != command.UserId) return BadRequest();
             await Mediator.Send(command);
 
             return NoContent();

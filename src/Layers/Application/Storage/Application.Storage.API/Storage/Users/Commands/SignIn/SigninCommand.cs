@@ -5,7 +5,7 @@ using Application.Infrastructure.Identity.API.Interfaces;
 using Application.Infrastructure.Identity.API.Models;
 using MediatR;
 
-namespace Application.Storage.API.Storage.Users.Commands.Signin
+namespace Application.Storage.API.Storage.Users.Commands.SignIn
 {
     public class SigninCommand : IRequest<JwtToken>
     {
@@ -23,7 +23,7 @@ namespace Application.Storage.API.Storage.Users.Commands.Signin
 
             public async Task<JwtToken> Handle(SigninCommand request, CancellationToken cancellationToken)
             {
-                var (result, token) = await _identityService.SigninAsync(request.UserName, request.Password);
+                var (result, token) = await _identityService.SignInAsync(request.UserName, request.Password);
 
                 return result.Succeeded ? token : throw new ForbiddenAccessException();
             }
