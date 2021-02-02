@@ -15,7 +15,7 @@ import { ConversationMessageListComponent } from './conversation-messages/conver
 import { ConversationMessageLastComponent } from './conversation-messages/conversation-message-last/conversation-message-last.component';
 import { ConversationMessageCreateComponent } from './conversation-messages/conversation-message-create/conversation-message-create.component';
 import { ConversationMessageComponent } from './conversation-messages/conversation-message/conversation-message.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './users/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { ProfileComponent } from './profile/profile.component';
     ReversePipe,
     InterlocutorPipe,
     ConversationsEqualsPipe,
-    UsersEqualsPipe
+    UsersEqualsPipe,
   ],
   imports: [CommonModule, ReactiveFormsModule, ChatRoutingModule]
 })

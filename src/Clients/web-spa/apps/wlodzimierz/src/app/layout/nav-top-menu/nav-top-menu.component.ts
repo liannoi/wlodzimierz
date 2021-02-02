@@ -11,6 +11,7 @@ import { HomeRouting } from '../../home/home.routing';
 import { DocsRouting } from '../../docs/docs.routing';
 import { AuthRouting } from '../../auth/auth.routing';
 import { ChatRouting } from '../../chat/chat.routing';
+import { SettingsRouting } from '../../settings/settings.routing';
 
 @Component({
   selector: 'wlodzimierz-nav-top-menu',
@@ -23,6 +24,7 @@ export class NavTopMenuComponent implements OnInit, OnDestroy, VerifyNotificatio
   public docsRouting = DocsRouting;
   public authRouting = AuthRouting;
   public chatRouting = ChatRouting;
+  public settingsRouting = SettingsRouting;
   public isExpanded = true;
   public currentUser: UserModel;
 
