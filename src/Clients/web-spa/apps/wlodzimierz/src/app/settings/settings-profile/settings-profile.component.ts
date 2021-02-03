@@ -5,15 +5,15 @@ import { Title } from '@angular/platform-browser';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
-import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/services/auth.facade';
-import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/services/auth.facade';
-import { AppSettingsServiceImpl } from '@wlodzimierz/infrastructure/src/lib/settings/app-settings.service';
-import { AppSettingsService } from '@wlodzimierz/application/src/lib/core/settings/app-settings.service';
+import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth.facade';
+import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
+import { AppSettingsServiceImpl } from '@wlodzimierz/infrastructure/src/lib/common/services/app-settings.service';
+import { AppSettingsService } from '@wlodzimierz/application/src/lib/common/settings/app-settings.service';
 import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/verify.command';
-import { AppSettings } from '@wlodzimierz/application/src/lib/core/settings/app-settings.model';
-import { AppSettingsQuery } from '@wlodzimierz/application/src/lib/core/settings/app-settings.query';
+import { AppSettings } from '@wlodzimierz/application/src/lib/common/settings/app-settings.model';
+import { AppSettingsQuery } from '@wlodzimierz/application/src/lib/common/settings/app-settings.query';
 import { VerifyNotification } from '@wlodzimierz/domain/src/lib/notifications/users/verify.notification';
-import { AppSettingsNotification } from '@wlodzimierz/application/src/lib/core/settings/app-settings.notification';
+import { AppSettingsNotification } from '@wlodzimierz/application/src/lib/common/settings/app-settings.notification';
 
 import { AuthRouting } from '../../auth/auth.routing';
 

@@ -1,23 +1,23 @@
 import { Inject, Injectable } from '@angular/core';
 
-import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/services/auth.facade';
+import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
 import { AuthService } from '@wlodzimierz/application/src/lib/storage/users/services/auth.service';
 import { AuthServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/services/auth.service';
-import { JwtTokenService } from '@wlodzimierz/application/src/lib/storage/users/services/jwt-token.service';
 import { JwtTokenModel } from '@wlodzimierz/domain/src/lib/models/jwt-token.model';
-import { JwtTokenServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/services/jwt-token.service';
+import { JwtTokenServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/cookies/jwt-token.service';
 import { SignInCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/sign-in.command';
 import { SignInNotification } from '@wlodzimierz/domain/src/lib/notifications/users/sign-in.notification';
 import { SignUpCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/sign-up.command';
 import { SignUpNotification } from '@wlodzimierz/domain/src/lib/notifications/users/sign-up.notification';
 import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/verify.command';
 import { VerifyNotification } from '@wlodzimierz/domain/src/lib/notifications/users/verify.notification';
+import { Cookie } from '@wlodzimierz/application/src/lib/common/interfaces/cookie.interface';
 
 @Injectable()
 export class AuthFacadeImpl implements AuthFacade {
   public constructor(
     @Inject(AuthServiceImpl) private authService: AuthService,
-    @Inject(JwtTokenServiceImpl) private jwtTokenService: JwtTokenService
+    @Inject(JwtTokenServiceImpl) private jwtTokenService: Cookie<JwtTokenModel>
   ) {
   }
 
@@ -26,7 +26,7 @@ export class AuthFacadeImpl implements AuthFacade {
   }
 
   public clearToken(): void {
-    return this.jwtTokenService.clear();
+    this.jwtTokenService.clear();
   }
 
   public readToken(): JwtTokenModel {
@@ -34,7 +34,7 @@ export class AuthFacadeImpl implements AuthFacade {
   }
 
   public writeToken(token: JwtTokenModel, expires: Date): void {
-    this.jwtTokenService.write(token, expires);
+    this.jwtTokenService.write(token.value, expires);
   }
 
   public signIn(request: SignInCommand, notification: SignInNotification): void {

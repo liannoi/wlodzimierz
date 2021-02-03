@@ -9,7 +9,7 @@ import { SettingsPasswordComponent } from './settings-password/settings-password
 
 @NgModule({
   declarations: [SettingsProfileComponent, SettingsComponent, SettingsPasswordComponent],
-  imports: [CommonModule, ReactiveFormsModule,SettingsRoutingModule ]
+  imports: [CommonModule, ReactiveFormsModule, SettingsRoutingModule]
 })
 export class SettingsModule {
 }

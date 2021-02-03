@@ -5,8 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { ConversationModel } from '@wlodzimierz/domain/src/lib/models/conversation.model';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
-import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/services/auth.facade';
-import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/services/auth.facade';
+import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth.facade';
+import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
 import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/verify.command';
 import { VerifyNotification } from '@wlodzimierz/domain/src/lib/notifications/users/verify.notification';
 

@@ -1,5 +1,5 @@
 const settingsRouting: SettingsRouting = {
-  Root: 'settings',
+  Root: 'settings'
 };
 
 interface SettingsRouting {

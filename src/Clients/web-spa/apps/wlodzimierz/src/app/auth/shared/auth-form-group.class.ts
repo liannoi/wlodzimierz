@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { JwtTokenModel } from '@wlodzimierz/domain/src/lib/models/jwt-token.model';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
-import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/services/auth.facade';
+import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
 
 export class AuthFormGroup extends FormGroup {
   private hasFirstAttempt = false;

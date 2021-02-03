@@ -7,10 +7,12 @@ import { AbstractControl, FormControl, Validators } from '@angular/forms';
 import { JwtTokenModel } from '@wlodzimierz/domain/src/lib/models/jwt-token.model';
 import { unauthorizedValidator } from '@wlodzimierz/application/src/lib/storage/users/validators/unauthorized.validator';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
-import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/services/auth.facade';
-import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/services/auth.facade';
+import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/auth.facade';
+import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/auth.facade';
 import { SignInNotification } from '@wlodzimierz/domain/src/lib/notifications/users/sign-in.notification';
 import { SignInCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/sign-in.command';
+import { Cookie } from '@wlodzimierz/application/src/lib/common/interfaces/cookie.interface';
+import { UserNameServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/cookies/username.service';
 
 import { HomeRouting } from '../../home/home.routing';
 import { AuthRouting } from '../auth.routing';
@@ -28,6 +30,7 @@ export class SignInComponent implements OnInit, OnDestroy, SignInNotification {
 
   public constructor(
     @Inject(AuthFacadeImpl) private authFacade: AuthFacade,
+    @Inject(UserNameServiceImpl) private userNameService: Cookie<UserModel>,
     private router: Router,
     private titleService: Title
   ) {
@@ -76,6 +79,7 @@ export class SignInComponent implements OnInit, OnDestroy, SignInNotification {
 
   public onSignInSuccess(token: JwtTokenModel): void {
     this.group.writeToken(this.currentUser, this.authFacade, token);
+    this.userNameService.write(this.currentUser.userName);
     this.router.navigate([HomeRouting.Root]);
   }
 

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { catchError, takeUntil } from 'rxjs/operators';
 
-import { AbstractService } from '@wlodzimierz/infrastructure/src/lib/common/abstract.service';
+import { AbstractService } from '@wlodzimierz/infrastructure/src/lib/common/services/abstract.service';
 // eslint-disable-next-line max-len
 import { ConversationMessagesEndpointBuilder } from '@wlodzimierz/infrastructure/src/lib/storage/conversation-messages/conversation-messages-endpoint.builder';
 import { ConversationMessagesService } from '@wlodzimierz/application/src/lib/storage/conversation-messages/conversation-messages.service';

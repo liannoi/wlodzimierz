@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { catchError, takeUntil } from 'rxjs/operators';
 
-import { AbstractService } from '@wlodzimierz/infrastructure/src/lib/common/abstract.service';
+import { AbstractService } from '@wlodzimierz/infrastructure/src/lib/common/services/abstract.service';
 import { UsersService } from '@wlodzimierz/application/src/lib/storage/users/services/users.service';
 import { DetailsQuery } from '@wlodzimierz/application/src/lib/storage/users/queries/details-query';
 import { DetailsNotification } from '@wlodzimierz/domain/src/lib/notifications/users/details.notification';

@@ -1,11 +1,8 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Inject, OnInit } from '@angular/core';
 
-import { AuthFacadeImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/services/auth.facade';
-import { AuthFacade } from '@wlodzimierz/application/src/lib/storage/users/services/auth.facade';
 import { UserModel } from '@wlodzimierz/domain/src/lib/models/user.model';
-import { VerifyCommand } from '@wlodzimierz/application/src/lib/storage/users/commands/verify.command';
-import { VerifyNotification } from '@wlodzimierz/domain/src/lib/notifications/users/verify.notification';
+import { UserNameServiceImpl } from '@wlodzimierz/infrastructure/src/lib/storage/users/cookies/username.service';
+import { Cookie } from '@wlodzimierz/application/src/lib/common/interfaces/cookie.interface';
 
 import { HomeRouting } from '../../home/home.routing';
 import { DocsRouting } from '../../docs/docs.routing';
@@ -18,36 +15,19 @@ import { SettingsRouting } from '../../settings/settings.routing';
   templateUrl: './nav-top-menu.component.html',
   styleUrls: ['./nav-top-menu.component.scss']
 })
-export class NavTopMenuComponent implements OnInit, OnDestroy, VerifyNotification {
-
+export class NavTopMenuComponent implements OnInit {
   public homeRouting = HomeRouting;
   public docsRouting = DocsRouting;
   public authRouting = AuthRouting;
   public chatRouting = ChatRouting;
   public settingsRouting = SettingsRouting;
   public isExpanded = true;
-  public currentUser: UserModel;
+  public userName: string;
 
-  public constructor(@Inject(AuthFacadeImpl) private authFacade: AuthFacade) {
+  public constructor(@Inject(UserNameServiceImpl) private userNameService: Cookie<UserModel>) {
   }
 
-  public async ngOnInit() {
-    await this.authFacade.verify(new VerifyCommand(this.authFacade.readToken()), this);
-  }
-
-  public ngOnDestroy(): void {
-    this.authFacade.onDispose();
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-function
-  public onVerifyFailed(error: HttpErrorResponse): void {
-  }
-
-  public onVerifySuccess(user: UserModel): void {
-    this.currentUser = user;
-  }
-
-  public isTokenVerified(): boolean {
-    return this.authFacade.checkToken();
+  public ngOnInit(): void {
+    this.userName = this.userNameService.read().userName;
   }
 }

@@ -1,5 +1,5 @@
-import { EndpointBuilder } from '@wlodzimierz/application/src/lib/core/endpoints/endpoint.builder';
-import { Endpoint } from '@wlodzimierz/application/src/lib/core/endpoints/endpoint.model';
+import { EndpointBuilder } from '@wlodzimierz/application/src/lib/common/endpoints/endpoint.builder';
+import { Endpoint } from '@wlodzimierz/application/src/lib/common/endpoints/endpoint.model';
 
 export abstract class AbstractEndpointBuilder implements EndpointBuilder {
   private readonly initialUrl: string;

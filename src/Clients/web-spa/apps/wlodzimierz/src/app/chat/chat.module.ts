@@ -30,7 +30,7 @@ import { ProfileComponent } from './users/profile/profile.component';
     ReversePipe,
     InterlocutorPipe,
     ConversationsEqualsPipe,
-    UsersEqualsPipe,
+    UsersEqualsPipe
   ],
   imports: [CommonModule, ReactiveFormsModule, ChatRoutingModule]
 })

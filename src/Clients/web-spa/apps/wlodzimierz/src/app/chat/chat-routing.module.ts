@@ -7,7 +7,7 @@ import { ProfileComponent } from './users/profile/profile.component';
 
 const routes: Routes = [
   { path: ChatRouting.Root, component: ChatComponent },
-  { path: ChatRouting.Profile, component: ProfileComponent },
+  { path: ChatRouting.Profile, component: ProfileComponent }
 ];
 
 @NgModule({

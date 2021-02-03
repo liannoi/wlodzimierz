@@ -1,6 +1,6 @@
 const chatRouting: ChatRouting = {
   Root: 'app',
-  Profile: 'profile',
+  Profile: 'profile'
 };
 
 interface ChatRouting {
