@@ -18,38 +18,26 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@wlodzimierz/*": [
-        "libs/*"
+      "@wlodzimierz/shared": [
+        "libs/shared/src/index.ts"
       ],
       "@wlodzimierz/home": [
-        "libs/presentation/home/src/index.ts"
+        "libs/home/src/index.ts"
       ],
       "@wlodzimierz/feedback": [
-        "libs/presentation/feedback/src/index.ts"
+        "libs/feedback/src/index.ts"
+      ],
+      "@wlodzimierz/software": [
+        "libs/software/src/index.ts"
       ],
       "@wlodzimierz/docs": [
-        "libs/presentation/docs/src/index.ts"
+        "libs/docs/src/index.ts"
       ],
       "@wlodzimierz/docs-api": [
-        "libs/presentation/docs-api/src/index.ts"
+        "libs/docs-api/src/index.ts"
       ],
-      "@wlodzimierz/chat": [
-        "libs/presentation/chat/src/index.ts"
-      ],
-      "@wlodzimierz/applications": [
-        "libs/presentation/applications/src/index.ts"
-      ],
-      "@wlodzimierz/auth": [
-        "libs/presentation/auth/src/index.ts"
-      ],
-      "@wlodzimierz/infrastructure": [
-        "libs/infrastructure/src/index.ts"
-      ],
-      "@wlodzimierz/domain": [
-        "libs/domain/src/index.ts"
-      ],
-      "@wlodzimierz/data": [
-        "libs/data/src/index.ts"
+      "@wlodzimierz/status-not-found": [
+        "libs/status-not-found/src/index.ts"
       ]
     }
   },

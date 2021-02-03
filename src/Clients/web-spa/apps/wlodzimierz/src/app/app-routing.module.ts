@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-
 const routes: Routes = [
-  { path: '', component: HomeComponent }
+  { path: '', loadChildren: () => import('@wlodzimierz/home').then(m => m.HomeModule) },
+  { path: 'feedback', loadChildren: () => import('@wlodzimierz/feedback').then(m => m.FeedbackModule) },
+  { path: 'apps', loadChildren: () => import('@wlodzimierz/software').then(m => m.SoftwareModule) },
+  { path: 'docs', loadChildren: () => import('@wlodzimierz/docs').then(m => m.DocsModule) },
+  { path: 'docs/api', loadChildren: () => import('@wlodzimierz/docs-api').then(m => m.DocsApiModule) },
+  { path: '**', loadChildren: () => import('@wlodzimierz/status-not-found').then(m => m.StatusNotFoundModule) }
 ];
 
 @NgModule({

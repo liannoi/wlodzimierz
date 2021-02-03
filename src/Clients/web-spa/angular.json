@@ -1,5 +1,36 @@
 {
   "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "wlodzimierz",
   "projects": {
     "wlodzimierz": {
       "projectType": "application",
@@ -121,6 +152,33 @@
         }
       }
     },
+    "shared": {
+      "projectType": "library",
+      "root": "libs/shared",
+      "sourceRoot": "libs/shared/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/src/**/*.ts",
+              "libs/shared/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/shared"
+          ],
+          "options": {
+            "jestConfig": "libs/shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "home": {
       "projectType": "library",
       "root": "libs/home",
@@ -170,6 +228,33 @@
           ],
           "options": {
             "jestConfig": "libs/feedback/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "software": {
+      "projectType": "library",
+      "root": "libs/software",
+      "sourceRoot": "libs/software/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/software/src/**/*.ts",
+              "libs/software/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/software"
+          ],
+          "options": {
+            "jestConfig": "libs/software/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -229,221 +314,32 @@
         }
       }
     },
-    "apps": {
+    "status-not-found": {
       "projectType": "library",
-      "root": "libs/apps",
-      "sourceRoot": "libs/apps/src",
+      "root": "libs/status-not-found",
+      "sourceRoot": "libs/status-not-found/src",
       "prefix": "wlodzimierz",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/apps/src/**/*.ts",
-              "libs/apps/src/**/*.html"
+              "libs/status-not-found/src/**/*.ts",
+              "libs/status-not-found/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/libs/apps"
+            "coverage/libs/status-not-found"
           ],
           "options": {
-            "jestConfig": "libs/apps/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "chat": {
-      "projectType": "library",
-      "root": "libs/chat",
-      "sourceRoot": "libs/chat/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/chat/src/**/*.ts",
-              "libs/chat/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/chat"
-          ],
-          "options": {
-            "jestConfig": "libs/chat/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "applications": {
-      "projectType": "library",
-      "root": "libs/applications",
-      "sourceRoot": "libs/applications/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/applications/src/**/*.ts",
-              "libs/applications/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/applications"
-          ],
-          "options": {
-            "jestConfig": "libs/applications/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "auth": {
-      "projectType": "library",
-      "root": "libs/auth",
-      "sourceRoot": "libs/auth/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/auth/src/**/*.ts",
-              "libs/auth/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/auth"
-          ],
-          "options": {
-            "jestConfig": "libs/auth/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "infrastructure": {
-      "projectType": "library",
-      "root": "libs/infrastructure",
-      "sourceRoot": "libs/infrastructure/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/infrastructure/src/**/*.ts",
-              "libs/infrastructure/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/infrastructure"
-          ],
-          "options": {
-            "jestConfig": "libs/infrastructure/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "domain": {
-      "projectType": "library",
-      "root": "libs/domain",
-      "sourceRoot": "libs/domain/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/domain/src/**/*.ts",
-              "libs/domain/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/domain"
-          ],
-          "options": {
-            "jestConfig": "libs/domain/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "data": {
-      "projectType": "library",
-      "root": "libs/data",
-      "sourceRoot": "libs/data/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/data/src/**/*.ts",
-              "libs/data/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/data"
-          ],
-          "options": {
-            "jestConfig": "libs/data/jest.config.js",
+            "jestConfig": "libs/status-not-found/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
-  "schematics": {
-    "@nrwl/angular": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/angular:application": {
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "scss"
-    }
-  },
-  "defaultProject": "wlodzimierz"
+  }
 }

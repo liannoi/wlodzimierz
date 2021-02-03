@@ -37,10 +37,16 @@
         "wlodzimierz"
       ]
     },
+    "shared": {
+      "tags": []
+    },
     "home": {
       "tags": []
     },
     "feedback": {
+      "tags": []
+    },
+    "software": {
       "tags": []
     },
     "docs": {
@@ -49,25 +55,7 @@
     "docs-api": {
       "tags": []
     },
-    "apps": {
-      "tags": []
-    },
-    "chat": {
-      "tags": []
-    },
-    "applications": {
-      "tags": []
-    },
-    "auth": {
-      "tags": []
-    },
-    "infrastructure": {
-      "tags": []
-    },
-    "domain": {
-      "tags": []
-    },
-    "data": {
+    "status-not-found": {
       "tags": []
     }
   }
