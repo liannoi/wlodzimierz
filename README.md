@@ -129,6 +129,20 @@ using Docker Compose.
 gh repo clone liannoi/wlodzimierz
 ```
 
+### Database
+
+1. Go to the directory with the script to create a database.
+
+```
+cd /wlodzimierz/database
+```
+
+2. Open the ```wlodzimierz.sql``` file through the Database Management System (DBMS).
+
+3. Execute the script, connect to your local instance of Microsoft SQL Server.
+
+> If you are using **macOS**, you will first need to follow the instructions below for the RESTful Web API, ignoring the problems with starting the RESTful Web API itself. **After executing the script to create the database - repeat the entire procedure with the RESTful Web API again!**
+
 ### RESTful Web API
 
 1. Go to the root directory of the project and then to the directory with the source code.
