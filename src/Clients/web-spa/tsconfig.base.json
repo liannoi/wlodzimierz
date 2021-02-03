@@ -38,6 +38,9 @@
       ],
       "@wlodzimierz/status-not-found": [
         "libs/status-not-found/src/index.ts"
+      ],
+      "@wlodzimierz/statuses": [
+        "libs/statuses/src/index.ts"
       ]
     }
   },

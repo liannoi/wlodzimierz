@@ -7,6 +7,7 @@ module.exports = {
     '<rootDir>/libs/software',
     '<rootDir>/libs/docs',
     '<rootDir>/libs/docs-api',
-    '<rootDir>/libs/status-not-found'
+    '<rootDir>/libs/status-not-found',
+    '<rootDir>/libs/statuses'
   ]
 };

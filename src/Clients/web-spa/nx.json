@@ -57,6 +57,9 @@
     },
     "status-not-found": {
       "tags": []
+    },
+    "statuses": {
+      "tags": []
     }
   }
 }

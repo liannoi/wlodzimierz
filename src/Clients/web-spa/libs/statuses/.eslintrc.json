@@ -16,7 +16,7 @@
       ],
       "parserOptions": {
         "project": [
-          "libs/docs-api/tsconfig.*?.json"
+          "libs/statuses/tsconfig.*?.json"
         ]
       },
       "rules": {

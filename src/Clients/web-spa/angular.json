@@ -340,6 +340,33 @@
           }
         }
       }
+    },
+    "statuses": {
+      "projectType": "library",
+      "root": "libs/statuses",
+      "sourceRoot": "libs/statuses/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/statuses/src/**/*.ts",
+              "libs/statuses/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/statuses"
+          ],
+          "options": {
+            "jestConfig": "libs/statuses/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
