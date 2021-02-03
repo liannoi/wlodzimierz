@@ -1,3 +1,4 @@
+
 <img align="left" width="116" height="116" src="https://github.com/liannoi/wlodzimierz/blob/main/img/favicon.ico"/>
 
 # WLODZIMIERZ
@@ -128,50 +129,58 @@ using Docker Compose.
 gh repo clone liannoi/wlodzimierz
 ```
 
-2. Go to the root directory of the project and then to the directory with the source code.
+### RESTful Web API
+
+1. Go to the root directory of the project and then to the directory with the source code.
 
 ```
-cd wlodzimierz/src
+cd /wlodzimierz/src
 ```
 
-3. Start the Docker service (for macOS only ```Docker Desktop``` application needs to be started).
+2. Start the Docker service (for macOS only ```Docker Desktop``` application needs to be started).
 
 ---
 
-4. Download the images necessary for the composition from Docker Registry, on the basis of which Docker Compose will build the container composition.
+3. Download the images necessary for the composition from Docker Registry, on the basis of which Docker Compose will build the container composition.
 
 ```
 docker-compose pull
 ```
 
-5. Build Web API container from the described Dockerfile.
+4. Build Web API container from the described Dockerfile.
 
 ```
 docker-compose build
 ```
 
-6. Deploying a Docker composition.
+5. Deploying a Docker composition.
 
 ```
 docker-compose up -d
 ```
 
----
-
-Or just run the simplified command to deploy the composition.
-
-```
-docker-compose pull && docker-compose build && docker-compose up -d
-```
+> Or just run the simplified command to deploy the composition.
+>
+> ```
+> docker-compose pull && docker-compose build && docker-compose up -d
+> ```
 
 ---
 
-7. Launch [```https://localhost:5001/api```](https://localhost:5001/api) in your browser and you will see Swagger generated RESTful API documentation.
+6. Launch [```https://localhost:5001/api```](https://localhost:5001/api) in your browser and you will see Swagger generated RESTful API documentation.
 
-8. Next, within the ```/src/Clients/web-spa``` directory, install all application dependencies locally and launch the frontend.
+### SPA web app
+
+1. Go to the directory with the frontend.
 
 ```
-npm install && npm run start-nx
+cd /wlodzimierz/src/Clients/web-spa
+```
+
+2. Install all dependencies locally and run Angular application.
+
+```
+npm install && npm run start-prod
 ```
 
 ## Specification
