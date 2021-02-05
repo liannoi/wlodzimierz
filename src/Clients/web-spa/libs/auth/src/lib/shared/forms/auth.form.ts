@@ -1,8 +1,8 @@
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { UserModel } from '../models/user.model';
-import { JwtTokenModel } from '../models/jwt-token.model';
+import { User } from '../models/user.model';
+import { JwtToken } from '../models/jwt-token.model';
 import { UsersStore } from '../stores/users.store';
 
 export class AuthFormGroup extends FormGroup {
@@ -13,29 +13,29 @@ export class AuthFormGroup extends FormGroup {
     return this.hasFirstAttempt;
   }
 
-  public errorMessage(): string {
+  public message(): string {
     return this.identityError.message;
   }
 
-  public failed(): void {
-    this.hasFirstAttempt = true;
-  }
-
-  public model<TModel>() {
+  public map<TModel>(): TModel {
     return this.getRawValue() as TModel;
   }
 
-  public control(name: string): AbstractControl {
+  public take(name: string): AbstractControl {
     return this.get(name) as AbstractControl;
   }
 
-  public identityFailed(error: HttpErrorResponse): void {
+  public fail(): void {
+    this.hasFirstAttempt = true;
+  }
+
+  public identityFail(error: HttpErrorResponse): void {
     this.hasFirstAttempt = true;
     this.identityError = error;
     this.setErrors({ identity: true });
   }
 
-  public writeToken(currentUser: UserModel, token: JwtTokenModel, usersService: UsersStore) {
+  public writeToken(currentUser: User, token: JwtToken, usersService: UsersStore) {
     const date = new Date();
     const minutes = currentUser.shouldRemember ? 15 : 5;
     date.setMinutes(date.getMinutes() + minutes);

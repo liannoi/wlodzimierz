@@ -1,12 +1,10 @@
-export class UserModel {
-  public constructor(
-    public userId: string = '',
-    public userName: string = '',
-    public password: string = '',
-    public email: string = '',
-    public firstName: string = '',
-    public lastName: string = '',
-    public photo: string = '',
-    public shouldRemember: boolean = false) {
-  }
+export interface User {
+  userId: string;
+  userName: string;
+  password: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  photo: string;
+  shouldRemember: boolean;
 }

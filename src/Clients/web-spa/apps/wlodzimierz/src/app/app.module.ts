@@ -9,10 +9,11 @@ import { AppComponent } from './app.component';
 import { TopMenuComponent } from './layout/top-menu/top-menu.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [AppComponent, TopMenuComponent, FooterComponent],
-  imports: [BrowserModule, NgbModule, AuthModule, AppRoutingModule],
+  imports: [BrowserModule, NgbModule, AuthModule, AppRoutingModule, StoreModule.forRoot({}, {})],
   bootstrap: [AppComponent]
 })
 export class AppModule {

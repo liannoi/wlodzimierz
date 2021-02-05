@@ -1,14 +1,23 @@
 import { Injectable } from '@angular/core';
 
-import { JwtTokenModel } from '../models/jwt-token.model';
-import { UserModel } from '../models/user.model';
 import { BehaviorSubjectItem } from '../items/behavior-subject.item';
+import { JwtToken } from '../models/jwt-token.model';
+import { User } from '../models/user.model';
 
 @Injectable()
 export class UsersStore {
-  public readonly currentUser: BehaviorSubjectItem<UserModel> = new BehaviorSubjectItem<UserModel>(new UserModel());
+  public readonly currentUser: BehaviorSubjectItem<User> = new BehaviorSubjectItem<User>({
+    userId: '',
+    firstName: '',
+    lastName: '',
+    photo: '',
+    userName: '',
+    email: '',
+    shouldRemember: false,
+    password: ''
+  });
 
-  public setCurrentUser(value: UserModel) {
+  public setCurrentUser(value: User) {
     this.currentUser.value = value;
   }
 
@@ -16,6 +25,7 @@ export class UsersStore {
     console.log(this.currentUser.value);
   }
 
-  public writeToken(token: JwtTokenModel, expires: Date): void {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  public writeToken(token: JwtToken, expires: Date): void {
   }
 }

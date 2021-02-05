@@ -1,4 +1,3 @@
-export class JwtTokenModel {
-  public constructor(public value: string = '') {
-  }
+export interface JwtToken {
+  value: string;
 }

@@ -6,9 +6,9 @@ import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/
 import { Observable, Subscription } from 'rxjs';
 
 import { AuthFormGroup } from '../shared/forms/auth.form';
-import { UserModel } from '../shared/models/user.model';
 import { UsersStore } from '../shared/stores/users.store';
 import { unauthorizedValidator } from '../shared/validators/unauthorized.validator';
+import { User } from '../shared/models/user.model';
 
 @Component({
   selector: 'wlodzimierz-sign-in',
@@ -17,7 +17,7 @@ import { unauthorizedValidator } from '../shared/validators/unauthorized.validat
 })
 export class SignInComponent implements OnInit, OnDestroy {
   public signInForm: AuthFormGroup;
-  private currentUser$: Observable<UserModel>;
+  private currentUser$: Observable<User>;
   private subscriptions: Subscription[] = [];
 
   public constructor(
@@ -35,11 +35,11 @@ export class SignInComponent implements OnInit, OnDestroy {
   ///////////////////////////////////////////////////////////////////////////
 
   public get userName(): AbstractControl {
-    return this.signInForm.control('userName');
+    return this.signInForm.take('userName');
   }
 
   public get password(): AbstractControl {
-    return this.signInForm.control('password');
+    return this.signInForm.take('password');
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,7 @@ export class SignInComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.usersStore.setCurrentUser(this.signInForm.model<UserModel>());
+    this.usersStore.setCurrentUser(this.signInForm.map<User>());
     this.usersStore.signIn();
   }
 
@@ -68,11 +68,11 @@ export class SignInComponent implements OnInit, OnDestroy {
   ///////////////////////////////////////////////////////////////////////////
 
   private followUser(): void {
-    const subscription = this.currentUser$.subscribe((model: UserModel) => this.setupForm(model));
+    const subscription = this.currentUser$.subscribe((model: User) => this.setupForm(model));
     this.subscriptions.push(subscription);
   }
 
-  private setupForm(user: UserModel): void {
+  private setupForm(user: User): void {
     this.signInForm = new AuthFormGroup(
       {
         userName: new FormControl(user.userName, [Validators.required]),

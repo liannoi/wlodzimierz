@@ -10,7 +10,7 @@ export class BehaviorSubjectItem<TModel> {
   }
 
   public get value(): TModel {
-    return this.subject.value;
+    return this.subject.getValue();
   }
 
   public set value(value: TModel) {
