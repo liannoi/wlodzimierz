@@ -5,8 +5,9 @@ import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/
 
 import { Observable, Subscription } from 'rxjs';
 
+import { AuthFacade } from '@wlodzimierz/auth';
+
 import { AuthFormGroup } from '../shared/forms/auth.form';
-import { UsersStore } from '../shared/stores/users.store';
 import { unauthorizedValidator } from '../shared/validators/unauthorized.validator';
 import { User } from '../shared/models/user.model';
 
@@ -21,13 +22,24 @@ export class SignInComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   public constructor(
-    private usersStore: UsersStore,
+    private authFacade: AuthFacade,
     private formBuilder: FormBuilder,
     private router: Router,
     private titleService: Title
   ) {
     titleService.setTitle('Sign in to Wlodzimierz - Wlodzimierz');
-    this.currentUser$ = usersStore.currentUser.value$;
+    //this.authFacade.
+    this.authFacade.verifySuccess({
+      email: '',
+      firstName: '',
+      lastName: '',
+      photo: '',
+      shouldRemember: false,
+      userId: '',
+      password: '123mcmc',
+      userName: 'test'
+    });
+    this.currentUser$ = authFacade.currentUser$;
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -59,8 +71,10 @@ export class SignInComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.usersStore.setCurrentUser(this.signInForm.map<User>());
-    this.usersStore.signIn();
+    console.log(this.authFacade);
+    //this.authFacade.verifySuccess()
+    //this.usersStore.setCurrentUser(this.signInForm.map<User>());
+    //this.usersStore.signIn();
   }
 
   ///////////////////////////////////////////////////////////////////////////

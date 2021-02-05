@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { User } from '../models/user.model';
 import { JwtToken } from '../models/jwt-token.model';
-import { UsersStore } from '../stores/users.store';
+import { UsersService } from '../services/users.service';
 
 export class AuthFormGroup extends FormGroup {
   private hasFirstAttempt = false;
@@ -35,7 +35,7 @@ export class AuthFormGroup extends FormGroup {
     this.setErrors({ identity: true });
   }
 
-  public writeToken(currentUser: User, token: JwtToken, usersService: UsersStore) {
+  public writeToken(currentUser: User, token: JwtToken, usersService: UsersService) {
     const date = new Date();
     const minutes = currentUser.shouldRemember ? 15 : 5;
     date.setMinutes(date.getMinutes() + minutes);
