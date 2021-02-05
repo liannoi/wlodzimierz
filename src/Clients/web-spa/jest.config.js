@@ -8,6 +8,7 @@ module.exports = {
     '<rootDir>/libs/docs',
     '<rootDir>/libs/docs-api',
     '<rootDir>/libs/status-not-found',
-    '<rootDir>/libs/statuses'
+    '<rootDir>/libs/statuses',
+    '<rootDir>/libs/auth'
   ]
 };

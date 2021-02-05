@@ -60,6 +60,9 @@
     },
     "statuses": {
       "tags": []
+    },
+    "auth": {
+      "tags": []
     }
   }
 }

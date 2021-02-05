@@ -9,6 +9,6 @@ export class TopMenuComponent {
   public isExpanded = true;
 
   public isTokenVerified(): boolean {
-    return true;
+    return false;
   }
 }

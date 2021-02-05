@@ -41,6 +41,9 @@
       ],
       "@wlodzimierz/statuses": [
         "libs/statuses/src/index.ts"
+      ],
+      "@wlodzimierz/auth": [
+        "libs/auth/src/index.ts"
       ]
     }
   },
