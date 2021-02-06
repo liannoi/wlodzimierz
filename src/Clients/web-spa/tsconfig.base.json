@@ -18,9 +18,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@wlodzimierz/shared": [
-        "libs/shared/src/index.ts"
-      ],
       "@wlodzimierz/home": [
         "libs/home/src/index.ts"
       ],
@@ -44,6 +41,9 @@
       ],
       "@wlodzimierz/auth": [
         "libs/auth/src/index.ts"
+      ],
+      "@wlodzimierz/api": [
+        "libs/api/src/index.ts"
       ]
     }
   },

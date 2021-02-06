@@ -1,7 +1,6 @@
 module.exports = {
   projects: [
     '<rootDir>/apps/wlodzimierz',
-    '<rootDir>/libs/shared',
     '<rootDir>/libs/home',
     '<rootDir>/libs/feedback',
     '<rootDir>/libs/software',
@@ -9,6 +8,7 @@ module.exports = {
     '<rootDir>/libs/docs-api',
     '<rootDir>/libs/status-not-found',
     '<rootDir>/libs/statuses',
-    '<rootDir>/libs/auth'
+    '<rootDir>/libs/auth',
+    '<rootDir>/libs/api'
   ]
 };

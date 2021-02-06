@@ -1,45 +1,25 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Title } from "@angular/platform-browser";
+import { AbstractControl, FormControl, Validators } from "@angular/forms";
 
-import { Observable, Subscription } from 'rxjs';
+import { AuthFacade } from "@wlodzimierz/auth";
 
-import { AuthFacade } from '@wlodzimierz/auth';
-
-import { AuthFormGroup } from '../shared/forms/auth.form';
-import { unauthorizedValidator } from '../shared/validators/unauthorized.validator';
-import { User } from '../shared/models/user.model';
+import { AuthFormGroup } from "../shared/forms/auth.form";
+import { unauthorizedValidator } from "../shared/validators/unauthorized.validator";
+import { defaultUser, User } from "../shared/models/user.model";
 
 @Component({
-  selector: 'wlodzimierz-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  selector: "wlodzimierz-sign-in",
+  templateUrl: "./sign-in.component.html",
+  styleUrls: ["./sign-in.component.scss"],
 })
-export class SignInComponent implements OnInit, OnDestroy {
+export class SignInComponent implements OnInit {
   public signInForm: AuthFormGroup;
-  private currentUser$: Observable<User>;
-  private subscriptions: Subscription[] = [];
+  private user: User = defaultUser();
 
-  public constructor(
-    private authFacade: AuthFacade,
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private titleService: Title
-  ) {
-    titleService.setTitle('Sign in to Wlodzimierz - Wlodzimierz');
-    //this.authFacade.
-    this.authFacade.verifySuccess({
-      email: '',
-      firstName: '',
-      lastName: '',
-      photo: '',
-      shouldRemember: false,
-      userId: '',
-      password: '123mcmc',
-      userName: 'test'
-    });
-    this.currentUser$ = authFacade.currentUser$;
+  public constructor(private authFacade: AuthFacade, private router: Router, private titleService: Title) {
+    titleService.setTitle("Sign in to Wlodzimierz - Wlodzimierz");
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -47,11 +27,11 @@ export class SignInComponent implements OnInit, OnDestroy {
   ///////////////////////////////////////////////////////////////////////////
 
   public get userName(): AbstractControl {
-    return this.signInForm.take('userName');
+    return this.signInForm.select("userName");
   }
 
   public get password(): AbstractControl {
-    return this.signInForm.take('password');
+    return this.signInForm.select("password");
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -59,11 +39,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   ///////////////////////////////////////////////////////////////////////////
 
   public ngOnInit(): void {
-    this.followUser();
-  }
-
-  public ngOnDestroy(): void {
-    this.subscriptions.forEach(e => e.unsubscribe());
+    this.setupForm();
   }
 
   public onSignIn(): void {
@@ -71,27 +47,19 @@ export class SignInComponent implements OnInit, OnDestroy {
       return;
     }
 
-    console.log(this.authFacade);
-    //this.authFacade.verifySuccess()
-    //this.usersStore.setCurrentUser(this.signInForm.map<User>());
-    //this.usersStore.signIn();
+    this.authFacade.signIn(this.signInForm.map<User>(this.user));
   }
 
   ///////////////////////////////////////////////////////////////////////////
   // Helpers
   ///////////////////////////////////////////////////////////////////////////
 
-  private followUser(): void {
-    const subscription = this.currentUser$.subscribe((model: User) => this.setupForm(model));
-    this.subscriptions.push(subscription);
-  }
-
-  private setupForm(user: User): void {
+  private setupForm(): void {
     this.signInForm = new AuthFormGroup(
       {
-        userName: new FormControl(user.userName, [Validators.required]),
-        password: new FormControl(user.password, [Validators.required]),
-        shouldRemember: new FormControl(user.shouldRemember, [Validators.required])
+        userName: new FormControl(this.user.userName, [Validators.required]),
+        password: new FormControl(this.user.password, [Validators.required]),
+        shouldRemember: new FormControl(this.user.shouldRemember),
       },
       { validators: unauthorizedValidator }
     );

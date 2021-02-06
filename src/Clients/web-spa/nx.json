@@ -37,9 +37,6 @@
         "wlodzimierz"
       ]
     },
-    "shared": {
-      "tags": []
-    },
     "home": {
       "tags": []
     },
@@ -62,6 +59,9 @@
       "tags": []
     },
     "auth": {
+      "tags": []
+    },
+    "api": {
       "tags": []
     }
   }

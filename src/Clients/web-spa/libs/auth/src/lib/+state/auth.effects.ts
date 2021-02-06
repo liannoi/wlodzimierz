@@ -1,58 +1,48 @@
 import { Injectable } from '@angular/core';
 
-import { of } from 'rxjs';
 import { catchError, concatMap, map } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import * as AuthActions from './auth.actions';
-import { UsersService } from '../shared/services/users.service';
+import { AuthService } from '../shared/services/auth.service';
+import { JwtTokenService } from '../shared/services/jwt-token.service';
 
 @Injectable()
 export class AuthEffects {
-  verifySuccess = createEffect(() =>
+  verify = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.verifySuccess),
+      ofType(AuthActions.verify),
       concatMap(action =>
-        this.usersService.signIn(action.user).pipe(
-          map(() => AuthActions.verifySuccess({ user: action.user })),
+        this.usersService.verify(action.token).pipe(
+          map(result => AuthActions.verifySuccess({ user: result })),
           catchError(error => of(AuthActions.verifyFailure(error)))
         )
       )
     )
   );
 
-  public constructor(private actions$: Actions, private usersService: UsersService) {
-  }
-}
-
-/*
-import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
-
-import * as AuthFeature from './auth.reducer';
-import * as AuthActions from './auth.actions';
-
-@Injectable()
-export class AuthEffects {
-  init$ = createEffect(() =>
+  signIn = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.init),
-      fetch({
-        run: (action) => {
-          // Your custom service 'load' logic goes here. For now just return a success action...
-          return AuthActions.loadAuthSuccess({ auth: [] });
-        },
+      ofType(AuthActions.signIn),
+      concatMap(action =>
+        this.usersService.signIn(action.user).pipe(
+          map(result => {
+            const actionResult = AuthActions.signInSuccess({ token: result });
+            const date = new Date();
+            const minutes = action.user.shouldRemember ? 15 : 5;
+            date.setMinutes(date.getMinutes() + minutes);
+            this.tokenService.write(actionResult.token.value, date);
 
-        onError: (action, error) => {
-          console.error('Error', error);
-          return AuthActions.loadAuthFailure({ error });
-        },
-      })
+            return actionResult;
+          }),
+          catchError(error => of(AuthActions.verifyFailure(error)))
+        )
+      )
     )
   );
 
-  constructor(private actions$: Actions) {}
+  public constructor(private actions$: Actions, private usersService: AuthService, private tokenService: JwtTokenService) {
+  }
 }
-*/
