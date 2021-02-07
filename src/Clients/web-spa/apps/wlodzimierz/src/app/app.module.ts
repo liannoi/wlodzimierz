@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { AuthModule } from '../../../../libs/auth/src/lib/auth.module';
+import { NgrxRouterModule } from '@wlodzimierz/ngrx-router';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import { AuthModule } from '../../../../libs/auth/src/lib/auth.module';
     ),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    NgrxRouterModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   declarations: [AppComponent, TopMenuComponent, FooterComponent],

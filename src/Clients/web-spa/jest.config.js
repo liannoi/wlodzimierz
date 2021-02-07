@@ -9,6 +9,7 @@ module.exports = {
     '<rootDir>/libs/status-not-found',
     '<rootDir>/libs/statuses',
     '<rootDir>/libs/auth',
-    '<rootDir>/libs/api'
+    '<rootDir>/libs/api',
+    '<rootDir>/libs/ngrx-router'
   ]
 };

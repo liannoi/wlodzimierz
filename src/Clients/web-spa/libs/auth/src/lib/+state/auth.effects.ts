@@ -5,6 +5,8 @@ import { of } from 'rxjs';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
+import { go } from '@wlodzimierz/ngrx-router';
+
 import * as AuthActions from './auth.actions';
 import { AuthService } from '../shared/services/auth.service';
 import { JwtTokenService } from '../shared/services/jwt-token.service';
@@ -28,21 +30,22 @@ export class AuthEffects {
       ofType(AuthActions.signIn),
       concatMap(action =>
         this.usersService.signIn(action.user).pipe(
-          map(result => {
-            const actionResult = AuthActions.signInSuccess({ token: result });
-            const date = new Date();
-            const minutes = action.user.shouldRemember ? 15 : 5;
-            date.setMinutes(date.getMinutes() + minutes);
-            this.tokenService.write(actionResult.token.value, date);
+          map(response => {
+            const actionResult = AuthActions.signInSuccess({ token: response });
+            this.tokenService.writeExpires(action.user, actionResult.token);
 
-            return actionResult;
+            return go({ to: { path: ['/'] } });
           }),
-          catchError(error => of(AuthActions.verifyFailure(error)))
+          catchError(error => of(AuthActions.signInFailure(error)))
         )
       )
     )
   );
 
-  public constructor(private actions$: Actions, private usersService: AuthService, private tokenService: JwtTokenService) {
+  public constructor(
+    private actions$: Actions,
+    private usersService: AuthService,
+    private tokenService: JwtTokenService
+  ) {
   }
 }

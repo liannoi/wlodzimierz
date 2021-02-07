@@ -394,6 +394,33 @@
           }
         }
       }
+    },
+    "ngrx-router": {
+      "projectType": "library",
+      "root": "libs/ngrx-router",
+      "sourceRoot": "libs/ngrx-router/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ngrx-router/src/**/*.ts",
+              "libs/ngrx-router/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/ngrx-router"
+          ],
+          "options": {
+            "jestConfig": "libs/ngrx-router/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
