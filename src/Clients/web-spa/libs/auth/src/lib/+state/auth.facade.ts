@@ -12,12 +12,13 @@ import { JwtToken } from '../shared/models/jwt-token.model';
 @Injectable()
 export class AuthFacade {
   public currentUser$: Observable<User> = this.store.pipe(select(AuthSelectors.getCurrentUser));
+  public token$: Observable<JwtToken> = this.store.pipe(select(AuthSelectors.getToken));
 
   public constructor(private store: Store) {
   }
 
-  public verify(token: JwtToken) {
-    this.store.dispatch(AuthActions.verify({ token }));
+  public verify() {
+    this.store.dispatch(AuthActions.verify());
   }
 
   public signIn(user: User) {

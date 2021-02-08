@@ -3,28 +3,41 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import * as AuthActions from './auth.actions';
 import { defaultUser, User } from '../shared/models/user.model';
+import { defaultToken, JwtToken } from '../shared/models/jwt-token.model';
 
 export const AUTH_FEATURE_KEY = 'auth';
 
 export interface State extends EntityState<User> {
   currentUser: User;
+  token: JwtToken;
 }
 
 export interface AuthPartialState {
   readonly [AUTH_FEATURE_KEY]: State;
 }
 
-export const authAdapter: EntityAdapter<User> = createEntityAdapter<User>();
+export const userAdapter: EntityAdapter<User> = createEntityAdapter<User>();
 
-export const initialState: State = authAdapter.getInitialState({
+export const initialState: State = userAdapter.getInitialState({
   currentUser: defaultUser(),
+  token: defaultToken(),
   loaded: false
 });
 
 const authReducer = createReducer(
   initialState,
-  on(AuthActions.verifySuccess, (state, { user }) => ({ ...state, currentUser: user })),
-  on(AuthActions.verifyFailure, state => ({ ...state, currentUser: initialState.currentUser }))
+  on(AuthActions.verifySuccess, (state, { currentUser, token }) => ({ ...state, currentUser, token })),
+  on(AuthActions.verifyFailure, state => ({
+    ...state,
+    currentUser: initialState.currentUser,
+    token: initialState.token
+  })),
+  on(AuthActions.signInSuccess, (state, { token }) => ({ ...state, token })),
+  on(AuthActions.signInFailure, state => ({
+    ...state,
+    currentUser: initialState.currentUser,
+    token: initialState.token
+  }))
 );
 
 export function reducer(state: State | undefined, action: Action): State {

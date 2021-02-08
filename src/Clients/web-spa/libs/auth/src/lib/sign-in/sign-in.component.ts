@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AbstractControl, FormControl, Validators } from '@angular/forms';
 
@@ -18,7 +17,7 @@ export class SignInComponent implements OnInit {
   public signInForm: AuthFormGroup;
   private user: User = defaultUser();
 
-  public constructor(private authFacade: AuthFacade, private router: Router, private titleService: Title) {
+  public constructor(private titleService: Title, private authFacade: AuthFacade) {
     titleService.setTitle('Sign in to Wlodzimierz - Wlodzimierz');
   }
 

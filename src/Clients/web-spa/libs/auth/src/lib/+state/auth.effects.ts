@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 
-import { catchError, concatMap, map } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { catchError, concatMap, map, tap } from 'rxjs/operators';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-
-import { go } from '@wlodzimierz/ngrx-router';
 
 import * as AuthActions from './auth.actions';
 import { AuthService } from '../shared/services/auth.service';
 import { JwtTokenService } from '../shared/services/jwt-token.service';
+import { Router } from '@angular/router';
+import { AuthFacade } from '@wlodzimierz/auth';
 
 @Injectable()
 export class AuthEffects {
   verify = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.verify),
-      concatMap(action =>
-        this.usersService.verify(action.token).pipe(
-          map(result => AuthActions.verifySuccess({ user: result })),
-          catchError(error => of(AuthActions.verifyFailure(error)))
+      concatMap(() =>
+        this.authService.verify().pipe(
+          map((result) => AuthActions.verifySuccess({ currentUser: result, token: this.tokenService.read() })),
+          catchError((error) => of(AuthActions.verifyFailure(error)))
         )
       )
     )
@@ -28,24 +28,34 @@ export class AuthEffects {
   signIn = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.signIn),
-      concatMap(action =>
-        this.usersService.signIn(action.user).pipe(
-          map(response => {
-            const actionResult = AuthActions.signInSuccess({ token: response });
-            this.tokenService.writeExpires(action.user, actionResult.token);
-
-            return go({ to: { path: ['/'] } });
-          }),
-          catchError(error => of(AuthActions.signInFailure(error)))
+      concatMap((action) =>
+        this.authService.signIn(action.user).pipe(
+          map((response) => AuthActions.signInSuccess({ token: response, shouldRemember: action.user.shouldRemember })),
+          catchError((error) => of(AuthActions.signInFailure(error)))
         )
       )
     )
   );
 
+  signInSuccess = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.signInSuccess),
+        tap((action) => {
+          this.tokenService.writeExpires(action.token, action.shouldRemember);
+          this.authFacade.verify();
+          this.router.navigate(['/']);
+        })
+      ),
+    { dispatch: false }
+  );
+
   public constructor(
     private actions$: Actions,
-    private usersService: AuthService,
-    private tokenService: JwtTokenService
+    private authService: AuthService,
+    private tokenService: JwtTokenService,
+    private authFacade: AuthFacade,
+    private router: Router
   ) {
   }
 }

@@ -1,8 +1,10 @@
-import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { ValidationErrors, ValidatorFn } from '@angular/forms';
 
-export const unauthorizedValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
-  const userName = control.get('userName') as AbstractControl;
-  const password = control.get('password') as AbstractControl;
+import { AuthFormGroup } from '../forms/auth.form';
+
+export const unauthorizedValidator: ValidatorFn = (formGroup: AuthFormGroup): ValidationErrors | null => {
+  const userName = formGroup.select('userName');
+  const password = formGroup.select('password');
 
   return userName.invalid || password.invalid ? { unauthorized: true } : null;
 };

@@ -53,7 +53,7 @@
         </ul>
         <hr />
         <ul
-          *ngIf='isTokenVerified(); else unverifiedToken'
+          *ngIf='(currentUser$ | async).userName; else unverifiedToken'
           class='navbar-nav ml-auto'
         >
           <li
@@ -67,7 +67,7 @@
               id='account-dropdown'
               ngbDropdownToggle
               role='button'
-            >Welcome</a
+            >Welcome, {{ (currentUser$ | async).userName }}</a
             >
             <div
               aria-labelledby='account-dropdown'
