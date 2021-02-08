@@ -16,7 +16,7 @@ export class JwtTokenService extends AbstractCookieService<JwtToken> {
     return { value: this.cookieService.get(this.cookieName) };
   }
 
-  public writeExpires( token: JwtToken,shouldRemember:boolean): void {
+  public writeExpires(token: JwtToken, shouldRemember: boolean): void {
     const date = new Date();
     const minutes = shouldRemember ? 15 : 5;
     date.setMinutes(date.getMinutes() + minutes);

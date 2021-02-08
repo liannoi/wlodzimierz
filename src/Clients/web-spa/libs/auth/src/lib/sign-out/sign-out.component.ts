@@ -11,7 +11,7 @@ export class SignOutComponent implements OnInit {
   public constructor(private authFacade: AuthFacade) {
   }
 
-  public ngOnInit():void {
+  public ngOnInit(): void {
     this.authFacade.signOut();
   }
 }

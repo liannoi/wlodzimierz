@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AbstractControl, FormControl, Validators } from '@angular/forms';
 
@@ -7,18 +7,23 @@ import { AuthFacade } from '@wlodzimierz/auth';
 import { AuthFormGroup } from '../shared/forms/auth.form';
 import { unauthorizedValidator } from '../shared/validators/unauthorized.validator';
 import { defaultUser, User } from '../shared/models/user.model';
+import { AuthFormService } from '../shared/services/auth-form.service';
 
 @Component({
   selector: 'wlodzimierz-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent implements OnInit, OnDestroy {
   public signInForm: AuthFormGroup;
   private user: User = defaultUser();
 
-  public constructor(private titleService: Title, private authFacade: AuthFacade) {
-    titleService.setTitle('Sign in to Wlodzimierz - Wlodzimierz');
+  public constructor(
+    private titleService: Title,
+    private authFacade: AuthFacade,
+    private authFormService: AuthFormService
+  ) {
+    this.titleService.setTitle('Sign in to Wlodzimierz - Wlodzimierz');
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -39,6 +44,11 @@ export class SignInComponent implements OnInit {
 
   public ngOnInit(): void {
     this.setupForm();
+    this.followForm();
+  }
+
+  public ngOnDestroy(): void {
+    this.authFormService.onDispose();
   }
 
   public onSignIn(): void {
@@ -46,7 +56,8 @@ export class SignInComponent implements OnInit {
       return;
     }
 
-    this.authFacade.signIn(this.signInForm.map<User>(this.user));
+    this.user = this.signInForm.map<User>();
+    this.authFacade.signIn(this.user);
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -62,5 +73,15 @@ export class SignInComponent implements OnInit {
       },
       { validators: unauthorizedValidator }
     );
+  }
+
+  private followForm(): void {
+    this.authFormService.follow(statusFailure => {
+      if (!statusFailure) return;
+
+      this.userName.setValue(this.user.userName);
+      this.password.setValue('');
+      this.signInForm.failure();
+    });
   }
 }

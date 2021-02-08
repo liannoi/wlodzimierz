@@ -13,10 +13,8 @@ export class AuthFormGroup extends FormGroup {
     return this.identityError.message;
   }
 
-  public map<TModel>(model: TModel): TModel {
-    model = this.getRawValue() as TModel;
-
-    return model;
+  public map<TModel>(): TModel {
+    return this.getRawValue() as TModel;
   }
 
   public select(name: string): AbstractControl {

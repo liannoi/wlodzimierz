@@ -11,12 +11,13 @@ export interface User {
 }
 
 export const defaultUser = (): User => ({
+  userId: '',
+  userName: '',
   email: '',
   firstName: '',
   lastName: '',
-  password: '',
   photo: '',
-  shouldRemember: false,
-  userName: '',
-  userId: ''
+
+  password: '',
+  shouldRemember: false
 });

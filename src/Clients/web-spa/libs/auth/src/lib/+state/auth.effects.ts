@@ -11,6 +11,7 @@ import { AuthFacade } from '@wlodzimierz/auth';
 import * as AuthActions from './auth.actions';
 import { AuthService } from '../shared/services/auth.service';
 import { JwtTokenService } from '../shared/services/jwt-token.service';
+import { AuthFormService } from '../shared/services/auth-form.service';
 
 @Injectable()
 export class AuthEffects {
@@ -35,6 +36,15 @@ export class AuthEffects {
           this.authFacade.verify();
           this.router.navigate(['/']);
         })
+      ),
+    { dispatch: false }
+  );
+
+  signInFailure = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.signInFailure),
+        tap(() => this.authFormService.failure())
       ),
     { dispatch: false }
   );
@@ -75,7 +85,8 @@ export class AuthEffects {
     private authService: AuthService,
     private tokenService: JwtTokenService,
     private authFacade: AuthFacade,
-    private router: Router
+    private router: Router,
+    private authFormService: AuthFormService
   ) {
   }
 }
