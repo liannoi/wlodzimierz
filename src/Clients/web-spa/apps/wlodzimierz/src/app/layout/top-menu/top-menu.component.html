@@ -81,7 +81,7 @@
               <div class='dropdown-divider'></div>
               <a [routerLink]='' ngbDropdownItem>Help</a>
               <a [routerLink]='' ngbDropdownItem>Settings</a>
-              <a [routerLink]='' ngbDropdownItem>Sign out</a>
+              <a routerLink='sign-out' ngbDropdownItem>Sign out</a>
             </div>
           </li>
         </ul>
@@ -130,7 +130,7 @@
               <a
                 [routerLinkActive]="['text-body']"
                 class='nav-link'
-                routerLink='sign-in'
+                routerLink='login'
               >Sign in</a
               >
             </li>
@@ -138,7 +138,7 @@
               <a
                 [routerLinkActive]="['text-body']"
                 class='nav-link'
-                routerLink='sign-up'
+                routerLink='join'
               >Sign up</a
               >
             </li>

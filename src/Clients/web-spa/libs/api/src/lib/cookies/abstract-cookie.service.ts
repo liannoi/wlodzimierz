@@ -1,3 +1,5 @@
+import { Observable, of } from 'rxjs';
+
 import { CookieService } from 'ngx-cookie-service';
 
 import { Cookie } from './cookie.model';
@@ -16,7 +18,7 @@ export abstract class AbstractCookieService<TModel> implements Cookie<TModel> {
     return this.cookieService.check(this.cookieName);
   }
 
-  public clear(): void {
-    this.cookieService.delete(this.cookieName);
+  public clear(): Observable<void> {
+    return of(this.cookieService.delete(this.cookieName));
   }
 }

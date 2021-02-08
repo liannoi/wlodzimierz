@@ -1,30 +1,19 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { of } from 'rxjs';
 import { catchError, concatMap, map, tap } from 'rxjs/operators';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
+import { AuthFacade } from '@wlodzimierz/auth';
+
 import * as AuthActions from './auth.actions';
 import { AuthService } from '../shared/services/auth.service';
 import { JwtTokenService } from '../shared/services/jwt-token.service';
-import { Router } from '@angular/router';
-import { AuthFacade } from '@wlodzimierz/auth';
 
 @Injectable()
 export class AuthEffects {
-  verify = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AuthActions.verify),
-      concatMap(() =>
-        this.authService.verify().pipe(
-          map((result) => AuthActions.verifySuccess({ currentUser: result, token: this.tokenService.read() })),
-          catchError((error) => of(AuthActions.verifyFailure(error)))
-        )
-      )
-    )
-  );
-
   signIn = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.signIn),
@@ -48,6 +37,37 @@ export class AuthEffects {
         })
       ),
     { dispatch: false }
+  );
+
+  signOut = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.signOut),
+      concatMap(() =>
+        this.tokenService.clear().pipe(
+          map(() => AuthActions.signOutSuccess()))
+      )
+    )
+  );
+
+  signOutSuccess = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.signOutSuccess),
+        tap(() => this.router.navigate(['/']))
+      ),
+    { dispatch: false }
+  );
+
+  verify = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.verify),
+      concatMap(() =>
+        this.authService.verify().pipe(
+          map((result) => AuthActions.verifySuccess({ currentUser: result, token: this.tokenService.read() })),
+          catchError((error) => of(AuthActions.verifyFailure(error)))
+        )
+      )
+    )
   );
 
   public constructor(

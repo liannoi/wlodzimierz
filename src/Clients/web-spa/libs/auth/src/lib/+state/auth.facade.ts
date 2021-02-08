@@ -17,11 +17,15 @@ export class AuthFacade {
   public constructor(private store: Store) {
   }
 
-  public verify() {
-    this.store.dispatch(AuthActions.verify());
-  }
-
   public signIn(user: User) {
     this.store.dispatch(AuthActions.signIn({ user }));
+  }
+
+  public signOut() {
+    this.store.dispatch(AuthActions.signOut());
+  }
+
+  public verify() {
+    this.store.dispatch(AuthActions.verify());
   }
 }

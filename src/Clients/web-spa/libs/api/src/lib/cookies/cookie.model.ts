@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+
 export interface Cookie<TModel> {
   read(): TModel;
 
@@ -5,5 +7,5 @@ export interface Cookie<TModel> {
 
   check(): boolean;
 
-  clear(): void;
+  clear(): Observable<void>;
 }

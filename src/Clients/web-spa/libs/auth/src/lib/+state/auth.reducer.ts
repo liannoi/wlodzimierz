@@ -26,18 +26,11 @@ export const initialState: State = userAdapter.getInitialState({
 
 const authReducer = createReducer(
   initialState,
-  on(AuthActions.verifySuccess, (state, { currentUser, token }) => ({ ...state, currentUser, token })),
-  on(AuthActions.verifyFailure, state => ({
-    ...state,
-    currentUser: initialState.currentUser,
-    token: initialState.token
-  })),
   on(AuthActions.signInSuccess, (state, { token }) => ({ ...state, token })),
-  on(AuthActions.signInFailure, state => ({
-    ...state,
-    currentUser: initialState.currentUser,
-    token: initialState.token
-  }))
+  on(AuthActions.signInFailure, () => ({ ...initialState })),
+  on(AuthActions.signOutSuccess, () => ({ ...initialState })),
+  on(AuthActions.verifySuccess, (state, { currentUser, token }) => ({ ...state, currentUser, token })),
+  on(AuthActions.verifyFailure, () => ({ ...initialState }))
 );
 
 export function reducer(state: State | undefined, action: Action): State {
