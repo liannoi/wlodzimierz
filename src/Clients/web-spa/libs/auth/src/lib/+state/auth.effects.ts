@@ -6,12 +6,12 @@ import { catchError, concatMap, map, tap } from 'rxjs/operators';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { AuthFacade } from '@wlodzimierz/auth';
-
 import * as AuthActions from './auth.actions';
 import { AuthService } from '../shared/services/auth.service';
 import { JwtTokenService } from '../shared/services/jwt-token.service';
-import { AuthFormService } from '../shared/auth-form/auth-form.service';
+import { AuthFormFacade } from '../shared/form/auth-form.facade';
+import { AuthFacade } from './auth.facade';
+import { RemoteResult } from '../../../../storage/src/lib/remote/remote-result.model';
 
 @Injectable()
 export class AuthEffects {
@@ -44,7 +44,41 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.signInFailure),
-        tap(() => this.authFormService.failure())
+        tap(() => this.formFacade.failureSignIn())
+      ),
+    { dispatch: false }
+  );
+
+  signUp = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.signUp),
+      concatMap((action) =>
+        this.authService.signUp(action.user).pipe(
+          map((response) => AuthActions.signUpSuccess({ token: response })),
+          catchError((error: RemoteResult) => of(AuthActions.signUpFailure(error)))
+        )
+      )
+    )
+  );
+
+  signUpSuccess = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.signUpSuccess),
+        tap((action) => {
+          this.tokenService.writeExpires(action.token, true);
+          this.authFacade.verify();
+          this.router.navigate(['/']);
+        })
+      ),
+    { dispatch: false }
+  );
+
+  signUpFailure = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthActions.signUpFailure),
+        tap((action) => this.formFacade.failureSignUp(action.error))
       ),
     { dispatch: false }
   );
@@ -83,7 +117,7 @@ export class AuthEffects {
     private tokenService: JwtTokenService,
     private authFacade: AuthFacade,
     private router: Router,
-    private authFormService: AuthFormService
+    private formFacade: AuthFormFacade
   ) {
   }
 }

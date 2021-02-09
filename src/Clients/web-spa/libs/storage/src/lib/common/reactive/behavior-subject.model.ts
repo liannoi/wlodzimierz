@@ -1,19 +1,19 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 
-export class BehaviorSubjectItem<T> {
-  public readonly value$: Observable<T>;
-  private readonly subject: BehaviorSubject<T>;
+export class BehaviorSubjectItem<TItem> {
+  public readonly value$: Observable<TItem>;
+  private readonly subject: BehaviorSubject<TItem>;
 
-  public constructor(initialValue: T) {
+  public constructor(initialValue: TItem) {
     this.subject = new BehaviorSubject(initialValue);
     this.value$ = this.subject.asObservable();
   }
 
-  get value(): T {
+  get value(): TItem {
     return this.subject.getValue();
   }
 
-  set value(value: T) {
+  set value(value: TItem) {
     this.subject.next(value);
   }
 }

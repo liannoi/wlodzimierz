@@ -2,12 +2,11 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AbstractControl, FormControl, Validators } from '@angular/forms';
 
-import { AuthFacade } from '@wlodzimierz/auth';
-
-import { AuthFormGroup } from '../shared/auth-form/auth-form.model';
+import { AuthFormGroup } from '../shared/form/auth-form.model';
 import { unauthorizedValidator } from '../shared/validators/unauthorized.validator';
 import { defaultUser, User } from '../shared/models/user.model';
-import { AuthFormService } from '../shared/auth-form/auth-form.service';
+import { AuthFormFacade } from '../shared/form/auth-form.facade';
+import { AuthFacade } from '../+state/auth.facade';
 
 @Component({
   selector: 'wlodzimierz-sign-in',
@@ -18,11 +17,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   public signInForm: AuthFormGroup;
   private user: User = defaultUser();
 
-  public constructor(
-    private titleService: Title,
-    private authFacade: AuthFacade,
-    private authFormService: AuthFormService
-  ) {
+  public constructor(private titleService: Title, private authFacade: AuthFacade, private formFacade: AuthFormFacade) {
     this.titleService.setTitle('Sign in to Wlodzimierz - Wlodzimierz');
   }
 
@@ -48,7 +43,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.authFormService.onDispose();
+    this.formFacade.onDispose();
   }
 
   public onSignIn(): void {
@@ -76,8 +71,8 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   private followForm(): void {
-    this.authFormService.follow(statusFailure => {
-      if (!statusFailure) return;
+    this.formFacade.followSignIn((isFailure) => {
+      if (!isFailure) return;
 
       this.userName.setValue(this.user.userName);
       this.password.setValue('');

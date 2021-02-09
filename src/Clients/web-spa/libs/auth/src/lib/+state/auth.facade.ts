@@ -21,6 +21,10 @@ export class AuthFacade {
     this.store.dispatch(AuthActions.signIn({ user }));
   }
 
+  public signUp(user: User) {
+    this.store.dispatch(AuthActions.signUp({ user }));
+  }
+
   public signOut() {
     this.store.dispatch(AuthActions.signOut());
   }

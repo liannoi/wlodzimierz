@@ -1,16 +1,11 @@
 import { AbstractControl, FormGroup } from '@angular/forms';
-import { HttpErrorResponse } from '@angular/common/http';
 
 export class AuthFormGroup extends FormGroup {
+  public errorMessage: string;
   private hasFirstAttempt = false;
-  private identityError: HttpErrorResponse;
 
   public get hasAttempt(): boolean {
     return this.hasFirstAttempt;
-  }
-
-  public get message(): string {
-    return this.identityError.message;
   }
 
   public map<TModel>(): TModel {
@@ -25,9 +20,9 @@ export class AuthFormGroup extends FormGroup {
     this.hasFirstAttempt = true;
   }
 
-  public identityFailure(error: HttpErrorResponse): void {
+  public identityFailure(message: string): void {
     this.hasFirstAttempt = true;
-    this.identityError = error;
+    this.errorMessage = message;
     this.setErrors({ identity: true });
   }
 }

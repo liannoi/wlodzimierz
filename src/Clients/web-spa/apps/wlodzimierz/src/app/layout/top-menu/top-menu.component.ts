@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { AuthFacade } from '@wlodzimierz/auth';
-
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { User } from '../../../../../../libs/auth/src/lib/shared/models/user.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { AuthFacade } from '../../../../../../libs/auth/src/lib/+state/auth.facade';
 
 @Component({
   selector: 'wlodzimierz-top-menu',

@@ -4,10 +4,15 @@ import { createAction, props } from '@ngrx/store';
 
 import { User } from '../shared/models/user.model';
 import { JwtToken } from '../shared/models/jwt-token.model';
+import { RemoteResult } from '../../../../storage/src/lib/remote/remote-result.model';
 
 export const signIn = createAction('[Auth/API] Sign In', props<{ user: User }>());
 export const signInSuccess = createAction('[Auth/API] Sign In Success', props<{ token: JwtToken, shouldRemember: boolean }>());
 export const signInFailure = createAction('[Auth/API] Sign In Failure', props<{ error: HttpErrorResponse }>());
+
+export const signUp = createAction('[Auth/API] Sign Up', props<{ user: User }>());
+export const signUpSuccess = createAction('[Auth/API] Sign Up Success', props<{ token: JwtToken }>());
+export const signUpFailure = createAction('[Auth/API] Sign Up Failure', props<{ error: RemoteResult }>());
 
 export const signOut = createAction('[Auth/API] Sign Out');
 export const signOutSuccess = createAction('[Auth/API] Sign Out Success');
