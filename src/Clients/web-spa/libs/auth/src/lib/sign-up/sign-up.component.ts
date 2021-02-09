@@ -64,11 +64,18 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   private setupForm(): void {
     this.signUpForm = new AuthFormGroup({
-      userName: new FormControl(this.user.userName, [Validators.required]),
-      email: new FormControl(this.user.email, [Validators.required, Validators.minLength(6)]),
+      userName: new FormControl(this.user.userName, [
+        Validators.required,
+        Validators.pattern('^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$')
+      ]),
+      email: new FormControl(this.user.email, [
+        Validators.required,
+        Validators.pattern(
+          '^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
+        )
+      ]),
       password: new FormControl(this.user.password, [
         Validators.required,
-        Validators.minLength(6),
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$')
       ])
     });
@@ -80,7 +87,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
       this.userName.setValue(this.user.userName);
       this.password.setValue('');
-      this.signUpForm.identityFailure(state.error.first());
+      this.signUpForm.identityFailure(state.error.errors[''][0]);
     });
   }
 }

@@ -7,12 +7,12 @@ using MediatR;
 
 namespace Application.Storage.API.Storage.Users.Commands.SignIn
 {
-    public class SigninCommand : IRequest<JwtToken>
+    public class SignInCommand : IRequest<JwtToken>
     {
         public string UserName { get; set; }
         public string Password { get; set; }
 
-        private class Handler : IRequestHandler<SigninCommand, JwtToken>
+        private class Handler : IRequestHandler<SignInCommand, JwtToken>
         {
             private readonly IIdentityService _identityService;
 
@@ -21,7 +21,7 @@ namespace Application.Storage.API.Storage.Users.Commands.SignIn
                 _identityService = identityService;
             }
 
-            public async Task<JwtToken> Handle(SigninCommand request, CancellationToken cancellationToken)
+            public async Task<JwtToken> Handle(SignInCommand request, CancellationToken cancellationToken)
             {
                 var (result, token) = await _identityService.SignInAsync(request.UserName, request.Password);
 

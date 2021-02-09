@@ -21,7 +21,7 @@ export class AuthFormFacade implements OnDispose {
   }
 
   public followSignIn(action: (value: boolean) => void): void {
-    return this.signInFailure.follow(action);
+    this.signInFailure.follow(action);
   }
 
   public failureSignIn(): boolean {
@@ -32,7 +32,7 @@ export class AuthFormFacade implements OnDispose {
     this.signUpFailure.follow(action);
   }
 
-  public failureSignUp(error: RemoteResult) {
+  public failureSignUp(error: RemoteResult): boolean {
     return this.signUpFailure.emit({ isFailure: true, error });
   }
 }

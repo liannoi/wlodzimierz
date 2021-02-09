@@ -8,13 +8,13 @@ using MediatR;
 
 namespace Application.Storage.API.Storage.Users.Commands.SignUp
 {
-    public class SignupCommand : IRequest<JwtToken>
+    public class SignUpCommand : IRequest<JwtToken>
     {
         public string UserName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
 
-        private class Handler : IRequestHandler<SignupCommand, JwtToken>
+        private class Handler : IRequestHandler<SignUpCommand, JwtToken>
         {
             private readonly IIdentityService _identityService;
 
@@ -23,7 +23,7 @@ namespace Application.Storage.API.Storage.Users.Commands.SignUp
                 _identityService = identityService;
             }
 
-            public async Task<JwtToken> Handle(SignupCommand request, CancellationToken cancellationToken)
+            public async Task<JwtToken> Handle(SignUpCommand request, CancellationToken cancellationToken)
             {
                 var (result, token) =
                     await _identityService.SignUpAsync(request.UserName, request.Email, request.Password);
