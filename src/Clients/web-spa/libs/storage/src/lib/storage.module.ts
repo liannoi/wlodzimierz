@@ -4,5 +4,5 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   imports: [CommonModule]
 })
-export class ApiModule {
+export class StorageModule {
 }

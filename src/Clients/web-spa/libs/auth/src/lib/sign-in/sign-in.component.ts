@@ -4,10 +4,10 @@ import { AbstractControl, FormControl, Validators } from '@angular/forms';
 
 import { AuthFacade } from '@wlodzimierz/auth';
 
-import { AuthFormGroup } from '../shared/forms/auth.form';
+import { AuthFormGroup } from '../shared/auth-form/auth-form.model';
 import { unauthorizedValidator } from '../shared/validators/unauthorized.validator';
 import { defaultUser, User } from '../shared/models/user.model';
-import { AuthFormService } from '../shared/services/auth-form.service';
+import { AuthFormService } from '../shared/auth-form/auth-form.service';
 
 @Component({
   selector: 'wlodzimierz-sign-in',

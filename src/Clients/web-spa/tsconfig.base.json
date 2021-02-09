@@ -21,20 +21,8 @@
       "@wlodzimierz/home": [
         "libs/home/src/index.ts"
       ],
-      "@wlodzimierz/feedback": [
-        "libs/feedback/src/index.ts"
-      ],
-      "@wlodzimierz/software": [
-        "libs/software/src/index.ts"
-      ],
       "@wlodzimierz/docs": [
         "libs/docs/src/index.ts"
-      ],
-      "@wlodzimierz/docs-api": [
-        "libs/docs-api/src/index.ts"
-      ],
-      "@wlodzimierz/status-not-found": [
-        "libs/status-not-found/src/index.ts"
       ],
       "@wlodzimierz/statuses": [
         "libs/statuses/src/index.ts"
@@ -42,11 +30,11 @@
       "@wlodzimierz/auth": [
         "libs/auth/src/index.ts"
       ],
-      "@wlodzimierz/api": [
-        "libs/api/src/index.ts"
-      ],
       "@wlodzimierz/ngrx-router": [
         "libs/ngrx-router/src/index.ts"
+      ],
+      "@wlodzimierz/storage": [
+        "libs/storage/src/index.ts"
       ]
     }
   },

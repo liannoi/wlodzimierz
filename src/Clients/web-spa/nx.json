@@ -40,19 +40,7 @@
     "home": {
       "tags": []
     },
-    "feedback": {
-      "tags": []
-    },
-    "software": {
-      "tags": []
-    },
     "docs": {
-      "tags": []
-    },
-    "docs-api": {
-      "tags": []
-    },
-    "status-not-found": {
       "tags": []
     },
     "statuses": {
@@ -61,10 +49,10 @@
     "auth": {
       "tags": []
     },
-    "api": {
+    "ngrx-router": {
       "tags": []
     },
-    "ngrx-router": {
+    "storage": {
       "tags": []
     }
   }

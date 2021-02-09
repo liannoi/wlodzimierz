@@ -179,60 +179,6 @@
         }
       }
     },
-    "feedback": {
-      "projectType": "library",
-      "root": "libs/feedback",
-      "sourceRoot": "libs/feedback/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/feedback/src/**/*.ts",
-              "libs/feedback/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/feedback"
-          ],
-          "options": {
-            "jestConfig": "libs/feedback/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "software": {
-      "projectType": "library",
-      "root": "libs/software",
-      "sourceRoot": "libs/software/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/software/src/**/*.ts",
-              "libs/software/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/software"
-          ],
-          "options": {
-            "jestConfig": "libs/software/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "docs": {
       "projectType": "library",
       "root": "libs/docs",
@@ -255,60 +201,6 @@
           ],
           "options": {
             "jestConfig": "libs/docs/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "docs-api": {
-      "projectType": "library",
-      "root": "libs/docs-api",
-      "sourceRoot": "libs/docs-api/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/docs-api/src/**/*.ts",
-              "libs/docs-api/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/docs-api"
-          ],
-          "options": {
-            "jestConfig": "libs/docs-api/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "status-not-found": {
-      "projectType": "library",
-      "root": "libs/status-not-found",
-      "sourceRoot": "libs/status-not-found/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/status-not-found/src/**/*.ts",
-              "libs/status-not-found/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/status-not-found"
-          ],
-          "options": {
-            "jestConfig": "libs/status-not-found/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -368,33 +260,6 @@
         }
       }
     },
-    "api": {
-      "projectType": "library",
-      "root": "libs/api",
-      "sourceRoot": "libs/api/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/api/src/**/*.ts",
-              "libs/api/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/api"
-          ],
-          "options": {
-            "jestConfig": "libs/api/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "ngrx-router": {
       "projectType": "library",
       "root": "libs/ngrx-router",
@@ -417,6 +282,33 @@
           ],
           "options": {
             "jestConfig": "libs/ngrx-router/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "storage": {
+      "projectType": "library",
+      "root": "libs/storage",
+      "sourceRoot": "libs/storage/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/storage/src/**/*.ts",
+              "libs/storage/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/storage"
+          ],
+          "options": {
+            "jestConfig": "libs/storage/jest.config.js",
             "passWithNoTests": true
           }
         }

@@ -17,7 +17,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { AuthService } from './shared/services/auth.service';
 import { UsersEndpointBuilder } from './shared/builders/users-endpoint.builder';
 import { JwtTokenService } from './shared/services/jwt-token.service';
-import { AuthFormService } from './shared/services/auth-form.service';
+import { AuthFormService } from './shared/auth-form/auth-form.service';
 
 @NgModule({
   imports: [

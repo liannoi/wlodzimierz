@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { AuthModule } from '@wlodzimierz/auth';
 import { NgrxRouterModule } from '@wlodzimierz/ngrx-router';
 
 import { AppComponent } from './app.component';
@@ -14,8 +15,6 @@ import { TopMenuComponent } from './layout/top-menu/top-menu.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { AuthModule } from '../../../../libs/auth/src/lib/auth.module';
 
 @NgModule({
   imports: [

@@ -11,7 +11,7 @@ import { AuthFacade } from '@wlodzimierz/auth';
 import * as AuthActions from './auth.actions';
 import { AuthService } from '../shared/services/auth.service';
 import { JwtTokenService } from '../shared/services/jwt-token.service';
-import { AuthFormService } from '../shared/services/auth-form.service';
+import { AuthFormService } from '../shared/auth-form/auth-form.service';
 
 @Injectable()
 export class AuthEffects {
@@ -52,10 +52,7 @@ export class AuthEffects {
   signOut = createEffect(() =>
     this.actions$.pipe(
       ofType(AuthActions.signOut),
-      concatMap(() =>
-        this.tokenService.clear().pipe(
-          map(() => AuthActions.signOutSuccess()))
-      )
+      concatMap(() => this.tokenService.clear().pipe(map(() => AuthActions.signOutSuccess())))
     )
   );
 

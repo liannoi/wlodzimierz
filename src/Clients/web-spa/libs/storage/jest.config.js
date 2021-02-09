@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'api',
+  displayName: 'storage',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -14,7 +14,7 @@ module.exports = {
       }
     }
   },
-  coverageDirectory: '../../coverage/libs/api',
+  coverageDirectory: '../../coverage/libs/storage',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

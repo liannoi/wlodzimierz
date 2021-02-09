@@ -1,6 +1,6 @@
 import { ValidationErrors, ValidatorFn } from '@angular/forms';
 
-import { AuthFormGroup } from '../forms/auth.form';
+import { AuthFormGroup } from '../auth-form/auth-form.model';
 
 export const unauthorizedValidator: ValidatorFn = (formGroup: AuthFormGroup): ValidationErrors | null => {
   const userName = formGroup.select('userName');
