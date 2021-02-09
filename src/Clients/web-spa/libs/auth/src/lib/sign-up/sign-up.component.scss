@@ -30,7 +30,7 @@
 }
 
 .form-control-label + .form-control:focus {
-  background-color: #ffffff;
+  @extend .bg-white;
 }
 
 button[disabled] {

@@ -1,3 +1,23 @@
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+.text-error {
+  @extend .mt-2;
+  @extend .mb-2;
+  @extend .text-muted;
+  color: #24292e;
+}
+
+.text-fatal {
+  @extend .text-danger;
+  @extend .mt-3;
+}
+
+.text-error,
+.text-fatal {
+  @extend .small;
+}
+
 .bg-purple {
   background-color: #f6f8fa;
 }
@@ -5,4 +25,8 @@
 .border-soft {
   border: 1px solid rgb(216, 222, 226);
   border-radius: 5px;
+}
+
+button[disabled] {
+  cursor: not-allowed;
 }

@@ -62,7 +62,10 @@ export class SignInComponent implements OnInit, OnDestroy {
   private setupForm(): void {
     this.signInForm = new AuthFormGroup(
       {
-        userName: new FormControl(this.user.userName, [Validators.required]),
+        userName: new FormControl(this.user.userName, [
+          Validators.required,
+          Validators.pattern('^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$')
+        ]),
         password: new FormControl(this.user.password, [Validators.required]),
         shouldRemember: new FormControl(this.user.shouldRemember)
       },

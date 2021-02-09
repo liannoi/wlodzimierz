@@ -22,10 +22,16 @@
         />
         <div
           *ngIf='userName.invalid && (userName.dirty || userName.touched)'
-          class='text-danger mt-1'
+          class='text-error'
         >
           <div *ngIf='userName.errors.required'>
             <span>Username cannot be empty.</span>
+          </div>
+          <div *ngIf='userName.errors.pattern'>
+            <span
+            >Username must be more than six and at least twenty characters and
+              comply with security policy.</span
+            >
           </div>
         </div>
       </div>
@@ -40,7 +46,7 @@
         />
         <div
           *ngIf='password.invalid && (password.dirty || password.touched)'
-          class='text-danger mt-1'
+          class='text-error'
         >
           <div *ngIf='password.errors.required'>
             <span>Password cannot be empty.</span>
@@ -49,10 +55,10 @@
         <div
           *ngIf='
             signInForm.hasAttempt &&
-            signInForm.errors?.unauthorized &&
+            signInForm.errors.unauthorized &&
             (signInForm.touched || signInForm.dirty)
           '
-          class='text-danger mt-3'
+          class='text-fatal'
         >
           <span>Username or password is incorrect.</span>
         </div>
