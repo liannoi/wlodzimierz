@@ -3,13 +3,11 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import * as AuthActions from './auth.actions';
 import { defaultUser, User } from '../shared/models/user.model';
-import { defaultToken, JwtToken } from '../shared/models/jwt-token.model';
 
 export const AUTH_FEATURE_KEY = 'auth';
 
 export interface State extends EntityState<User> {
   currentUser: User;
-  token: JwtToken;
 }
 
 export interface AuthPartialState {
@@ -20,7 +18,6 @@ export const userAdapter: EntityAdapter<User> = createEntityAdapter<User>();
 
 export const initialState: State = userAdapter.getInitialState({
   currentUser: defaultUser(),
-  token: defaultToken(),
   loaded: false
 });
 

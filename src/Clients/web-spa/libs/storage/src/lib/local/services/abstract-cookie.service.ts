@@ -2,7 +2,7 @@ import { Observable, of } from 'rxjs';
 
 import { CookieService } from 'ngx-cookie-service';
 
-import { Cookie } from './cookie.model';
+import { Cookie } from '../models/cookie.model';
 
 export abstract class AbstractCookieService<TModel> implements Cookie<TModel> {
   protected constructor(protected cookieName, protected cookieService: CookieService) {

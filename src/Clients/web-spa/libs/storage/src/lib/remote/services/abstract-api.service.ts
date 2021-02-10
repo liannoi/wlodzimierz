@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { EndpointBuilder } from './endpoints/endpoint.builder';
+import { EndpointBuilder } from '../endpoints/endpoint.builder';
 
 export abstract class AbstractApiService<TToken extends { value: string }> {
   protected constructor(protected http: HttpClient, protected endpointBuilder?: EndpointBuilder) {

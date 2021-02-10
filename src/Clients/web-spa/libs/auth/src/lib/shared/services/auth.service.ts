@@ -7,7 +7,7 @@ import { User } from '../models/user.model';
 import { JwtToken } from '../models/jwt-token.model';
 import { UsersEndpointBuilder } from '../builders/users-endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { AbstractApiService } from '../../../../../storage/src/lib/remote/abstract-api.service';
+import { AbstractApiService } from '../../../../../storage/src/lib/remote/services/abstract-api.service';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { EndpointBuilder } from '../../../../../storage/src/lib/remote/endpoints/endpoint.builder';
 import { JwtTokenService } from './jwt-token.service';

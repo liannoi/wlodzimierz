@@ -6,6 +6,7 @@ module.exports = {
     '<rootDir>/libs/statuses',
     '<rootDir>/libs/auth',
     '<rootDir>/libs/ngrx-router',
-    '<rootDir>/libs/storage'
+    '<rootDir>/libs/storage',
+    '<rootDir>/libs/chat'
   ]
 };

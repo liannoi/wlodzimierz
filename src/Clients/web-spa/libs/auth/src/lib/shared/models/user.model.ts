@@ -10,14 +10,4 @@ export interface User {
   shouldRemember: boolean;
 }
 
-export const defaultUser = (): User => ({
-  userId: '',
-  userName: '',
-  email: '',
-  firstName: '',
-  lastName: '',
-  photo: '',
-
-  password: '',
-  shouldRemember: false
-});
+export const defaultUser = (): User => <User>({});

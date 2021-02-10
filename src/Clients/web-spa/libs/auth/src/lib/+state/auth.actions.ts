@@ -4,7 +4,7 @@ import { createAction, props } from '@ngrx/store';
 
 import { User } from '../shared/models/user.model';
 import { JwtToken } from '../shared/models/jwt-token.model';
-import { RemoteResult } from '../../../../storage/src/lib/remote/remote-result.model';
+import { RemoteResult } from '../../../../storage/src/lib/remote/models/remote-result.model';
 
 export const signIn = createAction('[Auth/API] Sign In', props<{ user: User }>());
 export const signInSuccess = createAction('[Auth/API] Sign In Success', props<{ token: JwtToken, shouldRemember: boolean }>());

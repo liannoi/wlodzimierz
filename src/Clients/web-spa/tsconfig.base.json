@@ -35,6 +35,9 @@
       ],
       "@wlodzimierz/storage": [
         "libs/storage/src/index.ts"
+      ],
+      "@wlodzimierz/chat": [
+        "libs/chat/src/index.ts"
       ]
     }
   },

@@ -11,7 +11,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { JwtTokenService } from '../shared/services/jwt-token.service';
 import { AuthFormFacade } from '../shared/form/auth-form.facade';
 import { AuthFacade } from './auth.facade';
-import { RemoteResult } from '../../../../storage/src/lib/remote/remote-result.model';
+import { RemoteResult } from '../../../../storage/src/lib/remote/models/remote-result.model';
 
 @Injectable()
 export class AuthEffects {

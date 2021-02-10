@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { BehaviorSubjectValueObject } from '../../../../../storage/src/lib/common/reactive/behavior-subject.value-object';
 import { OnDispose } from '../../../../../storage/src/lib/common/interfaces/on-dispose.interface';
-import { RemoteResult } from '../../../../../storage/src/lib/remote/remote-result.model';
+import { RemoteResult } from '../../../../../storage/src/lib/remote/models/remote-result.model';
 
 @Injectable()
 export class AuthFormFacade implements OnDispose {

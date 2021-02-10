@@ -54,6 +54,9 @@
     },
     "storage": {
       "tags": []
+    },
+    "chat": {
+      "tags": []
     }
   }
 }
