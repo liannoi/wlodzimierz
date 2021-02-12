@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "strict": true,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
@@ -33,6 +32,9 @@
       ],
       "@wlodzimierz/chat": [
         "libs/chat/src/index.ts"
+      ],
+      "@wlodzimierz/storage": [
+        "libs/storage/src/index.ts"
       ]
     }
   },

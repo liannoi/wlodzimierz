@@ -286,6 +286,33 @@
           }
         }
       }
+    },
+    "storage": {
+      "projectType": "library",
+      "root": "libs/storage",
+      "sourceRoot": "libs/storage/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/storage/src/**/*.ts",
+              "libs/storage/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/storage"
+          ],
+          "options": {
+            "jestConfig": "libs/storage/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

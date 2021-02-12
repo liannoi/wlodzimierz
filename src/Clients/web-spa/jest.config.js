@@ -5,6 +5,7 @@ module.exports = {
     '<rootDir>/libs/docs',
     '<rootDir>/libs/users',
     '<rootDir>/libs/statuses',
-    '<rootDir>/libs/chat'
+    '<rootDir>/libs/chat',
+    '<rootDir>/libs/storage'
   ]
 };
