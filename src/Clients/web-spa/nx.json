@@ -54,6 +54,12 @@
     },
     "storage": {
       "tags": []
+    },
+    "ngrx-router": {
+      "tags": []
+    },
+    "ngrx-error": {
+      "tags": []
     }
   }
 }

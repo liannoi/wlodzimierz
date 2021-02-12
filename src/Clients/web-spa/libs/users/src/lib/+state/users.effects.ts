@@ -13,7 +13,7 @@ import { Cookie } from '../../../../storage/src/lib/local/models/cookie.model';
 
 @Injectable()
 export class UsersEffects {
-  verify = createEffect(() =>
+  verify$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UsersActions.verify),
       concatMap(() =>

@@ -8,6 +8,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { UsersModule } from '@wlodzimierz/users';
+import { NgrxErrorModule } from '@wlodzimierz/ngrx-error';
+import { NgrxRouterModule } from '@wlodzimierz/ngrx-router';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +35,8 @@ import { environment } from '../environments/environment';
     ),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    NgrxRouterModule,
+    NgrxErrorModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   declarations: [AppComponent, TopMenuComponent, FooterComponent],
