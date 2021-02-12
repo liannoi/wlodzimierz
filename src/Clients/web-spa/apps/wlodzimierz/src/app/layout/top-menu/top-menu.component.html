@@ -1,9 +1,9 @@
 <header>
   <nav class='navbar navbar-expand-lg navbar-light'>
     <div class='container'>
-      <a class='navbar-brand' routerLink='/'>
-        <img alt='Brand' height='34px' src='favicon.ico' width='120px' />
-      </a>
+      <a class='navbar-brand' routerLink='/'
+      ><img alt='Brand' height='34px' src='favicon.ico' width='120px'
+      /></a>
       <button (click)='isExpanded = !isExpanded' class='navbar-toggler'>
         <span class='navbar-toggler-icon'></span>
       </button>
@@ -53,7 +53,7 @@
         </ul>
         <hr />
         <ul
-          *ngIf='(currentUser$ | async).userName; else unverifiedToken'
+          *ngIf='(currentUser$ | async)?.userName; else unverifiedToken'
           class='navbar-nav ml-auto'
         >
           <li
@@ -67,16 +67,14 @@
               id='account-dropdown'
               ngbDropdownToggle
               role='button'
-            >Welcome, {{ (currentUser$ | async).userName }}</a
+            >Welcome,{{ (currentUser$ | async)?.userName }}</a
             >
             <div
               aria-labelledby='account-dropdown'
               class='dropdown-menu mt-1 box-shadow'
               ngbDropdownMenu
             >
-              <a [routerLink]='' ngbDropdownItem
-              >Your profile</a
-              >
+              <a [routerLink]='' ngbDropdownItem>Your profile</a>
               <a [routerLink]='' ngbDropdownItem>Your contacts</a>
               <div class='dropdown-divider'></div>
               <a [routerLink]='' ngbDropdownItem>Help</a>

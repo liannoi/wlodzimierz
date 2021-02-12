@@ -8,6 +8,6 @@ import { Title } from '@angular/platform-browser';
 })
 export class DocsApiComponent {
   public constructor(private titleService: Title) {
-    titleService.setTitle('Wlodzimierz API');
+    this.titleService.setTitle('Wlodzimierz API');
   }
 }

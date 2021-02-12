@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strict": true,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
@@ -24,17 +25,11 @@
       "@wlodzimierz/docs": [
         "libs/docs/src/index.ts"
       ],
+      "@wlodzimierz/users": [
+        "libs/users/src/index.ts"
+      ],
       "@wlodzimierz/statuses": [
         "libs/statuses/src/index.ts"
-      ],
-      "@wlodzimierz/auth": [
-        "libs/auth/src/index.ts"
-      ],
-      "@wlodzimierz/ngrx-router": [
-        "libs/ngrx-router/src/index.ts"
-      ],
-      "@wlodzimierz/storage": [
-        "libs/storage/src/index.ts"
       ],
       "@wlodzimierz/chat": [
         "libs/chat/src/index.ts"

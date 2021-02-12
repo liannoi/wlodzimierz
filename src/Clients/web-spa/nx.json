@@ -43,16 +43,10 @@
     "docs": {
       "tags": []
     },
+    "users": {
+      "tags": []
+    },
     "statuses": {
-      "tags": []
-    },
-    "auth": {
-      "tags": []
-    },
-    "ngrx-router": {
-      "tags": []
-    },
-    "storage": {
       "tags": []
     },
     "chat": {

@@ -206,6 +206,33 @@
         }
       }
     },
+    "users": {
+      "projectType": "library",
+      "root": "libs/users",
+      "sourceRoot": "libs/users/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/src/**/*.ts",
+              "libs/users/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/users"
+          ],
+          "options": {
+            "jestConfig": "libs/users/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "statuses": {
       "projectType": "library",
       "root": "libs/statuses",
@@ -228,87 +255,6 @@
           ],
           "options": {
             "jestConfig": "libs/statuses/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "auth": {
-      "projectType": "library",
-      "root": "libs/auth",
-      "sourceRoot": "libs/auth/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/auth/src/**/*.ts",
-              "libs/auth/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/auth"
-          ],
-          "options": {
-            "jestConfig": "libs/auth/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "ngrx-router": {
-      "projectType": "library",
-      "root": "libs/ngrx-router",
-      "sourceRoot": "libs/ngrx-router/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/ngrx-router/src/**/*.ts",
-              "libs/ngrx-router/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/ngrx-router"
-          ],
-          "options": {
-            "jestConfig": "libs/ngrx-router/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "storage": {
-      "projectType": "library",
-      "root": "libs/storage",
-      "sourceRoot": "libs/storage/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/storage/src/**/*.ts",
-              "libs/storage/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/storage"
-          ],
-          "options": {
-            "jestConfig": "libs/storage/jest.config.js",
             "passWithNoTests": true
           }
         }
