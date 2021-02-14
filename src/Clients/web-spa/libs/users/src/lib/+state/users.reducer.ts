@@ -3,7 +3,7 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import * as UsersActions from './users.actions';
 import { User } from '../shared/models/user.model';
-import { defaultModel } from '../../../../storage/src/lib/defaults/model.default';
+import { defaultModel } from '../../../../storage/src/lib/common/defaults/model.default';
 
 export const USERS_FEATURE_KEY = 'users';
 
@@ -25,7 +25,12 @@ export const initialState: State = usersAdapter.getInitialState({
 const usersReducer = createReducer(
   initialState,
   on(UsersActions.verifySuccess, (state, { currentUser }) => ({ ...state, currentUser })),
-  on(UsersActions.verifyFailure, () => ({ ...initialState }))
+  on(UsersActions.verifyFailure, () => ({ ...initialState })),
+  on(UsersActions.signInSuccess, (state, { token }) => ({ ...state, token })),
+  on(UsersActions.signInFailure, () => ({ ...initialState })),
+  on(UsersActions.signOutSuccess, () => ({ ...initialState })),
+  on(UsersActions.signUpSuccess, (state, { token }) => ({ ...state, token })),
+  on(UsersActions.signUpFailure, () => ({ ...initialState }))
 );
 
 export function reducer(state: State | undefined, action: Action) {

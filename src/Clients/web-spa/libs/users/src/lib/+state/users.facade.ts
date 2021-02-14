@@ -15,7 +15,19 @@ export class UsersFacade {
   public constructor(private store: Store) {
   }
 
-  public verify() {
+  public verify(): void {
     this.store.dispatch(UsersActions.verify());
+  }
+
+  public signIn(currentUser: User): void {
+    this.store.dispatch(UsersActions.signIn({ currentUser }));
+  }
+
+  public signOut(): void {
+    this.store.dispatch(UsersActions.signOut());
+  }
+
+  public signUp(currentUser: User): void {
+    this.store.dispatch(UsersActions.signUp({ currentUser }));
   }
 }

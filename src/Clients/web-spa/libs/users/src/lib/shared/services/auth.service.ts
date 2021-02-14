@@ -27,6 +27,18 @@ export class AuthService extends AbstractApiService<JwtToken> {
     return tokenInCookies ? this.requestVerify(tokenInCookies) : throwError('Token is empty.');
   }
 
+  public signIn(user: User): Observable<JwtToken> {
+    const endpoint = this.endpointBuilder.withAction('SignIn').build();
+
+    return this.http.post<JwtToken>(endpoint.url, user);
+  }
+
+  public signUp(user: User): Observable<JwtToken> {
+    const endpoint = this.endpointBuilder.withAction('SignUp').build();
+
+    return this.http.post<JwtToken>(endpoint.url, user);
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Helpers
   ///////////////////////////////////////////////////////////////////////////
