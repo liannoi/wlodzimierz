@@ -4,6 +4,6 @@ import { AbstractEndpointBuilder } from '../../../../../../storage/src/lib/remot
 @Injectable()
 export class ConversationsEndpointBuilder extends AbstractEndpointBuilder {
   public constructor() {
-    super('Conversation');
+    super('Conversations');
   }
 }

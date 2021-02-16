@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { ConversationMessage } from '../shared/models/conversation-message.model';
+import { User } from '../../../../../users/src/lib/shared/models/user.model';
 
 @Component({
   selector: 'wlodzimierz-conversation-message',
@@ -6,4 +9,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./conversation-message.component.scss']
 })
 export class ConversationMessageComponent {
+  @Input() public message: ConversationMessage;
+  @Input() public user: User;
 }

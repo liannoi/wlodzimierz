@@ -17,16 +17,27 @@ import { ConversationMessageComponent } from './conversation-messages/conversati
 import { ConversationMessageListComponent } from './conversation-messages/conversation-message-list/conversation-message-list.component';
 import { InterlocutorPipe } from './conversations/shared/pipes/interlocutor.pipe';
 import { ConversationsEqualsPipe } from './conversations/shared/pipes/conversations-equals.pipe';
+import { UsersEqualsPipe } from './conversation-messages/shared/pipes/users-equals.pipe';
+import { ReversePipe } from './conversation-messages/shared/pipes/reverse.pipe';
+import * as fromConversationMessages from './conversation-messages/+state/conversation-messages.reducer';
+import { ConversationMessagesEffects } from './conversation-messages/+state/conversation-messages.effects';
+import { ConversationMessagesFacade } from './conversation-messages/+state/conversation-messages.facade';
+import { ConversationsService } from './conversations/shared/services/conversations.service';
+import { ConversationsEndpointBuilder } from './conversations/shared/builders/conversations-endpoint.builder';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     ChatRoutingModule,
+    StoreModule.forFeature(fromConversations.CONVERSATIONS_FEATURE_KEY, fromConversations.reducer),
+    EffectsModule.forFeature([ConversationsEffects]),
     StoreModule.forFeature(
-      fromConversations.CONVERSATIONS_FEATURE_KEY,
-      fromConversations.reducer
+      fromConversationMessages.CONVERSATION_MESSAGES_FEATURE_KEY,
+      fromConversationMessages.reducer
     ),
-    EffectsModule.forFeature([ConversationsEffects])
+    EffectsModule.forFeature([ConversationMessagesEffects]),
+    ReactiveFormsModule
   ],
   declarations: [
     ChatComponent,
@@ -36,9 +47,11 @@ import { ConversationsEqualsPipe } from './conversations/shared/pipes/conversati
     ConversationMessageComponent,
     ConversationMessageListComponent,
     ConversationsEqualsPipe,
-    InterlocutorPipe
+    InterlocutorPipe,
+    UsersEqualsPipe,
+    ReversePipe
   ],
-  providers: [ConversationsFacade]
+  providers: [ConversationsFacade, ConversationMessagesFacade, ConversationsService, ConversationsEndpointBuilder]
 })
 export class ChatModule {
 }

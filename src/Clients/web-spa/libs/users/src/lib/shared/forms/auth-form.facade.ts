@@ -12,8 +12,8 @@ export class AuthFormFacade implements Disposable {
     error: RemoteResult;
     isFailure: boolean;
   }> = new BehaviorSubjectValueObject<{ error: RemoteResult; isFailure: false }>({
-    isFailure: false,
-    error: undefined
+    error: undefined,
+    isFailure: false
   });
 
   public onDispose(): void {

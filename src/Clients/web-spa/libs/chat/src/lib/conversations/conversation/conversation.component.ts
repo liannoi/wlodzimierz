@@ -11,17 +11,10 @@ import { ChangeConversationEvent } from '../shared/events/change-conversation.ev
   styleUrls: ['./conversation.component.scss']
 })
 export class ConversationComponent {
-  @Input()
-  public user: User;
-
-  @Input()
-  public conversation: Conversation;
-
-  @Input()
-  public bindingConversation: Conversation;
-
-  @Output()
-  public changeConversation: EventEmitter<ChangeConversationEvent> = new EventEmitter<ChangeConversationEvent>();
+  @Input() public user: User;
+  @Input() public conversation: Conversation;
+  @Input() public bindingConversation: Conversation;
+  @Output() public changeConversation: EventEmitter<ChangeConversationEvent> = new EventEmitter<ChangeConversationEvent>();
 
   public onChangeConversation(): void {
     this.changeConversation.emit({ conversation: this.conversation });
