@@ -12,7 +12,7 @@ import { Cookie } from '../../../../../storage/src/lib/local/models/cookie.model
 import { User } from '../models/user.model';
 
 @Injectable()
-export class AuthService extends AbstractApiService<JwtToken> {
+export class AuthService extends AbstractApiService {
   public constructor(
     http: HttpClient,
     @Inject(UsersEndpointBuilder) endpointBuilder: EndpointBuilder,

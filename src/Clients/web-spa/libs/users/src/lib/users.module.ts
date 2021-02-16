@@ -18,6 +18,7 @@ import { AuthService } from './shared/services/auth.service';
 import { UsersEndpointBuilder } from './shared/builders/users-endpoint.builder';
 import { JwtTokenService } from './shared/services/jwt-token.service';
 import { AuthFormFacade } from './shared/forms/auth-form.facade';
+import { UsersService } from './shared/services/users.service';
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ import { AuthFormFacade } from './shared/forms/auth-form.facade';
     EffectsModule.forFeature([UsersEffects])
   ],
   declarations: [SignInComponent, SignUpComponent, SignOutComponent],
-  providers: [UsersFacade, AuthService, UsersEndpointBuilder, JwtTokenService, AuthFormFacade]
+  providers: [UsersFacade, AuthService, UsersEndpointBuilder, JwtTokenService, AuthFormFacade, UsersService]
 })
 export class UsersModule {
 }

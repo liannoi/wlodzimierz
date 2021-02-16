@@ -48,7 +48,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.formFacade.dispose();
+    this.formFacade.onDispose();
   }
 
   public onSignUp(): void {

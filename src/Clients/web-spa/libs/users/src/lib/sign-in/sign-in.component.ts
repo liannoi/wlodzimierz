@@ -45,10 +45,10 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.formFacade.dispose();
+    this.formFacade.onDispose();
   }
 
-  public signIn(): void {
+  public onSignIn(): void {
     if (this.signInForm.invalid) {
       return;
     }
@@ -81,7 +81,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
       this.userName.setValue(this.user.userName);
       this.password.setValue('');
-      this.signInForm.markAsFailure();
+      this.signInForm.markAsUnauthorized();
     });
   }
 }

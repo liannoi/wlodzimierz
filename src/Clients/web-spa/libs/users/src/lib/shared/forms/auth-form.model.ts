@@ -11,13 +11,13 @@ export class AuthFormGroup extends FormGroup {
     return this.get(name) as AbstractControl;
   }
 
-  public markAsFailure(): void {
+  public markAsUnauthorized(): void {
     this.setErrors({ unauthorized: true });
     this.markAsPristine();
   }
 
   public identityFailure(message: string): void {
     this.errorMessage = message;
-    this.markAsFailure();
+    this.markAsUnauthorized();
   }
 }

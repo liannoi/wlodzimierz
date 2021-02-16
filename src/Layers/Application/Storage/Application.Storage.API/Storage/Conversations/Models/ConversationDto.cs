@@ -1,4 +1,5 @@
 using Application.Storage.API.Common.Mappings.Interfaces;
+using Application.Storage.API.Storage.ConversationMessages.Models;
 using Application.Storage.API.Storage.Users.Models;
 using AutoMapper;
 using Domain.API.Entities;
@@ -14,6 +15,7 @@ namespace Application.Storage.API.Storage.Conversations.Models
 
         public string RightUserId { get; set; }
         public UserDto RightUser { get; set; }
+        public ConversationMessageDto LastMessage { get; set; }
 
         public void Mapping(Profile profile)
         {

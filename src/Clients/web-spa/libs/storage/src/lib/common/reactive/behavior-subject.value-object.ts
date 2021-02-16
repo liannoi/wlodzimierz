@@ -11,7 +11,7 @@ export class BehaviorSubjectValueObject<TItem> implements Disposable {
     this.item = new BehaviorSubjectItem<TItem>(initialValue);
   }
 
-  public dispose(): void {
+  public onDispose(): void {
     this.subscriptions.forEach(e => e.unsubscribe());
   }
 

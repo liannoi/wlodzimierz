@@ -1,0 +1,16 @@
+<div
+  (click)='onChangeConversation()'
+  [ngClass]="{
+    'bg-white': conversation | cequals: bindingConversation,
+    'bg-transparent': !(conversation | cequals: bindingConversation),
+    selected: conversation | cequals: bindingConversation
+  }"
+  class='card mb-2'
+>
+  <div class='card-body'>
+    <h5 class='card-title'>{{ conversation | interlocutor: user }}</h5>
+    <h6 class='card-subtitle mb-2 text-muted last-message'>
+      {{ conversation.lastMessage }}
+    </h6>
+  </div>
+</div>

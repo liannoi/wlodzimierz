@@ -41,6 +41,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "showCircularDependencies": false,
             "outputPath": "dist/apps/wlodzimierz",
             "index": "apps/wlodzimierz/src/index.html",
             "main": "apps/wlodzimierz/src/main.ts",

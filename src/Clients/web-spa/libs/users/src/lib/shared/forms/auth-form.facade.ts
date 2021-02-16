@@ -16,9 +16,9 @@ export class AuthFormFacade implements Disposable {
     error: undefined
   });
 
-  public dispose(): void {
-    this.signInFailure.dispose();
-    this.signUpFailure.dispose();
+  public onDispose(): void {
+    this.signInFailure.onDispose();
+    this.signUpFailure.onDispose();
   }
 
   public followSignIn(action: (value: boolean) => void): void {
