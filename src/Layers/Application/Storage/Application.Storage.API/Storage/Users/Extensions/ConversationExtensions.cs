@@ -8,11 +8,11 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Storage.API.Storage.Conversations.Extensions
+namespace Application.Storage.API.Storage.Users.Extensions
 {
     public static class ConversationExtensions
     {
-        public static async Task<PaginatedList<ConversationDto>> ResidualAsync(
+        public static async Task<PaginatedList<ConversationDto>> MapMessageAsync(
             this Task<PaginatedList<ConversationDto>> list, IWlodzimierzContext context, IMapper mapper)
         {
             var awaitedList = await list;

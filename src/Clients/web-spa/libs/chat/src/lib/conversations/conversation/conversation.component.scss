@@ -11,3 +11,13 @@
   background-color: #fff !important;
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, 0.03);
 }
+
+.last-message {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  font-size: 14px;
+}
+
