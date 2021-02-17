@@ -54,7 +54,7 @@ The clients are:
 - [Nx](https://nx.dev/)
 - Bootstrap 4.6 (ng-bootstrap)
 - RxJS 6.6
-- Ngrx 10.1
+- NgRx 10.1
 
 #### Native mobile app
 
@@ -71,6 +71,7 @@ The clients are:
 - Entity Framework Core 5
 - ASP.NET Core Identity 5
 - MediatR 9
+- SignalR
 - AutoMapper 10.1
 - FluentValidation 9.3
 - Swagger
@@ -82,7 +83,6 @@ The clients are:
 - Redis 6
 - Serilog 2.10
 - Seq 2020.1
-- SignalR
 
 ## Getting Started
 
