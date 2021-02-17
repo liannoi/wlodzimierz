@@ -54,6 +54,7 @@ The clients are:
 - [Nx](https://nx.dev/)
 - Bootstrap 4.6 (ng-bootstrap)
 - RxJS 6.6
+- Ngrx 10.1
 
 #### Native mobile app
 
