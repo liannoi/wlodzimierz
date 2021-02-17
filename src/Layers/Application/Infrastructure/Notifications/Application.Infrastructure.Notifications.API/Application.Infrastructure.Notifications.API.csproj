@@ -14,4 +14,8 @@
       <ProjectReference Include="..\..\..\..\Domain\Domain.API\Domain.API.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Handlers\Sockets" />
+    </ItemGroup>
+
 </Project>

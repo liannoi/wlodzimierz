@@ -1,13 +1,12 @@
-using Application.Infrastructure.Notifications.API.Types.Base;
+using Application.Infrastructure.Notifications.API.Handlers.Console;
 using Domain.API.Notifications.Contacts;
 using Microsoft.Extensions.Logging;
 
 namespace Application.Storage.API.Storage.Contacts.Notifications
 {
-    public class ContactCreatedNotificationHandler : BaseNotificationHandler<ContactCreatedNotification>
+    public class ContactCreatedNotificationHandler : ConsoleNotificationHandler<ContactCreatedNotification>
     {
-        public ContactCreatedNotificationHandler(ILogger<BaseNotificationHandler<ContactCreatedNotification>> logger) :
-            base(logger)
+        public ContactCreatedNotificationHandler(ILogger<ContactCreatedNotificationHandler> logger) : base(logger)
         {
         }
     }

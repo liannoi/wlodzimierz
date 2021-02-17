@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Application.Infrastructure.Notifications.API.Handlers.Console;
 using Application.Infrastructure.Notifications.API.Interfaces;
-using Application.Infrastructure.Notifications.API.Types.Base;
 using Domain.API.Common.Notifications;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -21,7 +21,7 @@ namespace Infrastructure.Notifications.API.Services
 
         public async Task Publish(AbstractNotification notification)
         {
-            _logger.LogInformation("Publishing domain event. Event - {event}", notification.GetType().Name);
+            _logger.LogInformation("Publish notification {Notification}", notification.GetType().Name);
             await _mediator.Publish(GetNotificationCorrespondingToDomainEvent(notification));
         }
 
@@ -29,7 +29,7 @@ namespace Infrastructure.Notifications.API.Services
 
         private INotification GetNotificationCorrespondingToDomainEvent(AbstractNotification notification)
         {
-            var genericType = typeof(BaseNotification<>).MakeGenericType(notification.GetType());
+            var genericType = typeof(ConsoleNotification<>).MakeGenericType(notification.GetType());
 
             return (Activator.CreateInstance(genericType, notification) as INotification)!;
         }

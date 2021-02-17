@@ -10,7 +10,6 @@ namespace Domain.API.Common.Notifications
         }
 
         public bool IsPublished { get; set; }
-
-        public DateTimeOffset DateOccurred { get; protected set; }
+        public DateTimeOffset DateOccurred { get; }
     }
 }

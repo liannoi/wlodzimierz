@@ -7,11 +7,6 @@ namespace Domain.API.Entities
 {
     public class Contact : INotifiable
     {
-        public Contact()
-        {
-            Notifications = new List<AbstractNotification>();
-        }
-
         public int ContactId { get; set; }
         public string OwnerUserId { get; set; }
         public string FirstName { get; set; }
@@ -20,6 +15,6 @@ namespace Domain.API.Entities
         public string Photo { get; set; }
         public bool IsRemoved { get; set; }
 
-        public IList<AbstractNotification> Notifications { get; set; }
+        public IList<AbstractNotification> Notifications { get; set; } = new List<AbstractNotification>();
     }
 }
