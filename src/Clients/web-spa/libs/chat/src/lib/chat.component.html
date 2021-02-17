@@ -1,0 +1,43 @@
+<div class='row pb-3'>
+  <div class='col-sm-3 ml-n3 min-vh-75 overflow-auto scroll-container'>
+    <wlodzimierz-conversation-list
+      (changeConversation)='onChangeConversation($event)'
+      [conversations]='conversations$ | async'
+      [user]='user'
+    ></wlodzimierz-conversation-list>
+  </div>
+  <ng-container
+    *ngIf='
+      bindingConversation != null;
+      then conversationsBlock;
+      else selectionBlock
+    '
+  ></ng-container>
+  <ng-template #conversationsBlock>
+    <div
+      class='col-sm-9 w-100 min-vh-75 scroll-container overflow-auto border bg-primary-soft'
+    >
+      <wlodzimierz-conversation-message-list
+        [conversation]='bindingConversation'
+        [messages]='messages$ | async'
+        [user]='user'
+      ></wlodzimierz-conversation-message-list>
+    </div>
+  </ng-template>
+  <ng-template #selectionBlock>
+    <div class='col-sm-9 d-flex align-items-center justify-content-center'>
+      <h6 class='alert alert-light bg-transparent rounded'>
+        Select a chat to start messaging
+      </h6>
+    </div>
+  </ng-template>
+</div>
+
+<ng-container *ngIf='bindingConversation != null'>
+  <wlodzimierz-conversation-message-create
+    (createConversationMessage)='onCreateConversationMessage($event)'
+    [conversation]='bindingConversation'
+    [user]='user'
+  ></wlodzimierz-conversation-message-create
+  >
+</ng-container>

@@ -26,7 +26,6 @@ namespace Infrastructure.Identity.API.Services
             foreach (var conversationMessage in messages)
             {
                 conversationMessage.OwnerUser = await MapAsync(conversationMessage.OwnerUserId);
-
                 conversationMessage.Conversation.LeftUser = await MapAsync(conversationMessage.Conversation.LeftUserId);
 
                 conversationMessage.Conversation.RightUser =

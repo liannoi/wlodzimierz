@@ -18,38 +18,29 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@wlodzimierz/*": [
-        "libs/*"
-      ],
       "@wlodzimierz/home": [
-        "libs/presentation/home/src/index.ts"
-      ],
-      "@wlodzimierz/feedback": [
-        "libs/presentation/feedback/src/index.ts"
+        "libs/home/src/index.ts"
       ],
       "@wlodzimierz/docs": [
-        "libs/presentation/docs/src/index.ts"
+        "libs/docs/src/index.ts"
       ],
-      "@wlodzimierz/docs-api": [
-        "libs/presentation/docs-api/src/index.ts"
+      "@wlodzimierz/users": [
+        "libs/users/src/index.ts"
+      ],
+      "@wlodzimierz/statuses": [
+        "libs/statuses/src/index.ts"
       ],
       "@wlodzimierz/chat": [
-        "libs/presentation/chat/src/index.ts"
+        "libs/chat/src/index.ts"
       ],
-      "@wlodzimierz/applications": [
-        "libs/presentation/applications/src/index.ts"
+      "@wlodzimierz/storage": [
+        "libs/storage/src/index.ts"
       ],
-      "@wlodzimierz/auth": [
-        "libs/presentation/auth/src/index.ts"
+      "@wlodzimierz/ngrx-router": [
+        "libs/ngrx-router/src/index.ts"
       ],
-      "@wlodzimierz/infrastructure": [
-        "libs/infrastructure/src/index.ts"
-      ],
-      "@wlodzimierz/domain": [
-        "libs/domain/src/index.ts"
-      ],
-      "@wlodzimierz/data": [
-        "libs/data/src/index.ts"
+      "@wlodzimierz/ngrx-error": [
+        "libs/ngrx-error/src/index.ts"
       ]
     }
   },

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-
 const routes: Routes = [
-  { path: '', component: HomeComponent }
+  { path: '', loadChildren: () => import('@wlodzimierz/home').then(m => m.HomeModule) },
+  { path: 'docs', loadChildren: () => import('@wlodzimierz/docs').then(m => m.DocsModule) },
+  { path: 'app', loadChildren: () => import('@wlodzimierz/chat').then(m => m.ChatModule) },
+  { path: '**', loadChildren: () => import('@wlodzimierz/statuses').then(m => m.StatusesModule) }
 ];
 
 @NgModule({

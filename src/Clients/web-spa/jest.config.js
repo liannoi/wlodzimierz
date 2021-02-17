@@ -2,15 +2,12 @@ module.exports = {
   projects: [
     '<rootDir>/apps/wlodzimierz',
     '<rootDir>/libs/home',
-    '<rootDir>/libs/feedback',
     '<rootDir>/libs/docs',
-    '<rootDir>/libs/docs-api',
-    '<rootDir>/libs/apps',
+    '<rootDir>/libs/users',
+    '<rootDir>/libs/statuses',
     '<rootDir>/libs/chat',
-    '<rootDir>/libs/apps',
-    '<rootDir>/libs/services',
-    '<rootDir>/libs/infrastructure',
-    '<rootDir>/libs/domain',
-    '<rootDir>/libs/application'
+    '<rootDir>/libs/storage',
+    '<rootDir>/libs/ngrx-router',
+    '<rootDir>/libs/ngrx-error'
   ]
 };

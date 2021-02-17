@@ -24,13 +24,13 @@ namespace Presentation.API.Controllers
         #region Authentication
 
         [HttpPost("signup")]
-        public async Task<ActionResult<JwtToken>> Signup([FromBody] SignupCommand command)
+        public async Task<ActionResult<JwtToken>> Signup([FromBody] SignUpCommand command)
         {
             return await Mediator.Send(command);
         }
 
         [HttpPost("signin")]
-        public async Task<ActionResult<JwtToken>> Signin([FromBody] SigninCommand command)
+        public async Task<ActionResult<JwtToken>> Signin([FromBody] SignInCommand command)
         {
             return await Mediator.Send(command);
         }

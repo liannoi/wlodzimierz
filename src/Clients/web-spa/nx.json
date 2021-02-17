@@ -40,34 +40,25 @@
     "home": {
       "tags": []
     },
-    "feedback": {
-      "tags": []
-    },
     "docs": {
       "tags": []
     },
-    "docs-api": {
+    "users": {
       "tags": []
     },
-    "apps": {
+    "statuses": {
       "tags": []
     },
     "chat": {
       "tags": []
     },
-    "applications": {
+    "storage": {
       "tags": []
     },
-    "auth": {
+    "ngrx-router": {
       "tags": []
     },
-    "infrastructure": {
-      "tags": []
-    },
-    "domain": {
-      "tags": []
-    },
-    "data": {
+    "ngrx-error": {
       "tags": []
     }
   }

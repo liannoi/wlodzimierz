@@ -1,9 +1,0 @@
-<div class='container-fluid'>
-  <wlodzimierz-conversation
-    (conversationChanged)='onConversationChanged($event)'
-    *ngFor='let conversation of conversations?.items; trackBy: identify'
-    [conversation]='conversation'
-    [currentConversation]='currentConversation'
-    [user]='currentUser'
-  ></wlodzimierz-conversation>
-</div>

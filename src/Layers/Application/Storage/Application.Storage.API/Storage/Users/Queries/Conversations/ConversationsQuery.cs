@@ -6,8 +6,8 @@ using Application.Infrastructure.Persistence.API.Interfaces;
 using Application.Paging.API;
 using Application.Paging.API.Extensions;
 using Application.Paging.API.Models;
-using Application.Storage.API.Common.Core.Exceptions;
 using Application.Storage.API.Storage.Conversations.Models;
+using Application.Storage.API.Storage.Users.Extensions;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -37,6 +37,9 @@ namespace Application.Storage.API.Storage.Users.Queries.Conversations
             public async Task<PaginatedList<ConversationDto>> Handle(ConversationsQuery request,
                 CancellationToken cancellationToken)
             {
+                return await ReadFromDatabase(request);
+
+#if CACHE
                 try
                 {
                     return await ReadFromCache();
@@ -45,6 +48,7 @@ namespace Application.Storage.API.Storage.Users.Queries.Conversations
                 {
                     return await ReadFromDatabase(request);
                 }
+#endif
             }
 
             // Helpers.
@@ -55,7 +59,8 @@ namespace Application.Storage.API.Storage.Users.Queries.Conversations
                     .Where(e => e.LeftUserId == query.OwnerUserId || e.RightUserId == query.OwnerUserId)
                     .OrderBy(x => x.ConversationId)
                     .ProjectTo<ConversationDto>(_mapper.ConfigurationProvider)
-                    .PaginatedListAsync(query.PageNumber, query.PageSize);
+                    .PaginatedListAsync(query.PageNumber, query.PageSize)
+                    .MapMessageAsync(_context, _mapper);
 
                 await _usersFacade.MapAsync(conversations);
                 await _cache.CreateAsync(conversations);

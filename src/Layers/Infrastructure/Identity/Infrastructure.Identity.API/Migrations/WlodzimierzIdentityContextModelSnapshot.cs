@@ -37,11 +37,9 @@ namespace Infrastructure.Identity.API.Migrations
                     .HasColumnType("bit");
 
                 b.Property<string>("FirstName")
-                    .IsRequired()
                     .HasColumnType("nvarchar(max)");
 
                 b.Property<string>("LastName")
-                    .IsRequired()
                     .HasColumnType("nvarchar(max)");
 
                 b.Property<bool>("LockoutEnabled")
@@ -68,7 +66,6 @@ namespace Infrastructure.Identity.API.Migrations
                     .HasColumnType("bit");
 
                 b.Property<string>("Photo")
-                    .IsRequired()
                     .HasColumnType("nvarchar(max)");
 
                 b.Property<string>("SecurityStamp")

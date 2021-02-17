@@ -1,0 +1,38 @@
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+.text-error {
+  @extend .mt-2;
+  @extend .mb-2;
+  @extend .text-muted;
+  color: #24292e;
+}
+
+.text-fatal {
+  @extend .text-danger;
+  @extend .mt-4;
+  @extend .mb-n2;
+}
+
+.text-error,
+.text-fatal {
+  @extend .small;
+}
+
+.form-control-label {
+  @extend .font-weight-bold;
+  @extend .small;
+}
+
+.form-control-label + .form-control {
+  background-color: #fafbfc;
+  transition: .4s;
+}
+
+.form-control-label + .form-control:focus {
+  @extend .bg-white;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+}

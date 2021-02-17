@@ -1,0 +1,9 @@
+<div class='container-fluid'>
+  <wlodzimierz-conversation
+    (changeConversation)='onChangeConversation($event)'
+    *ngFor='let conversation of conversations.items'
+    [bindingConversation]='bindingConversation'
+    [conversation]='conversation'
+    [user]='user'
+  ></wlodzimierz-conversation>
+</div>
