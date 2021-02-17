@@ -1,6 +1,6 @@
 using System.Reflection;
-using Application.Infrastructure.Identity.API.Models;
-using Infrastructure.EntityFramework.API.Design.Abstractions;
+using Application.Infrastructure.Identity.API.Common.Models;
+using Infrastructure.EntityFramework.API.Abstractions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

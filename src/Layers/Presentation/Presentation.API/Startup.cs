@@ -1,13 +1,14 @@
 using System.IO;
 using System.Linq;
 using Application.Infrastructure.Identity.API;
-using Application.Infrastructure.Identity.API.Interfaces;
+using Application.Infrastructure.Identity.API.Common.Interfaces;
 using Application.Storage.API;
 using Application.Validation.API;
 using FluentValidation.AspNetCore;
 using Infrastructure.Caching.API;
 using Infrastructure.Identity.API;
 using Infrastructure.Notifications.API;
+using Infrastructure.Notifications.API.Services;
 using Infrastructure.Persistence.API;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -60,6 +61,7 @@ namespace Presentation.API
             services.AddHealthChecks().AddDbContextCheck<WlodzimierzContext>();
 
             services.AddCors();
+            services.AddSignalR();
             services.AddControllers(options => options.Filters.Add<ExceptionFilter>())
                 .AddFluentValidation();
 
@@ -124,7 +126,11 @@ namespace Presentation.API
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}"));
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}");
+                endpoints.MapHub<NotificationService>("/notifications");
+            });
         }
     }
 }

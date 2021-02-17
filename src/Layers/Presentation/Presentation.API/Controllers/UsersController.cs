@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
-using Application.Infrastructure.Identity.API.Models;
-using Application.Paging.API.Models;
+using Application.Infrastructure.Identity.API.Common.Models;
+using Application.Paging.API.Common.Models;
 using Application.Storage.API.Storage.Contacts.Models;
 using Application.Storage.API.Storage.ConversationMessages.Models;
 using Application.Storage.API.Storage.Conversations.Models;

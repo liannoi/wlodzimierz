@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
-using Application.Infrastructure.Notifications.API.Interfaces;
+using Application.Infrastructure.Notifications.API.Core.Interfaces;
 using Application.Infrastructure.Persistence.API.Interfaces;
 using Domain.API.Entities;
-using Infrastructure.EntityFramework.API.Notifications;
+using Infrastructure.EntityFramework.API.Context;
 using Microsoft.EntityFrameworkCore;
 
 #nullable disable

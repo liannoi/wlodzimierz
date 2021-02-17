@@ -1,8 +1,8 @@
 using System;
 using System.Text;
-using Application.Infrastructure.Identity.API.Interfaces;
-using Application.Infrastructure.Identity.API.Models;
-using Application.Storage.API.Storage.Users;
+using Application.Infrastructure.Identity.API.Common.Interfaces;
+using Application.Infrastructure.Identity.API.Common.Models;
+using Application.Storage.API.Storage.Users.Facades;
 using Infrastructure.Identity.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using IdentityOptions = Infrastructure.Identity.API.Options.IdentityOptions;
 using JwtBearerOptions = Application.Infrastructure.Identity.API.JwtBearerOptions;
-using TestingOptions = Infrastructure.EntityFramework.API.Testing.TestingOptions;
+using TestingOptions = Infrastructure.EntityFramework.API.Options.TestingOptions;
 
 namespace Infrastructure.Identity.API
 {

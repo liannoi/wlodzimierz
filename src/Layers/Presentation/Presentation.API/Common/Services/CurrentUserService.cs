@@ -1,4 +1,4 @@
-using Application.Infrastructure.Identity.API.Interfaces;
+using Application.Infrastructure.Identity.API.Common.Interfaces;
 using Microsoft.AspNetCore.Http;
 
 namespace Presentation.API.Common.Services

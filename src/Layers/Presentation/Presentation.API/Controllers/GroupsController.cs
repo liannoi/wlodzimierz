@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Application.Paging.API.Models;
+using Application.Paging.API.Common.Models;
 using Application.Storage.API.Storage.Groups.Commands.Create;
 using Application.Storage.API.Storage.Groups.Commands.Delete;
 using Application.Storage.API.Storage.Groups.Commands.Update;

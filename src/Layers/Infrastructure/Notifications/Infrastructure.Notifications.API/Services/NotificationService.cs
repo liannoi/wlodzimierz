@@ -1,14 +1,14 @@
-using System;
 using System.Threading.Tasks;
-using Application.Infrastructure.Notifications.API.Handlers.Console;
-using Application.Infrastructure.Notifications.API.Interfaces;
-using Domain.API.Common.Notifications;
+using Application.Infrastructure.Notifications.API.Core.Interfaces;
+using Domain.API.Common.Notifications.Abstractions;
+using Infrastructure.Notifications.API.Core.Wrappers;
 using MediatR;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Notifications.API.Services
 {
-    public class NotificationService : INotificationService
+    public class NotificationService : Hub<INotificationService>, INotificationService
     {
         private readonly ILogger<NotificationService> _logger;
         private readonly IPublisher _mediator;
@@ -22,16 +22,8 @@ namespace Infrastructure.Notifications.API.Services
         public async Task Publish(AbstractNotification notification)
         {
             _logger.LogInformation("Publish notification {Notification}", notification.GetType().Name);
-            await _mediator.Publish(GetNotificationCorrespondingToDomainEvent(notification));
-        }
-
-        // Helpers.
-
-        private INotification GetNotificationCorrespondingToDomainEvent(AbstractNotification notification)
-        {
-            var genericType = typeof(ConsoleNotification<>).MakeGenericType(notification.GetType());
-
-            return (Activator.CreateInstance(genericType, notification) as INotification)!;
+            await _mediator.Publish(notification.Wrap());
+            await Clients.All.Publish(notification);
         }
     }
 }

@@ -1,4 +1,4 @@
-using Application.Storage.API.Common.Mappings.Interfaces;
+using Application.Storage.API.Core.Mappings.Interfaces;
 using AutoMapper;
 using Domain.API.Entities;
 

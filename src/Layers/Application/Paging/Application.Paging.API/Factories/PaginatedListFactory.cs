@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
-using Application.Paging.API.Models;
+using Application.Paging.API.Common.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Paging.API.Factories

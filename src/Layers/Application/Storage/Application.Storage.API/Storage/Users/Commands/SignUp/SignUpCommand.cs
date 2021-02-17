@@ -1,8 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Infrastructure.Identity.API.Interfaces;
-using Application.Infrastructure.Identity.API.Models;
-using Application.Validation.API.Exceptions;
+using Application.Infrastructure.Identity.API.Common.Interfaces;
+using Application.Infrastructure.Identity.API.Common.Models;
+using Application.Validation.API.Common.Exceptions;
 using Application.Validation.API.Extensions;
 using MediatR;
 

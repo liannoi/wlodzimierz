@@ -1,6 +1,6 @@
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
-using IdentityResult = Application.Infrastructure.Identity.API.Models.IdentityResult;
+using IdentityResult = Application.Infrastructure.Identity.API.Common.Models.IdentityResult;
 
 namespace Infrastructure.Identity.API.Extensions
 {

@@ -1,4 +1,4 @@
-using Application.Infrastructure.Notifications.API.Interfaces;
+using Application.Infrastructure.Notifications.API.Core.Interfaces;
 using Infrastructure.Notifications.API.Services;
 using Microsoft.Extensions.DependencyInjection;
 

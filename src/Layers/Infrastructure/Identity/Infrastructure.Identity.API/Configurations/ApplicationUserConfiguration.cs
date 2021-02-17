@@ -1,4 +1,4 @@
-using Application.Infrastructure.Identity.API.Models;
+using Application.Infrastructure.Identity.API.Common.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

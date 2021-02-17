@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Application.Paging.API.Interfaces;
+using Application.Paging.API.Common.Models;
 
 namespace Application.Infrastructure.Caching.API.Interfaces
 {

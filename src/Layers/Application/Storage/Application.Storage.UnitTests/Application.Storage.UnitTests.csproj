@@ -16,8 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Common\Core\Behaviours" />
-      <Folder Include="Storage\Contacts\Commands" />
+      <Folder Include="Core" />
     </ItemGroup>
 
     <ItemGroup>

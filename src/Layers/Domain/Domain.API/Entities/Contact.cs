@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
-using Domain.API.Common.Notifications;
+using Domain.API.Common.Notifications.Abstractions;
+using Domain.API.Common.Notifications.Interfaces;
 
 #nullable disable
 
