@@ -6,7 +6,7 @@ import { DocsApiComponent } from './docs-api/docs-api.component';
 
 const routes: Routes = [
   { path: '', component: DocsComponent },
-  { path: 'api', component: DocsApiComponent }
+  { path: 'storage', component: DocsApiComponent }
 ];
 
 @NgModule({

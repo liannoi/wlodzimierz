@@ -6,7 +6,7 @@ import { catchError, concatMap, map } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import * as ConversationsActions from './conversations.actions';
-import { UsersService } from '../../../../../users/src/lib/shared/services/users.service';
+import { UsersService } from '../../../../../users/src/lib/shared/storage/services/users.service';
 
 @Injectable()
 export class ConversationsEffects {

@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 
 import { Observable, of } from 'rxjs';
 
-import { JwtTokenService } from '../services/jwt-token.service';
+import { JwtTokenService } from '../storage/services/jwt-token.service';
 
 @Injectable()
 export class JwtTokenGuard implements CanActivate {

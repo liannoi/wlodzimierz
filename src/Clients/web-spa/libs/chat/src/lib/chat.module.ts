@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -22,9 +23,10 @@ import { ReversePipe } from './conversation-messages/shared/pipes/reverse.pipe';
 import * as fromConversationMessages from './conversation-messages/+state/conversation-messages.reducer';
 import { ConversationMessagesEffects } from './conversation-messages/+state/conversation-messages.effects';
 import { ConversationMessagesFacade } from './conversation-messages/+state/conversation-messages.facade';
-import { ConversationsService } from './conversations/shared/services/conversations.service';
-import { ConversationsEndpointBuilder } from './conversations/shared/builders/conversations-endpoint.builder';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ConversationsService } from './conversations/shared/storage/conversations.service';
+import { ConversationsEndpointBuilder } from './conversations/shared/storage/conversations-endpoint.builder';
+import { ConversationMessagesEndpointBuilder } from './conversation-messages/shared/storage/conversation-messages-endpoint.builder';
+import { ConversationMessagesService } from './conversation-messages/shared/storage/conversation-messages.service';
 
 @NgModule({
   imports: [
@@ -51,7 +53,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     UsersEqualsPipe,
     ReversePipe
   ],
-  providers: [ConversationsFacade, ConversationMessagesFacade, ConversationsService, ConversationsEndpointBuilder]
+  providers: [
+    ConversationsFacade,
+    ConversationMessagesFacade,
+    ConversationsService,
+    ConversationsEndpointBuilder,
+    ConversationMessagesEndpointBuilder,
+    ConversationMessagesService
+  ]
 })
 export class ChatModule {
 }

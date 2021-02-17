@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { AbstractApiService } from '../../../../../../storage/src/lib/remote/services/abstract-api.service';
-import { ConversationsEndpointBuilder } from '../builders/conversations-endpoint.builder';
+import { ConversationsEndpointBuilder } from './conversations-endpoint.builder';
 import { EndpointBuilder } from '../../../../../../storage/src/lib/remote/builders/endpoint.builder';
 import { Conversation } from '../models/conversation.model';
 import { ConversationMessagesList } from '../../../conversation-messages/shared/models/conversation-messages-list.model';

@@ -9,11 +9,11 @@ import { catchError, concatMap, map, tap } from 'rxjs/operators';
 import { UsersFacade } from '@wlodzimierz/users';
 
 import * as UsersActions from './users.actions';
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService } from '../shared/storage/services/auth.service';
 import { JwtToken } from '../shared/models/jwt-token.model';
-import { JwtTokenService } from '../shared/services/jwt-token.service';
+import { JwtTokenService } from '../shared/storage/services/jwt-token.service';
 import { Cookie } from '../../../../storage/src/lib/local/models/cookie.model';
-import { AuthFormFacade } from '../shared/forms/auth-form.facade';
+import { AuthFormFacade } from '../shared/storage/forms/auth-form.facade';
 import { RemoteResult } from '../../../../storage/src/lib/remote/models/remote-result.model';
 
 @Injectable()
@@ -67,14 +67,14 @@ export class UsersEffects {
     { dispatch: false }
   );
 
-  signOut = createEffect(() =>
+  signOut$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UsersActions.signOut),
       concatMap(() => this.tokenService.clear().pipe(map(() => UsersActions.signOutSuccess())))
     )
   );
 
-  signOutSuccess = createEffect(
+  signOutSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(UsersActions.signOutSuccess),
@@ -83,7 +83,7 @@ export class UsersEffects {
     { dispatch: false }
   );
 
-  signUp = createEffect(() =>
+  signUp$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UsersActions.signUp),
       concatMap((action) =>
@@ -95,7 +95,7 @@ export class UsersEffects {
     )
   );
 
-  signUpSuccess = createEffect(
+  signUpSuccess$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(UsersActions.signUpSuccess),
@@ -108,7 +108,7 @@ export class UsersEffects {
     { dispatch: false }
   );
 
-  signUpFailure = createEffect(
+  signUpFailure$ = createEffect(
     () =>
       this.actions$.pipe(
         ofType(UsersActions.signUpFailure),
@@ -119,11 +119,11 @@ export class UsersEffects {
 
   public constructor(
     private actions$: Actions,
-    private usersFacade: UsersFacade,
+    private router: Router,
+    @Inject(JwtTokenService) private tokenService: Cookie<JwtToken>,
     private authService: AuthService,
     private formFacade: AuthFormFacade,
-    private router: Router,
-    @Inject(JwtTokenService) private tokenService: Cookie<JwtToken>
+    private usersFacade: UsersFacade,
   ) {
   }
 }

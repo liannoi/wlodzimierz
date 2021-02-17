@@ -3,9 +3,9 @@ import { Title } from '@angular/platform-browser';
 
 import { UsersFacade } from '@wlodzimierz/users';
 
-import { AuthFormGroup } from '../shared/forms/auth-form.model';
+import { AuthFormGroup } from '../shared/storage/forms/auth-form.model';
 import { User } from '../shared/models/user.model';
-import { AuthFormFacade } from '../shared/forms/auth-form.facade';
+import { AuthFormFacade } from '../shared/storage/forms/auth-form.facade';
 import { defaultModel } from '../../../../storage/src/lib/common/defaults/model.default';
 import { AbstractControl, FormControl, Validators } from '@angular/forms';
 

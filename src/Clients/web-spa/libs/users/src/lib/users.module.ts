@@ -14,11 +14,11 @@ import { UsersRoutingModule } from './users-routing.module';
 import * as fromUsers from './+state/users.reducer';
 import { UsersEffects } from './+state/users.effects';
 import { UsersFacade } from './+state/users.facade';
-import { AuthService } from './shared/services/auth.service';
-import { UsersEndpointBuilder } from './shared/builders/users-endpoint.builder';
-import { JwtTokenService } from './shared/services/jwt-token.service';
-import { AuthFormFacade } from './shared/forms/auth-form.facade';
-import { UsersService } from './shared/services/users.service';
+import { AuthService } from './shared/storage/services/auth.service';
+import { UsersEndpointBuilder } from './shared/storage/users-endpoint.builder';
+import { JwtTokenService } from './shared/storage/services/jwt-token.service';
+import { AuthFormFacade } from './shared/storage/forms/auth-form.facade';
+import { UsersService } from './shared/storage/services/users.service';
 import { JwtTokenGuard } from './shared/guards/jwt-token.guard';
 
 @NgModule({

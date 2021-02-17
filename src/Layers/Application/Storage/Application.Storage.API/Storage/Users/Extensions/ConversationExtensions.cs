@@ -19,7 +19,7 @@ namespace Application.Storage.API.Storage.Users.Extensions
 
             foreach (var conversation in awaitedList.Items)
                 conversation.LastMessage = await context.ConversationMessages
-                    .Where(e => e.Conversation.ConversationId == conversation.ConversationId)
+                    .Where(e => e.ConversationId == conversation.ConversationId)
                     .OrderByDescending(x => x.Publish)
                     .Take(1)
                     .ProjectTo<ConversationMessageDto>(mapper.ConfigurationProvider)

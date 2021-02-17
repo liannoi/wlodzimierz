@@ -27,13 +27,13 @@ export class ChatComponent implements OnInit, OnDestroy {
   public constructor(
     private usersFacade: UsersFacade,
     private conversationsFacade: ConversationsFacade,
-    private conversationMessagesFacade: ConversationMessagesFacade
+    private messagesFacade: ConversationMessagesFacade
   ) {
   }
 
   public ngOnInit(): void {
     this.conversations$ = this.conversationsFacade.conversations$;
-    this.messages$ = this.conversationMessagesFacade.messages$;
+    this.messages$ = this.messagesFacade.messages$;
     this.followUser();
   }
 
@@ -43,12 +43,11 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   public onChangeConversation($event: ChangeConversationEvent) {
     this.bindingConversation = $event.conversation;
-    this.conversationMessagesFacade.getAll(this.bindingConversation);
+    this.messagesFacade.getAll(this.bindingConversation);
   }
 
   public onCreateConversationMessage($event: CreateConversationMessageEvent): void {
-    console.log($event);
-    // TODO: Call create() from facade.
+    this.messagesFacade.create($event.message);
   }
 
   ///////////////////////////////////////////////////////////////////////////

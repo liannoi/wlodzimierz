@@ -13,12 +13,9 @@ import { defaultModel } from '../../../../../storage/src/lib/common/defaults/mod
   styleUrls: ['./conversation-message-create.component.scss']
 })
 export class ConversationMessageCreateComponent implements OnInit {
-  @Input() public conversation: Conversation;
   @Input() public user: User;
-
-  @Output()
-  public createConversationMessage: EventEmitter<CreateConversationMessageEvent> = new EventEmitter<CreateConversationMessageEvent>();
-
+  @Input() public conversation: Conversation;
+  @Output() public createConversationMessage = new EventEmitter<CreateConversationMessageEvent>();
   public formGroup: FormGroup;
   public messageModel: ConversationMessage = defaultModel();
 
@@ -35,10 +32,8 @@ export class ConversationMessageCreateComponent implements OnInit {
       return;
     }
 
-    this.messageModel = this.formGroup.getRawValue() as ConversationMessage;
-    this.messageModel.conversation = this.conversation;
-    this.messageModel.ownerUserId = this.user.userId;
-    this.createConversationMessage.emit({ message: this.messageModel });
+    this.emitCreation();
+    this.clearForm();
   }
 
   ///////////////////////////////////////////////////////////////////////////
@@ -47,5 +42,16 @@ export class ConversationMessageCreateComponent implements OnInit {
 
   private setupForm(): void {
     this.formGroup = new FormGroup({ message: new FormControl(this.messageModel.message, [Validators.required]) });
+  }
+
+  private emitCreation() {
+    this.messageModel = this.formGroup.getRawValue() as ConversationMessage;
+    this.messageModel.conversation = this.conversation;
+    this.messageModel.ownerUserId = this.user.userId;
+    this.createConversationMessage.emit({ message: this.messageModel });
+  }
+  
+  private clearForm(): void {
+    this.formGroup.reset();
   }
 }

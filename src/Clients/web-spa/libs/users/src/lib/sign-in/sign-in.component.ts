@@ -6,8 +6,8 @@ import { UsersFacade } from '@wlodzimierz/users';
 
 import { defaultModel } from '../../../../storage/src/lib/common/defaults/model.default';
 import { User } from '../shared/models/user.model';
-import { AuthFormGroup } from '../shared/forms/auth-form.model';
-import { AuthFormFacade } from '../shared/forms/auth-form.facade';
+import { AuthFormGroup } from '../shared/storage/forms/auth-form.model';
+import { AuthFormFacade } from '../shared/storage/forms/auth-form.facade';
 import { unauthorizedValidator } from '../shared/validators/unauthorized.validator';
 
 @Component({
