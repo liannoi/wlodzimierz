@@ -16,10 +16,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Core" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Application.Storage.API\Application.Storage.API.csproj" />
     </ItemGroup>
 

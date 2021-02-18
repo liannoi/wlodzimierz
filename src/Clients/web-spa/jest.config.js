@@ -8,6 +8,7 @@ module.exports = {
     '<rootDir>/libs/chat',
     '<rootDir>/libs/storage',
     '<rootDir>/libs/ngrx-router',
-    '<rootDir>/libs/ngrx-error'
+    '<rootDir>/libs/ngrx-error',
+    '<rootDir>/libs/notifications'
   ]
 };

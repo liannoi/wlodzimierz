@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using IdentityOptions = Infrastructure.Identity.API.Options.IdentityOptions;
 using JwtBearerOptions = Application.Infrastructure.Identity.API.JwtBearerOptions;
-using TestingOptions = Infrastructure.EntityFramework.API.Options.TestingOptions;
+using TestingOptions = Infrastructure.EntityFramework.API.Common.Options.TestingOptions;
 
 namespace Infrastructure.Identity.API
 {

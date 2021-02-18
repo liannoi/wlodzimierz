@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Infrastructure.Notifications.API.Core.Interfaces;
+using Application.Infrastructure.Notifications.API.Sockets;
 using Domain.API.Common.Notifications.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,12 +9,12 @@ namespace Infrastructure.EntityFramework.API.Context
 {
     public abstract class NotifiableContext<TChild> : DbContext where TChild : DbContext
     {
-        private readonly INotificationService _notificationService;
+        private readonly INotificationPublisher _notificationPublisher;
 
-        public NotifiableContext(DbContextOptions<TChild> options, INotificationService notificationService) :
+        public NotifiableContext(DbContextOptions<TChild> options, INotificationPublisher notificationPublisher) :
             base(options)
         {
-            _notificationService = notificationService;
+            _notificationPublisher = notificationPublisher;
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
@@ -39,7 +39,7 @@ namespace Infrastructure.EntityFramework.API.Context
                 if (notification == null) break;
 
                 notification.IsPublished = true;
-                await _notificationService.Publish(notification);
+                await _notificationPublisher.PublishAsync(notification);
             }
         }
     }

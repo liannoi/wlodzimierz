@@ -16,6 +16,6 @@ namespace Domain.API.Entities
         public string Photo { get; set; }
         public bool IsRemoved { get; set; }
 
-        public IList<AbstractNotification> Notifications { get; set; } = new List<AbstractNotification>();
+        public IList<BaseNotification> Notifications { get; set; } = new List<BaseNotification>();
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Application.Filtration.API.Interfaces;
+using Application.Filtration.API.Common.Interfaces;
 
 namespace Application.Filtration.API.Extensions
 {

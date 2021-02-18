@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Infrastructure.Identity.API.Attributes;
+using Application.Infrastructure.Identity.API.Common.Attributes;
 using Application.Infrastructure.Identity.API.Common.Exceptions;
 using Application.Infrastructure.Identity.API.Common.Interfaces;
 using MediatR;

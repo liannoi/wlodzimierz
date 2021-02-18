@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 import { RouterStateSerializer } from '@ngrx/router-store';
 
-import * as Url from 'url';
+import { Url } from '@wlodzimierz/ngrx-router';
 
 @Injectable()
 export class CustomSerializer implements RouterStateSerializer<Url> {

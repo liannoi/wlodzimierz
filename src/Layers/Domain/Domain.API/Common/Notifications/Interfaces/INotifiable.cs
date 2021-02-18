@@ -5,6 +5,6 @@ namespace Domain.API.Common.Notifications.Interfaces
 {
     public interface INotifiable
     {
-        IList<AbstractNotification> Notifications { get; }
+        IList<BaseNotification> Notifications { get; }
     }
 }

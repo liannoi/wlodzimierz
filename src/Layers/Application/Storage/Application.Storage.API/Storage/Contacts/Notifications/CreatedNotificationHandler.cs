@@ -1,4 +1,4 @@
-using Application.Infrastructure.Notifications.API.Handlers;
+using Application.Infrastructure.Notifications.API.Console;
 using Domain.API.Notifications.Contacts;
 using Microsoft.Extensions.Logging;
 

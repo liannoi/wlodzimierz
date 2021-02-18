@@ -1,5 +1,5 @@
 using System;
-using Infrastructure.EntityFramework.API.Options;
+using Infrastructure.EntityFramework.API.Common.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;

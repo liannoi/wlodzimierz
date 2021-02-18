@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Application.Infrastructure.Notifications.API.Core.Interfaces;
+using Application.Infrastructure.Notifications.API.Sockets;
 using Application.Infrastructure.Persistence.API.Interfaces;
 using Domain.API.Entities;
 using Infrastructure.EntityFramework.API.Context;
@@ -12,7 +12,7 @@ namespace Infrastructure.Persistence.API
     public class WlodzimierzContext : NotifiableContext<WlodzimierzContext>, IWlodzimierzContext
     {
         public WlodzimierzContext(DbContextOptions<WlodzimierzContext> options,
-            INotificationService notificationService) : base(options, notificationService)
+            INotificationPublisher notificationPublisher) : base(options, notificationPublisher)
         {
         }
 

@@ -1,5 +1,5 @@
 using System.Reflection;
-using Application.Storage.API.Core.Behaviours;
+using Application.Storage.API.Behaviours;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

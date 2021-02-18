@@ -18,8 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Core" />
-        <Folder Include="Storage\ConversationMessages\Notifications" />
+        <Folder Include="Common" />
         <Folder Include="Storage\ConversationMessages\Queries\Filter" />
         <Folder Include="Storage\Conversations\Notifications" />
         <Folder Include="Storage\Conversations\Queries\Filter" />

@@ -123,7 +123,7 @@ export class UsersEffects {
     @Inject(JwtTokenService) private tokenService: Cookie<JwtToken>,
     private authService: AuthService,
     private formFacade: AuthFormFacade,
-    private usersFacade: UsersFacade,
+    private usersFacade: UsersFacade
   ) {
   }
 }

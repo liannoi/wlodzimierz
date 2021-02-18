@@ -2,15 +2,20 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
 
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UsersFacade } from '@wlodzimierz/users';
 import { ConversationMessagesFacade, ConversationsFacade } from '@wlodzimierz/chat';
 
 import { ConversationsList } from './conversations/shared/models/conversations-list.models';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { User } from '../../../users/src/lib/shared/models/user.model';
 import { Conversation } from './conversations/shared/models/conversation.model';
 import { ChangeConversationEvent } from './conversations/shared/events/change-conversation.event';
 import { ConversationMessagesList } from './conversation-messages/shared/models/conversation-messages-list.model';
-import { CreateConversationMessageEvent } from './conversation-messages/shared/events/create-conversation-message.event';
+import { CreateEvent } from './conversation-messages/shared/events/create.event';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { NotificationsService } from '../../../notifications/src/lib/services/notifications.service';
+import { ConversationMessagesService } from './conversation-messages/shared/storage/conversation-messages.service';
 
 @Component({
   selector: 'wlodzimierz-chat',
@@ -27,14 +32,17 @@ export class ChatComponent implements OnInit, OnDestroy {
   public constructor(
     private usersFacade: UsersFacade,
     private conversationsFacade: ConversationsFacade,
-    private messagesFacade: ConversationMessagesFacade
+    private messagesFacade: ConversationMessagesFacade,
+    private notificationsService: NotificationsService,
+    private conversationMessagesService: ConversationMessagesService
   ) {
   }
 
-  public ngOnInit(): void {
+  public async ngOnInit() {
     this.conversations$ = this.conversationsFacade.conversations$;
     this.messages$ = this.messagesFacade.messages$;
     this.followUser();
+    await this.listenSockets();
   }
 
   public ngOnDestroy(): void {
@@ -46,7 +54,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.messagesFacade.getAll(this.bindingConversation);
   }
 
-  public onCreateConversationMessage($event: CreateConversationMessageEvent): void {
+  public onCreateConversationMessage($event: CreateEvent): void {
     this.messagesFacade.create($event.message);
   }
 
@@ -61,5 +69,10 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.conversationsFacade.getAll(user);
       })
     );
+  }
+
+  private async listenSockets() {
+    this.conversationMessagesService.subscribeCreate();
+    await this.notificationsService.start();
   }
 }

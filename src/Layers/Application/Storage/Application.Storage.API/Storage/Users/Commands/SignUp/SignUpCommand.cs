@@ -2,8 +2,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Infrastructure.Identity.API.Common.Interfaces;
 using Application.Infrastructure.Identity.API.Common.Models;
-using Application.Validation.API.Common.Exceptions;
-using Application.Validation.API.Extensions;
+using Application.Validation.API.Common.Extensions;
+using Application.Validation.API.Exceptions;
 using MediatR;
 
 namespace Application.Storage.API.Storage.Users.Commands.SignUp

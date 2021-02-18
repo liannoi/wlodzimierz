@@ -3,7 +3,7 @@ using Domain.API.Entities;
 
 namespace Domain.API.Notifications.Contacts
 {
-    public class CreatedNotification : AbstractNotification
+    public class CreatedNotification : BaseNotification
     {
         public CreatedNotification(Contact item)
         {

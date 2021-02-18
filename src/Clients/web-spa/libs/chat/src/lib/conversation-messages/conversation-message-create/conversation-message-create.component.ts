@@ -4,7 +4,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ConversationMessage } from '../shared/models/conversation-message.model';
 import { Conversation } from '../../conversations/shared/models/conversation.model';
 import { User } from '../../../../../users/src/lib/shared/models/user.model';
-import { CreateConversationMessageEvent } from '../shared/events/create-conversation-message.event';
+import { CreateEvent } from '../shared/events/create.event';
 import { defaultModel } from '../../../../../storage/src/lib/common/defaults/model.default';
 
 @Component({
@@ -15,7 +15,7 @@ import { defaultModel } from '../../../../../storage/src/lib/common/defaults/mod
 export class ConversationMessageCreateComponent implements OnInit {
   @Input() public user: User;
   @Input() public conversation: Conversation;
-  @Output() public createConversationMessage = new EventEmitter<CreateConversationMessageEvent>();
+  @Output() public createConversationMessage = new EventEmitter<CreateEvent>();
   public formGroup: FormGroup;
   public messageModel: ConversationMessage = defaultModel();
 
@@ -50,7 +50,7 @@ export class ConversationMessageCreateComponent implements OnInit {
     this.messageModel.ownerUserId = this.user.userId;
     this.createConversationMessage.emit({ message: this.messageModel });
   }
-  
+
   private clearForm(): void {
     this.formGroup.reset();
   }

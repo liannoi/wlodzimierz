@@ -25,4 +25,8 @@
       <ProjectReference Include="..\..\..\Application\Infrastructure\Notifications\Application.Infrastructure.Notifications.API\Application.Infrastructure.Notifications.API.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Common" />
+    </ItemGroup>
+
 </Project>

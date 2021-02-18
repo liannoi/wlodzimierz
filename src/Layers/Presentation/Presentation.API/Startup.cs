@@ -8,7 +8,7 @@ using FluentValidation.AspNetCore;
 using Infrastructure.Caching.API;
 using Infrastructure.Identity.API;
 using Infrastructure.Notifications.API;
-using Infrastructure.Notifications.API.Services;
+using Infrastructure.Notifications.API.Common.Sockets.Hubs;
 using Infrastructure.Persistence.API;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,8 +20,8 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using NSwag;
 using NSwag.Generation.Processors.Security;
-using Presentation.API.Common.Filters;
-using Presentation.API.Common.Services;
+using Presentation.API.Common.Core.Filters;
+using Presentation.API.Common.Core.Services;
 
 namespace Presentation.API
 {
@@ -129,7 +129,7 @@ namespace Presentation.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default", "{controller}/{action=Index}/{id?}");
-                endpoints.MapHub<NotificationService>("/notifications");
+                endpoints.MapHub<NotificationHub>("/notifications");
             });
         }
     }

@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Application.Infrastructure.Identity.API;
 using Application.Infrastructure.Identity.API.Common.Interfaces;
 using Application.Infrastructure.Identity.API.Common.Models;
-using Infrastructure.Identity.API.Extensions;
+using Infrastructure.Identity.API.Common.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using IdentityResult = Application.Infrastructure.Identity.API.Common.Models.IdentityResult;

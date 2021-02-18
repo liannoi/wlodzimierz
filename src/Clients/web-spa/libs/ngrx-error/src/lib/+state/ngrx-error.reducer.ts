@@ -26,6 +26,7 @@ export const initialState: State = ngrxErrorAdapter.getInitialState({
 const ngrxErrorReducer = createReducer(
   initialState,
   on(NgrxErrorActions.throw500Error, (state, action) => ({
+    ...state,
     status: action.error.status,
     message: action.error.message
   }))

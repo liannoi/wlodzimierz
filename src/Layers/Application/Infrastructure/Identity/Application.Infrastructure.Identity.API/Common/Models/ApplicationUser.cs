@@ -11,6 +11,6 @@ namespace Application.Infrastructure.Identity.API.Common.Models
         public string? LastName { get; set; }
         public string? Photo { get; set; }
 
-        public IList<AbstractNotification> Notifications { get; set; } = new List<AbstractNotification>();
+        public IList<BaseNotification> Notifications { get; set; } = new List<BaseNotification>();
     }
 }
