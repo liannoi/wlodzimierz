@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 
-import { AbstractApiService } from '../../../../../../storage/src/lib/remote/services/abstract-api.service';
+import { AbstractApiService } from '../../../../../../storage/src/lib/remote/abstract-api.service';
 import { JwtToken } from '../../models/jwt-token.model';
 import { UsersEndpointBuilder } from '../users-endpoint.builder';
-import { EndpointBuilder } from '../../../../../../storage/src/lib/remote/builders/endpoint.builder';
+import { EndpointBuilder } from '../../../../../../storage/src/lib/remote/endpoints/endpoint.builder';
 import { JwtTokenService } from './jwt-token.service';
-import { Cookie } from '../../../../../../storage/src/lib/local/models/cookie.model';
+import { CookiesService } from '../../../../../../storage/src/lib/local/cookies.service';
 import { User } from '../../models/user.model';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class AuthService extends AbstractApiService {
   public constructor(
     http: HttpClient,
     @Inject(UsersEndpointBuilder) endpointBuilder: EndpointBuilder,
-    @Inject(JwtTokenService) private tokenService: Cookie<JwtToken>
+    @Inject(JwtTokenService) private tokenService: CookiesService<JwtToken>
   ) {
     super(http, endpointBuilder);
   }

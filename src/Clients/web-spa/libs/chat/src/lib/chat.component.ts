@@ -7,15 +7,15 @@ import { UsersFacade } from '@wlodzimierz/users';
 import { ConversationMessagesFacade, ConversationsFacade } from '@wlodzimierz/chat';
 
 import { ConversationsList } from './conversations/shared/models/conversations-list.models';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { User } from '../../../users/src/lib/shared/models/user.model';
 import { Conversation } from './conversations/shared/models/conversation.model';
 import { ChangeConversationEvent } from './conversations/shared/events/change-conversation.event';
 import { ConversationMessagesList } from './conversation-messages/shared/models/conversation-messages-list.model';
 import { CreateEvent } from './conversation-messages/shared/events/create.event';
+import { ConversationMessagesService } from './conversation-messages/shared/storage/conversation-messages.service';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { User } from '../../../users/src/lib/shared/models/user.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { NotificationsService } from '../../../notifications/src/lib/services/notifications.service';
-import { ConversationMessagesService } from './conversation-messages/shared/storage/conversation-messages.service';
 
 @Component({
   selector: 'wlodzimierz-chat',
@@ -49,7 +49,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((e) => e.unsubscribe());
   }
 
-  public onChangeConversation($event: ChangeConversationEvent) {
+  public onChangeConversation($event: ChangeConversationEvent): void {
     this.bindingConversation = $event.conversation;
     this.messagesFacade.getAll(this.bindingConversation);
   }
@@ -72,7 +72,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   private async listenSockets() {
-    this.conversationMessagesService.subscribeCreate();
+    this.conversationMessagesService.onCreated(() => {
+      this.messagesFacade.getAll(this.bindingConversation);
+      this.conversationsFacade.getAll(this.user);
+    });
     await this.notificationsService.start();
   }
 }

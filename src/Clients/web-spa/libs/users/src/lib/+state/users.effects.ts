@@ -12,9 +12,9 @@ import * as UsersActions from './users.actions';
 import { AuthService } from '../shared/storage/services/auth.service';
 import { JwtToken } from '../shared/models/jwt-token.model';
 import { JwtTokenService } from '../shared/storage/services/jwt-token.service';
-import { Cookie } from '../../../../storage/src/lib/local/models/cookie.model';
+import { CookiesService } from '../../../../storage/src/lib/local/cookies.service';
 import { AuthFormFacade } from '../shared/storage/forms/auth-form.facade';
-import { RemoteResult } from '../../../../storage/src/lib/remote/models/remote-result.model';
+import { RemoteResult } from '../../../../storage/src/lib/remote/errors/remote-result.model';
 
 @Injectable()
 export class UsersEffects {
@@ -120,7 +120,7 @@ export class UsersEffects {
   public constructor(
     private actions$: Actions,
     private router: Router,
-    @Inject(JwtTokenService) private tokenService: Cookie<JwtToken>,
+    @Inject(JwtTokenService) private tokenService: CookiesService<JwtToken>,
     private authService: AuthService,
     private formFacade: AuthFormFacade,
     private usersFacade: UsersFacade

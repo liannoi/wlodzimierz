@@ -5,6 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { StorageModule } from '@wlodzimierz/storage';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { NotificationsModule } from '@wlodzimierz/notifications';
 
 import { ChatComponent } from './chat.component';
@@ -28,7 +31,6 @@ import { ConversationsService } from './conversations/shared/storage/conversatio
 import { ConversationsEndpointBuilder } from './conversations/shared/storage/conversations-endpoint.builder';
 import { ConversationMessagesEndpointBuilder } from './conversation-messages/shared/storage/conversation-messages-endpoint.builder';
 import { ConversationMessagesService } from './conversation-messages/shared/storage/conversation-messages.service';
-import { StorageModule } from '@wlodzimierz/storage';
 
 @NgModule({
   imports: [

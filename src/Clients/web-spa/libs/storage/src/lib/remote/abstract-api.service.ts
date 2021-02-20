@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { EndpointBuilder } from '../builders/endpoint.builder';
+import { EndpointBuilder } from './endpoints/endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { JwtToken } from '../../../../../users/src/lib/shared/models/jwt-token.model';
+import { JwtToken } from '../../../../users/src/lib/shared/models/jwt-token.model';
 
 export abstract class AbstractApiService {
   protected constructor(protected http: HttpClient, protected endpointBuilder?: EndpointBuilder) {

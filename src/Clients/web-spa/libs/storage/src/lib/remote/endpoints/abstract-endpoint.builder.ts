@@ -1,4 +1,4 @@
-import { Endpoint } from '../models/endpoint.model';
+import { Endpoint } from './endpoint.model';
 import { EndpointBuilder } from './endpoint.builder';
 
 export abstract class AbstractEndpointBuilder implements EndpointBuilder {

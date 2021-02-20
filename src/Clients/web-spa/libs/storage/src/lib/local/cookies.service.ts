@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 
-export interface Cookie<TModel> {
-  read(): TModel;
+export interface CookiesService<TCookie> {
+  read(): TCookie;
 
   write(value: string, expires: Date): void;
 

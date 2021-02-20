@@ -4,14 +4,14 @@ import { Observable, of } from 'rxjs';
 
 import { CookieService } from 'ngx-cookie-service';
 
-import { Cookie } from '../models/cookie.model';
+import { CookiesService } from './cookies.service';
 
 @Injectable()
-export abstract class AbstractCookieService<TModel> implements Cookie<TModel> {
+export abstract class AbstractCookieService<TCookie> implements CookiesService<TCookie> {
   protected constructor(protected name, protected service: CookieService) {
   }
 
-  public abstract read(): TModel;
+  public abstract read(): TCookie;
 
   public write(value: string, expires: Date): void {
     this.service.set(this.name, value, { path: '/', expires });

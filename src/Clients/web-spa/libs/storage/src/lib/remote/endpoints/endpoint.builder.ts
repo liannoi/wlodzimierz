@@ -1,4 +1,4 @@
-import { Endpoint } from '../models/endpoint.model';
+import { Endpoint } from './endpoint.model';
 
 export interface EndpointBuilder {
   withParameter(parameter: string): EndpointBuilder;

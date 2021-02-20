@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Disposable } from '../../../../../../storage/src/lib/common/reactive/disposable.interface';
 import { BehaviorSubjectValueObject } from '../../../../../../storage/src/lib/common/reactive/behavior-subject.value-object';
-import { RemoteResult } from '../../../../../../storage/src/lib/remote/models/remote-result.model';
+import { RemoteResult } from '../../../../../../storage/src/lib/remote/errors/remote-result.model';
 
 @Injectable()
 export class AuthFormFacade implements Disposable {
