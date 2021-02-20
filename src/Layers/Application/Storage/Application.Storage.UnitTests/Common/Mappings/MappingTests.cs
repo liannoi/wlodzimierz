@@ -1,6 +1,6 @@
 using System;
 using System.Runtime.Serialization;
-using Application.Infrastructure.Identity.API.Models;
+using Application.Infrastructure.Identity.API.Common.Models;
 using Application.Storage.API.Common.Mappings.Profiles;
 using Application.Storage.API.Storage.Contacts.Models;
 using Application.Storage.API.Storage.Users.Models;

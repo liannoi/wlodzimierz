@@ -41,6 +41,9 @@
       ],
       "@wlodzimierz/ngrx-error": [
         "libs/ngrx-error/src/index.ts"
+      ],
+      "@wlodzimierz/notifications": [
+        "libs/notifications/src/index.ts"
       ]
     }
   },

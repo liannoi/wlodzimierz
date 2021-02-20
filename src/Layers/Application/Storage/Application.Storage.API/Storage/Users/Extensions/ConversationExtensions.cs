@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Infrastructure.Persistence.API.Interfaces;
-using Application.Paging.API.Models;
+using Application.Paging.API.Common.Models;
 using Application.Storage.API.Storage.ConversationMessages.Models;
 using Application.Storage.API.Storage.Conversations.Models;
 using AutoMapper;

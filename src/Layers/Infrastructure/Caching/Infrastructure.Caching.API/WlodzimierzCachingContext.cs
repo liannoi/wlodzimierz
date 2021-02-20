@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using Application.Infrastructure.Caching.API.Interfaces;
-using Application.Paging.API.Interfaces;
-using Application.Storage.API.Common.Core.Exceptions;
+using Application.Paging.API.Common.Models;
+using Application.Storage.API.Common.Exceptions;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
 

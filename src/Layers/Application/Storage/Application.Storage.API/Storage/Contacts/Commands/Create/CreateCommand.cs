@@ -37,7 +37,7 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Create
                 };
 
                 await _context.Contacts.AddAsync(entity, cancellationToken);
-                entity.Notifications.Add(new ContactCreatedNotification(entity));
+                entity.Notifications.Add(new CreatedNotification(entity));
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return entity.ContactId;

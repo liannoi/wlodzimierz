@@ -1,6 +1,6 @@
 using System;
 using System.Linq.Expressions;
-using Application.Filtration.API.Interfaces;
+using Application.Filtration.API.Common.Interfaces;
 using Application.Storage.API.Common.Mappings.Interfaces;
 using AutoMapper;
 using Domain.API.Entities;

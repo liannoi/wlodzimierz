@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Infrastructure.Persistence.API.Interfaces;
-using Application.Storage.API.Common.Core.Exceptions;
+using Application.Storage.API.Common.Exceptions;
 using Domain.API.Entities;
 using MediatR;
 

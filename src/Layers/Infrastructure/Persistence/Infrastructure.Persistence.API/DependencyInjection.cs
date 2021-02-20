@@ -3,7 +3,7 @@ using Infrastructure.Persistence.API.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TestingOptions = Infrastructure.EntityFramework.API.Testing.TestingOptions;
+using TestingOptions = Infrastructure.EntityFramework.API.Common.Options.TestingOptions;
 
 namespace Infrastructure.Persistence.API
 {

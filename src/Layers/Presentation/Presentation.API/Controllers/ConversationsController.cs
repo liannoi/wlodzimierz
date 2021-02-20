@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Application.Paging.API.Models;
+using Application.Paging.API.Common.Models;
 using Application.Storage.API.Storage.ConversationMessages.Models;
 using Application.Storage.API.Storage.Conversations.Commands.Create;
 using Application.Storage.API.Storage.Conversations.Commands.Delete;

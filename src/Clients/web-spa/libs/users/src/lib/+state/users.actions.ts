@@ -4,7 +4,7 @@ import { createAction, props } from '@ngrx/store';
 
 import { User } from '../shared/models/user.model';
 import { JwtToken } from '../shared/models/jwt-token.model';
-import { RemoteResult } from '../../../../storage/src/lib/remote/models/remote-result.model';
+import { RemoteResult } from '../../../../storage/src/lib/remote/errors/remote-result.model';
 
 export const verify = createAction('[Auth/API] Verify');
 export const verifySuccess = createAction('[Auth/API] Verify Success', props<{ currentUser: User, token: JwtToken }>());

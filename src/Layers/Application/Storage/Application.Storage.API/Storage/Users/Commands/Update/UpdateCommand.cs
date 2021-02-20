@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Infrastructure.Identity.API.Exceptions;
-using Application.Infrastructure.Identity.API.Interfaces;
+using Application.Infrastructure.Identity.API.Common.Exceptions;
+using Application.Infrastructure.Identity.API.Common.Interfaces;
 using MediatR;
 
 namespace Application.Storage.API.Storage.Users.Commands.Update

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Application.Infrastructure.Caching.API.Interfaces;
 using Application.Infrastructure.Persistence.API.Interfaces;
 using Application.Paging.API.Extensions;
-using Application.Storage.API.Common.Core.Exceptions;
+using Application.Storage.API.Common.Exceptions;
 using Application.Storage.API.Storage.GroupBlacklists.Models;
 using AutoMapper;
 using MediatR;

@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Application.Infrastructure.Identity.API.Interfaces;
-using Application.Paging.API.Interfaces;
+using Application.Infrastructure.Identity.API.Common.Interfaces;
+using Application.Paging.API.Common.Models;
 using Application.Storage.API.Storage.ConversationMessages.Models;
 using Application.Storage.API.Storage.Conversations.Models;
-using Application.Storage.API.Storage.Users;
+using Application.Storage.API.Storage.Users.Facades;
 using Application.Storage.API.Storage.Users.Models;
 using AutoMapper;
 

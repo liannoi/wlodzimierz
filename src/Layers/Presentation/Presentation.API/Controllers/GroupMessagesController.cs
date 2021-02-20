@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Application.Paging.API.Models;
+using Application.Paging.API.Common.Models;
 using Application.Storage.API.Storage.GroupMessages.Commands.Create;
 using Application.Storage.API.Storage.GroupMessages.Commands.Delete;
 using Application.Storage.API.Storage.GroupMessages.Commands.Update;

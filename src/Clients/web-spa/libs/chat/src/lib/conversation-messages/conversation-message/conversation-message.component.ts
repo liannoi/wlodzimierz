@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { ConversationMessage } from '../shared/models/conversation-message.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { User } from '../../../../../users/src/lib/shared/models/user.model';
 
 @Component({

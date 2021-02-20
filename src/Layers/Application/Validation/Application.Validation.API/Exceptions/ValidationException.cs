@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Application.Validation.API.Extensions;
+using Application.Validation.API.Common.Extensions;
 using FluentValidation.Results;
 
 namespace Application.Validation.API.Exceptions

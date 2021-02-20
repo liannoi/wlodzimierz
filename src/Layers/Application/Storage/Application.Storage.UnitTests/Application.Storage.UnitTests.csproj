@@ -16,11 +16,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Common\Core\Behaviours" />
-      <Folder Include="Storage\Contacts\Commands" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Application.Storage.API\Application.Storage.API.csproj" />
     </ItemGroup>
 
