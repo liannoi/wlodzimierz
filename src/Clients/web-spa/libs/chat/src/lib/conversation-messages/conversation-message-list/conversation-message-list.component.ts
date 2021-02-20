@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { Conversation } from '../../conversations/shared/models/conversation.model';
 import { ConversationMessagesList } from '../shared/models/conversation-messages-list.model';
@@ -10,6 +10,7 @@ import { Identifiable } from '../../../../../storage/src/lib/common/identify/ide
 
 @Component({
   selector: 'wlodzimierz-conversation-message-list',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './conversation-message-list.component.html',
   styleUrls: ['./conversation-message-list.component.scss']
 })

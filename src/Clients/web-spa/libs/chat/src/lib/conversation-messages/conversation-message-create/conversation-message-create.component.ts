@@ -1,14 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ConversationMessage } from '../shared/models/conversation-message.model';
 import { Conversation } from '../../conversations/shared/models/conversation.model';
-import { User } from '../../../../../users/src/lib/shared/models/user.model';
 import { CreateEvent } from '../shared/events/create.event';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { User } from '../../../../../users/src/lib/shared/models/user.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { defaultModel } from '../../../../../storage/src/lib/common/defaults/model.default';
 
 @Component({
   selector: 'wlodzimierz-conversation-message-create',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './conversation-message-create.component.html',
   styleUrls: ['./conversation-message-create.component.scss']
 })
