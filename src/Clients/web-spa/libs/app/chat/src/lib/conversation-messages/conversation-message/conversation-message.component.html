@@ -1,0 +1,41 @@
+<ng-container
+  *ngIf='
+    message.ownerUser | uequals: user;
+    then primaryMessage;
+    else lightMessage
+  '
+></ng-container>
+<ng-template #primaryMessage>
+  <div class='row mt-3'>
+    <div class='offset-sm-6'></div>
+    <div class='col-sm-6'>
+      <div class='card rounded d-inline-block float-right bg-dark text-white'>
+        <div class='card-body'>
+          <p class='card-text'>{{ message.message }}</p>
+          <p class='card-text d-inline-block float-right mb-3 mt-n1'>
+            <small class='text-white-50'>{{
+              message.publish | date: 'shortTime'
+              }}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #lightMessage>
+  <div class='row mt-3'>
+    <div class='col-sm-6'>
+      <div class='card rounded d-inline-block float-left'>
+        <div class='card-body'>
+          <p class='card-text'>{{ message.message }}</p>
+          <p class='card-text d-inline-block float-right mb-3 mt-n1'>
+            <small class='text-muted'>{{
+              message.publish | date: 'shortTime'
+              }}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class='offset-sm-6'></div>
+  </div>
+</ng-template>

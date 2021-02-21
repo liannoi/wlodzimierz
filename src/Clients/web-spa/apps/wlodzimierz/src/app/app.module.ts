@@ -7,9 +7,9 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { UsersModule } from '@wlodzimierz/users';
-import { NgrxErrorModule } from '@wlodzimierz/ngrx-error';
-import { NgrxRouterModule } from '@wlodzimierz/ngrx-router';
+import { AppUsersModule } from '@wlodzimierz/app/users';
+import { NgrxNgrxErrorModule } from '@wlodzimierz/ngrx/ngrx-error';
+import { NgrxNgrxRouterModule } from '@wlodzimierz/ngrx/ngrx-router';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -21,7 +21,7 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     NgbModule,
-    UsersModule,
+    AppUsersModule,
     AppRoutingModule,
     StoreModule.forRoot(
       {},
@@ -29,18 +29,20 @@ import { environment } from '../environments/environment';
         metaReducers: !environment.production ? [] : [],
         runtimeChecks: {
           strictActionImmutability: true,
-          strictStateImmutability: true
-        }
+          strictStateImmutability: true,
+        },
       }
     ),
     EffectsModule.forRoot([]),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    NgrxRouterModule,
-    NgrxErrorModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    NgrxNgrxRouterModule,
+    NgrxNgrxErrorModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   declarations: [AppComponent, TopMenuComponent, FooterComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

@@ -10,45 +10,23 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
+    "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@wlodzimierz/home": [
-        "libs/home/src/index.ts"
+      "@wlodzimierz/app/chat": ["libs/app/chat/src/index.ts"],
+      "@wlodzimierz/core/docs": ["libs/core/docs/src/index.ts"],
+      "@wlodzimierz/core/home": ["libs/core/home/src/index.ts"],
+      "@wlodzimierz/shared/storage": ["libs/shared/storage/src/index.ts"],
+      "@wlodzimierz/shared/notifications": [
+        "libs/shared/notifications/src/index.ts"
       ],
-      "@wlodzimierz/docs": [
-        "libs/docs/src/index.ts"
-      ],
-      "@wlodzimierz/users": [
-        "libs/users/src/index.ts"
-      ],
-      "@wlodzimierz/statuses": [
-        "libs/statuses/src/index.ts"
-      ],
-      "@wlodzimierz/chat": [
-        "libs/chat/src/index.ts"
-      ],
-      "@wlodzimierz/storage": [
-        "libs/storage/src/index.ts"
-      ],
-      "@wlodzimierz/ngrx-router": [
-        "libs/ngrx-router/src/index.ts"
-      ],
-      "@wlodzimierz/ngrx-error": [
-        "libs/ngrx-error/src/index.ts"
-      ],
-      "@wlodzimierz/notifications": [
-        "libs/notifications/src/index.ts"
-      ]
+      "@wlodzimierz/app/users": ["libs/app/users/src/index.ts"],
+      "@wlodzimierz/core/statuses": ["libs/core/statuses/src/index.ts"],
+      "@wlodzimierz/ngrx/ngrx-error": ["libs/ngrx/ngrx-error/src/index.ts"],
+      "@wlodzimierz/ngrx/ngrx-router": ["libs/ngrx/ngrx-router/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

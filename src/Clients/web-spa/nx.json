@@ -18,12 +18,7 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
@@ -33,35 +28,33 @@
     },
     "wlodzimierz-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "wlodzimierz"
-      ]
+      "implicitDependencies": ["wlodzimierz"]
     },
-    "home": {
+    "app-chat": {
       "tags": []
     },
-    "docs": {
+    "core-docs": {
       "tags": []
     },
-    "users": {
+    "core-home": {
       "tags": []
     },
-    "statuses": {
+    "shared-storage": {
       "tags": []
     },
-    "chat": {
+    "shared-notifications": {
       "tags": []
     },
-    "storage": {
+    "app-users": {
       "tags": []
     },
-    "ngrx-router": {
+    "core-statuses": {
       "tags": []
     },
-    "ngrx-error": {
+    "ngrx-ngrx-error": {
       "tags": []
     },
-    "notifications": {
+    "ngrx-ngrx-router": {
       "tags": []
     }
   }
