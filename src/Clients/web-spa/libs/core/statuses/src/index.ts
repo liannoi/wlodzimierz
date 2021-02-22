@@ -1,1 +1,1 @@
-export * from './lib/core-statuses.module';
+export * from './lib/statuses.module';

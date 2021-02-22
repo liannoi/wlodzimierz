@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
+import { ConversationMessage } from '../shared/models/conversation-message.model';
 import { Conversation } from '../../conversations/shared/models/conversation.model';
 import { ConversationMessagesList } from '../shared/models/conversation-messages-list.model';
-import { ConversationMessage } from '../shared/models/conversation-message.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { User } from '../../../../../users/src/lib/shared/models/user.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { Identifiable } from '../../../../../storage/src/lib/common/identify/identifiable.interface';
+import { Identifiable } from '../../../../../../shared/storage/src/lib/common/identify/identifiable.interface';
 
 @Component({
   selector: 'wlodzimierz-conversation-message-list',

@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { createAction, props } from '@ngrx/store';
 
-import { ConversationsList } from '../shared/models/conversations-list.models';
+import { ConversationsList } from '../shared/models/conversations-list.model';
 import { User } from '../../../../../users/src/lib/shared/models/user.model';
 
 export const getAll = createAction(

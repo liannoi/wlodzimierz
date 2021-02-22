@@ -3,8 +3,8 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import * as ConversationsActions from './conversations.actions';
 import { Conversation } from '../shared/models/conversation.model';
-import { ConversationsList } from '../shared/models/conversations-list.models';
-import { defaultModel } from '../../../../../storage/src/lib/common/defaults/model.default';
+import { ConversationsList } from '../shared/models/conversations-list.model';
+import { defaultModel } from '../../../../../../shared/storage/src/lib/common/defaults/model.default';
 
 export const CONVERSATIONS_FEATURE_KEY = 'conversations';
 

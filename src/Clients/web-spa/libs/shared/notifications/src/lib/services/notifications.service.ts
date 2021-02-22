@@ -3,8 +3,8 @@ import { Inject, Injectable } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 
 import { Notifiable } from '../common/interfaces/notifiable.interface';
-import { NotificationsEndpointBuilder } from '../common/builders/notifications-endpoint.builder';
 import { BaseNotification } from '../common/abstractions/base.notification';
+import { NotificationsEndpointBuilder } from '../common/builders/notifications-endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { EndpointBuilder } from '../../../../storage/src/lib/remote/endpoints/endpoint.builder';
 

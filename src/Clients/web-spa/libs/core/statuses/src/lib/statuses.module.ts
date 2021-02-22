@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NotFoundComponent } from './not-found/not-found.component';
-import { CoreStatusesRoutingModule } from './statuses-routing.module';
+import { StatusesRoutingModule } from './statuses-routing.module';
 
 @NgModule({
-  imports: [CommonModule, CoreStatusesRoutingModule],
+  imports: [CommonModule, StatusesRoutingModule],
   declarations: [NotFoundComponent]
 })
-export class CoreStatusesModule {
+export class StatusesModule {
 }

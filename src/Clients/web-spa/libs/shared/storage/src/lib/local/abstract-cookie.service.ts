@@ -9,7 +9,8 @@ import { CookiesService } from './cookies.service';
 @Injectable()
 export abstract class AbstractCookieService<TCookie>
   implements CookiesService<TCookie> {
-  protected constructor(protected name, protected service: CookieService) {}
+  protected constructor(protected name, protected service: CookieService) {
+  }
 
   public abstract read(): TCookie;
 

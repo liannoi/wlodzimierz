@@ -1,13 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-
-import { UsersFacade } from '@wlodzimierz/users';
-
-import { AuthFormGroup } from '../shared/storage/forms/auth-form.model';
-import { User } from '../shared/models/user.model';
-import { AuthFormFacade } from '../shared/storage/forms/auth-form.facade';
-import { defaultModel } from '../../../../storage/src/lib/common/defaults/model.default';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, Validators } from '@angular/forms';
+
+import { UsersFacade } from '@wlodzimierz/app/users';
+
+import { User } from '../shared/models/user.model';
+import { AuthFormGroup } from '../shared/storage/forms/auth-form.model';
+import { AuthFormFacade } from '../shared/storage/forms/auth-form.facade';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
 
 @Component({
   selector: 'wlodzimierz-sign-up',

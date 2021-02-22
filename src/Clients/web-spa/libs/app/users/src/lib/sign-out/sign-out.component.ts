@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UsersFacade } from '@wlodzimierz/users';
+import { UsersFacade } from '@wlodzimierz/app/users';
 
 @Component({
   selector: 'wlodzimierz-sign-out',

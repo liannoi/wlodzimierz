@@ -5,9 +5,9 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import * as fromNgrxError from './+state/ngrx-error.reducer';
-import { NgrxNgrxErrorEffects } from './+state/ngrx-error.effects';
-import { NgrxNgrxErrorFacade } from './+state/ngrx-error.facade';
-import { NgrxNgrxErrorInterceptorService } from './services/ngrx-error-interceptor.service';
+import { NgrxErrorEffects } from './+state/ngrx-error.effects';
+import { NgrxErrorFacade } from './+state/ngrx-error.facade';
+import { NgrxErrorInterceptorService } from './services/ngrx-error-interceptor.service';
 
 @NgModule({
   imports: [
@@ -15,15 +15,16 @@ import { NgrxNgrxErrorInterceptorService } from './services/ngrx-error-intercept
       fromNgrxError.NGRX_ERROR_FEATURE_KEY,
       fromNgrxError.reducer
     ),
-    EffectsModule.forFeature([NgrxNgrxErrorEffects]),
+    EffectsModule.forFeature([NgrxErrorEffects])
   ],
   providers: [
-    NgrxNgrxErrorFacade,
+    NgrxErrorFacade,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: NgrxNgrxErrorInterceptorService,
-      multi: true,
-    },
-  ],
+      useClass: NgrxErrorInterceptorService,
+      multi: true
+    }
+  ]
 })
-export class NgrxNgrxErrorModule {}
+export class NgrxErrorModule {
+}

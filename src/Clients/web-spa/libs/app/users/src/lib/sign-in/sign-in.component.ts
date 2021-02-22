@@ -2,13 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
-import { UsersFacade } from '@wlodzimierz/users';
+import { UsersFacade } from '@wlodzimierz/app/users';
 
-import { defaultModel } from '../../../../storage/src/lib/common/defaults/model.default';
 import { User } from '../shared/models/user.model';
 import { AuthFormGroup } from '../shared/storage/forms/auth-form.model';
 import { AuthFormFacade } from '../shared/storage/forms/auth-form.facade';
 import { unauthorizedValidator } from '../shared/validators/unauthorized.validator';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
 
 @Component({
   selector: 'wlodzimierz-sign-in',

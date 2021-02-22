@@ -1,1 +1,1 @@
-export * from './lib/core-home.module';
+export * from './lib/home.module';

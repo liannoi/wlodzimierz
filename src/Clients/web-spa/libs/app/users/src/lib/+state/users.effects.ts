@@ -1,20 +1,22 @@
-import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Inject, Injectable } from '@angular/core';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { of } from 'rxjs';
 import { catchError, concatMap, map, tap } from 'rxjs/operators';
 
-import { UsersFacade } from '@wlodzimierz/users';
+import { UsersFacade } from '@wlodzimierz/app/users';
 
 import * as UsersActions from './users.actions';
-import { AuthService } from '../shared/storage/services/auth.service';
 import { JwtToken } from '../shared/models/jwt-token.model';
-import { JwtTokenService } from '../shared/storage/services/jwt-token.service';
-import { CookiesService } from '../../../../storage/src/lib/local/cookies.service';
+import { AuthService } from '../shared/storage/services/auth.service';
 import { AuthFormFacade } from '../shared/storage/forms/auth-form.facade';
-import { RemoteResult } from '../../../../storage/src/lib/remote/errors/remote-result.model';
+import { JwtTokenService } from '../shared/storage/services/jwt-token.service';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { RemoteResult } from '../../../../../shared/storage/src/lib/remote/errors/remote-result.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { CookiesService } from '../../../../../shared/storage/src/lib/local/cookies.service';
 
 @Injectable()
 export class UsersEffects {

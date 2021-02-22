@@ -5,8 +5,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { RouterStateSerializer } from '@ngrx/router-store';
 
 import * as fromNgrxRouter from './+state/ngrx-router.reducer';
-import { NgrxNgrxRouterEffects } from './+state/ngrx-router.effects';
 import { CustomSerializer } from './serializers/custom.serializer';
+import { NgrxRouterEffects } from './+state/ngrx-router.effects';
 
 @NgModule({
   imports: [
@@ -14,11 +14,9 @@ import { CustomSerializer } from './serializers/custom.serializer';
       fromNgrxRouter.NGRX_ROUTER_FEATURE_KEY,
       fromNgrxRouter.reducer
     ),
-    EffectsModule.forFeature([NgrxNgrxRouterEffects]),
+    EffectsModule.forFeature([NgrxRouterEffects])
   ],
-  providers: [
-    NgrxNgrxRouterEffects,
-    { provide: RouterStateSerializer, useClass: CustomSerializer },
-  ],
+  providers: [NgrxRouterEffects, { provide: RouterStateSerializer, useClass: CustomSerializer }]
 })
-export class NgrxNgrxRouterModule {}
+export class NgrxRouterModule {
+}

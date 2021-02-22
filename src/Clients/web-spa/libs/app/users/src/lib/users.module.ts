@@ -5,41 +5,42 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { SharedStorageModule } from '@wlodzimierz/shared/storage';
+import { StorageModule } from '@wlodzimierz/shared/storage';
 
+import * as fromUsers from './+state/users.reducer';
+import { UsersFacade } from './+state/users.facade';
+import { UsersEffects } from './+state/users.effects';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { SignOutComponent } from './sign-out/sign-out.component';
-import { AppUsersRoutingModule } from './users-routing.module';
-import * as fromUsers from './+state/users.reducer';
-import { AppUsersEffects } from './+state/users.effects';
-import { AppUsersFacade } from './+state/users.facade';
-import { AuthService } from './shared/storage/services/auth.service';
-import { AppUsersEndpointBuilder } from './shared/storage/users-endpoint.builder';
-import { JwtTokenService } from './shared/storage/services/jwt-token.service';
-import { AuthFormFacade } from './shared/storage/forms/auth-form.facade';
-import { AppUsersService } from './shared/storage/services/users.service';
+import { UsersRoutingModule } from './users-routing.module';
 import { JwtTokenGuard } from './shared/guards/jwt-token.guard';
+import { SignOutComponent } from './sign-out/sign-out.component';
+import { AuthService } from './shared/storage/services/auth.service';
+import { AuthFormFacade } from './shared/storage/forms/auth-form.facade';
+import { UsersService } from './shared/storage/services/users.service';
+import { JwtTokenService } from './shared/storage/services/jwt-token.service';
+import { UsersEndpointBuilder } from './shared/storage/users-endpoint.builder';
+
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SharedStorageModule,
-    AppUsersRoutingModule,
+    StorageModule,
+    UsersRoutingModule,
     StoreModule.forFeature(fromUsers.USERS_FEATURE_KEY, fromUsers.reducer),
-    EffectsModule.forFeature([AppUsersEffects])
+    EffectsModule.forFeature([UsersEffects])
   ],
   declarations: [SignInComponent, SignUpComponent, SignOutComponent],
   providers: [
-    AppUsersFacade,
+    UsersFacade,
     AuthService,
-    AppUsersEndpointBuilder,
+    UsersEndpointBuilder,
     JwtTokenService,
     AuthFormFacade,
-    AppUsersService,
+    UsersService,
     JwtTokenGuard
   ]
 })
-export class AppUsersModule {
+export class UsersModule {
 }

@@ -6,7 +6,8 @@ import { catchError, concatMap, map } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import * as ConversationsActions from './conversations.actions';
-import { AppUsersService } from '../../../../../users/src/lib/shared/storage/services/users.service';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { UsersService } from '../../../../../users/src/lib/shared/storage/services/users.service';
 
 @Injectable()
 export class ConversationsEffects {
@@ -26,7 +27,7 @@ export class ConversationsEffects {
 
   public constructor(
     private actions$: Actions,
-    private usersService: AppUsersService
+    private usersService: UsersService
   ) {
   }
 }

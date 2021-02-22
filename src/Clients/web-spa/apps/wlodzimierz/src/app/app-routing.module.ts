@@ -5,22 +5,22 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('@wlodzimierz/core/home').then((m) => m.CoreHomeModule)
+      import('@wlodzimierz/core/home').then((m) => m.HomeModule)
   },
   {
     path: 'docs',
     loadChildren: () =>
-      import('@wlodzimierz/core/docs').then((m) => m.CoreDocsModule)
+      import('@wlodzimierz/core/docs').then((m) => m.DocsModule)
   },
   {
     path: 'app',
     loadChildren: () =>
-      import('@wlodzimierz/app/chat').then((m) => m.AppChatModule)
+      import('@wlodzimierz/app/chat').then((m) => m.ChatModule)
   },
   {
     path: '**',
     loadChildren: () =>
-      import('@wlodzimierz/core/statuses').then((m) => m.CoreStatusesModule)
+      import('@wlodzimierz/core/statuses').then((m) => m.StatusesModule)
   }
 ];
 

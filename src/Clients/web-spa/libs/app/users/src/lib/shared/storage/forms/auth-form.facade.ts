@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { Disposable } from '../../../../../../storage/src/lib/common/reactive/disposable.interface';
-import { BehaviorSubjectValueObject } from '../../../../../../storage/src/lib/common/reactive/behavior-subject.value-object';
-import { RemoteResult } from '../../../../../../storage/src/lib/remote/errors/remote-result.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { RemoteResult } from '../../../../../../../shared/storage/src/lib/remote/errors/remote-result.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { Disposable } from '../../../../../../../shared/storage/src/lib/common/reactive/disposable.interface';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { BehaviorSubjectValueObject } from '../../../../../../../shared/storage/src/lib/common/reactive/behavior-subject.value-object';
 
 @Injectable()
 export class AuthFormFacade implements Disposable {

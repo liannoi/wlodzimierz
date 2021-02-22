@@ -3,7 +3,8 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import * as UsersActions from './users.actions';
 import { User } from '../shared/models/user.model';
-import { defaultModel } from '../../../../storage/src/lib/common/defaults/model.default';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
 
 export const USERS_FEATURE_KEY = 'users';
 

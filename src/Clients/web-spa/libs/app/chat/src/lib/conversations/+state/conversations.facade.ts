@@ -6,7 +6,7 @@ import { select, Store } from '@ngrx/store';
 
 import * as ConversationsActions from './conversations.actions';
 import * as ConversationsSelectors from './conversations.selectors';
-import { ConversationsList } from '../shared/models/conversations-list.models';
+import { ConversationsList } from '../shared/models/conversations-list.model';
 import { User } from '../../../../../users/src/lib/shared/models/user.model';
 
 @Injectable()

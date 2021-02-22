@@ -1,1 +1,1 @@
-export * from './lib/shared-notifications.module';
+export * from './lib/notifications.module';

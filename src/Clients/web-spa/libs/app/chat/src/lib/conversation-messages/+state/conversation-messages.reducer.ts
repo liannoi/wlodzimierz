@@ -4,7 +4,7 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import * as ConversationMessagesActions from './conversation-messages.actions';
 import { ConversationMessagesList } from '../shared/models/conversation-messages-list.model';
 import { ConversationMessage } from '../shared/models/conversation-message.model';
-import { defaultModel } from '../../../../../storage/src/lib/common/defaults/model.default';
+import { defaultModel } from '../../../../../../shared/storage/src/lib/common/defaults/model.default';
 
 export const CONVERSATION_MESSAGES_FEATURE_KEY = 'conversationMessages';
 

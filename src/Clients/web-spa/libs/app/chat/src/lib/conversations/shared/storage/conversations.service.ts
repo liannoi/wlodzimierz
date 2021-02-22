@@ -1,13 +1,15 @@
-import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { AbstractApiService } from '../../../../../../storage/src/lib/remote/abstract-api.service';
-import { ConversationsEndpointBuilder } from './conversations-endpoint.builder';
-import { EndpointBuilder } from '../../../../../../storage/src/lib/remote/endpoints/endpoint.builder';
 import { Conversation } from '../models/conversation.model';
+import { ConversationsEndpointBuilder } from './conversations-endpoint.builder';
 import { ConversationMessagesList } from '../../../conversation-messages/shared/models/conversation-messages-list.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { AbstractApiService } from '../../../../../../../shared/storage/src/lib/remote/abstract-api.service';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { EndpointBuilder } from '../../../../../../../shared/storage/src/lib/remote/endpoints/endpoint.builder';
 
 @Injectable()
 export class ConversationsService extends AbstractApiService {

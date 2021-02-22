@@ -4,7 +4,8 @@ import { createAction, props } from '@ngrx/store';
 
 import { User } from '../shared/models/user.model';
 import { JwtToken } from '../shared/models/jwt-token.model';
-import { RemoteResult } from '../../../../storage/src/lib/remote/errors/remote-result.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { RemoteResult } from '../../../../../shared/storage/src/lib/remote/errors/remote-result.model';
 
 export const verify = createAction('[Auth/API] Verify');
 export const verifySuccess = createAction(

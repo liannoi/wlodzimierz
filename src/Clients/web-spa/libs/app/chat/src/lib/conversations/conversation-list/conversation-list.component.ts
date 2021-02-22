@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { ConversationsList } from '../shared/models/conversations-list.models';
+import { ConversationsList } from '../shared/models/conversations-list.model';
 import { User } from '../../../../../users/src/lib/shared/models/user.model';
 import { ChangeConversationEvent } from '../shared/events/change-conversation.event';
 import { Conversation } from '../shared/models/conversation.model';

@@ -1,17 +1,17 @@
-import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { ConversationMessagesEndpointBuilder } from './conversation-messages-endpoint.builder';
 import { ConversationMessage } from '../models/conversation-message.model';
 import { CreatedNotification } from '../notifications/created.notification';
+import { ConversationMessagesEndpointBuilder } from './conversation-messages-endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { SharedNotificationsService } from '../../../../../../notifications/src/lib/services/notifications.service';
+import { AbstractApiService } from '../../../../../../../shared/storage/src/lib/remote/abstract-api.service';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { AbstractApiService } from '../../../../../../storage/src/lib/remote/abstract-api.service';
+import { EndpointBuilder } from '../../../../../../../shared/storage/src/lib/remote/endpoints/endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { EndpointBuilder } from '../../../../../../storage/src/lib/remote/endpoints/endpoint.builder';
+import { NotificationsService } from '../../../../../../../shared/notifications/src/lib/services/notifications.service';
 
 @Injectable()
 export class ConversationMessagesService extends AbstractApiService {
@@ -19,7 +19,7 @@ export class ConversationMessagesService extends AbstractApiService {
     http: HttpClient,
     @Inject(ConversationMessagesEndpointBuilder)
       endpointBuilder: EndpointBuilder,
-    private notificationsService: SharedNotificationsService
+    private notificationsService: NotificationsService
   ) {
     super(http, endpointBuilder);
   }

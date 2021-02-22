@@ -3,19 +3,19 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { AppUsersFacade } from '@wlodzimierz/app/users';
-import { ConversationMessagesFacade, ConversationsFacade } from '@wlodzimierz/chat';
+import { UsersFacade } from '@wlodzimierz/app/users';
+import { ConversationMessagesFacade, ConversationsFacade } from '@wlodzimierz/app/chat';
 
-import { ConversationsList } from './conversations/shared/models/conversations-list.models';
 import { Conversation } from './conversations/shared/models/conversation.model';
+import { CreateEvent } from './conversation-messages/shared/events/create.event';
+import { ConversationsList } from './conversations/shared/models/conversations-list.model';
 import { ChangeConversationEvent } from './conversations/shared/events/change-conversation.event';
 import { ConversationMessagesList } from './conversation-messages/shared/models/conversation-messages-list.model';
-import { CreateEvent } from './conversation-messages/shared/events/create.event';
 import { ConversationMessagesService } from './conversation-messages/shared/storage/conversation-messages.service';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { User } from '../../../users/src/lib/shared/models/user.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { SharedNotificationsService } from '../../../notifications/src/lib/services/notifications.service';
+import { NotificationsService } from '../../../../shared/notifications/src/lib/services/notifications.service';
 
 @Component({
   selector: 'wlodzimierz-chat',
@@ -30,10 +30,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   public constructor(
-    private usersFacade: AppUsersFacade,
+    private usersFacade: UsersFacade,
     private conversationsFacade: ConversationsFacade,
     private messagesFacade: ConversationMessagesFacade,
-    private notificationsService: SharedNotificationsService,
+    private notificationsService: NotificationsService,
     private conversationMessagesService: ConversationMessagesService
   ) {
   }

@@ -1,20 +1,15 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpErrorResponse,
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { NgrxErrorFacade } from '@wlodzimierz/ngrx-error';
+import { NgrxErrorFacade } from '@wlodzimierz/ngrx/ngrx-error';
 
 @Injectable()
 export class NgrxErrorInterceptorService implements HttpInterceptor {
-  public constructor(private facade: NgrxErrorFacade) {}
+  public constructor(private facade: NgrxErrorFacade) {
+  }
 
   public intercept(
     req: HttpRequest<any>,
