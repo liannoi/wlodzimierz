@@ -12,6 +12,27 @@
 The goal of the project is to provide a simple, convenient and cross-platform
 messenger for providing textual communication between users.
 
+## Contents
+
+- [Principles, paradigms, practices](#principles-paradigms-practices)
+- [Architecture](#architecture)
+- [Technologies](#technologies)
+   - [External clients](#external-clients)
+      - [SPA web app](#spa-web-app)
+      - [Native mobile app](#native-mobile-app)
+   - [Server](#server)
+- [Getting Started](#getting-started)
+   - [Prerequisites](#prerequisites)
+   - [Classic](#classic)
+   - [Docker](#docker)
+      - [Database](#database)
+      - [RESTful Web API](#restful-web-api)
+      - [SPA web app](#spa-web-app-1)
+- [Specification](#specification)
+- [License](#license)
+
+---
+
 ### Principles, paradigms, practices
 
 This project adheres to the best practices from the entire field of business
