@@ -22,18 +22,9 @@ messenger for providing textual communication between users.
       - [Native mobile app](#native-mobile-app)
    - [Server](#server)
 - [Getting Started](#getting-started)
-   - [Prerequisites](#prerequisites)
-   - [Classic](#classic)
-   - [Docker](#docker)
-      - [Database](#database)
-      - [RESTful Web API](#restful-web-api)
-      - [SPA web app](#spa-web-app-1)
-- [Specification](#specification)
 - [License](#license)
 
----
-
-### Principles, paradigms, practices
+## Principles, paradigms, practices
 
 This project adheres to the best practices from the entire field of business
 application development.
@@ -48,7 +39,7 @@ Among them:
 - Principle of "Clean Architecture"
 - Test Driven Development (TDD)
 
-### Architecture
+## Architecture
 
 The server-side RESTful Web API is written in .NET Core using MediatR library
 to implement CQRS design pattern.
@@ -107,121 +98,12 @@ The clients are:
 
 ## Getting Started
 
-To begin with, I would like to note that the project, or rather server RESTful
-Web API, can be deployed in two options:
+Messenger Wlodzimierz is hosted on two hosts:
 
-- Classic (using [.NET CLI](https://docs.microsoft.com/en-us/dotnet/core/tools) and / or Windows operating system).
-- Deploying Docker containers in a composition via Docker Compose.
+- Database & RESTful Web API - [`Microsoft Azure`](https://www.google.com/)
+- Angular web application - [`Firebase`](https://wlodzimierz-7f7dc.web.app/)
 
-In any case the requirements will be the same, except for the ways of
-interacting with tools, depending on the chosen strategy.
-
-### Prerequisites
-
-Thus, you will need the following tools:
-
-- [.NET 5 SDK](https://dotnet.microsoft.com/download) (will include .NET CLI)
-- [JetBrains Rider](https://www.jetbrains.com/rider/download) or [Visual Studio](https://visualstudio.microsoft.com/downloads)
-- [JetBrains DataGrip](https://www.jetbrains.com/datagrip/download) or [SSMS](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15)
-- [JetBrains WebStorm](https://www.jetbrains.com/webstorm/download) or [Visual Studio Code](https://code.visualstudio.com/download)
-- [GitHub CLI](https://cli.github.com) (optional)
-
----
-
-- [Docker Engine](https://docs.docker.com/get-docker)
-- [Docker Compose](https://docs.docker.com/compose/install)
-
-### Classic
-
-![.NET 5 - Classic build](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Classic%20build/badge.svg)
-
-> There are no instructions due to technical limitations (during development, a
-> strategy with Docker is used on macOS Big Sur operating system).
-
-### Docker
-
-![.NET 5 - Deployment in Docker](https://github.com/liannoi/wlodzimierz/workflows/.NET%205%20-%20Deployment%20in%20Docker/badge.svg)
-
-Use the following instructions to deploy in Docker containers as composition
-using Docker Compose.
-
-1. Clone the repository.
-
-```
-gh repo clone liannoi/wlodzimierz
-```
-
-### Database
-
-1. Go to the directory with the script to create a database.
-
-```
-cd /wlodzimierz/database
-```
-
-2. Open the ```wlodzimierz.sql``` file through the Database Management System (DBMS).
-
-3. Execute the script, connect to your local instance of Microsoft SQL Server.
-
-> If you are using **macOS**, you will first need to follow the instructions below for the RESTful Web API, ignoring the problems with starting the RESTful Web API itself. **After executing the script to create the database - repeat the entire procedure with the RESTful Web API again!**
-
-### RESTful Web API
-
-1. Go to the root directory of the project and then to the directory with the source code.
-
-```
-cd /wlodzimierz/src
-```
-
-2. Start the Docker service (for macOS only ```Docker Desktop``` application needs to be started).
-
----
-
-3. Download the images necessary for the composition from Docker Registry, on the basis of which Docker Compose will build the container composition.
-
-```
-docker-compose pull
-```
-
-4. Build Web API container from the described Dockerfile.
-
-```
-docker-compose build
-```
-
-5. Deploying a Docker composition.
-
-```
-docker-compose up -d
-```
-
-> Or just run the simplified command to deploy the composition.
->
-> ```
-> docker-compose pull && docker-compose build && docker-compose up -d
-> ```
-
----
-
-6. Launch [```https://localhost:5001/api```](https://localhost:5001/api) in your browser and you will see Swagger generated RESTful API documentation.
-
-### SPA web app
-
-1. Go to the directory with the frontend.
-
-```
-cd /wlodzimierz/src/Clients/web-spa
-```
-
-2. Install all dependencies locally and run Angular application.
-
-```
-npm install && npm run start-prod
-```
-
-## Specification
-
-For more specific information about the project - go to [Wiki](https://github.com/liannoi/wlodzimierz/wiki) section.
+If you want to deploy the system locally or get acquainted in more detail with the specification of the messenger - you should go to the [Wiki](https://github.com/liannoi/wlodzimierz/wiki) section.
 
 ## License
 
