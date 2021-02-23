@@ -1,9 +1,5 @@
 src/.volumes/
 Logs/
-nuget.config
-
-# Created by https://www.toptal.com/developers/gitignore/api/macos,rider,csharp,kotlin,angular,jetbrains,android,androidstudio,webstorm
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,rider,csharp,kotlin,angular,jetbrains,android,androidstudio,webstorm
 
 ### Android ###
 # Built application files
@@ -848,5 +844,21 @@ Thumbs.db
 ### AndroidStudio Patch ###
 
 !/gradle/wrapper/gradle-wrapper.jar
+
+### Firebase ###
+.idea
+**/node_modules/*
+**/.firebaserc
+
+### Firebase Patch ###
+.runtimeconfig.json
+.firebase/
+
+### Certificates ###
+*.pem
+*.key
+*.crt
+*.cer
+*.priv
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,rider,csharp,kotlin,angular,jetbrains,android,androidstudio,webstorm

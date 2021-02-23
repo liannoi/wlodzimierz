@@ -2,23 +2,6 @@ version: "3.8"
 
 services:
 
-  # web-api:
-  #   build:
-  #     context: .
-  #     dockerfile: Layers/Presentation/Presentation.API/Dockerfile.develop
-  #   ports:
-  #     - "5000:5000"
-  #   networks:
-  #     - default
-  #   depends_on:
-  #     - mssql
-  #     - redis
-  #     - seq
-  #   restart: always
-  #   environment:
-  #     ASPNETCORE_ENVIRONMENT: "Development"
-  #     ConnectionStrings__WlodzimierzDatabase: "Server=mssql;Database=Wlodzimierz;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
-  #     ConnectionStrings__WlodzimierzIdentityDatabase: "Server=mssql;Database=Wlodzimierz.Identity;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
 
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
@@ -58,6 +41,24 @@ services:
     restart: unless-stopped
     environment:
       "ACCEPT_EULA": "Y"
+
+  web-api:
+    build:
+      context: .
+      dockerfile: Layers/Presentation/Presentation.API/Dockerfile.develop
+    ports:
+      - "5000:5000"
+    networks:
+      - default
+    depends_on:
+      - mssql
+      - redis
+      - seq
+    restart: always
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__WlodzimierzDatabase: "Server=mssql;Database=Wlodzimierz;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
+      ConnectionStrings__WlodzimierzIdentityDatabase: "Server=mssql;Database=Wlodzimierz.Identity;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
 
 networks:
   default:

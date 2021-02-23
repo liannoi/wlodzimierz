@@ -2,29 +2,6 @@ version: "3.8"
 
 services:
 
-  web-api:
-    build:
-      context: .
-      dockerfile: Layers/Presentation/Presentation.API/Dockerfile
-    ports:
-      - "5000:5000"
-      - "5001:5001"
-    volumes:
-      - ~/.aspnet/https:/https:ro
-    networks:
-      - default
-    depends_on:
-      - mssql
-      - redis
-      - seq
-    restart: always
-    environment:
-      ASPNETCORE_ENVIRONMENT: "Development"
-      ConnectionStrings__WlodzimierzDatabase: "Server=mssql;Database=Wlodzimierz;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
-      ConnectionStrings__WlodzimierzIdentityDatabase: "Server=mssql;Database=Wlodzimierz.Identity;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
-      ASPNETCORE_Kestrel__Certificates__Default__Password: "1234"
-      ASPNETCORE_Kestrel__Certificates__Default__Path: "/https/aspnetapp.pfx"
-
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
     ports:
@@ -63,6 +40,29 @@ services:
     restart: unless-stopped
     environment:
       "ACCEPT_EULA": "Y"
+
+  web-api:
+    build:
+      context: .
+      dockerfile: Layers/Presentation/Presentation.API/Dockerfile
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    networks:
+      - default
+    depends_on:
+      - mssql
+      - redis
+      - seq
+    restart: always
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__WlodzimierzDatabase: "Server=mssql;Database=Wlodzimierz;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
+      ConnectionStrings__WlodzimierzIdentityDatabase: "Server=mssql;Database=Wlodzimierz.Identity;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
+      ASPNETCORE_Kestrel__Certificates__Default__Password: "1234"
+      ASPNETCORE_Kestrel__Certificates__Default__Path: "/https/aspnetapp.pfx"
 
 networks:
   default:

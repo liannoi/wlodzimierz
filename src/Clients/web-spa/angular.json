@@ -75,13 +75,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
+                  "maximumWarning": "4mb",
                   "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "150kb",
+                  "maximumError": "150kb"
                 }
               ]
             }
@@ -90,7 +90,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "wlodzimierz:build"
+            "browserTarget": "wlodzimierz:build",
+            "sslKey": "ssl/localhost/localhost.key",
+            "sslCert": "ssl/localhost/localhost.crt"
           },
           "configurations": {
             "production": {
@@ -122,6 +124,10 @@
             "jestConfig": "apps/wlodzimierz/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     },
