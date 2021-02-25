@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: wlodzimierz-mssql
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./.volumes/mssql:/var/opt/mssql
+    networks:
+      - default
+    restart: unless-stopped
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "BufKfVgDMpm9m4ZXHXpGavTAm5B"
+      MSSQL_PID: "Developer"
+
+  redis:
+    image: redis:6.0.9
+    container_name: wlodzimierz-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./.volumes/redis-data:/var/lib/redis
+      - ./.volumes/redis.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      - default
+    restart: unless-stopped
+    environment:
+      REDIS_REPLICATION_MODE: "master"
+
+  web-api:
+    build:
+      context: .
+      dockerfile: Layers/Presentation/Presentation.API/Dockerfile.dev
+    container_name: wlodzimierz
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    networks:
+      - default
+    depends_on:
+      - mssql
+      - redis
+    restart: always
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__WlodzimierzDatabase: "Server=mssql;Initial Catalog=Wlodzimierz;User ID=sa;Persist Security Info=False;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Application Name=Presentation.API"
+      ConnectionStrings__WlodzimierzIdentityDatabase: "Server=mssql;Initial Catalog=Wlodzimierz.Identity;User ID=sa;Persist Security Info=False;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Application Name=Presentation.API"
+      ConnectionStrings__WlodzimierzCachingDatabase: "127.0.0.1:6379"
+      ASPNETCORE_Kestrel__Certificates__Default__Password: "1234"
+      ASPNETCORE_Kestrel__Certificates__Default__Path: "/https/aspnetapp.pfx"
+
+networks:
+  default:
+    driver: bridge

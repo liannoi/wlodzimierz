@@ -2,67 +2,33 @@ version: "3.8"
 
 services:
 
-  mssql:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    ports:
-      - "1433:1433"
-    volumes:
-      - ./.volumes/mssql:/var/opt/mssql
-    networks:
-      - default
-    restart: unless-stopped
-    environment:
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: "BufKfVgDMpm9m4ZXHXpGavTAm5B"
-      MSSQL_PID: "Developer"
-
   redis:
     image: redis:6.0.9
+    container_name: wlodzimierz-redis
     ports:
       - "6379:6379"
-    volumes:
-      - ./.volumes/redis-data:/var/lib/redis
-      - ./.volumes/redis.conf:/usr/local/etc/redis/redis.conf
     networks:
       - default
     restart: unless-stopped
     environment:
       REDIS_REPLICATION_MODE: "master"
 
-  seq:
-    image: datalust/seq:2020.5
-    ports:
-      - "5341:80"
-    volumes:
-      - ./.volumes/seq/data:/data
-    networks:
-      - default
-    restart: unless-stopped
-    environment:
-      "ACCEPT_EULA": "Y"
-
   web-api:
     build:
       context: .
       dockerfile: Layers/Presentation/Presentation.API/Dockerfile
+    image: wlodzimierz.azurecr.io/wlodzimierz
+    container_name: wlodzimierz
     ports:
       - "5000:5000"
-      - "5001:5001"
-    volumes:
-      - ~/.aspnet/https:/https:ro
     networks:
       - default
-    depends_on:
-      - mssql
-      - redis
-      - seq
     restart: always
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
-      ConnectionStrings__WlodzimierzDatabase: "Server=mssql;Database=Wlodzimierz;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
-      ConnectionStrings__WlodzimierzIdentityDatabase: "Server=mssql;Database=Wlodzimierz.Identity;User=sa;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=true;Application Name=Presentation.API"
-      ASPNETCORE_Kestrel__Certificates__Default__Password: "1234"
-      ASPNETCORE_Kestrel__Certificates__Default__Path: "/https/aspnetapp.pfx"
+      ConnectionStrings__WlodzimierzDatabase: "Server=tcp:wlodzimierz.database.windows.net,1433;Initial Catalog=Wlodzimierz;Persist Security Info=False;User ID=wlodzimierz;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Application Name=Presentation.API"
+      ConnectionStrings__WlodzimierzIdentityDatabase: "Server=tcp:wlodzimierz.database.windows.net,1433;Initial Catalog=Wlodzimierz.Identity;Persist Security Info=False;User ID=wlodzimierz;Password=BufKfVgDMpm9m4ZXHXpGavTAm5B;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Application Name=Presentation.API"
+      ConnectionStrings__WlodzimierzCachingDatabase: "wlodzimierz.redis.cache.windows.net:6380,password=ORZzARPbcZoGG+43hDkXFkKPjxnpqvytbWlz4bxwthI=,ssl=True,abortConnect=False"
 
 networks:
   default:

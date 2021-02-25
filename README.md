@@ -94,16 +94,16 @@ The clients are:
 - LinqKit 1.1
 - Redis 6
 - Serilog 2.10
-- Seq 2020.1
 
 ## Getting Started
 
 Messenger Wlodzimierz is hosted on two hosts:
 
-- Database & RESTful Web API - [`Microsoft Azure`](https://www.google.com/)
+- Server-side - [`Microsoft Azure`](http://20.75.224.52:5000/api)
 - Angular web application - [`Firebase`](https://wlodzimierz-7f7dc.web.app/)
 
-If you want to deploy the system locally or get acquainted in more detail with the specification of the messenger - you should go to the [Wiki](https://github.com/liannoi/wlodzimierz/wiki) section.
+If you want to deploy the system locally or get acquainted in more detail with
+the specification of the messenger - you should go to the [Wiki](https://github.com/liannoi/wlodzimierz/wiki) section.
 
 ## License
 
