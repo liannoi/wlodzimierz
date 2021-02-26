@@ -1,5 +1,6 @@
 src/.volumes/
 Logs/
+src/Clients/web-spa/package-lock.json
 
 ### Android ###
 # Built application files
@@ -860,5 +861,3 @@ Thumbs.db
 *.crt
 *.cer
 *.priv
-
-# End of https://www.toptal.com/developers/gitignore/api/macos,rider,csharp,kotlin,angular,jetbrains,android,androidstudio,webstorm
