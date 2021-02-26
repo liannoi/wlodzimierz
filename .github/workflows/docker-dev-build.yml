@@ -16,11 +16,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Pull - Docker Compose 
-      run: docker-compose pull
+      run: docker-compose -f docker-compose.dev.yml pull
       working-directory: ${{env.working-directory}}
-    - name: Build - Docker Compose 
-      run: docker-compose build
-      working-directory: ${{env.working-directory}}
-    - name: Deploying - Docker Compose 
-      run: docker-compose up -d
+    - name: Building & Deploy - Docker Compose 
+      run: docker-compose -f docker-compose.dev.yml up --build -d
       working-directory: ${{env.working-directory}}
