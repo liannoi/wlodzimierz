@@ -10,7 +10,7 @@ import { AbstractApiService } from '../../../../../../../shared/storage/src/lib/
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { EndpointBuilder } from '../../../../../../../shared/storage/src/lib/remote/endpoints/endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { ConversationsList } from '../../../../../../chat/src/lib/conversations/shared/models/conversations-list.model';
+import { ConversationsList } from '../../../../../../conversations/src/lib/shared/models/conversations-list.model';
 
 @Injectable()
 export class UsersService extends AbstractApiService {

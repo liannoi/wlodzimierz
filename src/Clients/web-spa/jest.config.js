@@ -9,6 +9,8 @@ module.exports = {
     '<rootDir>/libs/shared/storage',
     '<rootDir>/libs/ngrx/ngrx-router',
     '<rootDir>/libs/ngrx/ngrx-error',
-    '<rootDir>/libs/shared/notifications'
-  ]
+    '<rootDir>/libs/shared/notifications',
+    '<rootDir>/libs/app/conversations',
+    '<rootDir>/libs/app/conversation-messages',
+  ],
 };
