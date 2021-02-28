@@ -85,7 +85,7 @@
     "cypress": "6.5.0",
     "dotenv": "6.2.0",
     "eslint": "7.18.0",
-    "eslint-config-prettier": "6.0.0",
+    "eslint-config-prettier": "6.15.0",
     "eslint-plugin-cypress": "2.10.3",
     "firebase-tools": "9.5.0",
     "fuzzy": "0.1.3",
