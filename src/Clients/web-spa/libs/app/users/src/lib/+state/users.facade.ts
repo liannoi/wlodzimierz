@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
 
 import * as UsersActions from './users.actions';
 import * as UsersSelectors from './users.selectors';
-import { User } from '../shared/models/user.model';
+import { UserModel } from '../shared/models/user.model';
 
 @Injectable()
 export class UsersFacade {
-  public currentUser$: Observable<User> = this.store.pipe(
+  public currentUser$: Observable<UserModel> = this.store.pipe(
     select(UsersSelectors.getCurrentUser)
   );
 
@@ -21,7 +21,7 @@ export class UsersFacade {
     this.store.dispatch(UsersActions.verify());
   }
 
-  public signIn(currentUser: User): void {
+  public signIn(currentUser: UserModel): void {
     this.store.dispatch(UsersActions.signIn({ currentUser }));
   }
 
@@ -29,7 +29,7 @@ export class UsersFacade {
     this.store.dispatch(UsersActions.signOut());
   }
 
-  public signUp(currentUser: User): void {
+  public signUp(currentUser: UserModel): void {
     this.store.dispatch(UsersActions.signUp({ currentUser }));
   }
 }

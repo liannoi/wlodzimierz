@@ -4,7 +4,7 @@ import { AbstractControl, FormControl, Validators } from '@angular/forms';
 
 import { UsersFacade } from '@wlodzimierz/app/users';
 
-import { User } from '../shared/models/user.model';
+import { UserModel } from '../shared/models/user.model';
 import { AuthFormGroup } from '../shared/storage/form/auth-form.model';
 import { AuthFormFacade } from '../shared/storage/form/auth-form.facade';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
@@ -17,7 +17,7 @@ import { defaultModel } from '../../../../../shared/storage/src/lib/common/defau
 })
 export class SignUpComponent implements OnInit, OnDestroy {
   public signUpForm: AuthFormGroup;
-  private user: User = defaultModel();
+  private user: UserModel = defaultModel();
 
   public constructor(
     private titleService: Title,
@@ -61,7 +61,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.user = this.signUpForm.map<User>();
+    this.user = this.signUpForm.map<UserModel>();
     this.usersFacade.signUp(this.user);
   }
 

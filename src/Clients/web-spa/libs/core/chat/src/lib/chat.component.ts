@@ -4,15 +4,25 @@ import { Observable, Subscription } from 'rxjs';
 
 import { UsersFacade } from '@wlodzimierz/app/users';
 
-import { User } from 'libs/app/users/src/lib/shared/models/user.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { UserModel } from 'libs/app/users/src/lib/shared/models/user.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { Conversation } from '../../../../app/conversations/src/lib/shared/models/conversation.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ConversationsList } from '../../../../app/conversations/src/lib/shared/models/conversations-list.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ConversationMessagesList } from '../../../../app/conversation-messages/src/lib/shared/models/conversation-messages-list.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { NotificationsService } from '../../../../shared/notifications/src/lib/services/notifications.service';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ConversationMessagesService } from '../../../../app/conversation-messages/src/lib/shared/storage/conversation-messages.service';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ChangedNotification } from '../../../../app/conversations/src/lib/shared/notifications/change/changed.notification';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { CreatedNotification } from '../../../../app/conversation-messages/src/lib/shared/notifications/create/created.notification';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ConversationsFacade } from '../../../../app/conversations/src/lib/+state/conversations.facade';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ConversationMessagesFacade } from '../../../../app/conversation-messages/src/lib/+state/conversation-messages.facade';
 
 @Component({
@@ -21,7 +31,7 @@ import { ConversationMessagesFacade } from '../../../../app/conversation-message
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  public user: User;
+  public user: UserModel;
   public bindingConversation: Conversation;
   public conversations$: Observable<ConversationsList>;
   public messages$: Observable<ConversationMessagesList>;
@@ -62,7 +72,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private followUser(): void {
     this.subscriptions.push(
-      this.usersFacade.currentUser$.subscribe((user: User) => {
+      this.usersFacade.currentUser$.subscribe((user: UserModel) => {
         this.user = user;
         this.conversationsFacade.getAll(user);
       })

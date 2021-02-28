@@ -4,7 +4,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConversationMessage } from '../models/conversation-message.model';
-import { CreatedNotificationHandler } from '../notifications/create/created-notification.Handler';
+import { CreatedNotificationHandler } from '../notifications/create/created-notification.handler';
 import { ConversationMessagesEndpointBuilder } from './conversation-messages-endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { AbstractApiService } from '../../../../../../shared/storage/src/lib/remote/abstract-api.service';

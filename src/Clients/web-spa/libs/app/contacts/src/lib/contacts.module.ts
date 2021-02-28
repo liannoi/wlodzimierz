@@ -1,24 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactsRoutingModule } from './contacts-routing.module';
 import { ContactComponent } from './contact/contact.component';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import * as fromAppcontacts from './+state/contacts.reducer';
-import { AppcontactsEffects } from './+state/contacts.effects';
+import * as fromContacts from './+state/contacts.reducer';
+import { ContactsEffects } from './+state/contacts.effects';
+import { ContactsFacade } from './+state/contacts.facade';
+import { ContactCreateComponent } from './contact-create/contact-create.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     ContactsRoutingModule,
-    StoreModule.forFeature(
-      fromAppcontacts.APP / CONTACTS_FEATURE_KEY,
-      fromAppcontacts.reducer
-    ),
-    EffectsModule.forFeature([AppcontactsEffects]),
+    StoreModule.forFeature(fromContacts.CONTACTS_FEATURE_KEY, fromContacts.reducer),
+    EffectsModule.forFeature([ContactsEffects])
   ],
-  declarations: [ContactListComponent, ContactComponent],
+  declarations: [ContactListComponent, ContactComponent, ContactCreateComponent],
+  providers: [ContactsFacade]
 })
-export class ContactsModule {}
+export class ContactsModule {
+}

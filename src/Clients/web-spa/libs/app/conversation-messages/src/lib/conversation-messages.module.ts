@@ -5,7 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ConversationsModule } from '@wlodzimierz/app/conversations';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { NotificationsModule } from '@wlodzimierz/shared/notifications';
 
 import { ReversePipe } from './shared/pipes/reverse.pipe';

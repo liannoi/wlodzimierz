@@ -3,9 +3,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 
 import { CreatedNotification } from '../shared/notifications/create/created.notification';
 import { ConversationMessage } from '../shared/models/conversation-message.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { Conversation } from '../../../../conversations/src/lib/shared/models/conversation.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { User } from '../../../../users/src/lib/shared/models/user.model';
+import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
 
@@ -16,7 +17,7 @@ import { defaultModel } from '../../../../../shared/storage/src/lib/common/defau
   styleUrls: ['./conversation-message-create.component.scss']
 })
 export class ConversationMessageCreateComponent implements OnInit {
-  @Input() public user: User;
+  @Input() public user: UserModel;
   @Input() public conversation: Conversation;
   @Output() public createConversationMessage = new EventEmitter<CreatedNotification>();
   public formGroup: FormGroup;

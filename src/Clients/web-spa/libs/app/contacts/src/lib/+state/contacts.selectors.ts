@@ -1,38 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { APP/CONTACTS_FEATURE_KEY, State, AppcontactsPartialState, appcontactsAdapter } from './app/contacts.reducer';
 
-// Lookup the 'Appcontacts' feature state managed by NgRx
-export const getAppcontactsState = createFeatureSelector<AppcontactsPartialState, State>(APP/CONTACTS_FEATURE_KEY);
+import { CONTACTS_FEATURE_KEY, ContactsPartialState, State } from './contacts.reducer';
 
-const { selectAll, selectEntities } = appcontactsAdapter.getSelectors();
+const getContactsState = createFeatureSelector<ContactsPartialState, State>(CONTACTS_FEATURE_KEY);
 
-export const getAppcontactsLoaded = createSelector(
-  getAppcontactsState,
-  (state: State) => state.loaded
-);
-
-export const getAppcontactsError = createSelector(
-  getAppcontactsState,
-  (state: State) => state.error
-);
-
-export const getAllAppcontacts = createSelector(
-  getAppcontactsState,
-  (state: State) => selectAll(state)
-);
-
-export const getAppcontactsEntities = createSelector(
-  getAppcontactsState,
-  (state: State) => selectEntities(state)
-);
-
-export const getSelectedId = createSelector(
-  getAppcontactsState,
-  (state: State) => state.selectedId
-);
-
-export const getSelected = createSelector(
-  getAppcontactsEntities,
-  getSelectedId,
-  (entities, selectedId) => selectedId && entities[selectedId]
-);
+export const getContacts = createSelector(getContactsState, (state: State) => state.contacts);

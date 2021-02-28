@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 
 import { UsersFacade } from '@wlodzimierz/app/users';
 
-import { User } from '../shared/models/user.model';
+import { UserModel } from '../shared/models/user.model';
 import { AuthFormGroup } from '../shared/storage/form/auth-form.model';
 import { AuthFormFacade } from '../shared/storage/form/auth-form.facade';
 import { unauthorizedValidator } from '../shared/validators/unauthorized.validator';
@@ -18,7 +18,7 @@ import { defaultModel } from '../../../../../shared/storage/src/lib/common/defau
 })
 export class SignInComponent implements OnInit, OnDestroy {
   public signInForm: AuthFormGroup;
-  private user: User = defaultModel();
+  private user: UserModel = defaultModel();
 
   public constructor(
     private titleService: Title,
@@ -58,7 +58,7 @@ export class SignInComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.user = this.signInForm.map<User>();
+    this.user = this.signInForm.map<UserModel>();
     this.usersFacade.signIn(this.user);
   }
 

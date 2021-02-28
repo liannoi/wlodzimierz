@@ -1,28 +1,27 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { fetch } from '@nrwl/angular';
 
-import * as AppcontactsFeature from './app/contacts.reducer';
-import * as AppcontactsActions from './app/contacts.actions';
+import { of } from 'rxjs';
+import { catchError, concatMap, map } from 'rxjs/operators';
+
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+
+import * as ContactsActions from './contacts.actions';
+import { UsersService } from '../../../../../shared/storage/src/lib/remote/users.service';
 
 @Injectable()
-export class AppcontactsEffects {
-  init$ = createEffect(() =>
+export class ContactsEffects {
+  getAll$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(AppcontactsActions.init),
-      fetch({
-        run: (action) => {
-          // Your custom service 'load' logic goes here. For now just return a success action...
-          return AppcontactsActions.loadAppcontactsSuccess({ appcontacts: [] });
-        },
-
-        onError: (action, error) => {
-          console.error('Error', error);
-          return AppcontactsActions.loadAppcontactsFailure({ error });
-        },
-      })
+      ofType(ContactsActions.getAll),
+      concatMap((action) =>
+        this.usersService.getContacts(action.currentUser).pipe(
+          map((response) => ContactsActions.getAllSuccess({ contacts: response })),
+          catchError((error) => of(ContactsActions.getAllFailure(error)))
+        )
+      )
     )
   );
 
-  constructor(private actions$: Actions) {}
+  public constructor(private actions$: Actions, private usersService: UsersService) {
+  }
 }

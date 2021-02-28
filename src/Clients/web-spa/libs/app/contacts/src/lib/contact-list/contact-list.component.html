@@ -1,2 +1,19 @@
-<p>contacts-list works!</p>
-<wlodzimierz-contact></wlodzimierz-contact>
+<ng-container *ngIf='haveContacts; then displayBlock; else creationBlock'></ng-container>
+
+<ng-template #displayBlock>
+  <p>contacts-list works! Length: {{haveContacts}}</p>
+  <wlodzimierz-contact></wlodzimierz-contact>
+</ng-template>
+
+<ng-template #creationBlock>
+  <div class='row mb-3'>
+    <div class='col-sm-12'>
+      <h2 class='text-center'>Your contact list is empty.</h2>
+    </div>
+  </div>
+  <div class='row d-flex justify-content-center align-content-center'>
+    <div class='col-sm-12'>
+      <wlodzimierz-contact-create></wlodzimierz-contact-create>
+    </div>
+  </div>
+</ng-template>

@@ -1,14 +1,13 @@
+import { HttpErrorResponse } from '@angular/common/http';
+
 import { createAction, props } from '@ngrx/store';
-import { AppcontactsEntity } from './app/contacts.models';
 
-export const init = createAction('[Appcontacts Page] Init');
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
+import { ContactsList } from '../shared/models/contacts-list.model';
 
-export const loadAppcontactsSuccess = createAction(
-  '[Appcontacts/API] Load Appcontacts Success',
-  props<{ appcontacts: AppcontactsEntity[] }>()
-);
+export const getAll = createAction('[Contacts/API] Get All', props<{ currentUser: UserModel }>());
 
-export const loadAppcontactsFailure = createAction(
-  '[Appcontacts/API] Load Appcontacts Failure',
-  props<{ error: any }>()
-);
+export const getAllSuccess = createAction('[Contacts/API] Get All Success', props<{ contacts: ContactsList }>());
+
+export const getAllFailure = createAction('[Contacts/API] Get All Failure', props<{ error: HttpErrorResponse }>());

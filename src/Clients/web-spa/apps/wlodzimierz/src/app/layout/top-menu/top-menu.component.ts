@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { UsersFacade } from '@wlodzimierz/app/users';
 
-import { User } from '../../../../../../libs/app/users/src/lib/shared/models/user.model';
+import { UserModel } from '../../../../../../libs/app/users/src/lib/shared/models/user.model';
 
 @Component({
   selector: 'wlodzimierz-top-menu',
@@ -13,7 +13,7 @@ import { User } from '../../../../../../libs/app/users/src/lib/shared/models/use
 })
 export class TopMenuComponent implements OnInit {
   public isExpanded = true;
-  public currentUser$: Observable<User>;
+  public currentUser$: Observable<UserModel>;
 
   public constructor(private usersFacade: UsersFacade) {
   }

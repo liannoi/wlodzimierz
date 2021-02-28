@@ -16,9 +16,7 @@ export class ConversationsEffects {
       ofType(ConversationsActions.getAll),
       concatMap((action) =>
         this.usersService.getConversations(action.currentUser).pipe(
-          map((response) =>
-            ConversationsActions.getAllSuccess({ conversations: response })
-          ),
+          map((response) => ConversationsActions.getAllSuccess({ conversations: response })),
           catchError((error) => of(ConversationsActions.getAllFailure(error)))
         )
       )

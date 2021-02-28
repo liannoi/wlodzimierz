@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { AbstractApiService } from './abstract-api.service';
 import { EndpointBuilder } from './endpoints/endpoint.builder';
-import { User } from '../../../../../app/users/src/lib/shared/models/user.model';
+import { UserModel } from '../../../../../app/users/src/lib/shared/models/user.model';
 import { UsersEndpointBuilder } from '../../../../../app/users/src/lib/shared/storage/users-endpoint.builder';
 import { ConversationsList } from '../../../../../app/conversations/src/lib/shared/models/conversations-list.model';
 import { ContactsList } from '../../../../../app/contacts/src/lib/shared/models/contacts-list.model';
@@ -16,7 +16,7 @@ export class UsersService extends AbstractApiService {
     super(http, endpointBuilder);
   }
 
-  public getConversations(user: User): Observable<ConversationsList> {
+  public getConversations(user: UserModel): Observable<ConversationsList> {
     const endpoint = this.endpointBuilder
       .withParameter(user.userId)
       .withAction('Conversations')
@@ -25,7 +25,7 @@ export class UsersService extends AbstractApiService {
     return this.http.get<ConversationsList>(endpoint.url);
   }
 
-  public getContacts(user: User): Observable<ContactsList> {
+  public getContacts(user: UserModel): Observable<ContactsList> {
     const endpoint = this.endpointBuilder
       .withParameter(user.userId)
       .withAction('Contacts')

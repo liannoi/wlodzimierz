@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { createAction, props } from '@ngrx/store';
 
-import { User } from '../shared/models/user.model';
+import { UserModel } from '../shared/models/user.model';
 import { JwtToken } from '../shared/models/jwt-token.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { RemoteResult } from '../../../../../shared/storage/src/lib/remote/errors/remote-result.model';
@@ -10,7 +10,7 @@ import { RemoteResult } from '../../../../../shared/storage/src/lib/remote/error
 export const verify = createAction('[Auth/API] Verify');
 export const verifySuccess = createAction(
   '[Auth/API] Verify Success',
-  props<{ currentUser: User; token: JwtToken }>()
+  props<{ currentUser: UserModel; token: JwtToken }>()
 );
 export const verifyFailure = createAction(
   '[Auth/API] Verify Failure',
@@ -19,7 +19,7 @@ export const verifyFailure = createAction(
 
 export const signIn = createAction(
   '[Auth/API] Sign In',
-  props<{ currentUser: User }>()
+  props<{ currentUser: UserModel }>()
 );
 export const signInSuccess = createAction(
   '[Auth/API] Sign In Success',
@@ -35,7 +35,7 @@ export const signOutSuccess = createAction('[Auth/API] Sign Out Success');
 
 export const signUp = createAction(
   '[Auth/API] Sign Up',
-  props<{ currentUser: User }>()
+  props<{ currentUser: UserModel }>()
 );
 export const signUpSuccess = createAction(
   '[Auth/API] Sign Up Success',
