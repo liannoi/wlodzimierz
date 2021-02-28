@@ -1,7 +1,7 @@
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { CreateEvent } from '../shared/events/create.event';
+import { CreatedNotification } from '../shared/notifications/create/created.notification';
 import { ConversationMessage } from '../shared/models/conversation-message.model';
 import { Conversation } from '../../../../conversations/src/lib/shared/models/conversation.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
@@ -18,7 +18,7 @@ import { defaultModel } from '../../../../../shared/storage/src/lib/common/defau
 export class ConversationMessageCreateComponent implements OnInit {
   @Input() public user: User;
   @Input() public conversation: Conversation;
-  @Output() public createConversationMessage = new EventEmitter<CreateEvent>();
+  @Output() public createConversationMessage = new EventEmitter<CreatedNotification>();
   public formGroup: FormGroup;
   public messageModel: ConversationMessage = defaultModel();
 

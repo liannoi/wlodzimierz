@@ -10,27 +10,54 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@wlodzimierz/app/chat": ["libs/app/chat/src/index.ts"],
-      "@wlodzimierz/core/docs": ["libs/core/docs/src/index.ts"],
-      "@wlodzimierz/core/home": ["libs/core/home/src/index.ts"],
-      "@wlodzimierz/shared/storage": ["libs/shared/storage/src/index.ts"],
+      "@wlodzimierz/core/docs": [
+        "libs/core/docs/src/index.ts"
+      ],
+      "@wlodzimierz/core/home": [
+        "libs/core/home/src/index.ts"
+      ],
+      "@wlodzimierz/shared/storage": [
+        "libs/shared/storage/src/index.ts"
+      ],
       "@wlodzimierz/shared/notifications": [
         "libs/shared/notifications/src/index.ts"
       ],
-      "@wlodzimierz/app/users": ["libs/app/users/src/index.ts"],
-      "@wlodzimierz/core/statuses": ["libs/core/statuses/src/index.ts"],
-      "@wlodzimierz/ngrx/ngrx-error": ["libs/ngrx/ngrx-error/src/index.ts"],
-      "@wlodzimierz/ngrx/ngrx-router": ["libs/ngrx/ngrx-router/src/index.ts"],
-      "@wlodzimierz/app/conversations": ["libs/app/conversations/src/index.ts"],
+      "@wlodzimierz/app/users": [
+        "libs/app/users/src/index.ts"
+      ],
+      "@wlodzimierz/core/statuses": [
+        "libs/core/statuses/src/index.ts"
+      ],
+      "@wlodzimierz/ngrx/ngrx-error": [
+        "libs/ngrx/ngrx-error/src/index.ts"
+      ],
+      "@wlodzimierz/ngrx/ngrx-router": [
+        "libs/ngrx/ngrx-router/src/index.ts"
+      ],
+      "@wlodzimierz/app/conversations": [
+        "libs/app/conversations/src/index.ts"
+      ],
       "@wlodzimierz/app/conversation-messages": [
         "libs/app/conversation-messages/src/index.ts"
+      ],
+      "@wlodzimierz/core/chat": [
+        "libs/core/chat/src/index.ts"
+      ],
+      "@wlodzimierz/app/contacts": [
+        "libs/app/contacts/src/index.ts"
       ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

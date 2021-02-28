@@ -4,7 +4,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ConversationMessage } from '../models/conversation-message.model';
-import { CreatedNotification } from '../notifications/created.notification';
+import { CreatedNotificationHandler } from '../notifications/create/created-notification.Handler';
 import { ConversationMessagesEndpointBuilder } from './conversation-messages-endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { AbstractApiService } from '../../../../../../shared/storage/src/lib/remote/abstract-api.service';
@@ -30,7 +30,7 @@ export class ConversationMessagesService extends AbstractApiService {
     return this.http.post<number>(endpoint.url, message);
   }
 
-  public onCreated(action: (notification: CreatedNotification) => void): void {
-    this.notificationsService.subscribe<CreatedNotification>(action);
+  public onCreated(action: (notification: CreatedNotificationHandler) => void): void {
+    this.notificationsService.subscribe<CreatedNotificationHandler>(action);
   }
 }

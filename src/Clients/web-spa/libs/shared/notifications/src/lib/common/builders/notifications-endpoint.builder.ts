@@ -5,6 +5,6 @@ import { AbstractEndpointBuilder } from '../../../../../storage/src/lib/remote/e
 @Injectable()
 export class NotificationsEndpointBuilder extends AbstractEndpointBuilder {
   public constructor() {
-    super('Notifications', 'https://localhost:5001');
+    super('Notifications', 'http://20.75.224.52:5000');
   }
 }

@@ -15,7 +15,12 @@ const routes: Routes = [
   {
     path: 'app',
     loadChildren: () =>
-      import('@wlodzimierz/app/chat').then((m) => m.ChatModule)
+      import('@wlodzimierz/core/chat').then((m) => m.ChatModule)
+  },
+  {
+    path: 'contacts',
+    loadChildren: () =>
+      import('@wlodzimierz/app/contacts').then((m) => m.ContactsModule)
   },
   {
     path: '**',

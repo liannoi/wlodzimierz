@@ -52,7 +52,9 @@
               "apps/wlodzimierz/src/favicon.ico",
               "apps/wlodzimierz/src/assets"
             ],
-            "styles": ["apps/wlodzimierz/src/styles.scss"],
+            "styles": [
+              "apps/wlodzimierz/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -115,7 +117,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/wlodzimierz"],
+          "outputs": [
+            "coverage/apps/wlodzimierz"
+          ],
           "options": {
             "jestConfig": "apps/wlodzimierz/jest.config.js",
             "passWithNoTests": true
@@ -148,32 +152,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/wlodzimierz-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "app-chat": {
-      "projectType": "library",
-      "root": "libs/app/chat",
-      "sourceRoot": "libs/app/chat/src",
-      "prefix": "wlodzimierz",
-      "architect": {
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
             "lintFilePatterns": [
-              "libs/app/chat/src/**/*.ts",
-              "libs/app/chat/src/**/*.html"
+              "apps/wlodzimierz-e2e/**/*.{js,ts}"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/chat"],
-          "options": {
-            "jestConfig": "libs/app/chat/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -195,7 +176,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/core/docs"],
+          "outputs": [
+            "coverage/libs/core/docs"
+          ],
           "options": {
             "jestConfig": "libs/core/docs/jest.config.js",
             "passWithNoTests": true
@@ -220,7 +203,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/core/home"],
+          "outputs": [
+            "coverage/libs/core/home"
+          ],
           "options": {
             "jestConfig": "libs/core/home/jest.config.js",
             "passWithNoTests": true
@@ -245,7 +230,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/storage"],
+          "outputs": [
+            "coverage/libs/shared/storage"
+          ],
           "options": {
             "jestConfig": "libs/shared/storage/jest.config.js",
             "passWithNoTests": true
@@ -270,7 +257,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/notifications"],
+          "outputs": [
+            "coverage/libs/shared/notifications"
+          ],
           "options": {
             "jestConfig": "libs/shared/notifications/jest.config.js",
             "passWithNoTests": true
@@ -295,7 +284,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/users"],
+          "outputs": [
+            "coverage/libs/app/users"
+          ],
           "options": {
             "jestConfig": "libs/app/users/jest.config.js",
             "passWithNoTests": true
@@ -320,7 +311,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/core/statuses"],
+          "outputs": [
+            "coverage/libs/core/statuses"
+          ],
           "options": {
             "jestConfig": "libs/core/statuses/jest.config.js",
             "passWithNoTests": true
@@ -345,7 +338,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ngrx/ngrx-error"],
+          "outputs": [
+            "coverage/libs/ngrx/ngrx-error"
+          ],
           "options": {
             "jestConfig": "libs/ngrx/ngrx-error/jest.config.js",
             "passWithNoTests": true
@@ -370,7 +365,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ngrx/ngrx-router"],
+          "outputs": [
+            "coverage/libs/ngrx/ngrx-router"
+          ],
           "options": {
             "jestConfig": "libs/ngrx/ngrx-router/jest.config.js",
             "passWithNoTests": true
@@ -395,7 +392,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/conversations"],
+          "outputs": [
+            "coverage/libs/app/conversations"
+          ],
           "options": {
             "jestConfig": "libs/app/conversations/jest.config.js",
             "passWithNoTests": true
@@ -420,9 +419,65 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/app/conversation-messages"],
+          "outputs": [
+            "coverage/libs/app/conversation-messages"
+          ],
           "options": {
             "jestConfig": "libs/app/conversation-messages/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "core-chat": {
+      "projectType": "library",
+      "root": "libs/core/chat",
+      "sourceRoot": "libs/core/chat/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/core/chat/src/**/*.ts",
+              "libs/core/chat/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/core/chat"
+          ],
+          "options": {
+            "jestConfig": "libs/core/chat/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app-contacts": {
+      "projectType": "library",
+      "root": "libs/app/contacts",
+      "sourceRoot": "libs/app/contacts/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/app/contacts/src/**/*.ts",
+              "libs/app/contacts/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/app/contacts"
+          ],
+          "options": {
+            "jestConfig": "libs/app/contacts/jest.config.js",
             "passWithNoTests": true
           }
         }

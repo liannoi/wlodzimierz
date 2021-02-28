@@ -1,6 +1,6 @@
 import { ValidationErrors, ValidatorFn } from '@angular/forms';
 
-import { AuthFormGroup } from '../storage/forms/auth-form.model';
+import { AuthFormGroup } from '../storage/form/auth-form.model';
 
 export const unauthorizedValidator: ValidatorFn = (
   formGroup: AuthFormGroup

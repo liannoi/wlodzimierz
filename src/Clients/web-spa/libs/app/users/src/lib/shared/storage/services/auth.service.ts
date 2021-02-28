@@ -7,11 +7,8 @@ import { User } from '../../models/user.model';
 import { JwtTokenService } from './jwt-token.service';
 import { JwtToken } from '../../models/jwt-token.model';
 import { UsersEndpointBuilder } from '../users-endpoint.builder';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { CookiesService } from '../../../../../../../shared/storage/src/lib/local/cookies.service';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { AbstractApiService } from '../../../../../../../shared/storage/src/lib/remote/abstract-api.service';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { EndpointBuilder } from '../../../../../../../shared/storage/src/lib/remote/endpoints/endpoint.builder';
 
 @Injectable()
@@ -27,9 +24,7 @@ export class AuthService extends AbstractApiService {
   public verify(): Observable<User> {
     const tokenInCookies = this.tokenService.read();
 
-    return tokenInCookies
-      ? this.requestVerify(tokenInCookies)
-      : throwError('Token is empty.');
+    return tokenInCookies ? this.requestVerify(tokenInCookies) : throwError('Token is empty.');
   }
 
   public signIn(user: User): Observable<JwtToken> {
@@ -51,10 +46,6 @@ export class AuthService extends AbstractApiService {
   private requestVerify(token: JwtToken): Observable<User> {
     const endpoint = this.endpointBuilder.withAction('Verify').build();
 
-    return this.http.post<User>(
-      endpoint.url,
-      token,
-      this.withAuthorization(token)
-    );
+    return this.http.post<User>(endpoint.url, token, this.withAuthorization(token));
   }
 }

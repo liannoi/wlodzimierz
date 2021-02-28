@@ -7,8 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { CookiesService } from './cookies.service';
 
 @Injectable()
-export abstract class AbstractCookieService<TCookie>
-  implements CookiesService<TCookie> {
+export abstract class AbstractCookieService<TCookie> implements CookiesService<TCookie> {
   protected constructor(protected name, protected service: CookieService) {
   }
 

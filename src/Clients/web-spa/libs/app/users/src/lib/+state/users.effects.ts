@@ -11,7 +11,7 @@ import { UsersFacade } from '@wlodzimierz/app/users';
 import * as UsersActions from './users.actions';
 import { JwtToken } from '../shared/models/jwt-token.model';
 import { AuthService } from '../shared/storage/services/auth.service';
-import { AuthFormFacade } from '../shared/storage/forms/auth-form.facade';
+import { AuthFormFacade } from '../shared/storage/form/auth-form.facade';
 import { JwtTokenService } from '../shared/storage/services/jwt-token.service';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { RemoteResult } from '../../../../../shared/storage/src/lib/remote/errors/remote-result.model';

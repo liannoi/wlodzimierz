@@ -5,17 +5,13 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { Notifiable } from '../common/interfaces/notifiable.interface';
 import { BaseNotification } from '../common/abstractions/base.notification';
 import { NotificationsEndpointBuilder } from '../common/builders/notifications-endpoint.builder';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { EndpointBuilder } from '../../../../storage/src/lib/remote/endpoints/endpoint.builder';
 
 @Injectable()
 export class NotificationsService implements Notifiable {
   private readonly _connection: HubConnection;
 
-  public constructor(
-    @Inject(NotificationsEndpointBuilder)
-    private endpointBuilder: EndpointBuilder
-  ) {
+  public constructor(@Inject(NotificationsEndpointBuilder) private endpointBuilder: EndpointBuilder) {
     this._connection = new HubConnectionBuilder()
       .withUrl(endpointBuilder.build().url)
       .build();
@@ -31,9 +27,7 @@ export class NotificationsService implements Notifiable {
       });
   }
 
-  public subscribe<TNotification extends BaseNotification>(
-    action: (notification: TNotification) => void
-  ): void {
+  public subscribe<TNotification extends BaseNotification>(action: (notification: TNotification) => void): void {
     this._connection.on('SubscribeAsync', action);
   }
 

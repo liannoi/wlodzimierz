@@ -16,11 +16,9 @@ import { UsersRoutingModule } from './users-routing.module';
 import { JwtTokenGuard } from './shared/guards/jwt-token.guard';
 import { SignOutComponent } from './sign-out/sign-out.component';
 import { AuthService } from './shared/storage/services/auth.service';
-import { AuthFormFacade } from './shared/storage/forms/auth-form.facade';
-import { UsersService } from './shared/storage/services/users.service';
+import { AuthFormFacade } from './shared/storage/form/auth-form.facade';
 import { JwtTokenService } from './shared/storage/services/jwt-token.service';
 import { UsersEndpointBuilder } from './shared/storage/users-endpoint.builder';
-
 
 @NgModule({
   imports: [
@@ -38,7 +36,6 @@ import { UsersEndpointBuilder } from './shared/storage/users-endpoint.builder';
     UsersEndpointBuilder,
     JwtTokenService,
     AuthFormFacade,
-    UsersService,
     JwtTokenGuard
   ]
 })

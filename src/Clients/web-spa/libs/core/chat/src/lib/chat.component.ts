@@ -2,20 +2,18 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
 
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UsersFacade } from '@wlodzimierz/app/users';
-import { ConversationMessagesFacade, ConversationsFacade } from '@wlodzimierz/app/chat';
 
+import { User } from 'libs/app/users/src/lib/shared/models/user.model';
 import { Conversation } from '../../../../app/conversations/src/lib/shared/models/conversation.model';
-import { CreateEvent } from '../../../../app/conversation-messages/src/lib/shared/events/create.event';
 import { ConversationsList } from '../../../../app/conversations/src/lib/shared/models/conversations-list.model';
-import { ChangeConversationEvent } from '../../../../app/conversations/src/lib/shared/events/change-conversation.event';
 import { ConversationMessagesList } from '../../../../app/conversation-messages/src/lib/shared/models/conversation-messages-list.model';
-import { ConversationMessagesService } from '../../../../app/conversation-messages/src/lib/shared/storage/conversation-messages.service';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { User } from '../../../../app/users/src/lib/shared/models/user.model';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { NotificationsService } from '../../../../shared/notifications/src/lib/services/notifications.service';
+import { ConversationMessagesService } from '../../../../app/conversation-messages/src/lib/shared/storage/conversation-messages.service';
+import { ChangedNotification } from '../../../../app/conversations/src/lib/shared/notifications/change/changed.notification';
+import { CreatedNotification } from '../../../../app/conversation-messages/src/lib/shared/notifications/create/created.notification';
+import { ConversationsFacade } from '../../../../app/conversations/src/lib/+state/conversations.facade';
+import { ConversationMessagesFacade } from '../../../../app/conversation-messages/src/lib/+state/conversation-messages.facade';
 
 @Component({
   selector: 'wlodzimierz-chat',
@@ -31,10 +29,10 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   public constructor(
     private usersFacade: UsersFacade,
-    private conversationsFacade: ConversationsFacade,
     private messagesFacade: ConversationMessagesFacade,
-    private notificationsService: NotificationsService,
-    private conversationMessagesService: ConversationMessagesService
+    private conversationsFacade: ConversationsFacade,
+    private conversationMessagesService: ConversationMessagesService,
+    private notificationsService: NotificationsService
   ) {
   }
 
@@ -49,12 +47,12 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((e) => e.unsubscribe());
   }
 
-  public onChangeConversation($event: ChangeConversationEvent): void {
+  public onChangeConversation($event: ChangedNotification): void {
     this.bindingConversation = $event.conversation;
     this.messagesFacade.getAll(this.bindingConversation);
   }
 
-  public onCreateConversationMessage($event: CreateEvent): void {
+  public onCreateConversationMessage($event: CreatedNotification): void {
     this.messagesFacade.create($event.message);
   }
 

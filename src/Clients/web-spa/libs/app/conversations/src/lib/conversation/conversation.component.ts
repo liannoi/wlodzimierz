@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 import { Conversation } from '../shared/models/conversation.model';
 import { User } from '../../../../users/src/lib/shared/models/user.model';
-import { ChangeConversationEvent } from '../shared/events/change-conversation.event';
+import { ChangedNotification } from '../shared/notifications/change/changed.notification';
 
 @Component({
   selector: 'wlodzimierz-conversation',
@@ -15,7 +15,7 @@ export class ConversationComponent {
   @Input() public conversation: Conversation;
   @Input() public bindingConversation: Conversation;
   @Output()
-  public changeConversation: EventEmitter<ChangeConversationEvent> = new EventEmitter<ChangeConversationEvent>();
+  public changeConversation: EventEmitter<ChangedNotification> = new EventEmitter<ChangedNotification>();
 
   public onChangeConversation(): void {
     this.changeConversation.emit({ conversation: this.conversation });

@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -42,7 +42,7 @@ import { environment } from '../environments/environment';
       logOnly: environment.production
     })
   ],
-  declarations: [AppComponent, TopMenuComponent, FooterComponent],
+  declarations: [AppComponent, FooterComponent, TopMenuComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

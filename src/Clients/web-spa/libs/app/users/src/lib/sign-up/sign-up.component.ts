@@ -5,8 +5,8 @@ import { AbstractControl, FormControl, Validators } from '@angular/forms';
 import { UsersFacade } from '@wlodzimierz/app/users';
 
 import { User } from '../shared/models/user.model';
-import { AuthFormGroup } from '../shared/storage/forms/auth-form.model';
-import { AuthFormFacade } from '../shared/storage/forms/auth-form.facade';
+import { AuthFormGroup } from '../shared/storage/form/auth-form.model';
+import { AuthFormFacade } from '../shared/storage/form/auth-form.facade';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
 
