@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Application.Infrastructure.Identity.API;
 using Application.Infrastructure.Identity.API.Common.Interfaces;
@@ -46,6 +47,11 @@ namespace Infrastructure.Identity.API.Services
         public async Task<ApplicationUser> FindByNameAsync(string userName)
         {
             return await _manager.FindByNameAsync(userName);
+        }
+
+        public IQueryable<ApplicationUser> GetAll()
+        {
+            return _manager.Users;
         }
 
         public async Task<bool> IsInRoleAsync(string userName, string role)

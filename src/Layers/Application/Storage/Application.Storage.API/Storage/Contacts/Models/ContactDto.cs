@@ -12,6 +12,7 @@ namespace Application.Storage.API.Storage.Contacts.Models
     {
         public int ContactId { get; set; }
         public string OwnerUserId { get; set; }
+        public string ContactUserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -34,6 +35,7 @@ namespace Application.Storage.API.Storage.Contacts.Models
             profile.CreateMap<Contact, ContactDto>()
                 .ForMember(dest => dest.ContactId, opt => opt.MapFrom(s => s.ContactId))
                 .ForMember(dest => dest.OwnerUserId, opt => opt.MapFrom(s => s.OwnerUserId))
+                .ForMember(dest => dest.ContactUserId, opt => opt.MapFrom(s => s.ContactUserId))
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(s => s.FirstName))
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(s => s.LastName))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(s => s.Email))

@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Application.Infrastructure.Identity.API.Common.Models;
 
@@ -13,6 +14,8 @@ namespace Application.Infrastructure.Identity.API.Common.Interfaces
         public Task<ApplicationUser> FindByIdAsync(string userId);
 
         public Task<ApplicationUser> FindByNameAsync(string userName);
+
+        public IQueryable<ApplicationUser> GetAll();
 
         public Task<bool> IsInRoleAsync(string userName, string role);
 

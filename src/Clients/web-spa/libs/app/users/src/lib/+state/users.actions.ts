@@ -6,6 +6,7 @@ import { UserModel } from '../shared/models/user.model';
 import { JwtToken } from '../shared/models/jwt-token.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { RemoteResult } from '../../../../../shared/storage/src/lib/remote/errors/remote-result.model';
+import { UsersList } from '../shared/models/users-list.model';
 
 export const verify = createAction('[Auth/API] Verify');
 export const verifySuccess = createAction(
@@ -45,3 +46,7 @@ export const signUpFailure = createAction(
   '[Auth/API] Sign Up Failure',
   props<{ error: RemoteResult }>()
 );
+
+export const filter = createAction('[Users/API] Filter', props<{ user: UserModel }>());
+export const filterSuccess = createAction('[Users/API] Filter Success', props<{ filterable: UsersList }>());
+export const filterFailure = createAction('[Users/API] Filter Failure', props<{ error: HttpErrorResponse }>());

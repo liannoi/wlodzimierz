@@ -14,6 +14,7 @@ using Application.Storage.API.Storage.Users.Queries.Contacts;
 using Application.Storage.API.Storage.Users.Queries.ConversationMessages;
 using Application.Storage.API.Storage.Users.Queries.Conversations;
 using Application.Storage.API.Storage.Users.Queries.Details;
+using Application.Storage.API.Storage.Users.Queries.Filter;
 using Microsoft.AspNetCore.Mvc;
 using Presentation.API.Common.Controllers;
 
@@ -21,6 +22,16 @@ namespace Presentation.API.Controllers
 {
     public class UsersController : AbstractController
     {
+        #region Filtration
+
+        [HttpGet("filter")]
+        public async Task<ActionResult<PaginatedList<UserDto>>> GetByFilter([FromQuery] FilterQuery query)
+        {
+            return await Mediator.Send(query);
+        }
+
+        #endregion
+
         #region Authentication
 
         [HttpPost("signup")]

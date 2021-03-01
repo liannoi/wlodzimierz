@@ -1,5 +1,6 @@
 #!/bin/sh
 
+az acr login --name wlodzimierz
 docker context use default &&
 docker-compose pull &&
 docker-compose up --build -d &&

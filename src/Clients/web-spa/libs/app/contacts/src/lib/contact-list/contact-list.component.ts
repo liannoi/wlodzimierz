@@ -1,13 +1,16 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UsersFacade } from '@wlodzimierz/app/users';
 
 import { ContactsFacade } from '../+state/contacts.facade';
 import { ContactsList } from '../shared/models/contacts-list.model';
+import { SearchNotification } from '../shared/notifications/search.notification';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { UsersList } from '../../../../users/src/lib/shared/models/users-list.model';
 
 @Component({
   selector: 'wlodzimierz-contact-list',
@@ -16,13 +19,19 @@ import { ContactsList } from '../shared/models/contacts-list.model';
 })
 export class ContactListComponent implements OnInit, OnDestroy {
   public contacts: ContactsList;
+  public filterable$: Observable<UsersList>;
   private subscriptions: Subscription[] = [];
 
   public constructor(private titleService: Title, private usersFacade: UsersFacade, private contactsFacade: ContactsFacade) {
     this.titleService.setTitle('Your contacts - Wlodzimierz');
   }
 
+  public get haveContacts(): boolean {
+    return this.contacts?.items?.length > 0;
+  }
+
   public ngOnInit(): void {
+    this.filterable$ = this.usersFacade.filterable$;
     this.followContacts();
     this.followUser();
   }
@@ -31,8 +40,9 @@ export class ContactListComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(e => e.unsubscribe());
   }
 
-  public get haveContacts(): boolean {
-    return this.contacts?.items?.length > 0;
+  public onSearch(notification: SearchNotification) {
+    console.log(notification);
+    this.usersFacade.filter(notification.user);
   }
 
   ///////////////////////////////////////////////////////////////////////////

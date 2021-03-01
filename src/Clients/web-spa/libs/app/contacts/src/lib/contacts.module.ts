@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
@@ -16,6 +18,7 @@ import { ContactCreateComponent } from './contact-create/contact-create.componen
 @NgModule({
   imports: [
     CommonModule,
+    NgbModule,
     ReactiveFormsModule,
     ContactsRoutingModule,
     StoreModule.forFeature(fromContacts.CONTACTS_FEATURE_KEY, fromContacts.reducer),

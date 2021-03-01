@@ -7,7 +7,12 @@ export abstract class AbstractEndpointBuilder implements EndpointBuilder {
   private action: string;
   private pageSize: number;
 
-  protected constructor(private controller: string, private baseAddress: string = 'http://20.75.224.52:5000/api') {
+  /*
+   * Remote - http://20.75.224.52:5000/api
+   * Local - https://localhost:5001/api
+   *
+   */
+  protected constructor(private controller: string, private baseAddress: string = 'https://localhost:5001/api') {
     this.initialUrl = `${baseAddress}/${controller}`;
   }
 
@@ -35,7 +40,7 @@ export abstract class AbstractEndpointBuilder implements EndpointBuilder {
   public build(): Endpoint {
     let result = this.initialUrl;
 
-    if (this.parameter) {
+    if (this.parameter && this.parameter != '-') {
       result += `/${this.parameter}`;
     }
 

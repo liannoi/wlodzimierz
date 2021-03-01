@@ -17,6 +17,7 @@ import { JwtTokenService } from '../shared/storage/services/jwt-token.service';
 import { RemoteResult } from '../../../../../shared/storage/src/lib/remote/errors/remote-result.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { CookiesService } from '../../../../../shared/storage/src/lib/local/cookies.service';
+import { UsersService } from '../../../../../shared/storage/src/lib/remote/users.service';
 
 @Injectable()
 export class UsersEffects {
@@ -103,9 +104,7 @@ export class UsersEffects {
       concatMap((action) =>
         this.authService.signUp(action.currentUser).pipe(
           map((response) => UsersActions.signUpSuccess({ token: response })),
-          catchError((error: RemoteResult) =>
-            of(UsersActions.signUpFailure(error))
-          )
+          catchError((error: RemoteResult) => of(UsersActions.signUpFailure(error)))
         )
       )
     )
@@ -133,13 +132,26 @@ export class UsersEffects {
     { dispatch: false }
   );
 
+  filter = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UsersActions.filter),
+      concatMap((action) =>
+        this.usersService.filter(action.user.userName).pipe(
+          map((response) => UsersActions.filterSuccess({ filterable: response })),
+          catchError(error => of(UsersActions.filterFailure(error)))
+        )
+      )
+    )
+  );
+
   public constructor(
     private actions$: Actions,
     private router: Router,
     @Inject(JwtTokenService) private tokenService: CookiesService<JwtToken>,
     private authService: AuthService,
     private formFacade: AuthFormFacade,
-    private usersFacade: UsersFacade
+    private usersFacade: UsersFacade,
+    private usersService: UsersService
   ) {
   }
 }

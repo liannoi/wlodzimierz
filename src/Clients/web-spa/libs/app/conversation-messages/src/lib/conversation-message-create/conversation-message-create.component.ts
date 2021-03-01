@@ -46,13 +46,11 @@ export class ConversationMessageCreateComponent implements OnInit {
 
   private setupForm(): void {
     this.formGroup = new FormGroup({
-      message: new FormControl(this.messageModel.message, [
-        Validators.required
-      ])
+      message: new FormControl(this.messageModel.message, [Validators.required])
     });
   }
 
-  private emitCreation() {
+  private emitCreation(): void {
     this.messageModel = this.formGroup.getRawValue() as ConversationMessage;
     this.messageModel.conversation = this.conversation;
     this.messageModel.ownerUserId = this.user.userId;

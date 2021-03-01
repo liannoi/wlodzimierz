@@ -13,6 +13,7 @@ namespace Infrastructure.Persistence.API.Configurations
             builder.Property(e => e.FirstName).IsRequired().HasMaxLength(64);
             builder.Property(e => e.LastName).HasMaxLength(64);
             builder.Property(e => e.OwnerUserId).IsRequired().HasMaxLength(450);
+            builder.Property(e => e.ContactUserId).IsRequired().HasMaxLength(450);
             builder.Property(e => e.Photo).HasMaxLength(256);
         }
     }

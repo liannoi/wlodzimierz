@@ -1,10 +1,14 @@
+using System;
+using System.Linq.Expressions;
+using Application.Filtration.API.Common.Interfaces;
 using Application.Infrastructure.Identity.API.Common.Models;
 using Application.Storage.API.Common.Mappings.Interfaces;
 using AutoMapper;
+using LinqKit;
 
 namespace Application.Storage.API.Storage.Users.Models
 {
-    public class UserDto : IMapFrom<ApplicationUser>
+    public class UserDto : IMapFrom<ApplicationUser>, IFilterable<UserDto>
     {
         public string UserId { get; set; }
         public string UserName { get; set; }
@@ -12,6 +16,14 @@ namespace Application.Storage.API.Storage.Users.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Photo { get; set; }
+
+        public Expression<Func<UserDto, bool>> Filter()
+        {
+            var predicate = PredicateBuilder.New<UserDto>(true);
+            if (!string.IsNullOrEmpty(UserName)) predicate = predicate.And(e => e.UserName.Contains(UserName));
+
+            return predicate;
+        }
 
         public void Mapping(Profile profile)
         {

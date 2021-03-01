@@ -1,4 +1,4 @@
--- Copyright 2020 Maksym Liannoi
+-- Copyright 2021 Maksym Liannoi
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -34,9 +34,9 @@ GO
 -- Create table dbo.Groups
 CREATE TABLE dbo.Groups
 (
-    GroupId   INT          NOT NULL IDENTITY,
+    GroupId   INT NOT NULL IDENTITY,
     Name      NVARCHAR(64) NOT NULL,
-    IsRemoved BIT          NOT NULL
+    IsRemoved BIT NOT NULL
         CONSTRAINT DFT_Groups_IsRemoved DEFAULT (0),
     CONSTRAINT PK_Groups PRIMARY KEY (GroupId),
     CONSTRAINT CHK_Groups_Name CHECK (DATALENGTH(Name) >= 2)
@@ -49,9 +49,9 @@ GO
 -- Create table dbo.UserGroups
 CREATE TABLE dbo.UserGroups
 (
-    GroupId   INT           NOT NULL,
+    GroupId   INT NOT NULL,
     UserId    NVARCHAR(450) NOT NULL,
-    IsRemoved BIT           NOT NULL
+    IsRemoved BIT NOT NULL
         CONSTRAINT DFT_UserGroups_IsRemoved DEFAULT (0),
     CONSTRAINT PK_UserGroups PRIMARY KEY (GroupId, UserId),
     CONSTRAINT PK_UserGroups_GroupId FOREIGN KEY (GroupId) REFERENCES dbo.Groups (GroupId),
@@ -65,10 +65,10 @@ GO
 -- Create table dbo.GroupBlacklists
 CREATE TABLE dbo.GroupBlacklists
 (
-    GroupBlacklistId INT           NOT NULL IDENTITY,
-    GroupId          INT           NOT NULL,
+    GroupBlacklistId INT NOT NULL IDENTITY,
+    GroupId          INT NOT NULL,
     BlockedUserId    NVARCHAR(450) NOT NULL,
-    IsRemoved        BIT           NOT NULL
+    IsRemoved        BIT NOT NULL
         CONSTRAINT DFT_GroupBlacklists_IsRemoved DEFAULT (0),
     CONSTRAINT PK_GroupBlacklists PRIMARY KEY (GroupBlacklistId),
     CONSTRAINT FK_GroupBlacklists_GroupId FOREIGN KEY (GroupId) REFERENCES dbo.Groups (GroupId),
@@ -82,10 +82,10 @@ GO
 -- Create table dbo.GroupAdministrators
 CREATE TABLE dbo.GroupAdministrators
 (
-    GroupAdministratorId INT           NOT NULL IDENTITY,
-    GroupId              INT           NOT NULL,
+    GroupAdministratorId INT NOT NULL IDENTITY,
+    GroupId              INT NOT NULL,
     AdministratorUserId  NVARCHAR(450) NOT NULL,
-    IsRemoved            BIT           NOT NULL
+    IsRemoved            BIT NOT NULL
         CONSTRAINT DFT_GroupAdministrators_IsRemoved DEFAULT (0),
     CONSTRAINT PK_GroupAdministrators PRIMARY KEY (GroupAdministratorId),
     CONSTRAINT FK_GroupAdministrators_GroupId FOREIGN KEY (GroupId) REFERENCES dbo.Groups (GroupId),
@@ -99,13 +99,13 @@ GO
 -- Create table dbo.GroupMessages
 CREATE TABLE dbo.GroupMessages
 (
-    GroupMessageId INT            NOT NULL IDENTITY,
-    GroupId        INT            NOT NULL,
-    OwnerUserId    NVARCHAR(450)  NOT NULL,
+    GroupMessageId INT      NOT NULL IDENTITY,
+    GroupId        INT      NOT NULL,
+    OwnerUserId    NVARCHAR(450) NOT NULL,
     Message        NVARCHAR(1024) NOT NULL,
-    Publish        DATETIME       NOT NULL
+    Publish        DATETIME NOT NULL
         CONSTRAINT DFT_GroupMessages_Publish DEFAULT (GETDATE()),
-    IsRemoved      BIT            NOT NULL
+    IsRemoved      BIT      NOT NULL
         CONSTRAINT DFT_GroupMessages_IsRemoved DEFAULT (0),
     CONSTRAINT PK_GroupMessages PRIMARY KEY (GroupMessageId),
     CONSTRAINT FK_GroupMessages_GroupId FOREIGN KEY (GroupId) REFERENCES dbo.Groups (GroupId),
@@ -121,10 +121,10 @@ GO
 -- Create table dbo.Conversations
 CREATE TABLE dbo.Conversations
 (
-    ConversationId INT           NOT NULL IDENTITY,
+    ConversationId INT NOT NULL IDENTITY,
     LeftUserId     NVARCHAR(450) NOT NULL,
     RightUserId    NVARCHAR(450) NOT NULL,
-    IsRemoved      BIT           NOT NULL
+    IsRemoved      BIT NOT NULL
         CONSTRAINT DFT_Conversations_IsRemoved DEFAULT (0),
     CONSTRAINT PK_Conversations PRIMARY KEY (ConversationId),
     CONSTRAINT CHK_Conversations_LeftUserId CHECK (DATALENGTH(LeftUserId) >= 2),
@@ -138,13 +138,13 @@ GO
 -- Create table dbo.ConversationMessages
 CREATE TABLE dbo.ConversationMessages
 (
-    ConversationMessageId INT            NOT NULL IDENTITY,
-    ConversationId        INT            NOT NULL,
-    OwnerUserId           NVARCHAR(450)  NOT NULL,
+    ConversationMessageId INT      NOT NULL IDENTITY,
+    ConversationId        INT      NOT NULL,
+    OwnerUserId           NVARCHAR(450) NOT NULL,
     Message               NVARCHAR(1024) NOT NULL,
-    Publish               DATETIME       NOT NULL
+    Publish               DATETIME NOT NULL
         CONSTRAINT DFT_ConversationMessages_Publish DEFAULT (GETDATE()),
-    IsRemoved             BIT            NOT NULL
+    IsRemoved             BIT      NOT NULL
         CONSTRAINT DFT_ConversationMessages_IsRemoved DEFAULT (0),
     CONSTRAINT PK_ConversationMessages PRIMARY KEY (ConversationMessageId),
     CONSTRAINT FK_ConversationMessages_ConversationId FOREIGN KEY (ConversationId) REFERENCES dbo.Conversations (ConversationId),
@@ -160,16 +160,18 @@ GO
 -- Create table dbo.Contacts
 CREATE TABLE dbo.Contacts
 (
-    ContactId   INT           NOT NULL IDENTITY,
-    OwnerUserId NVARCHAR(450) NOT NULL,
-    FirstName   NVARCHAR(64)  NOT NULL,
-    LastName    NVARCHAR(64)  NULL,
-    Email       NVARCHAR(128) NOT NULL,
-    Photo       NVARCHAR(256) NULL,
-    IsRemoved   BIT           NOT NULL
+    ContactId     INT NOT NULL IDENTITY,
+    OwnerUserId   NVARCHAR(450) NOT NULL,
+    ContactUserId NVARCHAR(450) NOT NULL,
+    FirstName     NVARCHAR(64) NOT NULL,
+    LastName      NVARCHAR(64) NULL,
+    Email         NVARCHAR(128) NOT NULL,
+    Photo         NVARCHAR(256) NULL,
+    IsRemoved     BIT NOT NULL
         CONSTRAINT DFT_Contacts_IsRemoved DEFAULT (0),
     CONSTRAINT PK_Contacts PRIMARY KEY (ContactId),
     CONSTRAINT CHK_Contacts_OwnerUserId CHECK (DATALENGTH(OwnerUserId) >= 2),
+    CONSTRAINT CHK_Contacts_ContactUserId CHECK (DATALENGTH(ContactUserId) >= 2),
     CONSTRAINT CHK_Contacts_FirstName CHECK (DATALENGTH(FirstName) >= 2),
     CONSTRAINT CHK_Contacts_Email CHECK (DATALENGTH(Email) >= 2)
 );
@@ -181,10 +183,10 @@ GO
 -- Create table dbo.UserBlacklists
 CREATE TABLE dbo.UserBlacklists
 (
-    UserBlacklistId INT           NOT NULL IDENTITY,
+    UserBlacklistId INT NOT NULL IDENTITY,
     OwnerUserId     NVARCHAR(450) NOT NULL,
     BlockedUserId   NVARCHAR(450) NOT NULL,
-    IsRemoved       BIT           NOT NULL
+    IsRemoved       BIT NOT NULL
         CONSTRAINT DFT_UserBlacklists_IsRemoved DEFAULT (0),
     CONSTRAINT PK_UserBlacklists PRIMARY KEY (UserBlacklistId),
     CONSTRAINT CHK_UserBlacklists_OwnerUserId CHECK (DATALENGTH(OwnerUserId) >= 2),
@@ -366,70 +368,71 @@ VALUES (1, N'00',
         'Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.');
 
 -- Populate table dbo.Contacts
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Dorian', 'Yaxley', 'dyaxley0@census.gov');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Zaccaria', 'Showler', 'zshowler1@simplemachines.org');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Edmon', 'Kiff', 'ekiff2@4shared.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Gordie', 'Luard', 'gluard3@yellowpages.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Valdemar', 'Halcro', 'vhalcro4@e-recht24.de');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Isidoro', 'Cluse', 'icluse5@tuttocitta.it');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Florrie', 'Rubinchik', 'frubinchik6@cpanel.net');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Kelsey', 'Mallya', 'kmallya7@aol.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Ives', 'Mc Grath', 'imcgrath8@rambler.ru');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Cory', 'Varley', 'cvarleyc@aol.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Tannie', 'Breese', 'tbreesea@youku.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Alphard', 'Hedingham', 'ahedingham1@loc.gov');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Veronika', 'Roose', 'vroose2@cnn.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Bethanne', 'McFall', 'bmcfall3@mail.ru');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Payton', 'Harlow', 'pharlow4@kickstarter.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Ariel', 'Videneev', 'avideneev5@reuters.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Donny', 'Trevon', 'dtrevon6@ftc.gov');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Douglass', 'Zielinski', 'dzielinski7@stumbleupon.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Joey', 'Castelow', 'jcastelow8@surveymonkey.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Corella', 'Scullion', 'cscullion9@jugem.jp');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Emmalyn', 'Feldhorn', 'efeldhornd@washington.edu');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Cathie', 'Turley', 'cturleye@prweb.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Aldrich', 'Trenear', 'atrenearf@drupal.org');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Marietta', 'Tembey', 'mtembeyg@symantec.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Ekaterina', 'Strafford', 'estraffordh@washington.edu');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Fraser', 'Kilrow', 'fkilrowi@cdbaby.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Leopold', 'Beddoe', 'lbeddoej@homestead.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Moselle', 'Turgoose', 'mturgoose0@kickstarter.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Jemimah', 'Tuhy', 'jtuhy9@latimes.com');
-INSERT INTO Contacts (owneruserid, firstname, lastname, email)
-VALUES (N'00', 'Hillary', 'Cholerton', 'hcholertonb@de.vu');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Dorian', 'Yaxley', 'dyaxley0@census.gov');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Zaccaria', 'Showler', 'zshowler1@simplemachines.org');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Edmon', 'Kiff', 'ekiff2@4shared.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Gordie', 'Luard', 'gluard3@yellowpages.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Valdemar', 'Halcro', 'vhalcro4@e-recht24.de');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Isidoro', 'Cluse', 'icluse5@tuttocitta.it');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Florrie', 'Rubinchik', 'frubinchik6@cpanel.net');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Kelsey', 'Mallya', 'kmallya7@aol.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Ives', 'Mc Grath', 'imcgrath8@rambler.ru');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Cory', 'Varley', 'cvarleyc@aol.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Tannie', 'Breese', 'tbreesea@youku.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Alphard', 'Hedingham', 'ahedingham1@loc.gov');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Veronika', 'Roose', 'vroose2@cnn.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Bethanne', 'McFall', 'bmcfall3@mail.ru');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Payton', 'Harlow', 'pharlow4@kickstarter.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Ariel', 'Videneev', 'avideneev5@reuters.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Donny', 'Trevon', 'dtrevon6@ftc.gov');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Douglass', 'Zielinski', 'dzielinski7@stumbleupon.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Joey', 'Castelow', 'jcastelow8@surveymonkey.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Corella', 'Scullion', 'cscullion9@jugem.jp');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Emmalyn', 'Feldhorn', 'efeldhornd@washington.edu');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Cathie', 'Turley', 'cturleye@prweb.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Aldrich', 'Trenear', 'atrenearf@drupal.org');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Marietta', 'Tembey', 'mtembeyg@symantec.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Ekaterina', 'Strafford', 'estraffordh@washington.edu');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Fraser', 'Kilrow', 'fkilrowi@cdbaby.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Leopold', 'Beddoe', 'lbeddoej@homestead.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Moselle', 'Turgoose', 'mturgoose0@kickstarter.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Jemimah', 'Tuhy', 'jtuhy9@latimes.com');
+INSERT INTO Contacts (owneruserid, contactuserid, firstname, lastname, email)
+VALUES (N'00', N'00', 'Hillary', 'Cholerton', 'hcholertonb@de.vu');
 
 -- Populate table dbo.UserBlacklists
 INSERT INTO UserBlacklists (owneruserid, blockeduserid)
 VALUES (N'00', N'00');
 
-SET NOCOUNT OFF;
+SET
+NOCOUNT OFF;
 GO

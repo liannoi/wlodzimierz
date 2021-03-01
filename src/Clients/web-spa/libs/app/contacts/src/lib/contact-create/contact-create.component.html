@@ -1,5 +1,7 @@
 <form (ngSubmit)='onCreate()' [formGroup]='formGroup' method='post'>
   <div class='form-group'>
-    <label class='font-weight-bold' for='contact'></label>
+    <label class='font-weight-bold' for='contact_userName'>Username</label>
+    <input [ngbTypeahead]='onSearch' class='form-control' formControlName='userName' id='contact_userName' required
+           type='text'>
   </div>
 </form>

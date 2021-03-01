@@ -11,6 +11,10 @@ export class BehaviorSubjectValueObject<TItem> implements Disposable {
     this.item = new BehaviorSubjectItem<TItem>(initialValue);
   }
 
+  public get value(): TItem {
+    return this.item.value;
+  }
+
   public onDispose(): void {
     this.subscriptions.forEach((e) => e.unsubscribe());
   }

@@ -6,14 +6,15 @@
 </ng-template>
 
 <ng-template #creationBlock>
-  <div class='row mb-3'>
+  <div class='row'>
     <div class='col-sm-12'>
-      <h2 class='text-center'>Your contact list is empty.</h2>
+      <h2 class='text-center font-weight-light'>Add your first contact</h2>
     </div>
   </div>
-  <div class='row d-flex justify-content-center align-content-center'>
-    <div class='col-sm-12'>
-      <wlodzimierz-contact-create></wlodzimierz-contact-create>
+  <div class='row mt-4 d-flex justify-content-center align-content-center'>
+    <div class='col-sm-4'>
+      <wlodzimierz-contact-create (searchContact)='onSearch($event)'
+                                  [filterable$]='filterable$'></wlodzimierz-contact-create>
     </div>
   </div>
 </ng-template>
