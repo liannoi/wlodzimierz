@@ -63,7 +63,7 @@ The clients are:
 
 - Angular 11.1
 - Sass
-- [Nx](https://nx.dev/)
+- [Nx](https://nx.dev)
 - Bootstrap 4.6 (ng-bootstrap)
 - RxJS 6.6
 - NgRx 10.1
@@ -100,7 +100,7 @@ The clients are:
 Messenger Wlodzimierz is hosted on two hosts:
 
 - Server-side - [`Microsoft Azure`](http://20.75.224.52:5000/api)
-- Angular web application - [`Firebase`](https://wlodzimierz-7f7dc.web.app/)
+- Angular web application - [`Firebase`](https://wlodzimierz-7z7dc.web.app)
 
 If you want to deploy the system locally or get acquainted in more detail with
 the specification of the messenger - you should go to the [Wiki](https://github.com/liannoi/wlodzimierz/wiki) section.
