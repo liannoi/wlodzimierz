@@ -1,12 +1,4 @@
 #!/bin/sh
 
-az acr login --name wlodzimierz
-docker context use default &&
-docker-compose pull &&
-docker-compose up --build -d &&
-docker-compose down &&
-docker-compose push &&
-docker context use wlodzimierz &&
-docker compose up &&
-docker ps &&
-docker context use default
+cd ../../src || return
+az acr build --registry wlodzimierz --image wlodzimierz --file Layers/Presentation/Presentation.API/Dockerfile .

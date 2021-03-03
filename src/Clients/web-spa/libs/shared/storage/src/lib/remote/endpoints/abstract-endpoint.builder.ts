@@ -8,11 +8,11 @@ export abstract class AbstractEndpointBuilder implements EndpointBuilder {
   private pageSize: number;
 
   /*
-   * Remote - http://20.75.224.52:5000/api
+   * Remote - https://wlodzimierz.azurewebsites.net/api
    * Local - https://localhost:5001/api
    *
    */
-  protected constructor(private controller: string, private baseAddress: string = 'https://localhost:5001/api') {
+  protected constructor(private controller: string, private baseAddress: string = 'https://wlodzimierz.azurewebsites.net/api') {
     this.initialUrl = `${baseAddress}/${controller}`;
   }
 

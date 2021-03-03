@@ -17,7 +17,7 @@ export class NotificationsService implements Notifiable {
       .build();
   }
 
-  public async start(): Promise<void> {
+  public async start() {
     return await this._connection
       .start()
       .then(() => console.log('Server connection successfully established.'))

@@ -110,7 +110,8 @@ namespace Presentation.API
                 settings.DocumentPath = "/swagger/v1/swagger.json";
             });
 
-            app.UseCors(options => options.WithOrigins("http://localhost:4200")
+            app.UseCors(options => options
+                .WithOrigins("http://localhost:4200", "https://wlodzimierz-7z7dc.web.app")
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials());

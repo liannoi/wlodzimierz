@@ -99,7 +99,7 @@ The clients are:
 
 Messenger Wlodzimierz is hosted on two hosts:
 
-- Server-side - [`Microsoft Azure`](http://20.75.224.52:5000/api)
+- Server-side - [`Microsoft Azure`](https://wlodzimierz.azurewebsites.net/api)
 - Angular web application - [`Firebase`](https://wlodzimierz-7z7dc.web.app)
 
 If you want to deploy the system locally or get acquainted in more detail with

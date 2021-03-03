@@ -6,11 +6,11 @@ import { AbstractEndpointBuilder } from '../../../../../storage/src/lib/remote/e
 @Injectable()
 export class NotificationsEndpointBuilder extends AbstractEndpointBuilder {
   /*
-   * Remote - http://20.75.224.52:5000
+   * Remote - https://wlodzimierz.azurewebsites.net
    * Local - https://localhost:5001
    *
    */
   public constructor() {
-    super('Notifications', 'https://localhost:5001');
+    super('Notifications', 'https://wlodzimierz.azurewebsites.net');
   }
 }
