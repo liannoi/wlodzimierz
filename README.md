@@ -1,4 +1,3 @@
-
 <img align="left" width="116" height="116" src="https://github.com/liannoi/wlodzimierz/blob/main/img/favicon.ico"/>
 
 # WLODZIMIERZ
@@ -63,7 +62,7 @@ The clients are:
 
 - Angular 11.1
 - Sass
-- [Nx](https://nx.dev)
+- [Nx](https://nx.dev/)
 - Bootstrap 4.6 (ng-bootstrap)
 - RxJS 6.6
 - NgRx 10.1
