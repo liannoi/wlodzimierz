@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { RemoteResult } from '../../../../../../../shared/storage/src/lib/remote/errors/remote-result.model';
+import { RemoteResult } from '../../../../../../../shared/storage/src/lib/core/remote/errors/remote-result.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { Disposable } from '../../../../../../../shared/storage/src/lib/common/reactive/disposable.interface';
+import { Disposable } from '../../../../../../../shared/storage/src/lib/common/interfaces/disposable.interface';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { BehaviorSubjectValueObject } from '../../../../../../../shared/storage/src/lib/common/reactive/behavior-subject.value-object';
 

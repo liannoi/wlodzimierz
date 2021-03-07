@@ -22,13 +22,13 @@ namespace Application.Storage.API.Storage.UserBlacklists.Commands.Update
                 _context = context;
             }
 
-            public async Task<Unit> Handle(UpdateCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateCommand command, CancellationToken cancellationToken)
             {
-                var entity = await _context.UserBlacklists.FindAsync(request.UserBlacklistId) ??
-                             throw new NotFoundException(nameof(UserBlacklist), request.UserBlacklistId);
+                var entity = await _context.UserBlacklists.FindAsync(command.UserBlacklistId) ??
+                             throw new NotFoundException(nameof(UserBlacklist), command.UserBlacklistId);
 
-                entity.OwnerUserId = request.OwnerUserId;
-                entity.BlockedUserId = request.BlockedUserId;
+                entity.OwnerUserId = command.OwnerUserId;
+                entity.BlockedUserId = command.BlockedUserId;
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

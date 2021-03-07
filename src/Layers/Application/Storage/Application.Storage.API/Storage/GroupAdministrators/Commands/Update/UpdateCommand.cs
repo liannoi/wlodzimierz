@@ -23,13 +23,13 @@ namespace Application.Storage.API.Storage.GroupAdministrators.Commands.Update
                 _context = context;
             }
 
-            public async Task<Unit> Handle(UpdateCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateCommand command, CancellationToken cancellationToken)
             {
-                var entity = await _context.GroupAdministrators.FindAsync(request.GroupAdministratorId) ??
-                             throw new NotFoundException(nameof(GroupAdministrator), request.GroupAdministratorId);
+                var entity = await _context.GroupAdministrators.FindAsync(command.GroupAdministratorId) ??
+                             throw new NotFoundException(nameof(GroupAdministrator), command.GroupAdministratorId);
 
-                entity.GroupId = request.Group.GroupId;
-                entity.AdministratorUserId = request.AdministratorUserId;
+                entity.GroupId = command.Group.GroupId;
+                entity.AdministratorUserId = command.AdministratorUserId;
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

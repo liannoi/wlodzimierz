@@ -1,7 +1,37 @@
-<form (ngSubmit)='onCreate()' [formGroup]='formGroup' method='post'>
-  <div class='form-group'>
-    <label class='font-weight-bold' for='contact_userName'>Username</label>
-    <input [ngbTypeahead]='onSearch' class='form-control' formControlName='userName' id='contact_userName' required
-           type='text'>
+<form
+  (ngSubmit)="onCreate()"
+  [formGroup]="creationForm"
+  method="post"
+  class="mb-3"
+>
+  <div class="form-group">
+    <label class="font-weight-bold" for="contact_userName">Username</label>
+    <input
+      [ngbTypeahead]="onSearch"
+      class="form-control"
+      formControlName="userName"
+      id="contact_userName"
+      required
+      type="text"
+    />
+    <div
+      *ngIf="userName.invalid && (userName.dirty || userName.touched)"
+      class="text-error"
+    >
+      <div *ngIf="userName.errors.required">
+        <span>Name of the contact you are looking for must be specified.</span>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-sm-12">
+      <button
+        [disabled]="creationForm.invalid"
+        class="btn btn-success w-100 font-weight-bold"
+        type="submit"
+      >
+        Create
+      </button>
+    </div>
   </div>
 </form>

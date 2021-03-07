@@ -24,14 +24,14 @@ namespace Application.Storage.API.Storage.GroupMessages.Commands.Create
                 _context = context;
             }
 
-            public async Task<int> Handle(CreateCommand request, CancellationToken cancellationToken)
+            public async Task<int> Handle(CreateCommand command, CancellationToken cancellationToken)
             {
                 var entity = new GroupMessage
                 {
-                    GroupId = request.Group.GroupId,
-                    OwnerUserId = request.OwnerUserId,
-                    Message = request.Message,
-                    Publish = request.Publish
+                    GroupId = command.Group.GroupId,
+                    OwnerUserId = command.OwnerUserId,
+                    Message = command.Message,
+                    Publish = command.Publish
                 };
 
                 await _context.GroupMessages.AddAsync(entity, cancellationToken);

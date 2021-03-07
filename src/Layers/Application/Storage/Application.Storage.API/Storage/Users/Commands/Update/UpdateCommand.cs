@@ -23,13 +23,13 @@ namespace Application.Storage.API.Storage.Users.Commands.Update
                 _identityService = identityService;
             }
 
-            public async Task<Unit> Handle(UpdateCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateCommand command, CancellationToken cancellationToken)
             {
-                var user = await _identityService.FindByIdAsync(request.UserId);
-                user.UserName = request.UserName;
-                user.FirstName = request.FirstName;
-                user.LastName = request.LastName;
-                user.Email = request.Email;
+                var user = await _identityService.FindByIdAsync(command.UserId);
+                user.UserName = command.UserName;
+                user.FirstName = command.FirstName;
+                user.LastName = command.LastName;
+                user.Email = command.Email;
                 var result = await _identityService.UpdateAsync(user);
 
                 return result.Succeeded ? Unit.Value : throw new ForbiddenAccessException();

@@ -20,10 +20,10 @@ namespace Application.Storage.API.Storage.Groups.Commands.Delete
                 _context = context;
             }
 
-            public async Task<Unit> Handle(DeleteCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeleteCommand command, CancellationToken cancellationToken)
             {
-                var entity = await _context.Groups.FindAsync(request.GroupId) ??
-                             throw new NotFoundException(nameof(Group), request.GroupId);
+                var entity = await _context.Groups.FindAsync(command.GroupId) ??
+                             throw new NotFoundException(nameof(Group), command.GroupId);
 
                 _context.Groups.Remove(entity);
                 await _context.SaveChangesAsync(cancellationToken);

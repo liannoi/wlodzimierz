@@ -7,7 +7,7 @@ import { select, Store } from '@ngrx/store';
 import * as ContactsActions from './contacts.actions';
 import * as ContactsSelectors from './contacts.selectors';
 import { ContactsList } from '../shared/models/contacts-list.model';
-import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
+import { UserModel } from '../../../../../shared/storage/src/lib/users/models/user.model';
 
 @Injectable()
 export class ContactsFacade {

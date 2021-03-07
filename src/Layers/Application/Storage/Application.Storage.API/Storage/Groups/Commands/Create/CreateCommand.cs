@@ -19,9 +19,9 @@ namespace Application.Storage.API.Storage.Groups.Commands.Create
                 _context = context;
             }
 
-            public async Task<int> Handle(CreateCommand request, CancellationToken cancellationToken)
+            public async Task<int> Handle(CreateCommand command, CancellationToken cancellationToken)
             {
-                var entity = new Group {Name = request.Name};
+                var entity = new Group {Name = command.Name};
                 await _context.Groups.AddAsync(entity, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);
 

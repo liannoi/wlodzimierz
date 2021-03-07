@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Paging.API.Common.Factories;
@@ -12,30 +10,22 @@ namespace Application.Paging.API.Extensions
 {
     public static class PagingExtensions
     {
-        public static Task<PaginatedList<TDestination>> PaginatedListAsync<TDestination>(
+        public static Task<PaginatedList<TDestination>> ProjectToPaginatedListAsync<TDestination>(
             this IQueryable<TDestination> queryable, int pageNumber, int pageSize)
         {
             return new PaginatedListFactory<TDestination>().CreateAsync(queryable, pageNumber, pageSize);
         }
 
-        public static Task<List<TDestination>> ProjectToListAsync<TDestination>(this IQueryable queryable,
+        public static Task<TDestination> ProjectToSingleAsync<TDestination>(this IQueryable queryable,
             IConfigurationProvider configuration)
         {
-            return queryable.ProjectTo<TDestination>(configuration).ToListAsync();
+            return ProjectToDestination<TDestination>(queryable, configuration).SingleOrDefaultAsync();
         }
 
-        public static Task<TDestination> ProjectSingleAsync<TDestination>(this IQueryable queryable,
+        private static IQueryable<TDestination> ProjectToDestination<TDestination>(IQueryable queryable,
             IConfigurationProvider configuration)
         {
-            return queryable.ProjectTo<TDestination>(configuration).SingleOrDefaultAsync();
-        }
-
-        public static void Restore<TModel>(this IPaginatedList<TModel> list, int pageIndex, int pageSize)
-        {
-            list.PageIndex = pageIndex;
-            var count = list.Items.Count;
-            list.TotalPages = (int) Math.Ceiling(count / (double) pageSize);
-            list.TotalCount = count;
+            return queryable.ProjectTo<TDestination>(configuration);
         }
     }
 }

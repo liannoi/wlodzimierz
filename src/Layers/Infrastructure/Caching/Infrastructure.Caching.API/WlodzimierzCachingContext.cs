@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using Application.Infrastructure.Caching.API.Interfaces;
-using Application.Paging.API.Common.Models;
 using Application.Storage.API.Common.Exceptions;
 using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
@@ -17,73 +16,35 @@ namespace Infrastructure.Caching.API
             _cache = cache;
         }
 
-        public async Task CreateAsync<TModel>(TModel model,
+        public async Task CreateAsync<TModel>(TModel model, dynamic key,
             Application.Infrastructure.Caching.API.CachingOptions options)
         {
             var distributedOptions = Serialize(model, options, out string json);
-            await _cache.SetStringAsync(CacheKey<TModel>(), json, distributedOptions);
+            await _cache.SetStringAsync(Hash<TModel>(key) as string, json, distributedOptions);
         }
 
-        public async Task CreateAsync<TModel>(TModel model)
+        public async Task CreateAsync<TModel>(TModel model, dynamic key)
         {
-            await CreateAsync(model, new Application.Infrastructure.Caching.API.CachingOptions
-                {AbsoluteExpireTime = TimeSpan.FromSeconds(60)});
+            await CreateAsync(model, key,
+                new Application.Infrastructure.Caching.API.CachingOptions
+                    {AbsoluteExpiration = TimeSpan.FromSeconds(60)});
         }
 
-        public async Task CreateAsync<TList, TModel>(TList list) where TList : IPaginatedList<TModel>
+        public async Task<TModel> GetAsync<TModel>(dynamic key)
         {
-            await CreateAsync<TList, TModel>(list, new Application.Infrastructure.Caching.API.CachingOptions
-                {AbsoluteExpireTime = TimeSpan.FromSeconds(60)});
-        }
-
-        public async Task CreateAsync<TList, TModel>(TList list,
-            Application.Infrastructure.Caching.API.CachingOptions options) where TList : IPaginatedList<TModel>
-        {
-            var distributedOptions = Serialize<TList, TModel>(list, options, out string json);
-            await _cache.SetStringAsync(CacheListKey<TList, TModel>(), json, distributedOptions);
-        }
-
-        public async Task<TModel> GetAsync<TModel>()
-        {
-            var key = CacheKey<TModel>();
-            var json = await _cache.GetStringAsync(key) ?? throw new NotFoundException(nameof(TModel), key);
+            var hash = Hash<TModel>(key) as string;
+            var json = await _cache.GetStringAsync(hash) ?? throw new NotFoundException(nameof(TModel), hash);
 
             return JsonConvert.DeserializeObject<TModel>(json);
         }
 
-        public async Task<TList> GetAsync<TList, TModel>() where TList : IPaginatedList<TModel>
-        {
-            var key = CacheListKey<TList, TModel>();
-            var json = await _cache.GetStringAsync(key) ?? throw new NotFoundException(nameof(TModel), key);
-
-            return JsonConvert.DeserializeObject<TList>(json);
-        }
-
         // Helpers.
 
-        private string CacheKey<TModel>()
+        private string Hash<TModel>(dynamic key)
         {
-            return $"{typeof(TModel).Name}_{DateTime.Now:yyyyMMdd_hhmm}";
-        }
+            var container = new {Type = typeof(TModel).FullName, Data = key};
 
-        private string CacheListKey<TList, TModel>()
-        {
-            return $"{nameof(TList)}<{nameof(TModel)}>_{DateTime.Now:yyyyMMdd_hhmm}";
-        }
-
-        private DistributedCacheEntryOptions Serialize<TList, TModel>(TList list,
-            Application.Infrastructure.Caching.API.CachingOptions options,
-            out string json) where TList : IPaginatedList<TModel>
-        {
-            var distributedOptions = new DistributedCacheEntryOptions
-            {
-                AbsoluteExpirationRelativeToNow = options.AbsoluteExpireTime,
-                SlidingExpiration = options.UnusedExpireTime
-            };
-
-            json = JsonConvert.SerializeObject(list);
-
-            return distributedOptions;
+            return $"{container.GetHashCode()}_{DateTime.Now:yyyyMMdd_HHmm}";
         }
 
         private DistributedCacheEntryOptions Serialize<TModel>(TModel model,
@@ -91,8 +52,8 @@ namespace Infrastructure.Caching.API
         {
             var distributedOptions = new DistributedCacheEntryOptions
             {
-                AbsoluteExpirationRelativeToNow = options.AbsoluteExpireTime,
-                SlidingExpiration = options.UnusedExpireTime
+                AbsoluteExpirationRelativeToNow = options.AbsoluteExpiration,
+                SlidingExpiration = options.SlidingExpiration
             };
 
             json = JsonConvert.SerializeObject(model);

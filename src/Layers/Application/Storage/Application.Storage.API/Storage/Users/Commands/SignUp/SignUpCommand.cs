@@ -23,10 +23,10 @@ namespace Application.Storage.API.Storage.Users.Commands.SignUp
                 _identityService = identityService;
             }
 
-            public async Task<JwtToken> Handle(SignUpCommand request, CancellationToken cancellationToken)
+            public async Task<JwtToken> Handle(SignUpCommand command, CancellationToken cancellationToken)
             {
                 var (result, token) =
-                    await _identityService.SignUpAsync(request.UserName, request.Email, request.Password);
+                    await _identityService.SignUpAsync(command.UserName, command.Email, command.Password);
 
                 return result.Succeeded ? token : throw new ValidationException(result.Errors.ToFailures());
             }

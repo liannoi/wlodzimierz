@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,6 +16,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { TopMenuComponent } from './layout/top-menu/top-menu.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { environment } from '../environments/environment';
+
+export interface Environment {
+  production: boolean,
+  endpoint: string,
+}
+
+export const APP_CONFIG = new InjectionToken('Application config');
 
 @NgModule({
   imports: [
@@ -43,7 +50,8 @@ import { environment } from '../environments/environment';
     })
   ],
   declarations: [AppComponent, FooterComponent, TopMenuComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [{ provide: APP_CONFIG, useValue: environment }]
 })
 export class AppModule {
 }

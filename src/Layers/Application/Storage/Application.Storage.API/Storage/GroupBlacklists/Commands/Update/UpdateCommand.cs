@@ -23,13 +23,13 @@ namespace Application.Storage.API.Storage.GroupBlacklists.Commands.Update
                 _context = context;
             }
 
-            public async Task<Unit> Handle(UpdateCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateCommand command, CancellationToken cancellationToken)
             {
-                var entity = await _context.GroupBlacklists.FindAsync(request.GroupBlacklistId) ??
-                             throw new NotFoundException(nameof(GroupBlacklist), request.GroupBlacklistId);
+                var entity = await _context.GroupBlacklists.FindAsync(command.GroupBlacklistId) ??
+                             throw new NotFoundException(nameof(GroupBlacklist), command.GroupBlacklistId);
 
-                entity.GroupId = request.Group.GroupId;
-                entity.BlockedUserId = request.BlockedUserId;
+                entity.GroupId = command.Group.GroupId;
+                entity.BlockedUserId = command.BlockedUserId;
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

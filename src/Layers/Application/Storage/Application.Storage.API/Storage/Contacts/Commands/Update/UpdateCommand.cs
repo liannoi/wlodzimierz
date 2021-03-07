@@ -26,16 +26,17 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Update
                 _context = context;
             }
 
-            public async Task<Unit> Handle(UpdateCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateCommand command, CancellationToken cancellationToken)
             {
-                var entity = await _context.Contacts.FindAsync(request.ContactId) ??
-                             throw new NotFoundException(nameof(Contact), request.ContactId);
+                var entity = await _context.Contacts.FindAsync(command.ContactId) ??
+                             throw new NotFoundException(nameof(Contact), command.ContactId);
 
-                entity.FirstName = request.FirstName;
-                entity.LastName = request.LastName;
-                entity.Email = request.Email;
-                entity.Photo = request.Photo;
-                entity.OwnerUserId = request.OwnerUser.UserId;
+                entity.FirstName = command.FirstName;
+                entity.LastName = command.LastName;
+                entity.Email = command.Email;
+                entity.Photo = command.Photo;
+                entity.OwnerUserId = command.OwnerUser.UserId;
+
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

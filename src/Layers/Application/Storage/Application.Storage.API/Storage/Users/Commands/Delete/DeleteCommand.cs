@@ -19,9 +19,9 @@ namespace Application.Storage.API.Storage.Users.Commands.Delete
                 _identityService = identityService;
             }
 
-            public async Task<Unit> Handle(DeleteCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeleteCommand command, CancellationToken cancellationToken)
             {
-                var result = await _identityService.DeleteAsync(request.UserId);
+                var result = await _identityService.DeleteAsync(command.UserId);
 
                 return result.Succeeded ? Unit.Value : throw new ForbiddenAccessException();
             }

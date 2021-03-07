@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { ConversationMessage } from '../shared/models/conversation-message.model';
-import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
+import { UserModel } from '../../../../../shared/storage/src/lib/users/models/user.model';
 
 @Component({
   selector: 'wlodzimierz-conversation-message',

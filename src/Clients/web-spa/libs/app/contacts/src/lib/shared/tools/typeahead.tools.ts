@@ -1,5 +1,5 @@
 import { BehaviorSubjectValueObject } from '../../../../../../shared/storage/src/lib/common/reactive/behavior-subject.value-object';
-import { Disposable } from '../../../../../../shared/storage/src/lib/common/reactive/disposable.interface';
+import { Disposable } from '../../../../../../shared/storage/src/lib/common/interfaces/disposable.interface';
 
 export class TypeaheadTools implements Disposable {
   private requestValueObject: BehaviorSubjectValueObject<string> = new BehaviorSubjectValueObject<string>('');

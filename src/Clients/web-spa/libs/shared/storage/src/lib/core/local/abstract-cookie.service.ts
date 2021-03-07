@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 
 import { CookieService } from 'ngx-cookie-service';
 
-import { CookiesService } from './cookies.service';
+import { CookiesService } from '../../common/interfaces/cookies.service';
 
 @Injectable()
 export abstract class AbstractCookieService<TCookie> implements CookiesService<TCookie> {

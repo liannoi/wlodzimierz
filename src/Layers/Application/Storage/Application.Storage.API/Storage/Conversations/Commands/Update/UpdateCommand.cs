@@ -22,13 +22,13 @@ namespace Application.Storage.API.Storage.Conversations.Commands.Update
                 _context = context;
             }
 
-            public async Task<Unit> Handle(UpdateCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateCommand command, CancellationToken cancellationToken)
             {
-                var entity = await _context.Conversations.FindAsync(request.ConversationId) ??
-                             throw new NotFoundException(nameof(Conversation), request.ConversationId);
+                var entity = await _context.Conversations.FindAsync(command.ConversationId) ??
+                             throw new NotFoundException(nameof(Conversation), command.ConversationId);
 
-                entity.LeftUserId = request.LeftUserId;
-                entity.RightUserId = request.RightUserId;
+                entity.LeftUserId = command.LeftUserId;
+                entity.RightUserId = command.RightUserId;
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

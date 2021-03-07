@@ -23,6 +23,7 @@ namespace Presentation.API
                 {
                     Log.Information("ASP.NET Core Identity Database Migration");
                     services.GetRequiredService<WlodzimierzIdentityContext>().Database.Migrate();
+                    Log.Information("Launching the Web API");
                 }
                 catch (Exception ex)
                 {

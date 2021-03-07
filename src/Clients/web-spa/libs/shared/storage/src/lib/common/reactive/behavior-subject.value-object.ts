@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 
 import { BehaviorSubjectItem } from './behavior-subject.item';
-import { Disposable } from './disposable.interface';
+import { Disposable } from '../interfaces/disposable.interface';
 
 export class BehaviorSubjectValueObject<TItem> implements Disposable {
   private readonly item: BehaviorSubjectItem<TItem>;

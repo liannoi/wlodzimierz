@@ -10,7 +10,7 @@ import { ContactsFacade } from '../+state/contacts.facade';
 import { ContactsList } from '../shared/models/contacts-list.model';
 import { SearchNotification } from '../shared/notifications/search.notification';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { UsersList } from '../../../../users/src/lib/shared/models/users-list.model';
+import { UsersList } from '../../../../../shared/storage/src/lib/users/models/users-list.model';
 
 @Component({
   selector: 'wlodzimierz-contact-list',

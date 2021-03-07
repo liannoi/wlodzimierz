@@ -20,10 +20,10 @@ namespace Application.Storage.API.Storage.UserBlacklists.Commands.Create
                 _context = context;
             }
 
-            public async Task<int> Handle(CreateCommand request, CancellationToken cancellationToken)
+            public async Task<int> Handle(CreateCommand command, CancellationToken cancellationToken)
             {
                 var entity = new UserBlacklist
-                    {OwnerUserId = request.OwnerUserId, BlockedUserId = request.BlockedUserId};
+                    {OwnerUserId = command.OwnerUserId, BlockedUserId = command.BlockedUserId};
 
                 await _context.UserBlacklists.AddAsync(entity, cancellationToken);
                 await _context.SaveChangesAsync(cancellationToken);

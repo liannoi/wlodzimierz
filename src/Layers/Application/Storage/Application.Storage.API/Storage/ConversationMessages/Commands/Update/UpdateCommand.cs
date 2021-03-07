@@ -26,15 +26,15 @@ namespace Application.Storage.API.Storage.ConversationMessages.Commands.Update
                 _context = context;
             }
 
-            public async Task<Unit> Handle(UpdateCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateCommand command, CancellationToken cancellationToken)
             {
-                var entity = await _context.ConversationMessages.FindAsync(request.ConversationMessageId) ??
-                             throw new NotFoundException(nameof(ConversationMessage), request.ConversationMessageId);
+                var entity = await _context.ConversationMessages.FindAsync(command.ConversationMessageId) ??
+                             throw new NotFoundException(nameof(ConversationMessage), command.ConversationMessageId);
 
-                entity.ConversationId = request.Conversation.ConversationId;
-                entity.OwnerUserId = request.OwnerUserId;
-                entity.Message = request.Message;
-                entity.Publish = request.Publish;
+                entity.ConversationId = command.Conversation.ConversationId;
+                entity.OwnerUserId = command.OwnerUserId;
+                entity.Message = command.Message;
+                entity.Publish = command.Publish;
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

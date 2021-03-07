@@ -20,10 +20,10 @@ namespace Application.Storage.API.Storage.GroupAdministrators.Commands.Delete
                 _context = context;
             }
 
-            public async Task<Unit> Handle(DeleteCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeleteCommand command, CancellationToken cancellationToken)
             {
-                var entity = await _context.GroupAdministrators.FindAsync(request.GroupAdministratorId) ??
-                             throw new NotFoundException(nameof(GroupAdministrator), request.GroupAdministratorId);
+                var entity = await _context.GroupAdministrators.FindAsync(command.GroupAdministratorId) ??
+                             throw new NotFoundException(nameof(GroupAdministrator), command.GroupAdministratorId);
 
                 _context.GroupAdministrators.Remove(entity);
                 await _context.SaveChangesAsync(cancellationToken);

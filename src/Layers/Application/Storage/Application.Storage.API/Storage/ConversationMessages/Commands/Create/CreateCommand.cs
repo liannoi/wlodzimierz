@@ -25,14 +25,14 @@ namespace Application.Storage.API.Storage.ConversationMessages.Commands.Create
                 _context = context;
             }
 
-            public async Task<int> Handle(CreateCommand request, CancellationToken cancellationToken)
+            public async Task<int> Handle(CreateCommand command, CancellationToken cancellationToken)
             {
                 var entity = new ConversationMessage
                 {
-                    ConversationId = request.Conversation.ConversationId,
-                    OwnerUserId = request.OwnerUserId,
-                    Message = request.Message,
-                    Publish = request.Publish
+                    ConversationId = command.Conversation.ConversationId,
+                    OwnerUserId = command.OwnerUserId,
+                    Message = command.Message,
+                    Publish = command.Publish
                 };
 
                 await _context.ConversationMessages.AddAsync(entity, cancellationToken);

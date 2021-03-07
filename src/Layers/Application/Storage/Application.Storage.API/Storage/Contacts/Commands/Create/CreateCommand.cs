@@ -25,15 +25,15 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Create
                 _context = context;
             }
 
-            public async Task<int> Handle(CreateCommand request, CancellationToken cancellationToken)
+            public async Task<int> Handle(CreateCommand command, CancellationToken cancellationToken)
             {
                 var entity = new Contact
                 {
-                    OwnerUserId = request.OwnerUser.UserId,
-                    FirstName = request.FirstName,
-                    LastName = request.LastName,
-                    Email = request.Email,
-                    Photo = request.Photo
+                    OwnerUserId = command.OwnerUser.UserId,
+                    FirstName = command.FirstName,
+                    LastName = command.LastName,
+                    Email = command.Email,
+                    Photo = command.Photo
                 };
 
                 await _context.Contacts.AddAsync(entity, cancellationToken);

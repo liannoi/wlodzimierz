@@ -21,12 +21,12 @@ namespace Application.Storage.API.Storage.GroupAdministrators.Commands.Create
                 _context = context;
             }
 
-            public async Task<int> Handle(CreateCommand request, CancellationToken cancellationToken)
+            public async Task<int> Handle(CreateCommand command, CancellationToken cancellationToken)
             {
                 var entity = new GroupAdministrator
                 {
-                    GroupId = request.Group.GroupId,
-                    AdministratorUserId = request.AdministratorUserId
+                    GroupId = command.Group.GroupId,
+                    AdministratorUserId = command.AdministratorUserId
                 };
 
                 await _context.GroupAdministrators.AddAsync(entity, cancellationToken);

@@ -21,12 +21,12 @@ namespace Application.Storage.API.Storage.GroupBlacklists.Commands.Create
                 _context = context;
             }
 
-            public async Task<int> Handle(CreateCommand request, CancellationToken cancellationToken)
+            public async Task<int> Handle(CreateCommand command, CancellationToken cancellationToken)
             {
                 var entity = new GroupBlacklist
                 {
-                    GroupId = request.Group.GroupId,
-                    BlockedUserId = request.BlockedUserId
+                    GroupId = command.Group.GroupId,
+                    BlockedUserId = command.BlockedUserId
                 };
 
                 await _context.GroupBlacklists.AddAsync(entity, cancellationToken);

@@ -18,7 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Common" />
         <Folder Include="Storage\ConversationMessages\Queries\Filter" />
         <Folder Include="Storage\Conversations\Notifications" />
         <Folder Include="Storage\Conversations\Queries\Filter" />

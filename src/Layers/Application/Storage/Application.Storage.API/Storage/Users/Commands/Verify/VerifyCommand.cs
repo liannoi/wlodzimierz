@@ -22,10 +22,10 @@ namespace Application.Storage.API.Storage.Users.Commands.Verify
                 _mapper = mapper;
             }
 
-            public async Task<UserDto> Handle(VerifyCommand request, CancellationToken cancellationToken)
+            public async Task<UserDto> Handle(VerifyCommand command, CancellationToken cancellationToken)
             {
                 return _mapper.Map<UserDto>(
-                    await _identityService.FindByNameAsync(_identityService.ReadToken(request.Value)));
+                    await _identityService.FindByNameAsync(_identityService.ReadToken(command.Value)));
             }
         }
     }

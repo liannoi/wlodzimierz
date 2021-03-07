@@ -21,12 +21,12 @@ namespace Application.Storage.API.Storage.Groups.Commands.Update
                 _context = context;
             }
 
-            public async Task<Unit> Handle(UpdateCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateCommand command, CancellationToken cancellationToken)
             {
-                var entity = await _context.Groups.FindAsync(request.GroupId) ??
-                             throw new NotFoundException(nameof(Group), request.GroupId);
+                var entity = await _context.Groups.FindAsync(command.GroupId) ??
+                             throw new NotFoundException(nameof(Group), command.GroupId);
 
-                entity.Name = request.Name;
+                entity.Name = command.Name;
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

@@ -20,10 +20,10 @@ namespace Application.Storage.API.Storage.ConversationMessages.Commands.Delete
                 _context = context;
             }
 
-            public async Task<Unit> Handle(DeleteCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeleteCommand command, CancellationToken cancellationToken)
             {
-                var entity = await _context.ConversationMessages.FindAsync(request.ConversationMessageId) ??
-                             throw new NotFoundException(nameof(ConversationMessage), request.ConversationMessageId);
+                var entity = await _context.ConversationMessages.FindAsync(command.ConversationMessageId) ??
+                             throw new NotFoundException(nameof(ConversationMessage), command.ConversationMessageId);
 
                 _context.ConversationMessages.Remove(entity);
                 await _context.SaveChangesAsync(cancellationToken);

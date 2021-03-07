@@ -20,12 +20,13 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Delete
                 _context = context;
             }
 
-            public async Task<Unit> Handle(DeleteCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeleteCommand command, CancellationToken cancellationToken)
             {
-                var entity = await _context.Contacts.FindAsync(request.ContactId) ??
-                             throw new NotFoundException(nameof(Contact), request.ContactId);
+                var entity = await _context.Contacts.FindAsync(command.ContactId) ??
+                             throw new NotFoundException(nameof(Contact), command.ContactId);
 
                 _context.Contacts.Remove(entity);
+
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

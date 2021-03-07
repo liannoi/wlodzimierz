@@ -2,11 +2,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { createAction, props } from '@ngrx/store';
 
-import { UserModel } from '../shared/models/user.model';
-import { JwtToken } from '../shared/models/jwt-token.model';
+import { UserModel } from '../../../../../shared/storage/src/lib/users/models/user.model';
+import { JwtToken } from '../../../../../shared/storage/src/lib/users/models/jwt-token.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { RemoteResult } from '../../../../../shared/storage/src/lib/remote/errors/remote-result.model';
-import { UsersList } from '../shared/models/users-list.model';
+import { RemoteResult } from '../../../../../shared/storage/src/lib/core/remote/errors/remote-result.model';
+import { UsersList } from '../../../../../shared/storage/src/lib/users/models/users-list.model';
 
 export const verify = createAction('[Auth/API] Verify');
 export const verifySuccess = createAction(

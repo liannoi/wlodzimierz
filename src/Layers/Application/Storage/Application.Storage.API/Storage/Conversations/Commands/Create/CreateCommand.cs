@@ -20,12 +20,12 @@ namespace Application.Storage.API.Storage.Conversations.Commands.Create
                 _context = context;
             }
 
-            public async Task<int> Handle(CreateCommand request, CancellationToken cancellationToken)
+            public async Task<int> Handle(CreateCommand command, CancellationToken cancellationToken)
             {
                 var entity = new Conversation
                 {
-                    LeftUserId = request.LeftUserId,
-                    RightUserId = request.RightUserId
+                    LeftUserId = command.LeftUserId,
+                    RightUserId = command.RightUserId
                 };
 
                 await _context.Conversations.AddAsync(entity, cancellationToken);

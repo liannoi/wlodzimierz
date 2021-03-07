@@ -39,7 +39,7 @@ namespace Application.Infrastructure.Identity.API.Behaviours
             if (!string.IsNullOrEmpty(userName)) userId = (await _identityService.FindByNameAsync(userName)).Id;
 
             _logger.LogWarning(
-                "[Wlodzimierz.API] Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@UserName} {@Request}",
+                "[WLODZIMIERZ.API] Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@UserName} {@Request}",
                 typeof(TRequest).Name, elapsedMilliseconds, userName, userId, request);
 
             return response;

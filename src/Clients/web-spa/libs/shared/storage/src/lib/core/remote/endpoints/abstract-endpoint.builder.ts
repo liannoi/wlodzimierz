@@ -1,5 +1,7 @@
 import { Endpoint } from './endpoint.model';
 import { EndpointBuilder } from './endpoint.builder';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { environment } from 'apps/wlodzimierz/src/environments/environment';
 
 export abstract class AbstractEndpointBuilder implements EndpointBuilder {
   private readonly initialUrl: string;
@@ -7,13 +9,8 @@ export abstract class AbstractEndpointBuilder implements EndpointBuilder {
   private action: string;
   private pageSize: number;
 
-  /*
-   * Remote - https://wlodzimierz.azurewebsites.net/api
-   * Local - https://localhost:5001/api
-   *
-   */
-  protected constructor(private controller: string, private baseAddress: string = 'https://wlodzimierz.azurewebsites.net/api') {
-    this.initialUrl = `${baseAddress}/${controller}`;
+  protected constructor(private controller: string, private endpoint = `${environment.endpoint}/api`) {
+    this.initialUrl = `${endpoint}/${controller}`;
   }
 
   public withParameter(parameter: string): EndpointBuilder {

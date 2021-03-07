@@ -7,9 +7,9 @@ import { ConversationMessage } from '../models/conversation-message.model';
 import { CreatedNotificationHandler } from '../notifications/create/created-notification.handler';
 import { ConversationMessagesEndpointBuilder } from './conversation-messages-endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { AbstractApiService } from '../../../../../../shared/storage/src/lib/remote/abstract-api.service';
+import { AbstractApiService } from '../../../../../../shared/storage/src/lib/core/remote/abstract-api.service';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { EndpointBuilder } from '../../../../../../shared/storage/src/lib/remote/endpoints/endpoint.builder';
+import { EndpointBuilder } from '../../../../../../shared/storage/src/lib/core/remote/endpoints/endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { NotificationsService } from '../../../../../../shared/notifications/src/lib/services/notifications.service';
 

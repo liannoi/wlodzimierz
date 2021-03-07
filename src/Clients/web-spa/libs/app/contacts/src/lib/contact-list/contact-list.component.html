@@ -1,7 +1,7 @@
 <ng-container *ngIf='haveContacts; then displayBlock; else creationBlock'></ng-container>
 
 <ng-template #displayBlock>
-  <p>contacts-list works! Length: {{haveContacts}}</p>
+  <p>contacts-list works! Have contacts: {{haveContacts}}</p>
   <wlodzimierz-contact></wlodzimierz-contact>
 </ng-template>
 

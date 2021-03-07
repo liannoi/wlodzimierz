@@ -1,6 +1,6 @@
 import { Injectable, Pipe, PipeTransform } from '@angular/core';
 
-import { UserModel } from '../../../../../users/src/lib/shared/models/user.model';
+import { UserModel } from '../../../../../../shared/storage/src/lib/users/models/user.model';
 
 @Pipe({ name: 'uequals' })
 @Injectable()

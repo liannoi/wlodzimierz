@@ -21,9 +21,9 @@ namespace Application.Storage.API.Storage.Users.Commands.SignIn
                 _identityService = identityService;
             }
 
-            public async Task<JwtToken> Handle(SignInCommand request, CancellationToken cancellationToken)
+            public async Task<JwtToken> Handle(SignInCommand command, CancellationToken cancellationToken)
             {
-                var (result, token) = await _identityService.SignInAsync(request.UserName, request.Password);
+                var (result, token) = await _identityService.SignInAsync(command.UserName, command.Password);
 
                 return result.Succeeded ? token : throw new ForbiddenAccessException();
             }

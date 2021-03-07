@@ -20,10 +20,10 @@ namespace Application.Storage.API.Storage.GroupBlacklists.Commands.Delete
                 _context = context;
             }
 
-            public async Task<Unit> Handle(DeleteCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeleteCommand command, CancellationToken cancellationToken)
             {
-                var entity = await _context.GroupBlacklists.FindAsync(request.GroupBlacklistId) ??
-                             throw new NotFoundException(nameof(GroupBlacklist), request.GroupBlacklistId);
+                var entity = await _context.GroupBlacklists.FindAsync(command.GroupBlacklistId) ??
+                             throw new NotFoundException(nameof(GroupBlacklist), command.GroupBlacklistId);
 
                 _context.GroupBlacklists.Remove(entity);
                 await _context.SaveChangesAsync(cancellationToken);

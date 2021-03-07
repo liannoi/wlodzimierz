@@ -26,15 +26,15 @@ namespace Application.Storage.API.Storage.GroupMessages.Commands.Update
                 _context = context;
             }
 
-            public async Task<Unit> Handle(UpdateCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(UpdateCommand command, CancellationToken cancellationToken)
             {
-                var entity = await _context.GroupMessages.FindAsync(request.GroupMessageId) ??
-                             throw new NotFoundException(nameof(GroupMessage), request.GroupMessageId);
+                var entity = await _context.GroupMessages.FindAsync(command.GroupMessageId) ??
+                             throw new NotFoundException(nameof(GroupMessage), command.GroupMessageId);
 
-                entity.GroupId = request.Group.GroupId;
-                entity.OwnerUserId = request.OwnerUserId;
-                entity.Message = request.Message;
-                entity.Publish = request.Publish;
+                entity.GroupId = command.Group.GroupId;
+                entity.OwnerUserId = command.OwnerUserId;
+                entity.Message = command.Message;
+                entity.Publish = command.Publish;
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;

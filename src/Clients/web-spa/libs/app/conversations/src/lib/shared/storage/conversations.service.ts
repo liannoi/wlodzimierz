@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 import { Conversation } from '../models/conversation.model';
 import { ConversationsEndpointBuilder } from './conversations-endpoint.builder';
 import { ConversationMessagesList } from '../../../../../conversation-messages/src/lib/shared/models/conversation-messages-list.model';
-import { AbstractApiService } from '../../../../../../shared/storage/src/lib/remote/abstract-api.service';
-import { EndpointBuilder } from '../../../../../../shared/storage/src/lib/remote/endpoints/endpoint.builder';
+import { AbstractApiService } from '../../../../../../shared/storage/src/lib/core/remote/abstract-api.service';
+import { EndpointBuilder } from '../../../../../../shared/storage/src/lib/core/remote/endpoints/endpoint.builder';
 
 @Injectable()
 export class ConversationsService extends AbstractApiService {

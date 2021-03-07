@@ -4,13 +4,16 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
 import { Contact } from '../shared/models/contact.model';
 import { CreatedNotification } from '../shared/notifications/created.notification';
 import { SearchNotification } from '../shared/notifications/search.notification';
 import { TypeaheadTools } from '../shared/tools/typeahead.tools';
-import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
-import { UsersList } from '../../../../users/src/lib/shared/models/users-list.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { UserModel } from '../../../../../shared/storage/src/lib/users/models/user.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { UsersList } from '../../../../../shared/storage/src/lib/users/models/users-list.model';
 
 const typeaheadTools: TypeaheadTools = new TypeaheadTools();
 
@@ -24,11 +27,11 @@ export class ContactCreateComponent implements OnInit, OnDestroy {
   @Input() public filterable$: Observable<UsersList>;
   @Output() public createContact = new EventEmitter<CreatedNotification>();
   @Output() public searchContact = new EventEmitter<SearchNotification>();
-  public formGroup: FormGroup;
+  public creationForm: FormGroup;
   public contact: Contact = defaultModel();
 
   public get userName(): AbstractControl {
-    return this.formGroup.get('userName') as AbstractControl;
+    return this.creationForm.get('userName') as AbstractControl;
   }
 
   public ngOnInit(): void {
@@ -42,10 +45,10 @@ export class ContactCreateComponent implements OnInit, OnDestroy {
   }
 
   public onCreate(): void {
-    if (this.formGroup.invalid) return;
+    if (this.creationForm.invalid) return;
 
     this.createContact.emit({ contact: this.contact });
-    this.formGroup.reset();
+    this.creationForm.reset();
   }
 
   public onSearch(input$: Observable<string>) {
@@ -62,7 +65,7 @@ export class ContactCreateComponent implements OnInit, OnDestroy {
   ///////////////////////////////////////////////////////////////////////////
 
   private setupForm(): void {
-    this.formGroup = new FormGroup({
+    this.creationForm = new FormGroup({
       userName: new FormControl('', [Validators.required])
     });
   }

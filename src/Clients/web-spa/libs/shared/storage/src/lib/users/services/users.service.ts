@@ -3,18 +3,18 @@ import { Inject, Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { AbstractApiService } from './abstract-api.service';
-import { EndpointBuilder } from './endpoints/endpoint.builder';
+import { AbstractApiService } from '../../core/remote/abstract-api.service';
+import { EndpointBuilder } from '../../core/remote/endpoints/endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { UserModel } from '../../../../../app/users/src/lib/shared/models/user.model';
+import { UserModel } from '../models/user.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { UsersEndpointBuilder } from '../../../../../app/users/src/lib/shared/storage/users-endpoint.builder';
+import { UsersEndpointBuilder } from '../../../../../../app/users/src/lib/shared/storage/users-endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { ConversationsList } from '../../../../../app/conversations/src/lib/shared/models/conversations-list.model';
+import { ConversationsList } from '../../../../../../app/conversations/src/lib/shared/models/conversations-list.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { ContactsList } from '../../../../../app/contacts/src/lib/shared/models/contacts-list.model';
+import { ContactsList } from '../../../../../../app/contacts/src/lib/shared/models/contacts-list.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { UsersList } from '../../../../../app/users/src/lib/shared/models/users-list.model';
+import { UsersList } from '../models/users-list.model';
 
 @Injectable()
 export class UsersService extends AbstractApiService {

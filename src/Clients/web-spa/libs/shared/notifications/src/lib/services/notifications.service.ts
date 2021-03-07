@@ -5,7 +5,7 @@ import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { Notifiable } from '../common/interfaces/notifiable.interface';
 import { BaseNotification } from '../common/abstractions/base.notification';
 import { NotificationsEndpointBuilder } from '../common/builders/notifications-endpoint.builder';
-import { EndpointBuilder } from '../../../../storage/src/lib/remote/endpoints/endpoint.builder';
+import { EndpointBuilder } from '../../../../storage/src/lib/core/remote/endpoints/endpoint.builder';
 
 @Injectable()
 export class NotificationsService implements Notifiable {

@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 
 import * as UsersActions from './users.actions';
 import * as UsersSelectors from './users.selectors';
-import { UserModel } from '../shared/models/user.model';
-import { UsersList } from '../shared/models/users-list.model';
+import { UserModel } from '../../../../../shared/storage/src/lib/users/models/user.model';
+import { UsersList } from '../../../../../shared/storage/src/lib/users/models/users-list.model';
 
 @Injectable()
 export class UsersFacade {

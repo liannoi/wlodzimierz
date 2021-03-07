@@ -6,7 +6,7 @@ import { ConversationMessage } from '../shared/models/conversation-message.model
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { Conversation } from '../../../../conversations/src/lib/shared/models/conversation.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
+import { UserModel } from '../../../../../shared/storage/src/lib/users/models/user.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
 

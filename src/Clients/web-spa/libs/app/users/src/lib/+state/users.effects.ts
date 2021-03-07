@@ -9,15 +9,15 @@ import { catchError, concatMap, map, tap } from 'rxjs/operators';
 import { UsersFacade } from '@wlodzimierz/app/users';
 
 import * as UsersActions from './users.actions';
-import { JwtToken } from '../shared/models/jwt-token.model';
+import { JwtToken } from '../../../../../shared/storage/src/lib/users/models/jwt-token.model';
 import { AuthService } from '../shared/storage/services/auth.service';
 import { AuthFormFacade } from '../shared/storage/form/auth-form.facade';
 import { JwtTokenService } from '../shared/storage/services/jwt-token.service';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { RemoteResult } from '../../../../../shared/storage/src/lib/remote/errors/remote-result.model';
+import { RemoteResult } from '../../../../../shared/storage/src/lib/core/remote/errors/remote-result.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { CookiesService } from '../../../../../shared/storage/src/lib/local/cookies.service';
-import { UsersService } from '../../../../../shared/storage/src/lib/remote/users.service';
+import { CookiesService } from '../../../../../shared/storage/src/lib/common/interfaces/cookies.service';
+import { UsersService } from '../../../../../shared/storage/src/lib/users/services/users.service';
 
 @Injectable()
 export class UsersEffects {
