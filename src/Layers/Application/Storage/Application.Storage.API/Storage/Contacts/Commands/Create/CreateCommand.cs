@@ -10,11 +10,12 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Create
 {
     public class CreateCommand : IRequest<int>
     {
+        public UserDto OwnerUser { get; set; }
+        public UserDto ContactUser { get; set; }
         public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
         public string Email { get; set; }
         public string? Photo { get; set; }
-        public UserDto OwnerUser { get; set; }
 
         private class Handler : IRequestHandler<CreateCommand, int>
         {
@@ -30,6 +31,7 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Create
                 var entity = new Contact
                 {
                     OwnerUserId = command.OwnerUser.UserId,
+                    ContactUserId = command.ContactUser.UserId,
                     FirstName = command.FirstName,
                     LastName = command.LastName,
                     Email = command.Email,

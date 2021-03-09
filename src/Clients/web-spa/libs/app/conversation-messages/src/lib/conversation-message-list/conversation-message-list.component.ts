@@ -15,7 +15,8 @@ import { Identifiable } from '../../../../../shared/storage/src/lib/common/inter
   templateUrl: './conversation-message-list.component.html',
   styleUrls: ['./conversation-message-list.component.scss']
 })
-export class ConversationMessageListComponent implements Identifiable<ConversationMessage, number> {
+export class ConversationMessageListComponent
+  implements Identifiable<ConversationMessage, number> {
   @Input() public conversation: Conversation;
   @Input() public messages: ConversationMessagesList;
   @Input() public user: UserModel;

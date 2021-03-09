@@ -24,6 +24,7 @@ import { CreatedNotification } from '../../../../app/conversation-messages/src/l
 import { ConversationsFacade } from '../../../../app/conversations/src/lib/+state/conversations.facade';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ConversationMessagesFacade } from '../../../../app/conversation-messages/src/lib/+state/conversation-messages.facade';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'wlodzimierz-chat',
@@ -42,8 +43,10 @@ export class ChatComponent implements OnInit, OnDestroy {
     private messagesFacade: ConversationMessagesFacade,
     private conversationsFacade: ConversationsFacade,
     private conversationMessagesService: ConversationMessagesService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private titleService: Title
   ) {
+    this.titleService.setTitle('Wlodzimierz');
   }
 
   public async ngOnInit() {
@@ -55,6 +58,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.subscriptions.forEach((e) => e.unsubscribe());
+    this.notificationsService.onDispose();
   }
 
   public onChangeConversation($event: ChangedNotification): void {

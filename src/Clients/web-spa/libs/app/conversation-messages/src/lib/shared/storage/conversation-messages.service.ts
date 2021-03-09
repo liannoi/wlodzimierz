@@ -30,7 +30,9 @@ export class ConversationMessagesService extends AbstractApiService {
     return this.http.post<number>(endpoint.url, message);
   }
 
-  public onCreated(action: (notification: CreatedNotificationHandler) => void): void {
+  public onCreated(
+    action: (notification: CreatedNotificationHandler) => void
+  ): void {
     this.notificationsService.subscribe<CreatedNotificationHandler>(action);
   }
 }

@@ -92,22 +92,24 @@ namespace Presentation.API.Controllers
 
         #region Relations
 
-        [HttpGet("{user}/contacts")]
-        public async Task<ActionResult<PaginatedList<ContactDto>>> GetContacts(string user)
+        [HttpGet("contacts")]
+        public async Task<ActionResult<PaginatedList<ContactDto>>> GetContacts([FromQuery] ContactsQuery query)
         {
-            return await Mediator.Send(new ContactsQuery {OwnerUserId = user});
+            return await Mediator.Send(query);
         }
 
-        [HttpGet("{user}/conversation-messages")]
-        public async Task<ActionResult<PaginatedList<ConversationMessageDto>>> GetConversationMessages(string user)
+        [HttpGet("conversation-messages")]
+        public async Task<ActionResult<PaginatedList<ConversationMessageDto>>> GetConversationMessages(
+            [FromQuery] ConversationMessagesQuery query)
         {
-            return await Mediator.Send(new ConversationMessagesQuery {OwnerUserId = user});
+            return await Mediator.Send(query);
         }
 
-        [HttpGet("{user}/conversations")]
-        public async Task<ActionResult<PaginatedList<ConversationDto>>> GetConversations(string user)
+        [HttpGet("conversations")]
+        public async Task<ActionResult<PaginatedList<ConversationDto>>> GetConversations(
+            [FromQuery] ConversationsQuery query)
         {
-            return await Mediator.Send(new ConversationsQuery {OwnerUserId = user});
+            return await Mediator.Send(query);
         }
 
         #endregion

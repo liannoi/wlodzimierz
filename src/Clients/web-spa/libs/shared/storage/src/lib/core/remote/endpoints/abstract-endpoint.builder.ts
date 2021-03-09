@@ -9,7 +9,10 @@ export abstract class AbstractEndpointBuilder implements EndpointBuilder {
   private action: string;
   private pageSize: number;
 
-  protected constructor(private controller: string, private endpoint = `${environment.endpoint}/api`) {
+  protected constructor(
+    private controller: string,
+    private endpoint = `${environment.endpoint}/api`
+  ) {
     this.initialUrl = `${endpoint}/${controller}`;
   }
 

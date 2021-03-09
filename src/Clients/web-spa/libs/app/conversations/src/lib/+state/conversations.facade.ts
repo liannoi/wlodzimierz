@@ -12,7 +12,9 @@ import { UserModel } from '../../../../../shared/storage/src/lib/users/models/us
 
 @Injectable()
 export class ConversationsFacade {
-  public conversations$: Observable<ConversationsList> = this.store.pipe(select(ConversationsSelectors.getConversations));
+  public conversations$: Observable<ConversationsList> = this.store.pipe(
+    select(ConversationsSelectors.getConversations)
+  );
 
   public constructor(private store: Store) {
   }

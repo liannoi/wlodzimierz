@@ -16,14 +16,20 @@ import { EndpointBuilder } from '../../../../../../../shared/storage/src/lib/cor
 
 @Injectable()
 export class AuthService extends AbstractApiService {
-  public constructor(http: HttpClient, @Inject(UsersEndpointBuilder) endpointBuilder: EndpointBuilder, @Inject(JwtTokenService) private tokenService: CookiesService<JwtToken>) {
+  public constructor(
+    http: HttpClient,
+    @Inject(UsersEndpointBuilder) endpointBuilder: EndpointBuilder,
+    @Inject(JwtTokenService) private tokenService: CookiesService<JwtToken>
+  ) {
     super(http, endpointBuilder);
   }
 
   public verify(): Observable<UserModel> {
     const tokenInCookies = this.tokenService.read();
 
-    return tokenInCookies.value != '' ? this.requestVerify(tokenInCookies) : throwError('Token is empty.');
+    return tokenInCookies.value != ''
+      ? this.requestVerify(tokenInCookies)
+      : throwError('Token is empty.');
   }
 
   public signIn(user: UserModel): Observable<JwtToken> {
@@ -45,6 +51,10 @@ export class AuthService extends AbstractApiService {
   private requestVerify(token: JwtToken): Observable<UserModel> {
     const endpoint = this.endpointBuilder.withAction('Verify').build();
 
-    return this.http.post<UserModel>(endpoint.url, token, this.withAuthorization(token));
+    return this.http.post<UserModel>(
+      endpoint.url,
+      token,
+      this.withAuthorization(token)
+    );
   }
 }

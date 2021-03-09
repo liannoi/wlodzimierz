@@ -12,7 +12,7 @@
       method='post'
     >
       <div class='form-group'>
-        <label class='font-weight-bold' for='user_username'>Username</label>
+        <label for='user_username'>Username</label>
         <input
           class='form-control'
           formControlName='userName'
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class='form-group'>
-        <label class='font-weight-bold' for='user_password'>Password</label>
+        <label for='user_password'>Password</label>
         <input
           class='form-control'
           formControlName='password'
@@ -55,7 +55,8 @@
         <div
           *ngIf='
             signInForm.errors?.unauthorized &&
-            signInForm.touched && signInForm.pristine
+            signInForm.touched &&
+            signInForm.pristine
           '
           class='text-fatal'
         >

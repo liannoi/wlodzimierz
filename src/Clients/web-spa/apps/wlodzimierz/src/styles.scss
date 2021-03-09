@@ -2,7 +2,7 @@
 @import '~bootstrap/scss/bootstrap';
 
 body {
-  font-family: "SF Pro Display", "Helvetica Neue", -apple-system, sans-serif;
+  font-family: 'SF Pro Display', 'Helvetica Neue', -apple-system, sans-serif;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }
@@ -68,6 +68,10 @@ html {
 }
 
 button[disabled] {
+  @extend .cursor-not-allowed;
+}
+
+.cursor-not-allowed {
   cursor: not-allowed;
 }
 

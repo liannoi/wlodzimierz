@@ -28,14 +28,20 @@ export const initialState: State = usersAdapter.getInitialState({
 
 const usersReducer = createReducer(
   initialState,
-  on(UsersActions.verifySuccess, (state, { currentUser }) => ({ ...state, currentUser })),
+  on(UsersActions.verifySuccess, (state, { currentUser }) => ({
+    ...state,
+    currentUser
+  })),
   on(UsersActions.verifyFailure, () => ({ ...initialState })),
   on(UsersActions.signInSuccess, (state) => ({ ...state })),
   on(UsersActions.signInFailure, () => ({ ...initialState })),
   on(UsersActions.signOutSuccess, () => ({ ...initialState })),
   on(UsersActions.signUpSuccess, (state) => ({ ...state })),
   on(UsersActions.signUpFailure, () => ({ ...initialState })),
-  on(UsersActions.filterSuccess, (state, { filterable }) => ({ ...state, filterable })),
+  on(UsersActions.filterSuccess, (state, { filterable }) => ({
+    ...state,
+    filterable
+  })),
   on(UsersActions.filterFailure, () => ({ ...initialState }))
 );
 

@@ -17,11 +17,23 @@ import { ConversationsService } from './shared/storage/conversations.service';
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature(fromConversations.CONVERSATIONS_FEATURE_KEY, fromConversations.reducer),
+    StoreModule.forFeature(
+      fromConversations.CONVERSATIONS_FEATURE_KEY,
+      fromConversations.reducer
+    ),
     EffectsModule.forFeature([ConversationsEffects])
   ],
-  declarations: [ConversationListComponent, ConversationComponent, ConversationsEqualsPipe, InterlocutorPipe],
-  providers: [ConversationsFacade, ConversationsService, ConversationsEndpointBuilder],
+  declarations: [
+    ConversationListComponent,
+    ConversationComponent,
+    ConversationsEqualsPipe,
+    InterlocutorPipe
+  ],
+  providers: [
+    ConversationsFacade,
+    ConversationsService,
+    ConversationsEndpointBuilder
+  ],
   exports: [InterlocutorPipe, ConversationListComponent]
 })
 export class ConversationsModule {

@@ -1,5 +1,17 @@
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 
 import { CreatedNotification } from '../shared/notifications/create/created.notification';
 import { ConversationMessage } from '../shared/models/conversation-message.model';
@@ -19,7 +31,8 @@ import { defaultModel } from '../../../../../shared/storage/src/lib/common/defau
 export class ConversationMessageCreateComponent implements OnInit {
   @Input() public user: UserModel;
   @Input() public conversation: Conversation;
-  @Output() public createConversationMessage = new EventEmitter<CreatedNotification>();
+  @Output()
+  public createConversationMessage = new EventEmitter<CreatedNotification>();
   public formGroup: FormGroup;
   public messageModel: ConversationMessage = defaultModel();
 
@@ -46,7 +59,9 @@ export class ConversationMessageCreateComponent implements OnInit {
 
   private setupForm(): void {
     this.formGroup = new FormGroup({
-      message: new FormControl(this.messageModel.message, [Validators.required])
+      message: new FormControl(this.messageModel.message, [
+        Validators.required
+      ])
     });
   }
 

@@ -40,8 +40,15 @@ import { ConversationMessageCreateComponent } from './conversation-message-creat
     ReversePipe,
     UsersEqualsPipe
   ],
-  providers: [ConversationMessagesEndpointBuilder, ConversationMessagesService, ConversationMessagesFacade],
-  exports: [ConversationMessageListComponent, ConversationMessageCreateComponent]
+  providers: [
+    ConversationMessagesEndpointBuilder,
+    ConversationMessagesService,
+    ConversationMessagesFacade
+  ],
+  exports: [
+    ConversationMessageListComponent,
+    ConversationMessageCreateComponent
+  ]
 })
 export class ConversationMessagesModule {
 }

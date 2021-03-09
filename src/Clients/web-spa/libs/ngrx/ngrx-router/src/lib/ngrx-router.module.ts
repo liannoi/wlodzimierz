@@ -16,7 +16,10 @@ import { NgrxRouterEffects } from './+state/ngrx-router.effects';
     ),
     EffectsModule.forFeature([NgrxRouterEffects])
   ],
-  providers: [NgrxRouterEffects, { provide: RouterStateSerializer, useClass: CustomSerializer }]
+  providers: [
+    NgrxRouterEffects,
+    { provide: RouterStateSerializer, useClass: CustomSerializer }
+  ]
 })
 export class NgrxRouterModule {
 }

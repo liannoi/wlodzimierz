@@ -18,26 +18,27 @@ import { UsersList } from '../models/users-list.model';
 
 @Injectable()
 export class UsersService extends AbstractApiService {
-  public constructor(http: HttpClient, @Inject(UsersEndpointBuilder) endpointBuilder: EndpointBuilder) {
+  public constructor(
+    http: HttpClient,
+    @Inject(UsersEndpointBuilder) endpointBuilder: EndpointBuilder
+  ) {
     super(http, endpointBuilder);
   }
 
   public getConversations(user: UserModel): Observable<ConversationsList> {
-    const endpoint = this.endpointBuilder
-      .withParameter(user.userId)
-      .withAction('Conversations')
-      .build();
+    const endpoint = this.endpointBuilder.withAction('Conversations').build();
 
-    return this.http.get<ConversationsList>(endpoint.url);
+    return this.http.get<ConversationsList>(endpoint.url, {
+      params: { OwnerUserId: user.userId }
+    });
   }
 
   public getContacts(user: UserModel): Observable<ContactsList> {
-    const endpoint = this.endpointBuilder
-      .withParameter(user.userId)
-      .withAction('Contacts')
-      .build();
+    const endpoint = this.endpointBuilder.withAction('Contacts').build();
 
-    return this.http.get<ContactsList>(endpoint.url);
+    return this.http.get<ContactsList>(endpoint.url, {
+      params: { OwnerUserId: user.userId }
+    });
   }
 
   public filter(userName: string): Observable<UsersList> {
@@ -46,6 +47,8 @@ export class UsersService extends AbstractApiService {
       .withAction('filter')
       .build();
 
-    return this.http.get<UsersList>(endpoint.url, { params: { UserName: userName } });
+    return this.http.get<UsersList>(endpoint.url, {
+      params: { UserName: userName }
+    });
   }
 }

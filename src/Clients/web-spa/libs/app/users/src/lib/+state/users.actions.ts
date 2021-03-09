@@ -47,6 +47,15 @@ export const signUpFailure = createAction(
   props<{ error: RemoteResult }>()
 );
 
-export const filter = createAction('[Users/API] Filter', props<{ user: UserModel }>());
-export const filterSuccess = createAction('[Users/API] Filter Success', props<{ filterable: UsersList }>());
-export const filterFailure = createAction('[Users/API] Filter Failure', props<{ error: HttpErrorResponse }>());
+export const filter = createAction(
+  '[Users/API] Filter',
+  props<{ user: UserModel }>()
+);
+export const filterSuccess = createAction(
+  '[Users/API] Filter Success',
+  props<{ filterable: UsersList }>()
+);
+export const filterFailure = createAction(
+  '[Users/API] Filter Failure',
+  props<{ error: HttpErrorResponse }>()
+);

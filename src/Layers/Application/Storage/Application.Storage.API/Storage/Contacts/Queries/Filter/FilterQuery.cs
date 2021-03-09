@@ -11,6 +11,7 @@ using Application.Paging.API.Extensions;
 using Application.Storage.API.Common.Exceptions;
 using Application.Storage.API.Common.Interfaces;
 using Application.Storage.API.Storage.Contacts.Models;
+using Application.Storage.API.Storage.Users.Models;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -20,7 +21,6 @@ namespace Application.Storage.API.Storage.Contacts.Queries.Filter
 {
     public class FilterQuery : IRequest<PaginatedList<ContactDto>>, IIdentifier
     {
-        public int? ContactId { get; set; }
         public string OwnerUserId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
@@ -28,7 +28,7 @@ namespace Application.Storage.API.Storage.Contacts.Queries.Filter
 
         public dynamic Identify()
         {
-            return new {ContactId, OwnerUserId, FirstName, LastName, Email, PageNumber, PageSize};
+            return new {OwnerUserId, FirstName, LastName, Email, PageNumber, PageSize};
         }
 
         private class Handler : IRequestHandler<FilterQuery, PaginatedList<ContactDto>>
@@ -75,8 +75,7 @@ namespace Application.Storage.API.Storage.Contacts.Queries.Filter
             {
                 var model = new ContactDto
                 {
-                    ContactId = query.ContactId ?? 0,
-                    OwnerUserId = query.OwnerUserId,
+                    OwnerUser = new UserDto {UserId = query.OwnerUserId},
                     FirstName = query.FirstName ?? string.Empty,
                     LastName = query.LastName ?? string.Empty,
                     Email = query.Email ?? string.Empty

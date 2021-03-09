@@ -6,7 +6,6 @@ import { AbstractEndpointBuilder } from '../../../../../storage/src/lib/core/rem
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { environment } from 'apps/wlodzimierz/src/environments/environment';
 
-
 @Injectable()
 export class NotificationsEndpointBuilder extends AbstractEndpointBuilder {
   public constructor() {

@@ -1,7 +1,9 @@
-<ng-container *ngIf='haveContacts; then displayBlock; else creationBlock'></ng-container>
+<ng-container
+  *ngIf='haveContacts; then displayBlock; else creationBlock'
+></ng-container>
 
 <ng-template #displayBlock>
-  <p>contacts-list works! Have contacts: {{haveContacts}}</p>
+  <p>contacts-list works! Have contacts: {{ haveContacts }}</p>
   <wlodzimierz-contact></wlodzimierz-contact>
 </ng-template>
 
@@ -13,8 +15,11 @@
   </div>
   <div class='row mt-4 d-flex justify-content-center align-content-center'>
     <div class='col-sm-4'>
-      <wlodzimierz-contact-create (searchContact)='onSearch($event)'
-                                  [filterable$]='filterable$'></wlodzimierz-contact-create>
+      <wlodzimierz-contact-create
+        (createContact)='onCreate($event)'
+        (searchContact)='onSearch($event)'
+        [filterable$]='filterable$'
+      ></wlodzimierz-contact-create>
     </div>
   </div>
 </ng-template>

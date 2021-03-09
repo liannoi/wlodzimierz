@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 
 import { ConversationsList } from '../shared/models/conversations-list.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
@@ -15,7 +21,8 @@ import { Conversation } from '../shared/models/conversation.model';
 export class ConversationListComponent {
   @Input() public user: UserModel;
   @Input() public conversations: ConversationsList;
-  @Output() public changeConversation: EventEmitter<ChangedNotification> = new EventEmitter<ChangedNotification>();
+  @Output()
+  public changeConversation: EventEmitter<ChangedNotification> = new EventEmitter<ChangedNotification>();
   public bindingConversation: Conversation;
 
   public onChangeConversation($event: ChangedNotification): void {

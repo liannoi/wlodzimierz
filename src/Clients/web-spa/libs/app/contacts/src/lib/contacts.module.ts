@@ -14,6 +14,8 @@ import * as fromContacts from './+state/contacts.reducer';
 import { ContactsEffects } from './+state/contacts.effects';
 import { ContactsFacade } from './+state/contacts.facade';
 import { ContactCreateComponent } from './contact-create/contact-create.component';
+import { ContactsEndpointBuilder } from './shared/storage/contacts-endpoint.builder';
+import { ContactsService } from './shared/storage/contacts.service';
 
 @NgModule({
   imports: [
@@ -21,11 +23,18 @@ import { ContactCreateComponent } from './contact-create/contact-create.componen
     NgbModule,
     ReactiveFormsModule,
     ContactsRoutingModule,
-    StoreModule.forFeature(fromContacts.CONTACTS_FEATURE_KEY, fromContacts.reducer),
+    StoreModule.forFeature(
+      fromContacts.CONTACTS_FEATURE_KEY,
+      fromContacts.reducer
+    ),
     EffectsModule.forFeature([ContactsEffects])
   ],
-  declarations: [ContactListComponent, ContactComponent, ContactCreateComponent],
-  providers: [ContactsFacade]
+  declarations: [
+    ContactListComponent,
+    ContactComponent,
+    ContactCreateComponent
+  ],
+  providers: [ContactsFacade, ContactsEndpointBuilder, ContactsService]
 })
 export class ContactsModule {
 }

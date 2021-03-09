@@ -3,13 +3,14 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import { Contact } from '../shared/models/contact.model';
 import { ContactsList } from '../shared/models/contacts-list.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
 import * as ContactsActions from './contacts.actions';
 
 export const CONTACTS_FEATURE_KEY = 'contacts';
 
 export interface State extends EntityState<Contact> {
-  contacts: ContactsList
+  contacts: ContactsList;
 }
 
 export interface ContactsPartialState {
@@ -25,7 +26,10 @@ export const initialState: State = contactsAdapter.getInitialState({
 
 const contactsReducer = createReducer(
   initialState,
-  on(ContactsActions.getAllSuccess, (state, { contacts }) => ({ ...state, contacts })),
+  on(ContactsActions.getAllSuccess, (state, { contacts }) => ({
+    ...state,
+    contacts
+  })),
   on(ContactsActions.getAllFailure, () => ({ ...initialState }))
 );
 

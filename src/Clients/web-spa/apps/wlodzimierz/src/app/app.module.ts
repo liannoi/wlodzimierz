@@ -18,8 +18,8 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { environment } from '../environments/environment';
 
 export interface Environment {
-  production: boolean,
-  endpoint: string,
+  production: boolean;
+  endpoint: string;
 }
 
 export const APP_CONFIG = new InjectionToken('Application config');

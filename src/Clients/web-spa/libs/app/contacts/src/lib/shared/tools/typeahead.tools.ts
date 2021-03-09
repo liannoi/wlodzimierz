@@ -2,7 +2,9 @@ import { BehaviorSubjectValueObject } from '../../../../../../shared/storage/src
 import { Disposable } from '../../../../../../shared/storage/src/lib/common/interfaces/disposable.interface';
 
 export class TypeaheadTools implements Disposable {
-  private requestValueObject: BehaviorSubjectValueObject<string> = new BehaviorSubjectValueObject<string>('');
+  private requestValueObject: BehaviorSubjectValueObject<string> = new BehaviorSubjectValueObject<string>(
+    ''
+  );
   private responseValueObject: BehaviorSubjectValueObject<string[]> = new BehaviorSubjectValueObject<string[]>([]);
 
   public onDispose(): void {

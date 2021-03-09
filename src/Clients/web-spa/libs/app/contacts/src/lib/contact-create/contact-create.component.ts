@@ -1,8 +1,26 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 
 import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map
+} from 'rxjs/operators';
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
@@ -30,8 +48,20 @@ export class ContactCreateComponent implements OnInit, OnDestroy {
   public creationForm: FormGroup;
   public contact: Contact = defaultModel();
 
-  public get userName(): AbstractControl {
-    return this.creationForm.get('userName') as AbstractControl;
+  public get contactUser(): AbstractControl {
+    return this.creationForm.get('contactUser') as AbstractControl;
+  }
+
+  public get firstName(): AbstractControl {
+    return this.creationForm.get('firstName') as AbstractControl;
+  }
+
+  public get lastName(): AbstractControl {
+    return this.creationForm.get('lastName') as AbstractControl;
+  }
+
+  public get email(): AbstractControl {
+    return this.creationForm.get('email') as AbstractControl;
   }
 
   public ngOnInit(): void {
@@ -47,16 +77,19 @@ export class ContactCreateComponent implements OnInit, OnDestroy {
   public onCreate(): void {
     if (this.creationForm.invalid) return;
 
+    this.contact = this.creationForm.getRawValue() as Contact;
+    this.contact.contactUser = defaultModel();
+    this.contact.contactUser.userName = this.contactUser.value;
     this.createContact.emit({ contact: this.contact });
     this.creationForm.reset();
   }
 
   public onSearch(input$: Observable<string>) {
     return input$.pipe(
-      filter(input => input != ''),
       debounceTime(200),
       distinctUntilChanged(),
-      map(userName => typeaheadTools.requestUserName(userName))
+      filter((input) => input.length >= 2),
+      map((userName) => typeaheadTools.requestUserName(userName))
     );
   }
 
@@ -66,12 +99,15 @@ export class ContactCreateComponent implements OnInit, OnDestroy {
 
   private setupForm(): void {
     this.creationForm = new FormGroup({
-      userName: new FormControl('', [Validators.required])
+      contactUser: new FormControl('', [Validators.required]),
+      firstName: new FormControl(this.contact.firstName, [Validators.required]),
+      lastName: new FormControl(this.contact.lastName),
+      email: new FormControl(this.contact.email, [Validators.required])
     });
   }
 
   private followRequest(): void {
-    typeaheadTools.followRequest(value => {
+    typeaheadTools.followRequest((value) => {
       if (!value) return;
 
       const user: UserModel = defaultModel();
@@ -81,10 +117,10 @@ export class ContactCreateComponent implements OnInit, OnDestroy {
   }
 
   private suggestResults(): void {
-    this.filterable$.subscribe(value => {
+    this.filterable$.subscribe((value) => {
       if (!value || !value.items) return;
 
-      typeaheadTools.response(value.items.map(e => e.userName));
+      typeaheadTools.response(value.items.map((e) => e.userName));
     });
   }
 }

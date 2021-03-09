@@ -11,8 +11,12 @@ import { UsersList } from '../../../../../shared/storage/src/lib/users/models/us
 
 @Injectable()
 export class UsersFacade {
-  public currentUser$: Observable<UserModel> = this.store.pipe(select(UsersSelectors.getCurrentUser));
-  public filterable$: Observable<UsersList> = this.store.pipe(select(UsersSelectors.getFilterable));
+  public currentUser$: Observable<UserModel> = this.store.pipe(
+    select(UsersSelectors.getCurrentUser)
+  );
+  public filterable$: Observable<UsersList> = this.store.pipe(
+    select(UsersSelectors.getFilterable)
+  );
 
   public constructor(private store: Store) {
   }
