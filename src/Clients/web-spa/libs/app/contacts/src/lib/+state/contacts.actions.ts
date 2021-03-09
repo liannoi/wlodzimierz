@@ -3,7 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { UserModel } from '../../../../../shared/storage/src/lib/users/models/user.model';
+import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
 import { ContactsList } from '../shared/models/contacts-list.model';
 import { Contact } from '../shared/models/contact.model';
 

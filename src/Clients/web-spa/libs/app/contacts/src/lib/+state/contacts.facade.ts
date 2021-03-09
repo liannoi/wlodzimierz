@@ -8,7 +8,7 @@ import * as ContactsActions from './contacts.actions';
 import * as ContactsSelectors from './contacts.selectors';
 import { ContactsList } from '../shared/models/contacts-list.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { UserModel } from '../../../../../shared/storage/src/lib/users/models/user.model';
+import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
 import { Contact } from '../shared/models/contact.model';
 
 @Injectable()

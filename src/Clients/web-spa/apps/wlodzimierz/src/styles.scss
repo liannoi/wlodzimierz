@@ -68,10 +68,10 @@ html {
 }
 
 button[disabled] {
-  @extend .cursor-not-allowed;
+  @extend .event-blocked;
 }
 
-.cursor-not-allowed {
+.event-blocked {
   cursor: not-allowed;
 }
 
@@ -90,4 +90,8 @@ button[disabled] {
 .text-error,
 .text-fatal {
   @extend .small;
+}
+
+.btn {
+  font-weight: 500 !important;
 }

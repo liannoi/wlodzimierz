@@ -6,7 +6,6 @@ import { StatusesRoutingModule } from './statuses-routing.module';
 
 @NgModule({
   imports: [CommonModule, StatusesRoutingModule],
-  declarations: [NotFoundComponent]
+  declarations: [NotFoundComponent],
 })
-export class StatusesModule {
-}
+export class StatusesModule {}

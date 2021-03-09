@@ -3,16 +3,16 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 
-import { UserModel } from '../../../../../../../shared/storage/src/lib/users/models/user.model';
+import { UserModel } from '../../models/user.model';
 import { JwtTokenService } from './jwt-token.service';
-import { JwtToken } from '../../../../../../../shared/storage/src/lib/users/models/jwt-token.model';
+import { JwtToken } from '../../models/jwt-token.model';
 import { UsersEndpointBuilder } from '../users-endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { CookiesService } from '../../../../../../../shared/storage/src/lib/common/interfaces/cookies.service';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { AbstractApiService } from '../../../../../../../shared/storage/src/lib/core/remote/abstract-api.service';
+import { AbstractApiService } from '../../../../../../../shared/storage/src/lib/remote/abstract-api.service';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { EndpointBuilder } from '../../../../../../../shared/storage/src/lib/core/remote/endpoints/endpoint.builder';
+import { EndpointBuilder } from '../../../../../../../shared/storage/src/lib/remote/endpoints/endpoint.builder';
 
 @Injectable()
 export class AuthService extends AbstractApiService {

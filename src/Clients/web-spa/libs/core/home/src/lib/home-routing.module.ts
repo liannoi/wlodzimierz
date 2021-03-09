@@ -8,11 +8,10 @@ import { AppsComponent } from './apps/apps.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'apps', component: AppsComponent },
-  { path: 'feedback', component: FeedbackComponent }
+  { path: 'feedback', component: FeedbackComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)]
+  imports: [RouterModule.forChild(routes)],
 })
-export class HomeRoutingModule {
-}
+export class HomeRoutingModule {}

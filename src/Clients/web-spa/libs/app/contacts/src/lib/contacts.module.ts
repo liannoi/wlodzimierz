@@ -13,9 +13,10 @@ import { ContactComponent } from './contact/contact.component';
 import * as fromContacts from './+state/contacts.reducer';
 import { ContactsEffects } from './+state/contacts.effects';
 import { ContactsFacade } from './+state/contacts.facade';
-import { ContactCreateComponent } from './contact-create/contact-create.component';
+import { ContactInitialComponent } from './contact-initial/contact-initial.component';
 import { ContactsEndpointBuilder } from './shared/storage/contacts-endpoint.builder';
 import { ContactsService } from './shared/storage/contacts.service';
+import { ContactCreateComponent } from './contact-create/contact-create.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { ContactsService } from './shared/storage/contacts.service';
   declarations: [
     ContactListComponent,
     ContactComponent,
+    ContactInitialComponent,
     ContactCreateComponent
   ],
   providers: [ContactsFacade, ContactsEndpointBuilder, ContactsService]

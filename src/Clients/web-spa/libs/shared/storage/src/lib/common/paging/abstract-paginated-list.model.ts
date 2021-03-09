@@ -6,6 +6,5 @@ export abstract class AbstractPaginatedList<TModel> {
     public totalCount: number = 0,
     public hasPreviousPage: boolean = false,
     public hasNextPage: boolean = false
-  ) {
-  }
+  ) {}
 }

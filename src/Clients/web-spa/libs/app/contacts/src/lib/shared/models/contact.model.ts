@@ -1,5 +1,5 @@
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { UserModel } from '../../../../../../shared/storage/src/lib/users/models/user.model';
+import { UserModel } from '../../../../../users/src/lib/shared/models/user.model';
 
 export interface Contact {
   contactId: number;

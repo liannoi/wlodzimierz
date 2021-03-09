@@ -8,7 +8,7 @@ import * as ConversationsActions from './conversations.actions';
 import * as ConversationsSelectors from './conversations.selectors';
 import { ConversationsList } from '../shared/models/conversations-list.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { UserModel } from '../../../../../shared/storage/src/lib/users/models/user.model';
+import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
 
 @Injectable()
 export class ConversationsFacade {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { AbstractEndpointBuilder } from '../../../../../storage/src/lib/core/remote/endpoints/abstract-endpoint.builder';
+import { AbstractEndpointBuilder } from '../../../../../storage/src/lib/remote/endpoints/abstract-endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { environment } from 'apps/wlodzimierz/src/environments/environment';

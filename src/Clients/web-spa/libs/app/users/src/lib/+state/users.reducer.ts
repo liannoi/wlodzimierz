@@ -2,10 +2,10 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 import * as UsersActions from './users.actions';
-import { UserModel } from '../../../../../shared/storage/src/lib/users/models/user.model';
+import { UserModel } from '../shared/models/user.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
-import { UsersList } from '../../../../../shared/storage/src/lib/users/models/users-list.model';
+import { UsersList } from '../shared/models/users-list.model';
 
 export const USERS_FEATURE_KEY = 'users';
 

@@ -10,18 +10,22 @@ import { ContactsFacade } from '../+state/contacts.facade';
 import { ContactsList } from '../shared/models/contacts-list.model';
 import { SearchNotification } from '../shared/notifications/search.notification';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { UsersList } from '../../../../../shared/storage/src/lib/users/models/users-list.model';
+import { UsersList } from '../../../../users/src/lib/shared/models/users-list.model';
 import { CreatedNotification } from '../shared/notifications/created.notification';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { UserModel } from '../../../../../shared/storage/src/lib/users/models/user.model';
+import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { Identifiable } from '../../../../../shared/storage/src/lib/common/interfaces/identifiable.interface';
+import { Contact } from '../shared/models/contact.model';
 
 @Component({
   selector: 'wlodzimierz-contact-list',
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.scss']
 })
-export class ContactListComponent implements OnInit, OnDestroy {
-  public contacts: ContactsList;
+export class ContactListComponent
+  implements OnInit, OnDestroy, Identifiable<Contact, number> {
+  public contacts$: Observable<ContactsList>;
   public filterable$: Observable<UsersList>;
   private subscriptions: Subscription[] = [];
   private contactUser: UserModel;
@@ -35,12 +39,8 @@ export class ContactListComponent implements OnInit, OnDestroy {
     this.titleService.setTitle('Your contacts - Wlodzimierz');
   }
 
-  public get haveContacts(): boolean {
-    return this.contacts?.items?.length > 0;
-  }
-
   public ngOnInit(): void {
-    this.followContacts();
+    this.contacts$ = this.contactsFacade.contacts$;
     this.followUser();
     this.followFilter();
   }
@@ -61,17 +61,13 @@ export class ContactListComponent implements OnInit, OnDestroy {
     this.contactsFacade.create(notification.contact);
   }
 
+  public identify(index: number, model: Contact): number {
+    return model.contactId;
+  }
+
   ///////////////////////////////////////////////////////////////////////////
   // Helpers
   ///////////////////////////////////////////////////////////////////////////
-
-  private followContacts(): void {
-    this.subscriptions.push(
-      this.contactsFacade.contacts$.subscribe(
-        (contacts) => (this.contacts = contacts)
-      )
-    );
-  }
 
   private followUser(): void {
     this.subscriptions.push(

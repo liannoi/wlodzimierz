@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UsersModule } from '@wlodzimierz/app/users';
 import { NgrxErrorModule } from '@wlodzimierz/ngrx/ngrx-error';
 import { NgrxRouterModule } from '@wlodzimierz/ngrx/ngrx-router';
@@ -16,11 +17,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { TopMenuComponent } from './layout/top-menu/top-menu.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { environment } from '../environments/environment';
-
-export interface Environment {
-  production: boolean;
-  endpoint: string;
-}
 
 export const APP_CONFIG = new InjectionToken('Application config');
 

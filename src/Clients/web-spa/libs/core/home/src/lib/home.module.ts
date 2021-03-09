@@ -8,7 +8,6 @@ import { FeedbackComponent } from './feedback/feedback.component';
 
 @NgModule({
   imports: [CommonModule, HomeRoutingModule],
-  declarations: [HomeComponent, AppsComponent, FeedbackComponent]
+  declarations: [HomeComponent, AppsComponent, FeedbackComponent],
 })
-export class HomeModule {
-}
+export class HomeModule {}

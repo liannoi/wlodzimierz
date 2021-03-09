@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-  UrlTree
-} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 
 import { Observable, of } from 'rxjs';
 
@@ -29,7 +23,7 @@ export class JwtTokenGuard implements CanActivate {
     | UrlTree {
     const token = this.tokenService.read().value;
     const tokenIsEmpty = token == '';
-    if (tokenIsEmpty) {
+    if (!token || tokenIsEmpty) {
       this.router.navigate(['/login']);
     }
 

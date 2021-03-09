@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { AbstractApiService } from '../../../../../../shared/storage/src/lib/core/remote/abstract-api.service';
-import { EndpointBuilder } from '../../../../../../shared/storage/src/lib/core/remote/endpoints/endpoint.builder';
+import { AbstractApiService } from '../../../../../../shared/storage/src/lib/remote/abstract-api.service';
+import { EndpointBuilder } from '../../../../../../shared/storage/src/lib/remote/endpoints/endpoint.builder';
 import { ContactsEndpointBuilder } from './contacts-endpoint.builder';
 import { Contact } from '../models/contact.model';
 

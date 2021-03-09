@@ -4,7 +4,7 @@ import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpRequest
+  HttpRequest,
 } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
@@ -14,8 +14,7 @@ import { NgrxErrorFacade } from '@wlodzimierz/ngrx/ngrx-error';
 
 @Injectable()
 export class NgrxErrorInterceptorService implements HttpInterceptor {
-  public constructor(private facade: NgrxErrorFacade) {
-  }
+  public constructor(private facade: NgrxErrorFacade) {}
 
   public intercept(
     req: HttpRequest<any>,

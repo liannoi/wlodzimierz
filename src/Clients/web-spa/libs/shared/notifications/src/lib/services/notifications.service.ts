@@ -6,7 +6,7 @@ import { Notifiable } from '../common/interfaces/notifiable.interface';
 import { BaseNotification } from '../common/abstractions/base.notification';
 import { NotificationsEndpointBuilder } from '../common/builders/notifications-endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { EndpointBuilder } from '../../../../storage/src/lib/core/remote/endpoints/endpoint.builder';
+import { EndpointBuilder } from '../../../../storage/src/lib/remote/endpoints/endpoint.builder';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { Disposable } from '../../../../storage/src/lib/common/interfaces/disposable.interface';
 
