@@ -4,7 +4,9 @@ export abstract class AbstractPaginatedList<TModel> {
     public pageIndex: number = 0,
     public totalPages: number = 0,
     public totalCount: number = 0,
+    public cachingKey: string = '',
     public hasPreviousPage: boolean = false,
     public hasNextPage: boolean = false
-  ) {}
+  ) {
+  }
 }

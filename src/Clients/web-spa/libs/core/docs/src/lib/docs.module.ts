@@ -7,7 +7,6 @@ import { DocsRoutingModule } from './docs-routing.module';
 
 @NgModule({
   imports: [CommonModule, DocsRoutingModule],
-  declarations: [DocsApiComponent, DocsComponent]
+  declarations: [DocsApiComponent, DocsComponent],
 })
-export class DocsModule {
-}
+export class DocsModule {}

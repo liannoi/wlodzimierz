@@ -9,6 +9,7 @@ import * as ConversationsSelectors from './conversations.selectors';
 import { ConversationsList } from '../shared/models/conversations-list.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
+import { Conversation } from '../shared/models/conversation.model';
 
 @Injectable()
 export class ConversationsFacade {
@@ -16,10 +17,13 @@ export class ConversationsFacade {
     select(ConversationsSelectors.getConversations)
   );
 
-  public constructor(private store: Store) {
-  }
+  public constructor(private store: Store) {}
 
   public getAll(currentUser: UserModel): void {
     this.store.dispatch(ConversationsActions.getAll({ currentUser }));
+  }
+
+  public create(conversation: Conversation): void {
+    this.store.dispatch(ConversationsActions.create({ conversation }));
   }
 }

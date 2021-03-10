@@ -31,7 +31,3 @@
 .form-control-label + .form-control:focus {
   @extend .bg-white;
 }
-
-button[disabled] {
-  cursor: not-allowed;
-}

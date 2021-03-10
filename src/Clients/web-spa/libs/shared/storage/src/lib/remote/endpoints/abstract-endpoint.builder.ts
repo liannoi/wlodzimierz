@@ -16,6 +16,14 @@ export abstract class AbstractEndpointBuilder implements EndpointBuilder {
     this.initialUrl = `${endpoint}/${controller}`;
   }
 
+  public reset(): EndpointBuilder {
+    this.parameter = '';
+    this.action = '';
+    this.pageSize = 0;
+
+    return this;
+  }
+
   public withParameter(parameter: string): EndpointBuilder {
     if (!parameter) return this;
     this.parameter = parameter;
@@ -40,17 +48,9 @@ export abstract class AbstractEndpointBuilder implements EndpointBuilder {
   public build(): Endpoint {
     let result = this.initialUrl;
 
-    if (this.parameter && this.parameter != '-') {
-      result += `/${this.parameter}`;
-    }
-
-    if (this.action) {
-      result += `/${this.action}`;
-    }
-
-    if (this.pageSize) {
-      result += `?PageSize=${this.pageSize}`;
-    }
+    if (this.parameter) result += `/${this.parameter}`;
+    if (this.action) result += `/${this.action}`;
+    if (this.pageSize || this.pageSize > 0) result += `?PageSize=${this.pageSize}`;
 
     return { url: result };
   }

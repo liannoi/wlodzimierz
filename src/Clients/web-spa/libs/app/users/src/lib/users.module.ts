@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { StorageModule } from '@wlodzimierz/shared/storage';
 
 import * as fromUsers from './+state/users.reducer';
@@ -19,6 +20,7 @@ import { AuthService } from './shared/storage/services/auth.service';
 import { AuthFormFacade } from './shared/storage/form/auth-form.facade';
 import { JwtTokenService } from './shared/storage/services/jwt-token.service';
 import { UsersEndpointBuilder } from './shared/storage/users-endpoint.builder';
+import { UsersService } from './shared/storage/services/users.service';
 
 @NgModule({
   imports: [
@@ -27,7 +29,7 @@ import { UsersEndpointBuilder } from './shared/storage/users-endpoint.builder';
     StorageModule,
     UsersRoutingModule,
     StoreModule.forFeature(fromUsers.USERS_FEATURE_KEY, fromUsers.reducer),
-    EffectsModule.forFeature([UsersEffects])
+    EffectsModule.forFeature([UsersEffects]),
   ],
   declarations: [SignInComponent, SignUpComponent, SignOutComponent],
   providers: [
@@ -36,8 +38,8 @@ import { UsersEndpointBuilder } from './shared/storage/users-endpoint.builder';
     UsersEndpointBuilder,
     JwtTokenService,
     AuthFormFacade,
-    JwtTokenGuard
-  ]
+    JwtTokenGuard,
+    UsersService
+  ],
 })
-export class UsersModule {
-}
+export class UsersModule {}

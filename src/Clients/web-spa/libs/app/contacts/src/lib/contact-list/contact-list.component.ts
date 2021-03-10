@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
 
@@ -17,11 +18,18 @@ import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { Identifiable } from '../../../../../shared/storage/src/lib/common/interfaces/identifiable.interface';
 import { Contact } from '../shared/models/contact.model';
+import { SelectedNotification } from '../shared/notifications/selected.notification';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { ConversationsFacade } from '../../../../conversations/src/lib/+state/conversations.facade';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { Conversation } from '../../../../conversations/src/lib/shared/models/conversation.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
 
 @Component({
   selector: 'wlodzimierz-contact-list',
   templateUrl: './contact-list.component.html',
-  styleUrls: ['./contact-list.component.scss']
+  styleUrls: ['./contact-list.component.scss'],
 })
 export class ContactListComponent
   implements OnInit, OnDestroy, Identifiable<Contact, number> {
@@ -34,7 +42,8 @@ export class ContactListComponent
   public constructor(
     private titleService: Title,
     private usersFacade: UsersFacade,
-    private contactsFacade: ContactsFacade
+    private contactsFacade: ContactsFacade,
+    private conversationsFacade: ConversationsFacade
   ) {
     this.titleService.setTitle('Your contacts - Wlodzimierz');
   }
@@ -59,6 +68,13 @@ export class ContactListComponent
     notification.contact.ownerUser = this.ownerUser;
     notification.contact.contactUser = this.contactUser;
     this.contactsFacade.create(notification.contact);
+  }
+
+  public onSelected(notification: SelectedNotification): void {
+    const conversation: Conversation = defaultModel();
+    conversation.leftUserId = this.ownerUser.userId;
+    conversation.rightUserId = notification.contact.contactUserId;
+    this.conversationsFacade.create(conversation);
   }
 
   public identify(index: number, model: Contact): number {

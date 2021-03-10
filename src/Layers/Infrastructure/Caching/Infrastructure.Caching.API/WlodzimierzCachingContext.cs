@@ -38,6 +38,11 @@ namespace Infrastructure.Caching.API
             return JsonConvert.DeserializeObject<TModel>(json);
         }
 
+        public async Task DeleteAsync<TModel>(dynamic key)
+        {
+            await _cache.RemoveAsync(Hash<TModel>(key) as string);
+        }
+
         // Helpers.
 
         private string Hash<TModel>(dynamic key)

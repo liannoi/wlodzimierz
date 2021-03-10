@@ -7,7 +7,9 @@ using Application.Infrastructure.Persistence.API.Interfaces;
 using Application.Paging.API.Extensions;
 using Application.Storage.API.Common.Exceptions;
 using Application.Storage.API.Common.Interfaces;
+using Application.Storage.API.Storage.Contacts.Extensions;
 using Application.Storage.API.Storage.Contacts.Models;
+using Application.Storage.API.Storage.Users.Facades;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -29,14 +31,16 @@ namespace Application.Storage.API.Storage.Contacts.Queries.Details
             private readonly IWlodzimierzContext _context;
             private readonly ILogger<Handler> _logger;
             private readonly IMapper _mapper;
+            private readonly IUsersFacade _usersFacade;
 
             public Handler(IWlodzimierzCachingContext cache, IWlodzimierzContext context, IMapper mapper,
-                ILogger<Handler> logger)
+                ILogger<Handler> logger, IUsersFacade usersFacade)
             {
                 _cache = cache;
                 _context = context;
                 _mapper = mapper;
                 _logger = logger;
+                _usersFacade = usersFacade;
             }
 
             public async Task<ContactDto> Handle(DetailsQuery query, CancellationToken cancellationToken)
@@ -68,6 +72,7 @@ namespace Application.Storage.API.Storage.Contacts.Queries.Details
                 return await _context.Contacts
                     .Where(e => e.ContactId == query.ContactId)
                     .ProjectToSingleAsync<ContactDto>(_mapper.ConfigurationProvider)
+                    .MapUsersAsync(_usersFacade)
                     .Cache(_cache, key);
             }
 

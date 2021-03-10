@@ -18,21 +18,19 @@ export class ConversationMessagesService extends AbstractApiService {
   public constructor(
     http: HttpClient,
     @Inject(ConversationMessagesEndpointBuilder)
-      endpointBuilder: EndpointBuilder,
+    endpointBuilder: EndpointBuilder,
     private notificationsService: NotificationsService
   ) {
     super(http, endpointBuilder);
   }
 
   public create(message: ConversationMessage): Observable<number> {
-    const endpoint = this.endpointBuilder.build();
+    const endpoint = this.endpointBuilder.reset().build();
 
     return this.http.post<number>(endpoint.url, message);
   }
 
-  public onCreated(
-    action: (notification: CreatedNotificationHandler) => void
-  ): void {
+  public onCreated(action: (notification: CreatedNotificationHandler) => void): void {
     this.notificationsService.subscribe<CreatedNotificationHandler>(action);
   }
 }

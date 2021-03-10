@@ -8,12 +8,11 @@ import { ContactCreateComponent } from './contact-create/contact-create.componen
 
 const routes: Routes = [
   { path: '', component: ContactListComponent, canActivate: [JwtTokenGuard] },
-  { path: 'create', component: ContactCreateComponent }
+  { path: 'create', component: ContactCreateComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ContactsRoutingModule {
-}
+export class ContactsRoutingModule {}

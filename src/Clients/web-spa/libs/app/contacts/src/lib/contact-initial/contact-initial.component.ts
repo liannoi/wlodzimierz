@@ -1,8 +1,26 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+} from 'rxjs/operators';
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
@@ -21,7 +39,7 @@ const typeaheadTools: TypeaheadTools = new TypeaheadTools();
   selector: 'wlodzimierz-contact-initial',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './contact-initial.component.html',
-  styleUrls: ['./contact-initial.component.scss']
+  styleUrls: ['./contact-initial.component.scss'],
 })
 export class ContactInitialComponent implements OnInit, OnDestroy {
   @Input() public filterable$: Observable<UsersList>;
@@ -84,7 +102,7 @@ export class ContactInitialComponent implements OnInit, OnDestroy {
       contactUser: new FormControl('', [Validators.required]),
       firstName: new FormControl(this.contact.firstName, [Validators.required]),
       lastName: new FormControl(this.contact.lastName),
-      email: new FormControl(this.contact.email, [Validators.required])
+      email: new FormControl(this.contact.email, [Validators.required]),
     });
   }
 

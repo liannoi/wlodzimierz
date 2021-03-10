@@ -17,8 +17,7 @@ export class ContactsFacade {
     select(ContactsSelectors.getContacts)
   );
 
-  public constructor(private store: Store) {
-  }
+  public constructor(private store: Store) {}
 
   public getAll(currentUser: UserModel): void {
     this.store.dispatch(ContactsActions.getAll({ currentUser }));

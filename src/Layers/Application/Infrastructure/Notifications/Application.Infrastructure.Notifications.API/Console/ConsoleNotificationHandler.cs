@@ -17,7 +17,7 @@ namespace Application.Infrastructure.Notifications.API.Console
             _logger = logger;
         }
 
-        public Task Handle(WrapperNotification<TNotification> notification, CancellationToken cancellationToken)
+        public virtual Task Handle(WrapperNotification<TNotification> notification, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Processing the notification. Handler: {Handler}. Notification: {Notification}",
                 nameof(ConsoleNotificationHandler<TNotification>), notification.Notification.GetType().Name);

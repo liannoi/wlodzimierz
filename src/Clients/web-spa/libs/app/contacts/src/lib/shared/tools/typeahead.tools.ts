@@ -5,7 +5,9 @@ export class TypeaheadTools implements Disposable {
   private requestValueObject: BehaviorSubjectValueObject<string> = new BehaviorSubjectValueObject<string>(
     ''
   );
-  private responseValueObject: BehaviorSubjectValueObject<string[]> = new BehaviorSubjectValueObject<string[]>([]);
+  private responseValueObject: BehaviorSubjectValueObject<
+    string[]
+  > = new BehaviorSubjectValueObject<string[]>([]);
 
   public onDispose(): void {
     this.requestValueObject.onDispose();

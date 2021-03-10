@@ -6,6 +6,7 @@ import { catchError, concatMap, map } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import * as ConversationMessagesActions from './conversation-messages.actions';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ConversationsService } from '../../../../conversations/src/lib/shared/storage/conversations.service';
 import { ConversationMessagesService } from '../shared/storage/conversation-messages.service';
 

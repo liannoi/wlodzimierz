@@ -17,12 +17,9 @@ namespace Presentation.API.Controllers
     {
         #region Relations
 
-        [HttpGet("{conversation}/messages")]
-        public async Task<ActionResult<PaginatedList<ConversationMessageDto>>> GetMessages(int conversation,
-            [FromQuery] MessagesQuery query)
+        [HttpGet("messages")]
+        public async Task<ActionResult<PaginatedList<ConversationMessageDto>>> GetMessages([FromQuery] MessagesQuery query)
         {
-            query.ConversationId = conversation;
-
             return await Mediator.Send(query);
         }
 

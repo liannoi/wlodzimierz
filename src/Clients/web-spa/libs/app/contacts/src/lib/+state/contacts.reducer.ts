@@ -21,14 +21,14 @@ export const contactsAdapter: EntityAdapter<Contact> = createEntityAdapter<Conta
 
 export const initialState: State = contactsAdapter.getInitialState({
   contacts: defaultModel(),
-  loaded: false
+  loaded: false,
 });
 
 const contactsReducer = createReducer(
   initialState,
   on(ContactsActions.getAllSuccess, (state, { contacts }) => ({
     ...state,
-    contacts
+    contacts,
   })),
   on(ContactsActions.getAllFailure, () => ({ ...initialState }))
 );

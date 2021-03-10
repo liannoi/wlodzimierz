@@ -8,12 +8,11 @@ import { SignOutComponent } from './sign-out/sign-out.component';
 const routes: Routes = [
   { path: 'login', component: SignInComponent },
   { path: 'join', component: SignUpComponent },
-  { path: 'sign-out', component: SignOutComponent }
+  { path: 'sign-out', component: SignOutComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class UsersRoutingModule {
-}
+export class UsersRoutingModule {}

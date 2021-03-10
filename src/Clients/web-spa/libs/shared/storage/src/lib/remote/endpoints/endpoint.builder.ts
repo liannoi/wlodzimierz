@@ -7,5 +7,7 @@ export interface EndpointBuilder {
 
   withPageSize(pageSize: number): EndpointBuilder;
 
+  reset(): EndpointBuilder;
+
   build(): Endpoint;
 }

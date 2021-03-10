@@ -9,8 +9,8 @@ using Application.Paging.API.Common.Models;
 using Application.Paging.API.Extensions;
 using Application.Storage.API.Common.Exceptions;
 using Application.Storage.API.Common.Interfaces;
+using Application.Storage.API.Storage.ConversationMessages.Extensions;
 using Application.Storage.API.Storage.ConversationMessages.Models;
-using Application.Storage.API.Storage.Conversations.Extensions;
 using Application.Storage.API.Storage.Users.Facades;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -78,8 +78,8 @@ namespace Application.Storage.API.Storage.Conversations.Queries.Messages
                     .OrderByDescending(x => x.Publish)
                     .ProjectTo<ConversationMessageDto>(_mapper.ConfigurationProvider)
                     .ProjectToPaginatedListAsync(query.PageNumber, query.PageSize)
-                    .MapUsersAsync(_usersFacade)
-                    .Cache(_cache, key);
+                    .MapUsersAsync(_usersFacade);
+                // .Cache(_cache, key);
             }
 
             private async Task<PaginatedList<ConversationMessageDto>> ReadFromCache(dynamic key)

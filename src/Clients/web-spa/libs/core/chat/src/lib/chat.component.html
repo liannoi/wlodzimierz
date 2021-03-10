@@ -1,80 +1,60 @@
-<ng-container *ngIf='(conversations$ | async).items <= 0'>
-  <div class='row mt-n2'>
-    <div class='col-sm-12'>
-      <h2 class='text-center font-weight-light default-event'>
+<ng-container *ngIf="(conversations$ | async).items <= 0">
+  <div class="row mt-n2">
+    <div class="col-sm-12">
+      <h2 class="text-center font-weight-light default-event">
         Start your first conversation
       </h2>
     </div>
   </div>
-  <div class='row mt-2 d-flex justify-content-center align-content-center'>
-    <div class='col-sm-5'>
-      <p class='text-center default-event'>
+  <div class="row mt-2 d-flex justify-content-center align-content-center">
+    <div class="col-sm-5">
+      <p class="text-center default-event">
         Go to your contact list, select from existing contacts or add the first
         one and start a real-time conversation with him now.
       </p>
     </div>
   </div>
-  <div class='row mt-4 pb-3'>
-    <div class='col-sm-12 d-flex justify-content-center align-content-center'>
-      <a class='btn btn-light pl-5 pr-5 pt-2 pb-2 mr-2' routerLink='/'>Back</a>
-      <a class='btn btn-success pl-5 pr-5 pt-2 pb-2' routerLink='/contacts'
-      >Start a conversation</a
+  <div class="row mt-4 pb-3">
+    <div class="col-sm-12 d-flex justify-content-center align-content-center">
+      <a class="btn btn-light pl-5 pr-5 pt-2 pb-2 mr-2" routerLink="/">Back</a>
+      <a class="btn btn-success pl-5 pr-5 pt-2 pb-2" routerLink="/contacts"
+        >Start a conversation</a
       >
     </div>
   </div>
 </ng-container>
 
-<!--<div class='row pb-3'>
-  <div class='col-sm-3 ml-n3 min-vh-75 overflow-auto scroll-container'>
+<div class="row pb-3">
+  <div class="col-3 ml-n3 min-vh-75 overflow-auto scroll-container">
     <wlodzimierz-conversation-list
-      (changeConversation)='onChangeConversation($event)'
-      [conversations]='conversations$ | async'
-      [user]='user'
+      (changeConversation)="onChangeConversation($event)"
+      [conversations]="conversations$ | async"
+      [user]="user"
     ></wlodzimierz-conversation-list>
   </div>
-  <ng-container
-    *ngIf='
-      bindingConversation != null;
-      then conversationsBlock;
-      else selectionBlock
-    '
-  ></ng-container>
-  <ng-template #conversationsBlock>
-    <div
-      class='col-sm-9 w-100 min-vh-75 scroll-container overflow-auto border bg-primary-soft'
-    >
-      <wlodzimierz-conversation-message-list
-        [conversation]='bindingConversation'
-        [messages]='messages$ | async'
-        [user]='user'
-      ></wlodzimierz-conversation-message-list>
-    </div>
-  </ng-template>
-  <ng-template #selectionBlock>
-    <ng-container
-      *ngIf='
-        (conversations$ | async)?.items > 0;
-        then selectionPresent;
-        else selectionEmpty
-      '
-    ></ng-container>
-    <ng-template #selectionPresent>
-      <div class='col-sm-9 d-flex align-items-center justify-content-center'>
-        <h6 class='alert alert-light bg-transparent rounded'>
-          Select a chat to start messaging
-        </h6>
-      </div>
-    </ng-template>
-    <ng-template #selectionEmpty>
-      <div class='col-sm-9 d-flex align-items-center justify-content-center'>
-        <h6 class='alert alert-light box-shadow bg-transparent rounded'>
-          Go to the <a routerLink='/contacts'>list of contacts</a> to select an
-          interlocutor
-        </h6>
-      </div>
-    </ng-template>
-  </ng-template>
+
+  <ng-container *ngIf='bindingConversation != null; then conversationsBlock; else selectionBlock;'></ng-container>
 </div>
+
+<ng-template #conversationsBlock>
+  <div
+    class='col-9 w-100 min-vh-75 scroll-container overflow-auto border bg-primary-soft'
+  >
+    <wlodzimierz-conversation-message-list
+      [conversation]='bindingConversation'
+      [messages]='messages$ | async'
+      [user]='user'
+    ></wlodzimierz-conversation-message-list>
+  </div>
+</ng-template>
+
+<ng-template #selectionBlock>
+  <div class='col-9 d-flex align-items-center justify-content-center'>
+    <h6 class='alert alert-light bg-transparent rounded'>
+      Select a chat to start messaging
+    </h6>
+  </div>
+</ng-template>
 
 <ng-container *ngIf='bindingConversation != null'>
   <wlodzimierz-conversation-message-create
@@ -82,4 +62,4 @@
     [conversation]='bindingConversation'
     [user]='user'
   ></wlodzimierz-conversation-message-create>
-</ng-container>-->
+</ng-container>

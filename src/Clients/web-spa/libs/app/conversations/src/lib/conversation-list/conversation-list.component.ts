@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 import { ConversationsList } from '../shared/models/conversations-list.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
@@ -10,7 +16,7 @@ import { Conversation } from '../shared/models/conversation.model';
   selector: 'wlodzimierz-conversation-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './conversation-list.component.html',
-  styleUrls: ['./conversation-list.component.scss']
+  styleUrls: ['./conversation-list.component.scss'],
 })
 export class ConversationListComponent {
   @Input() public user: UserModel;

@@ -9,7 +9,9 @@ using Application.Paging.API.Common.Models;
 using Application.Paging.API.Extensions;
 using Application.Storage.API.Common.Exceptions;
 using Application.Storage.API.Common.Interfaces;
+using Application.Storage.API.Storage.Contacts.Extensions;
 using Application.Storage.API.Storage.Contacts.Models;
+using Application.Storage.API.Storage.Users.Facades;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -32,14 +34,16 @@ namespace Application.Storage.API.Storage.Users.Queries.Contacts
             private readonly IWlodzimierzContext _context;
             private readonly ILogger<Handler> _logger;
             private readonly IMapper _mapper;
+            private readonly IUsersFacade _usersFacade;
 
             public Handler(IWlodzimierzContext context, IWlodzimierzCachingContext cache, IMapper mapper,
-                ILogger<Handler> logger)
+                ILogger<Handler> logger, IUsersFacade usersFacade)
             {
                 _context = context;
                 _cache = cache;
                 _mapper = mapper;
                 _logger = logger;
+                _usersFacade = usersFacade;
             }
 
             public async Task<PaginatedList<ContactDto>> Handle(ContactsQuery query,
@@ -73,6 +77,7 @@ namespace Application.Storage.API.Storage.Users.Queries.Contacts
                     .Where(e => e.OwnerUserId == query.OwnerUserId)
                     .ProjectTo<ContactDto>(_mapper.ConfigurationProvider)
                     .ProjectToPaginatedListAsync(query.PageNumber, query.PageSize)
+                    .MapUsersAsync(_usersFacade)
                     .Cache(_cache, key);
             }
 

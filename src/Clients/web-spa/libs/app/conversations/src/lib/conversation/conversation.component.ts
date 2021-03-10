@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 import { Conversation } from '../shared/models/conversation.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
@@ -9,7 +15,7 @@ import { ChangedNotification } from '../shared/notifications/change/changed.noti
   selector: 'wlodzimierz-conversation',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './conversation.component.html',
-  styleUrls: ['./conversation.component.scss']
+  styleUrls: ['./conversation.component.scss'],
 })
 export class ConversationComponent {
   @Input() public user: UserModel;
@@ -17,6 +23,11 @@ export class ConversationComponent {
   @Input() public bindingConversation: Conversation;
   @Output()
   public changeConversation: EventEmitter<ChangedNotification> = new EventEmitter<ChangedNotification>();
+
+  public get lastMessage(): string {
+    const result = this.conversation.lastMessage?.message;
+    return result ? result : '(empty)';
+  }
 
   public onChangeConversation(): void {
     this.changeConversation.emit({ conversation: this.conversation });

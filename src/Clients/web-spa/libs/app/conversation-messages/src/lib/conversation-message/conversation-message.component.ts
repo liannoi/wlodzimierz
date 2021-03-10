@@ -7,7 +7,7 @@ import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
   selector: 'wlodzimierz-conversation-message',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './conversation-message.component.html',
-  styleUrls: ['./conversation-message.component.scss']
+  styleUrls: ['./conversation-message.component.scss'],
 })
 export class ConversationMessageComponent {
   @Input() public message: ConversationMessage;

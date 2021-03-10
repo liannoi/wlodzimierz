@@ -8,7 +8,9 @@ using Application.Paging.API.Common.Models;
 using Application.Paging.API.Extensions;
 using Application.Storage.API.Common.Exceptions;
 using Application.Storage.API.Common.Interfaces;
+using Application.Storage.API.Storage.ConversationMessages.Extensions;
 using Application.Storage.API.Storage.ConversationMessages.Models;
+using Application.Storage.API.Storage.Users.Facades;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -29,14 +31,16 @@ namespace Application.Storage.API.Storage.ConversationMessages.Queries.List
             private readonly IWlodzimierzContext _context;
             private readonly ILogger<Handler> _logger;
             private readonly IMapper _mapper;
+            private readonly IUsersFacade _usersFacade;
 
             public Handler(IWlodzimierzContext context, IWlodzimierzCachingContext cache, IMapper mapper,
-                ILogger<Handler> logger)
+                ILogger<Handler> logger, IUsersFacade usersFacade)
             {
                 _context = context;
                 _cache = cache;
                 _mapper = mapper;
                 _logger = logger;
+                _usersFacade = usersFacade;
             }
 
             public async Task<PaginatedList<ConversationMessageDto>> Handle(ListQuery query,
@@ -70,6 +74,7 @@ namespace Application.Storage.API.Storage.ConversationMessages.Queries.List
                 return await _context.ConversationMessages
                     .ProjectTo<ConversationMessageDto>(_mapper.ConfigurationProvider)
                     .ProjectToPaginatedListAsync(query.PageNumber, query.PageSize)
+                    .MapUsersAsync(_usersFacade)
                     .Cache(_cache, key);
             }
 

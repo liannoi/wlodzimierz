@@ -13,7 +13,7 @@ import { Identifiable } from '../../../../../shared/storage/src/lib/common/inter
   selector: 'wlodzimierz-conversation-message-list',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './conversation-message-list.component.html',
-  styleUrls: ['./conversation-message-list.component.scss']
+  styleUrls: ['./conversation-message-list.component.scss'],
 })
 export class ConversationMessageListComponent
   implements Identifiable<ConversationMessage, number> {

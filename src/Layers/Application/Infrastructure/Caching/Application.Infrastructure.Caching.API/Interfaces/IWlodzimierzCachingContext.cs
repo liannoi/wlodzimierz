@@ -9,5 +9,7 @@ namespace Application.Infrastructure.Caching.API.Interfaces
         public Task CreateAsync<TModel>(TModel model, dynamic key);
 
         public Task<TModel> GetAsync<TModel>(dynamic key);
+
+        public Task DeleteAsync<TModel>(dynamic key);
     }
 }

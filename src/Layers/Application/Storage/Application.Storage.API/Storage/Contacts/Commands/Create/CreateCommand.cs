@@ -10,7 +10,9 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Create
 {
     public class CreateCommand : IRequest<int>
     {
+        public string? OwnerUserId { get; set; }
         public UserDto OwnerUser { get; set; }
+        public string? ContactUserId { get; set; }
         public UserDto ContactUser { get; set; }
         public string FirstName { get; set; }
         public string? LastName { get; set; }
@@ -30,8 +32,8 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Create
             {
                 var entity = new Contact
                 {
-                    OwnerUserId = command.OwnerUser.UserId,
-                    ContactUserId = command.ContactUser.UserId,
+                    OwnerUserId = command.OwnerUserId ?? command.OwnerUser.UserId,
+                    ContactUserId = command.ContactUserId??command.ContactUser.UserId,
                     FirstName = command.FirstName,
                     LastName = command.LastName,
                     Email = command.Email,

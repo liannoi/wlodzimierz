@@ -2,7 +2,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Infrastructure.Persistence.API.Interfaces;
 using Application.Storage.API.Common.Exceptions;
-using Application.Storage.API.Storage.Users.Models;
 using Domain.API.Entities;
 using MediatR;
 
@@ -11,12 +10,12 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Update
     public class UpdateCommand : IRequest
     {
         public int ContactId { get; set; }
-        public UserDto OwnerUser { get; set; }
-        public UserDto ContactUser { get; set; }
+        public string OwnerUserId { get; set; }
+        public string ContactUserId { get; set; }
         public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
         public string Email { get; set; }
-        public string Photo { get; set; }
+        public string? Photo { get; set; }
 
         private class Handler : IRequestHandler<UpdateCommand>
         {
@@ -36,7 +35,7 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Update
                 entity.LastName = command.LastName;
                 entity.Email = command.Email;
                 entity.Photo = command.Photo;
-                entity.OwnerUserId = command.OwnerUser.UserId;
+                entity.OwnerUserId = command.OwnerUserId;
 
                 await _context.SaveChangesAsync(cancellationToken);
 

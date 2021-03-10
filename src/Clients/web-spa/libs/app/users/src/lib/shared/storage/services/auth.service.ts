@@ -33,13 +33,13 @@ export class AuthService extends AbstractApiService {
   }
 
   public signIn(user: UserModel): Observable<JwtToken> {
-    const endpoint = this.endpointBuilder.withAction('SignIn').build();
+    const endpoint = this.endpointBuilder.reset().withAction('SignIn').build();
 
     return this.http.post<JwtToken>(endpoint.url, user);
   }
 
   public signUp(user: UserModel): Observable<JwtToken> {
-    const endpoint = this.endpointBuilder.withAction('SignUp').build();
+    const endpoint = this.endpointBuilder.reset().withAction('SignUp').build();
 
     return this.http.post<JwtToken>(endpoint.url, user);
   }
@@ -49,7 +49,7 @@ export class AuthService extends AbstractApiService {
   ///////////////////////////////////////////////////////////////////////////
 
   private requestVerify(token: JwtToken): Observable<UserModel> {
-    const endpoint = this.endpointBuilder.withAction('Verify').build();
+    const endpoint = this.endpointBuilder.reset().withAction('Verify').build();
 
     return this.http.post<UserModel>(
       endpoint.url,

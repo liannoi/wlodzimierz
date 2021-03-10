@@ -10,8 +10,9 @@ using Application.Paging.API.Common.Models;
 using Application.Paging.API.Extensions;
 using Application.Storage.API.Common.Exceptions;
 using Application.Storage.API.Common.Interfaces;
+using Application.Storage.API.Storage.Contacts.Extensions;
 using Application.Storage.API.Storage.Contacts.Models;
-using Application.Storage.API.Storage.Users.Models;
+using Application.Storage.API.Storage.Users.Facades;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -37,14 +38,16 @@ namespace Application.Storage.API.Storage.Contacts.Queries.Filter
             private readonly IWlodzimierzContext _context;
             private readonly ILogger<Handler> _logger;
             private readonly IMapper _mapper;
+            private readonly IUsersFacade _usersFacade;
 
             public Handler(IWlodzimierzContext context, IMapper mapper, IWlodzimierzCachingContext cache,
-                ILogger<Handler> logger)
+                ILogger<Handler> logger, IUsersFacade usersFacade)
             {
                 _context = context;
                 _mapper = mapper;
                 _cache = cache;
                 _logger = logger;
+                _usersFacade = usersFacade;
             }
 
             public async Task<PaginatedList<ContactDto>> Handle(FilterQuery query, CancellationToken cancellationToken)
@@ -75,7 +78,7 @@ namespace Application.Storage.API.Storage.Contacts.Queries.Filter
             {
                 var model = new ContactDto
                 {
-                    OwnerUser = new UserDto {UserId = query.OwnerUserId},
+                    OwnerUserId = query.OwnerUserId,
                     FirstName = query.FirstName ?? string.Empty,
                     LastName = query.LastName ?? string.Empty,
                     Email = query.Email ?? string.Empty
@@ -86,6 +89,7 @@ namespace Application.Storage.API.Storage.Contacts.Queries.Filter
                     .ProjectTo<ContactDto>(_mapper.ConfigurationProvider)
                     .Where(await model.FilterAsync())
                     .ProjectToPaginatedListAsync(query.PageNumber, query.PageSize)
+                    .MapUsersAsync(_usersFacade)
                     .Cache(_cache, key);
             }
 

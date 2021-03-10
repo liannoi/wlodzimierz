@@ -17,26 +17,27 @@ import { ContactInitialComponent } from './contact-initial/contact-initial.compo
 import { ContactsEndpointBuilder } from './shared/storage/contacts-endpoint.builder';
 import { ContactsService } from './shared/storage/contacts.service';
 import { ContactCreateComponent } from './contact-create/contact-create.component';
+import { ConversationsModule } from '@wlodzimierz/app/conversations';
 
 @NgModule({
   imports: [
     CommonModule,
     NgbModule,
     ReactiveFormsModule,
+    ConversationsModule,
     ContactsRoutingModule,
     StoreModule.forFeature(
       fromContacts.CONTACTS_FEATURE_KEY,
       fromContacts.reducer
     ),
-    EffectsModule.forFeature([ContactsEffects])
+    EffectsModule.forFeature([ContactsEffects]),
   ],
   declarations: [
     ContactListComponent,
     ContactComponent,
     ContactInitialComponent,
-    ContactCreateComponent
+    ContactCreateComponent,
   ],
-  providers: [ContactsFacade, ContactsEndpointBuilder, ContactsService]
+  providers: [ContactsFacade, ContactsEndpointBuilder, ContactsService],
 })
-export class ContactsModule {
-}
+export class ContactsModule {}

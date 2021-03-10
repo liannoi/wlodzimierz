@@ -4,6 +4,7 @@ import { select, Store } from '@ngrx/store';
 
 import * as ConversationMessagesActions from './conversation-messages.actions';
 import * as ConversationMessagesSelectors from './conversation-messages.selectors';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { Conversation } from '../../../../conversations/src/lib/shared/models/conversation.model';
 import { ConversationMessage } from '../shared/models/conversation-message.model';
 
@@ -13,8 +14,7 @@ export class ConversationMessagesFacade {
     select(ConversationMessagesSelectors.getMessages)
   );
 
-  public constructor(private store: Store) {
-  }
+  public constructor(private store: Store) {}
 
   public getAll(conversation: Conversation): void {
     this.store.dispatch(ConversationMessagesActions.getAll({ conversation }));

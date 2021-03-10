@@ -67,12 +67,12 @@ html {
   }
 }
 
-button[disabled] {
-  @extend .event-blocked;
-}
-
 .event-blocked {
   cursor: not-allowed;
+}
+
+button[disabled] {
+  @extend .event-blocked;
 }
 
 .text-error {
@@ -94,4 +94,17 @@ button[disabled] {
 
 .btn {
   font-weight: 500 !important;
+}
+
+.form-control-label {
+  @extend .font-weight-bold;
+}
+
+.form-control-label + .form-control {
+  background-color: #fafbfc;
+  transition: 0.4s;
+}
+
+.form-control-label + .form-control:focus {
+  @extend .bg-white;
 }
