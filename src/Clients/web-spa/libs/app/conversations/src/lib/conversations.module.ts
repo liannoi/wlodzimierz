@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { DateModule } from '@wlodzimierz/shared/date';
+
 import * as fromConversations from './+state/conversations.reducer';
 import { ConversationsEffects } from './+state/conversations.effects';
 import { ConversationComponent } from './conversation/conversation.component';
@@ -17,6 +19,7 @@ import { ConversationsService } from './shared/storage/conversations.service';
 @NgModule({
   imports: [
     CommonModule,
+    DateModule,
     StoreModule.forFeature(
       fromConversations.CONVERSATIONS_FEATURE_KEY,
       fromConversations.reducer

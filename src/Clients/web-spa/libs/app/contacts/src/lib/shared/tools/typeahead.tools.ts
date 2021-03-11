@@ -1,4 +1,6 @@
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { BehaviorSubjectValueObject } from '../../../../../../shared/storage/src/lib/common/reactive/behavior-subject.value-object';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { Disposable } from '../../../../../../shared/storage/src/lib/common/interfaces/disposable.interface';
 
 export class TypeaheadTools implements Disposable {

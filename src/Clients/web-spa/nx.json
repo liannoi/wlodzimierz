@@ -72,6 +72,9 @@
     },
     "app-contacts": {
       "tags": []
+    },
+    "shared-date": {
+      "tags": []
     }
   }
 }

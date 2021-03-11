@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 
 import { ConversationsList } from '../shared/models/conversations-list.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries

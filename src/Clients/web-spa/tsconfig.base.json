@@ -53,6 +53,9 @@
       ],
       "@wlodzimierz/app/contacts": [
         "libs/app/contacts/src/index.ts"
+      ],
+      "@wlodzimierz/shared/date": [
+        "libs/shared/date/src/index.ts"
       ]
     }
   },

@@ -8,7 +8,10 @@
   class='card mb-2'
 >
   <div class='card-body'>
-    <h5 class='card-title'>{{ conversation | interlocutor: user }}</h5>
+    <h5 class='card-title'>
+      {{ conversation | interlocutor: user }}
+      <small class='text-muted float-right'>{{ date }}</small>
+    </h5>
     <h6 class='card-subtitle mb-2 text-muted last-message'>
       {{ lastMessage }}
     </h6>

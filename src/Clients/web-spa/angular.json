@@ -482,6 +482,33 @@
           }
         }
       }
+    },
+    "shared-date": {
+      "projectType": "library",
+      "root": "libs/shared/date",
+      "sourceRoot": "libs/shared/date/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/date/src/**/*.ts",
+              "libs/shared/date/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/shared/date"
+          ],
+          "options": {
+            "jestConfig": "libs/shared/date/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

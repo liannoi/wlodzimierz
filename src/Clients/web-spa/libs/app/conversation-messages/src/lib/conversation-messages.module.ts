@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
@@ -20,6 +20,7 @@ import { ConversationMessageComponent } from './conversation-message/conversatio
 import { ConversationMessagesEndpointBuilder } from './shared/storage/conversation-messages-endpoint.builder';
 import { ConversationMessageListComponent } from './conversation-message-list/conversation-message-list.component';
 import { ConversationMessageCreateComponent } from './conversation-message-create/conversation-message-create.component';
+import { DateModule } from '@wlodzimierz/shared/date';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { ConversationMessageCreateComponent } from './conversation-message-creat
     ReactiveFormsModule,
     NotificationsModule,
     ConversationsModule,
+    DateModule,
     StoreModule.forFeature(
       fromConversationMessages.CONVERSATION_MESSAGES_FEATURE_KEY,
       fromConversationMessages.reducer
@@ -43,7 +45,8 @@ import { ConversationMessageCreateComponent } from './conversation-message-creat
   providers: [
     ConversationMessagesEndpointBuilder,
     ConversationMessagesService,
-    ConversationMessagesFacade
+    ConversationMessagesFacade,
+    DatePipe
   ],
   exports: [
     ConversationMessageListComponent,
