@@ -32,7 +32,7 @@ export class UsersService extends AbstractApiService {
       .build();
 
     return this.http.get<ConversationsList>(endpoint.url, {
-      params: { OwnerUserId: user.userId },
+      params: { OwnerUserId: user.userId }
     });
   }
 
@@ -43,7 +43,7 @@ export class UsersService extends AbstractApiService {
       .build();
 
     return this.http.get<ContactsList>(endpoint.url, {
-      params: { OwnerUserId: user.userId },
+      params: { OwnerUserId: user.userId }
     });
   }
 
@@ -51,7 +51,7 @@ export class UsersService extends AbstractApiService {
     const endpoint = this.endpointBuilder.reset().withAction('filter').build();
 
     return this.http.get<UsersList>(endpoint.url, {
-      params: { UserName: userName },
+      params: { UserName: userName }
     });
   }
 }

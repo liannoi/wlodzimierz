@@ -1,93 +1,93 @@
-<div class="row">
-  <div class="col-sm-12"><h2 class="text-center">Create your account</h2></div>
+<div class='row'>
+  <div class='col-sm-12'><h2 class='text-center'>Create your account</h2></div>
 </div>
-<div class="row mt-5 pb-3 d-flex justify-content-center align-content-center">
-  <div class="col-sm-5">
-    <form (ngSubmit)="onSignUp()" [formGroup]="signUpForm" method="post">
-      <div class="form-group">
-        <label class="form-control-label" for="user_username">Username</label>
+<div class='row mt-5 pb-3 d-flex justify-content-center align-content-center'>
+  <div class='col-sm-5'>
+    <form (ngSubmit)='onSignUp()' [formGroup]='signUpForm' method='post'>
+      <div class='form-group'>
+        <label class='form-control-label' for='user_username'>Username</label>
         <input
-          class="form-control"
-          formControlName="userName"
-          id="user_username"
+          class='form-control'
+          formControlName='userName'
+          id='user_username'
           required
-          type="text"
+          type='text'
         />
         <div
-          *ngIf="userName.invalid && (userName.dirty || userName.touched)"
-          class="text-error"
+          *ngIf='userName.invalid && (userName.dirty || userName.touched)'
+          class='text-error'
         >
-          <div *ngIf="userName.errors.required">
+          <div *ngIf='userName.errors.required'>
             <span>Username cannot be empty.</span>
           </div>
-          <div *ngIf="userName.errors.pattern">
+          <div *ngIf='userName.errors.pattern'>
             <span
-              >Username must be more than six and at least twenty characters and
+            >Username must be more than six and at least twenty characters and
               comply with security policy.</span
             >
           </div>
         </div>
       </div>
-      <div class="form-group">
-        <label class="form-control-label" for="user_email">Email address</label>
+      <div class='form-group'>
+        <label class='form-control-label' for='user_email'>Email address</label>
         <input
-          class="form-control"
-          formControlName="email"
-          id="user_email"
+          class='form-control'
+          formControlName='email'
+          id='user_email'
           required
-          type="email"
+          type='email'
         />
         <div
-          *ngIf="email.invalid && (email.dirty || email.touched)"
-          class="text-error"
+          *ngIf='email.invalid && (email.dirty || email.touched)'
+          class='text-error'
         >
-          <div *ngIf="email.errors.required">
+          <div *ngIf='email.errors.required'>
             <span>Email cannot be empty.</span>
           </div>
-          <div *ngIf="email.errors.pattern">
+          <div *ngIf='email.errors.pattern'>
             <span>Email must comply with security policy.</span>
           </div>
         </div>
       </div>
-      <div class="form-group">
-        <label class="form-control-label" for="user_password">Password</label>
+      <div class='form-group'>
+        <label class='form-control-label' for='user_password'>Password</label>
         <input
-          class="form-control"
-          formControlName="password"
-          id="user_password"
+          class='form-control'
+          formControlName='password'
+          id='user_password'
           required
-          type="password"
+          type='password'
         />
         <div
-          *ngIf="password.invalid && (password.dirty || password.touched)"
-          class="text-error"
+          *ngIf='password.invalid && (password.dirty || password.touched)'
+          class='text-error'
         >
-          <div *ngIf="password.errors.required">
+          <div *ngIf='password.errors.required'>
             <span>Password cannot be empty.</span>
           </div>
-          <div *ngIf="password.errors.pattern">
+          <div *ngIf='password.errors.pattern'>
             <span
-              >Password must contain at least one uppercase and lowercase
+            >Password must contain at least one uppercase and lowercase
               letter, as well as one special character.</span
             >
           </div>
         </div>
         <div
-          *ngIf="
+          *ngIf='
             signUpForm.errors?.unauthorized &&
             (signUpForm.touched || signUpForm.pristine)
-          "
-          class="text-fatal"
+          '
+          class='text-fatal'
         >
-          <span [innerText]="this.signUpForm.errorMessage"></span>
+          <span [innerText]='this.signUpForm.errorMessage'></span>
         </div>
       </div>
-      <div class="form-row">
-        <div class="col-sm-12">
+      <div class='form-row'>
+        <div class='col-sm-12'>
           <button
-            [disabled]="signUpForm.invalid"
-            class="btn btn-primary w-100 p-4 mt-4"
-            type="submit"
+            [disabled]='signUpForm.invalid'
+            class='btn btn-primary w-100 p-4 mt-4'
+            type='submit'
           >
             Create account
           </button>

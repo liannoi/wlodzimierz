@@ -13,7 +13,7 @@ import { defaultModel } from '../../../../../shared/storage/src/lib/common/defau
 @Component({
   selector: 'wlodzimierz-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss'],
+  styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit, OnDestroy {
   public signUpForm: AuthFormGroup;
@@ -75,21 +75,21 @@ export class SignUpComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.pattern(
           '^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$'
-        ),
+        )
       ]),
       email: new FormControl(this.user.email, [
         Validators.required,
         Validators.pattern(
           // eslint-disable-next-line max-len
           '^(([^<>()[\\]\\\\.,;:\\s@"]+(\\.[^<>()[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
-        ),
+        )
       ]),
       password: new FormControl(this.user.password, [
         Validators.required,
         Validators.pattern(
           '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$'
-        ),
-      ]),
+        )
+      ])
     });
   }
 

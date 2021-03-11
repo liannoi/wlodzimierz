@@ -6,11 +6,12 @@ import { ChatComponent } from './chat.component';
 import { JwtTokenGuard } from '../../../../app/users/src/lib/shared/guards/jwt-token.guard';
 
 const routes: Routes = [
-  { path: '', component: ChatComponent, canActivate: [JwtTokenGuard] },
+  { path: '', component: ChatComponent, canActivate: [JwtTokenGuard] }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class ChatRoutingModule {}
+export class ChatRoutingModule {
+}

@@ -21,14 +21,14 @@ export const conversationsAdapter: EntityAdapter<Conversation> = createEntityAda
 
 export const initialState: State = conversationsAdapter.getInitialState({
   conversations: defaultModel(),
-  loaded: false,
+  loaded: false
 });
 
 const conversationsReducer = createReducer(
   initialState,
   on(ConversationsActions.getAllSuccess, (state, { conversations }) => ({
     ...state,
-    conversations,
+    conversations
   })),
   on(ConversationsActions.getAllFailure, () => ({ ...initialState }))
 );

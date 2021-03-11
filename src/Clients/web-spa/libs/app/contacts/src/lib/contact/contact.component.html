@@ -1,19 +1,25 @@
-<div (click)="onSelected()" class="card mb-3">
-  <div class="row mt-3 mb-2 no-gutters">
-    <div class="offset-1"></div>
-    <div class="col-2">
-      <img [src]="photo" alt="User" class="img-fluid" />
+<div (click)='onSelected()' class='card mb-3'>
+  <div class='row no-gutters'>
+    <div class='offset-1'></div>
+    <div class='col-1'>
+      <img [src]='photo' alt='User' class='img-fluid mt-4' />
     </div>
-    <div class="col-8">
-      <div class="card-body">
-        <h5 class="card-title">
+    <div class='col-6'>
+      <div class='card-body'>
+        <h5 class='card-title'>
           {{ contact.firstName }} {{ contact.lastName }}
         </h5>
-        <p class="card-text">
-          <small class="text-muted">{{ contact.email }}</small>
+        <p class='card-text'>
+          <small class='text-muted'>{{ contact.email }}</small>
         </p>
       </div>
     </div>
+    <div class='col-4'>
+      <div class='btn-group hide mt-4 pt-2' role='group'>
+        <a class='btn btn-dark mr-1' href='#'>Edit</a>
+        <a class='btn btn-danger' href='#'>Delete</a>
+      </div>
+    </div>
+    <div class='offset-1'></div>
   </div>
-  <div class="offset-1"></div>
 </div>

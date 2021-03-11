@@ -21,19 +21,20 @@ import { ConversationsService } from './shared/storage/conversations.service';
       fromConversations.CONVERSATIONS_FEATURE_KEY,
       fromConversations.reducer
     ),
-    EffectsModule.forFeature([ConversationsEffects]),
+    EffectsModule.forFeature([ConversationsEffects])
   ],
   declarations: [
     ConversationListComponent,
     ConversationComponent,
     ConversationsEqualsPipe,
-    InterlocutorPipe,
+    InterlocutorPipe
   ],
   providers: [
     ConversationsFacade,
     ConversationsService,
-    ConversationsEndpointBuilder,
+    ConversationsEndpointBuilder
   ],
-  exports: [InterlocutorPipe, ConversationListComponent],
+  exports: [InterlocutorPipe, ConversationListComponent]
 })
-export class ConversationsModule {}
+export class ConversationsModule {
+}

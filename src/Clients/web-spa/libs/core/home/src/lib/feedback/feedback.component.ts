@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'wlodzimierz-feedback',
   templateUrl: './feedback.component.html',
-  styleUrls: ['./feedback.component.scss'],
+  styleUrls: ['./feedback.component.scss']
 })
 export class FeedbackComponent {
   public constructor(private titleService: Title) {

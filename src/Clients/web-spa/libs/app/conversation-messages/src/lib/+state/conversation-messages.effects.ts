@@ -36,7 +36,7 @@ export class ConversationMessagesEffects {
         this.messagesService.create(action.message).pipe(
           map((response) =>
             ConversationMessagesActions.createSuccess({
-              conversation: action.message.conversation,
+              conversation: action.message.conversation
             })
           ),
           catchError((error) =>
@@ -61,5 +61,6 @@ export class ConversationMessagesEffects {
     private conversationsService: ConversationsService,
     private messagesService: ConversationMessagesService,
     private messagesFacade: ConversationMessagesFacade
-  ) {}
+  ) {
+  }
 }

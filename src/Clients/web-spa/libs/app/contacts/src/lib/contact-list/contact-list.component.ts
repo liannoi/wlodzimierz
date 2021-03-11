@@ -28,7 +28,7 @@ import { defaultModel } from '../../../../../shared/storage/src/lib/common/defau
 @Component({
   selector: 'wlodzimierz-contact-list',
   templateUrl: './contact-list.component.html',
-  styleUrls: ['./contact-list.component.scss'],
+  styleUrls: ['./contact-list.component.scss']
 })
 export class ContactListComponent
   implements OnInit, OnDestroy, Identifiable<Contact, number> {

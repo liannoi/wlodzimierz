@@ -8,3 +8,17 @@
   -moz-box-shadow: 0 5px 10px 2px rgba(242, 242, 242, 0.8) inset;
   box-shadow: 0 5px 10px 2px rgba(242, 242, 242, 0.8) inset;
 }
+
+.card:hover div.hide {
+  display: inline-block;
+}
+
+div.hide {
+  display: none;
+}
+
+@media only screen and (max-width: 992px) {
+  div.hide {
+    display: inline-block;
+  }
+}

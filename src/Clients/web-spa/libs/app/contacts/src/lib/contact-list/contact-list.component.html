@@ -1,18 +1,18 @@
 <ng-container
-  *ngIf="!(contacts$ | async).items; then loadingBlock; else contactsDecide"
+  *ngIf='!(contacts$ | async).items; then loadingBlock; else contactsDecide'
 ></ng-container>
 
 <ng-template #loadingBlock>
-  <div class="app-loading">
-    <svg class="spinner" viewBox="25 25 50 50">
+  <div class='app-loading'>
+    <svg class='spinner' viewBox='25 25 50 50'>
       <circle
-        class="path"
-        cx="50"
-        cy="50"
-        fill="none"
-        r="20"
-        stroke-miterlimit="10"
-        stroke-width="2"
+        class='path'
+        cx='50'
+        cy='50'
+        fill='none'
+        r='20'
+        stroke-miterlimit='10'
+        stroke-width='2'
       />
     </svg>
   </div>
@@ -20,46 +20,46 @@
 
 <ng-template #contactsDecide>
   <ng-container
-    *ngIf="
+    *ngIf='
       (contacts$ | async).items.length > 0;
       then contactsBlock;
       else initialBlock
-    "
+    '
   ></ng-container>
 </ng-template>
 
 <ng-template #contactsBlock>
-  <div class="row mt-n2">
-    <div class="offset-10 offset-md-9 offset-xl-8"></div>
-    <div class="col-2 col-md-3 col-xl-4">
-      <a class="btn btn-success pl-3 pr-3" routerLink="create">New</a>
+  <div class='row mt-n2'>
+    <div class='offset-10 offset-md-9 offset-xl-8'></div>
+    <div class='col-1'>
+      <a class='btn btn-success pl-3 pr-3' routerLink='create'>New</a>
     </div>
   </div>
-  <div class="row mt-3">
-    <div class="offset-md-1 offset-lg-2 offset-xl-3"></div>
-    <div class="col-12 col-md-10 col-lg-8 col-xl-6">
+  <div class='row mt-3'>
+    <div class='offset-md-1 offset-lg-2 offset-xl-3'></div>
+    <div class='col-12 col-md-10 col-lg-8 col-xl-6'>
       <wlodzimierz-contact
-        (selected)="onSelected($event)"
-        *ngFor="let contact of (contacts$ | async).items; trackBy: identify"
-        [contact]="contact"
+        (selected)='onSelected($event)'
+        *ngFor='let contact of (contacts$ | async).items; trackBy: identify'
+        [contact]='contact'
       ></wlodzimierz-contact>
     </div>
-    <div class="offset-md-1 offset-lg-2 offset-xl-3"></div>
+    <div class='offset-md-1 offset-lg-2 offset-xl-3'></div>
   </div>
 </ng-template>
 
 <ng-template #initialBlock>
-  <div class="row">
-    <div class="col-sm-12">
-      <h2 class="text-center font-weight-light">Add your first contact</h2>
+  <div class='row'>
+    <div class='col-sm-12'>
+      <h2 class='text-center font-weight-light'>Add your first contact</h2>
     </div>
   </div>
-  <div class="row mt-4 d-flex justify-content-center align-content-center">
-    <div class="col-sm-4">
+  <div class='row mt-4 d-flex justify-content-center align-content-center'>
+    <div class='col-sm-4'>
       <wlodzimierz-contact-initial
-        (createContact)="onCreate($event)"
-        (searchContact)="onSearch($event)"
-        [filterable$]="filterable$"
+        (createContact)='onCreate($event)'
+        (searchContact)='onSearch($event)'
+        [filterable$]='filterable$'
       ></wlodzimierz-contact-initial>
     </div>
   </div>

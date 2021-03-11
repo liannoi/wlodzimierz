@@ -7,6 +7,7 @@ import { NotificationsEndpointBuilder } from './common/builders/notifications-en
 
 @NgModule({
   imports: [StorageModule],
-  providers: [NotificationsService, NotificationsEndpointBuilder],
+  providers: [NotificationsService, NotificationsEndpointBuilder]
 })
-export class NotificationsModule {}
+export class NotificationsModule {
+}

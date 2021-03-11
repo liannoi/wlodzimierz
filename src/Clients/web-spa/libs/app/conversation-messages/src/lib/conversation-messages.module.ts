@@ -31,23 +31,24 @@ import { ConversationMessageCreateComponent } from './conversation-message-creat
       fromConversationMessages.CONVERSATION_MESSAGES_FEATURE_KEY,
       fromConversationMessages.reducer
     ),
-    EffectsModule.forFeature([ConversationMessagesEffects]),
+    EffectsModule.forFeature([ConversationMessagesEffects])
   ],
   declarations: [
     ConversationMessageComponent,
     ConversationMessageCreateComponent,
     ConversationMessageListComponent,
     ReversePipe,
-    UsersEqualsPipe,
+    UsersEqualsPipe
   ],
   providers: [
     ConversationMessagesEndpointBuilder,
     ConversationMessagesService,
-    ConversationMessagesFacade,
+    ConversationMessagesFacade
   ],
   exports: [
     ConversationMessageListComponent,
-    ConversationMessageCreateComponent,
-  ],
+    ConversationMessageCreateComponent
+  ]
 })
-export class ConversationMessagesModule {}
+export class ConversationMessagesModule {
+}

@@ -16,8 +16,9 @@ import { ChatRoutingModule } from './chat-routing.module';
     StorageModule,
     ConversationsModule,
     ConversationMessagesModule,
-    ChatRoutingModule,
+    ChatRoutingModule
   ],
-  declarations: [ChatComponent],
+  declarations: [ChatComponent]
 })
-export class ChatModule {}
+export class ChatModule {
+}

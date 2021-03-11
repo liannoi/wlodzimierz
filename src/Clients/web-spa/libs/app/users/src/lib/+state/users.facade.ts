@@ -18,7 +18,8 @@ export class UsersFacade {
     select(UsersSelectors.getFilterable)
   );
 
-  public constructor(private store: Store) {}
+  public constructor(private store: Store) {
+  }
 
   public verify(): void {
     this.store.dispatch(UsersActions.verify());

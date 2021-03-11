@@ -53,5 +53,6 @@ export class ConversationsEffects {
     private usersService: UsersService,
     private conversationsService: ConversationsService,
     private router: Router
-  ) {}
+  ) {
+  }
 }

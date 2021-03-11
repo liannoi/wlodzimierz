@@ -20,14 +20,14 @@ export const conversationMessagesAdapter: EntityAdapter<ConversationMessage> = c
 
 export const initialState: State = conversationMessagesAdapter.getInitialState({
   messages: defaultModel(),
-  loaded: false,
+  loaded: false
 });
 
 const conversationMessagesReducer = createReducer(
   initialState,
   on(ConversationMessagesActions.getAllSuccess, (state, { messages }) => ({
     ...state,
-    messages,
+    messages
   })),
   on(ConversationMessagesActions.getAllFailure, () => ({ ...initialState }))
 );

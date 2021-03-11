@@ -29,7 +29,7 @@ import { UsersService } from './shared/storage/services/users.service';
     StorageModule,
     UsersRoutingModule,
     StoreModule.forFeature(fromUsers.USERS_FEATURE_KEY, fromUsers.reducer),
-    EffectsModule.forFeature([UsersEffects]),
+    EffectsModule.forFeature([UsersEffects])
   ],
   declarations: [SignInComponent, SignUpComponent, SignOutComponent],
   providers: [
@@ -39,7 +39,8 @@ import { UsersService } from './shared/storage/services/users.service';
     JwtTokenService,
     AuthFormFacade,
     JwtTokenGuard,
-    UsersService,
-  ],
+    UsersService
+  ]
 })
-export class UsersModule {}
+export class UsersModule {
+}

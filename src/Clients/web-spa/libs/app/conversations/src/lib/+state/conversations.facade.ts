@@ -17,7 +17,8 @@ export class ConversationsFacade {
     select(ConversationsSelectors.getConversations)
   );
 
-  public constructor(private store: Store) {}
+  public constructor(private store: Store) {
+  }
 
   public getAll(currentUser: UserModel): void {
     this.store.dispatch(ConversationsActions.getAll({ currentUser }));

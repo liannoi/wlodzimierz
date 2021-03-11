@@ -31,7 +31,7 @@ export class ConversationsService extends AbstractApiService {
       .build();
 
     return this.http.get<ConversationMessagesList>(endpoint.url, {
-      params: { conversationId: conversation.conversationId.toString() },
+      params: { conversationId: conversation.conversationId.toString() }
     });
   }
 

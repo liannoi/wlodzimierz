@@ -35,7 +35,7 @@ export class ContactsEffects {
         this.contactsService.create(action.contact).pipe(
           map(() =>
             ContactsActions.createSuccess({
-              ownerUser: action.contact.ownerUser,
+              ownerUser: action.contact.ownerUser
             })
           ),
           catchError((error) => of(ContactsActions.createFailure(error)))
@@ -59,5 +59,6 @@ export class ContactsEffects {
     private contactsService: ContactsService,
     private contactsFacade: ContactsFacade,
     private router: Router
-  ) {}
+  ) {
+  }
 }

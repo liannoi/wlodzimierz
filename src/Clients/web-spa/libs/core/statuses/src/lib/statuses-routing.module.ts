@@ -6,6 +6,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [{ path: '**', component: NotFoundComponent }];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes)]
 })
-export class StatusesRoutingModule {}
+export class StatusesRoutingModule {
+}

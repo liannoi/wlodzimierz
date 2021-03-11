@@ -30,14 +30,15 @@ import { ConversationsModule } from '@wlodzimierz/app/conversations';
       fromContacts.CONTACTS_FEATURE_KEY,
       fromContacts.reducer
     ),
-    EffectsModule.forFeature([ContactsEffects]),
+    EffectsModule.forFeature([ContactsEffects])
   ],
   declarations: [
     ContactListComponent,
     ContactComponent,
     ContactInitialComponent,
-    ContactCreateComponent,
+    ContactCreateComponent
   ],
-  providers: [ContactsFacade, ContactsEndpointBuilder, ContactsService],
+  providers: [ContactsFacade, ContactsEndpointBuilder, ContactsService]
 })
-export class ContactsModule {}
+export class ContactsModule {
+}

@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Contact } from '../shared/models/contact.model';
 import { SelectedNotification } from '../shared/notifications/selected.notification';
@@ -13,7 +7,7 @@ import { SelectedNotification } from '../shared/notifications/selected.notificat
   selector: 'wlodzimierz-contact',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css'],
+  styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
   @Input() public contact: Contact;
