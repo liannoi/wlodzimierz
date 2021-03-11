@@ -7,9 +7,12 @@ import { CookieService } from 'ngx-cookie-service';
 import { CookiesService } from '../common/interfaces/cookies.service';
 
 @Injectable()
-export abstract class AbstractCookieService<TCookie> implements CookiesService<TCookie> {
-  protected constructor(protected name: string, protected service: CookieService) {
-  }
+export abstract class AbstractCookieService<TCookie>
+  implements CookiesService<TCookie> {
+  protected constructor(
+    protected name: string,
+    protected service: CookieService
+  ) {}
 
   public abstract read(): TCookie;
 
@@ -21,7 +24,7 @@ export abstract class AbstractCookieService<TCookie> implements CookiesService<T
     const date = new Date();
     const minutes = shouldRemember ? 15 : 5;
     date.setMinutes(date.getMinutes() + minutes);
-    this.write( value, date);
+    this.write(value, date);
   }
 
   public check(): boolean {

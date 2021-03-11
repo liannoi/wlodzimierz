@@ -5,33 +5,32 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('@wlodzimierz/core/home').then((m) => m.HomeModule)
+      import('@wlodzimierz/core/home').then((m) => m.HomeModule),
   },
   {
     path: 'docs',
     loadChildren: () =>
-      import('@wlodzimierz/core/docs').then((m) => m.DocsModule)
+      import('@wlodzimierz/core/docs').then((m) => m.DocsModule),
   },
   {
     path: 'app',
     loadChildren: () =>
-      import('@wlodzimierz/core/chat').then((m) => m.ChatModule)
+      import('@wlodzimierz/core/chat').then((m) => m.ChatModule),
   },
   {
     path: 'contacts',
     loadChildren: () =>
-      import('@wlodzimierz/app/contacts').then((m) => m.ContactsModule)
+      import('@wlodzimierz/app/contacts').then((m) => m.ContactsModule),
   },
   {
     path: '**',
     loadChildren: () =>
-      import('@wlodzimierz/core/statuses').then((m) => m.StatusesModule)
-  }
+      import('@wlodzimierz/core/statuses').then((m) => m.StatusesModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

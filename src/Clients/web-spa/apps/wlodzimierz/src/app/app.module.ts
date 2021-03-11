@@ -32,8 +32,8 @@ export const APP_CONFIG = new InjectionToken('Application config');
         metaReducers: !environment.production ? [] : [],
         runtimeChecks: {
           strictActionImmutability: true,
-          strictStateImmutability: true
-        }
+          strictStateImmutability: true,
+        },
       }
     ),
     EffectsModule.forRoot([]),
@@ -42,12 +42,11 @@ export const APP_CONFIG = new InjectionToken('Application config');
     NgrxErrorModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-      logOnly: environment.production
-    })
+      logOnly: environment.production,
+    }),
   ],
   declarations: [AppComponent, FooterComponent, TopMenuComponent],
   bootstrap: [AppComponent],
-  providers: [{ provide: APP_CONFIG, useValue: environment }]
+  providers: [{ provide: APP_CONFIG, useValue: environment }],
 })
-export class AppModule {
-}
+export class AppModule {}

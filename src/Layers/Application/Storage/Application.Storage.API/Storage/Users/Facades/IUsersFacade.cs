@@ -15,7 +15,7 @@ namespace Application.Storage.API.Storage.Users.Facades
         Task MapAsync(ConversationDto conversation);
 
         Task MapAsync(IPaginatedList<ConversationDto> list);
-        
+
         Task MapAsync(ConversationMessageDto message);
 
         Task MapAsync(IPaginatedList<ConversationMessageDto> list);

@@ -14,7 +14,7 @@ import { defaultModel } from '../../../../../shared/storage/src/lib/common/defau
 @Component({
   selector: 'wlodzimierz-sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+  styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent implements OnInit, OnDestroy {
   public signInForm: AuthFormGroup;
@@ -73,10 +73,10 @@ export class SignInComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.pattern(
             '^(?=.{6,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$'
-          )
+          ),
         ]),
         password: new FormControl(this.user.password, [Validators.required]),
-        shouldRemember: new FormControl(this.user.shouldRemember)
+        shouldRemember: new FormControl(this.user.shouldRemember),
       },
       { validators: unauthorizedValidator }
     );

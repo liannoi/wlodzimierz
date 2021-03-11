@@ -85,7 +85,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private async listenSockets() {
     this.conversationMessagesService.onCreated(() => {
-      this.messagesFacade.getAll(this.bindingConversation);
+      // this.messagesFacade.getAll(this.bindingConversation);
       this.conversationsFacade.getAll(this.user);
     });
     await this.notificationsService.start();

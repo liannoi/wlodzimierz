@@ -31,7 +31,7 @@ export class UsersEffects {
           map((response) =>
             UsersActions.verifySuccess({
               currentUser: response,
-              token: this.tokenService.read()
+              token: this.tokenService.read(),
             })
           ),
           catchError((error) => of(UsersActions.verifyFailure(error)))
@@ -48,7 +48,7 @@ export class UsersEffects {
           map((response) =>
             UsersActions.signInSuccess({
               token: response,
-              shouldRemember: action.currentUser.shouldRemember
+              shouldRemember: action.currentUser.shouldRemember,
             })
           ),
           catchError((error) => of(UsersActions.signInFailure(error)))
@@ -158,6 +158,5 @@ export class UsersEffects {
     private formFacade: AuthFormFacade,
     private usersFacade: UsersFacade,
     private usersService: UsersService
-  ) {
-  }
+  ) {}
 }

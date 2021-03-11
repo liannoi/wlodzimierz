@@ -21,7 +21,7 @@ export class AuthFormFacade implements Disposable {
     isFailure: false;
   }>({
     error: undefined,
-    isFailure: false
+    isFailure: false,
   });
 
   public onDispose(): void {

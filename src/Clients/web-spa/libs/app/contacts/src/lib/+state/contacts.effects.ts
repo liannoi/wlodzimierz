@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { of } from 'rxjs';
-import { catchError, concatMap, delay, map, tap } from 'rxjs/operators';
+import { catchError, concatMap, map, tap } from 'rxjs/operators';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
@@ -10,8 +11,6 @@ import * as ContactsActions from './contacts.actions';
 import { UsersService } from '../../../../users/src/lib/shared/storage/services/users.service';
 import { ContactsService } from '../shared/storage/contacts.service';
 import { ContactsFacade } from './contacts.facade';
-import { Router } from '@angular/router';
-import { AbstractCookieService } from '../../../../../shared/storage/src/lib/local/abstract-cookie.service';
 
 @Injectable()
 export class ContactsEffects {

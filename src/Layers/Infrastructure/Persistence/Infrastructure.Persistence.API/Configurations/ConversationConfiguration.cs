@@ -8,6 +8,7 @@ namespace Infrastructure.Persistence.API.Configurations
     {
         public void Configure(EntityTypeBuilder<Conversation> builder)
         {
+            builder.Ignore(e => e.Notifications);
             builder.Property(e => e.LeftUserId).IsRequired().HasMaxLength(450);
             builder.Property(e => e.RightUserId).IsRequired().HasMaxLength(450);
         }

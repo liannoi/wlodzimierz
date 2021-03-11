@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Application.Infrastructure.Persistence.API.Interfaces;
 using Domain.API.Entities;
+using Domain.API.Notifications.Conversations;
 using MediatR;
 
 namespace Application.Storage.API.Storage.Conversations.Commands.Create
@@ -29,6 +30,7 @@ namespace Application.Storage.API.Storage.Conversations.Commands.Create
                 };
 
                 await _context.Conversations.AddAsync(entity, cancellationToken);
+                entity.Notifications.Add(new CreatedNotification(entity));
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return entity.ConversationId;

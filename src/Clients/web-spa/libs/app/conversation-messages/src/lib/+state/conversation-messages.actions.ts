@@ -26,7 +26,7 @@ export const create = createAction(
 );
 export const createSuccess = createAction(
   '[Conversation Messages/API] Create Success',
-  props<{ id: number }>()
+  props<{ conversation: Conversation }>()
 );
 export const createFailure = createAction(
   '[Conversation Messages/API] Create Failure',

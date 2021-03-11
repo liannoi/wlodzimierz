@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 
 import { Observable, of } from 'rxjs';
 
@@ -10,8 +16,7 @@ export class JwtTokenGuard implements CanActivate {
   public constructor(
     private tokenService: JwtTokenService,
     private router: Router
-  ) {
-  }
+  ) {}
 
   public canActivate(
     route: ActivatedRouteSnapshot,

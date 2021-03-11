@@ -39,9 +39,9 @@
     <div class="offset-md-1 offset-lg-2 offset-xl-3"></div>
     <div class="col-12 col-md-10 col-lg-8 col-xl-6">
       <wlodzimierz-contact
+        (selected)="onSelected($event)"
         *ngFor="let contact of (contacts$ | async).items; trackBy: identify"
         [contact]="contact"
-        (selected)="onSelected($event)"
       ></wlodzimierz-contact>
     </div>
     <div class="offset-md-1 offset-lg-2 offset-xl-3"></div>

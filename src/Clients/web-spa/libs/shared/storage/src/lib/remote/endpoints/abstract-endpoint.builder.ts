@@ -50,7 +50,8 @@ export abstract class AbstractEndpointBuilder implements EndpointBuilder {
 
     if (this.parameter) result += `/${this.parameter}`;
     if (this.action) result += `/${this.action}`;
-    if (this.pageSize || this.pageSize > 0) result += `?PageSize=${this.pageSize}`;
+    if (this.pageSize || this.pageSize > 0)
+      result += `?PageSize=${this.pageSize}`;
 
     return { url: result };
   }

@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Application.Infrastructure.Caching.API.Extensions;
 using Application.Infrastructure.Caching.API.Interfaces;
 using Application.Infrastructure.Persistence.API.Interfaces;
 using Application.Paging.API;

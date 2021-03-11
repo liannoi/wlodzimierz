@@ -21,20 +21,22 @@ export class ConversationsService extends AbstractApiService {
     super(http, endpointBuilder);
   }
 
-  public getMessages(conversation: Conversation): Observable<ConversationMessagesList> {
+  public getMessages(
+    conversation: Conversation
+  ): Observable<ConversationMessagesList> {
     const endpoint = this.endpointBuilder
       .reset()
       .withAction('Messages')
       .withPageSize(99)
       .build();
 
-    return this.http.get<ConversationMessagesList>(endpoint.url, { params: { 'conversationId': conversation.conversationId.toString() } });
+    return this.http.get<ConversationMessagesList>(endpoint.url, {
+      params: { conversationId: conversation.conversationId.toString() },
+    });
   }
 
   public create(conversation: Conversation): Observable<number> {
-    const endpoint = this.endpointBuilder
-      .reset()
-      .build();
+    const endpoint = this.endpointBuilder.reset().build();
 
     return this.http.post<number>(endpoint.url, conversation);
   }

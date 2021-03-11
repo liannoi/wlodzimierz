@@ -78,8 +78,8 @@ namespace Application.Storage.API.Storage.Conversations.Queries.Messages
                     .OrderByDescending(x => x.Publish)
                     .ProjectTo<ConversationMessageDto>(_mapper.ConfigurationProvider)
                     .ProjectToPaginatedListAsync(query.PageNumber, query.PageSize)
-                    .MapUsersAsync(_usersFacade);
-                // .Cache(_cache, key);
+                    .MapUsersAsync(_usersFacade)
+                    .Cache(_cache, key);
             }
 
             private async Task<PaginatedList<ConversationMessageDto>> ReadFromCache(dynamic key)

@@ -23,14 +23,14 @@ export const usersAdapter: EntityAdapter<UserModel> = createEntityAdapter<UserMo
 export const initialState: State = usersAdapter.getInitialState({
   currentUser: defaultModel(),
   filterable: defaultModel(),
-  loaded: false
+  loaded: false,
 });
 
 const usersReducer = createReducer(
   initialState,
   on(UsersActions.verifySuccess, (state, { currentUser }) => ({
     ...state,
-    currentUser
+    currentUser,
   })),
   on(UsersActions.verifyFailure, () => ({ ...initialState })),
   on(UsersActions.signInSuccess, (state) => ({ ...state })),
@@ -40,7 +40,7 @@ const usersReducer = createReducer(
   on(UsersActions.signUpFailure, () => ({ ...initialState })),
   on(UsersActions.filterSuccess, (state, { filterable }) => ({
     ...state,
-    filterable
+    filterable,
   })),
   on(UsersActions.filterFailure, () => ({ ...initialState }))
 );

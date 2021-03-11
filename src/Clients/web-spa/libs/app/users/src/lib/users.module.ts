@@ -39,7 +39,7 @@ import { UsersService } from './shared/storage/services/users.service';
     JwtTokenService,
     AuthFormFacade,
     JwtTokenGuard,
-    UsersService
+    UsersService,
   ],
 })
 export class UsersModule {}

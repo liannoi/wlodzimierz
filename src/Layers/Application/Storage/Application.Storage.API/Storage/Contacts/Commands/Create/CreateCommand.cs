@@ -33,7 +33,7 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Create
                 var entity = new Contact
                 {
                     OwnerUserId = command.OwnerUserId ?? command.OwnerUser.UserId,
-                    ContactUserId = command.ContactUserId??command.ContactUser.UserId,
+                    ContactUserId = command.ContactUserId ?? command.ContactUser.UserId,
                     FirstName = command.FirstName,
                     LastName = command.LastName,
                     Email = command.Email,
