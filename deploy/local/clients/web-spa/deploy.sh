@@ -2,4 +2,4 @@
 
 cd ../../../../src/Clients/web-spa
 npm install &&
-npm run start-prod
+npm run start-nx
