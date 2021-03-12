@@ -6,6 +6,8 @@ import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
 import { ChangedNotification } from '../shared/notifications/change/changed.notification';
 import { Conversation } from '../shared/models/conversation.model';
 
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+
 @Component({
   selector: 'wlodzimierz-conversation-list',
   changeDetection: ChangeDetectionStrategy.OnPush,

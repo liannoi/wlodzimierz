@@ -4,7 +4,10 @@ import { Conversation } from '../shared/models/conversation.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UserModel } from '../../../../users/src/lib/shared/models/user.model';
 import { ChangedNotification } from '../shared/notifications/change/changed.notification';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { DateService } from '../../../../../shared/date/src/lib/services/date.service';
+
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 
 @Component({
   selector: 'wlodzimierz-conversation',
@@ -29,7 +32,9 @@ export class ConversationComponent {
   }
 
   public get date(): string {
-    return this.dateService.toToday(this.conversation.lastMessage.publish);
+    const publish = this.conversation.lastMessage?.publish;
+
+    return publish ? this.dateService.toToday(publish) : '';
   }
 
   public onChangeConversation(): void {

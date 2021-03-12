@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { Observable, Subscription } from 'rxjs';
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UsersFacade } from '@wlodzimierz/app/users';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UserModel } from 'libs/app/users/src/lib/shared/models/user.model';
@@ -25,7 +27,8 @@ import { CreatedNotification } from '../../../../app/conversation-messages/src/l
 import { ConversationsFacade } from '../../../../app/conversations/src/lib/+state/conversations.facade';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ConversationMessagesFacade } from '../../../../app/conversation-messages/src/lib/+state/conversation-messages.facade';
-import { Title } from '@angular/platform-browser';
+
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 
 @Component({
   selector: 'wlodzimierz-chat',
