@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
 
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UsersFacade } from '@wlodzimierz/app/users';
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
@@ -85,7 +86,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private async listenSockets() {
     this.conversationMessagesService.onCreated(() => {
-      // this.messagesFacade.getAll(this.bindingConversation);
+      this.messagesFacade.getAll(this.bindingConversation);
       this.conversationsFacade.getAll(this.user);
     });
     await this.notificationsService.start();

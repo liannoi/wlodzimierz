@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { DatePipe } from '@angular/common';
 
 import { ConversationMessage } from '../shared/models/conversation-message.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries

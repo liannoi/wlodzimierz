@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { of } from 'rxjs';
-import { catchError, concatMap, map, tap } from 'rxjs/operators';
+import { catchError, concatMap, map } from 'rxjs/operators';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
@@ -9,7 +9,6 @@ import * as ConversationMessagesActions from './conversation-messages.actions';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ConversationsService } from '../../../../conversations/src/lib/shared/storage/conversations.service';
 import { ConversationMessagesService } from '../shared/storage/conversation-messages.service';
-import { ConversationMessagesFacade } from './conversation-messages.facade';
 
 @Injectable()
 export class ConversationMessagesEffects {
@@ -34,11 +33,7 @@ export class ConversationMessagesEffects {
       ofType(ConversationMessagesActions.create),
       concatMap((action) =>
         this.messagesService.create(action.message).pipe(
-          map((response) =>
-            ConversationMessagesActions.createSuccess({
-              conversation: action.message.conversation
-            })
-          ),
+          map((response) => ConversationMessagesActions.createSuccess()),
           catchError((error) =>
             of(ConversationMessagesActions.createFailure(error))
           )
@@ -47,20 +42,10 @@ export class ConversationMessagesEffects {
     )
   );
 
-  createSuccess$ = createEffect(
-    () =>
-      this.actions$.pipe(
-        ofType(ConversationMessagesActions.createSuccess),
-        tap((action) => this.messagesFacade.getAll(action.conversation))
-      ),
-    { dispatch: false }
-  );
-
   public constructor(
     private actions$: Actions,
     private conversationsService: ConversationsService,
-    private messagesService: ConversationMessagesService,
-    private messagesFacade: ConversationMessagesFacade
+    private messagesService: ConversationMessagesService
   ) {
   }
 }
