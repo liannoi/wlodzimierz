@@ -1,8 +1,26 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators
+} from '@angular/forms';
 
 import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map
+} from 'rxjs/operators';
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
@@ -32,18 +50,6 @@ export class ContactInitialComponent implements OnInit, OnDestroy {
 
   public get contactUser(): AbstractControl {
     return this.creationForm.get('contactUser') as AbstractControl;
-  }
-
-  public get firstName(): AbstractControl {
-    return this.creationForm.get('firstName') as AbstractControl;
-  }
-
-  public get lastName(): AbstractControl {
-    return this.creationForm.get('lastName') as AbstractControl;
-  }
-
-  public get email(): AbstractControl {
-    return this.creationForm.get('email') as AbstractControl;
   }
 
   public ngOnInit(): void {
@@ -81,10 +87,7 @@ export class ContactInitialComponent implements OnInit, OnDestroy {
 
   private setupForm(): void {
     this.creationForm = new FormGroup({
-      contactUser: new FormControl('', [Validators.required]),
-      firstName: new FormControl(this.contact.firstName, [Validators.required]),
-      lastName: new FormControl(this.contact.lastName),
-      email: new FormControl(this.contact.email, [Validators.required])
+      contactUser: new FormControl('', [Validators.required])
     });
   }
 

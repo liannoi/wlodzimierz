@@ -1,3 +1,10 @@
+/* Importing Bootstrap SCSS file. */
+@import '../../../../../../node_modules/bootstrap/scss/bootstrap';
+
+.text-error {
+  @extend .text-danger;
+}
+
 .bg-purple {
   background-color: #f6f8fa;
 }

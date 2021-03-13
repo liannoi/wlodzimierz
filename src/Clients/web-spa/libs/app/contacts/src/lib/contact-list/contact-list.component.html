@@ -30,15 +30,22 @@
 
 <ng-template #contactsBlock>
   <div class='row mt-n2'>
+    <div class='col-12'>
+      <h2 class='text-center'>Your contacts</h2>
+    </div>
+  </div>
+  <div class='row mt-2'>
     <div class='offset-8 offset-sm-9 offset-xl-8'></div>
     <div class='col-4 col-sm-3 col-xl-4'>
-      <a class='btn btn-success pl-3 pr-3 disabled'>New</a>
+      <a class='btn btn-success pl-3 pr-3' routerLink='create'>New</a>
     </div>
   </div>
   <div class='row mt-3'>
     <div class='offset-md-1 offset-lg-2 offset-xl-3'></div>
     <div class='col-12 col-md-10 col-lg-8 col-xl-6'>
       <wlodzimierz-contact
+        (deleted)='onDeleted($event)'
+        (edited)='onEdited($event)'
         (selected)='onSelected($event)'
         *ngFor='let contact of (contacts$ | async).items; trackBy: identify'
         [contact]='contact'

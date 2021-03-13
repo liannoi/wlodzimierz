@@ -12,13 +12,13 @@ namespace Application.Storage.API.Storage.Contacts.Models
     public class ContactDto : IMapFrom<Contact>, IFilterable<ContactDto>
     {
         public int ContactId { get; set; }
-        public string OwnerUserId { get; set; }
+        public string? OwnerUserId { get; set; }
         public UserDto OwnerUser { get; set; }
-        public string ContactUserId { get; set; }
+        public string? ContactUserId { get; set; }
         public UserDto ContactUser { get; set; }
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public string Email { get; set; }
+        public string? Email { get; set; }
         public string? Photo { get; set; }
 
         public Expression<Func<ContactDto, bool>> Filter()

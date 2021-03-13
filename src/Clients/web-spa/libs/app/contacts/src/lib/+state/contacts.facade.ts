@@ -27,4 +27,8 @@ export class ContactsFacade {
   public create(contact: Contact): void {
     this.store.dispatch(ContactsActions.create({ contact }));
   }
+
+  public delete(contact: Contact): void {
+    this.store.dispatch(ContactsActions.deleteAction({ contact }));
+  }
 }

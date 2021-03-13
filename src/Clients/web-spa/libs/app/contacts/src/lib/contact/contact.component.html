@@ -1,14 +1,12 @@
-<div (click)='onSelected()' class='card mb-3'>
+<div class='card mb-3'>
   <div class='row no-gutters'>
     <div class='offset-1'></div>
     <div class='col-1'>
-      <img [src]='photo' alt='User' class='img-fluid mt-4' />
+      <img [src]='photo' alt='User' class='img-fluid mt-4 mb-4' />
     </div>
-    <div class='col-5 col-sm-6'>
+    <div (click)='onSelected()' class='col-5 col-sm-6'>
       <div class='card-body'>
-        <h5 class='card-title'>
-          {{ contact.firstName }} {{ contact.lastName }}
-        </h5>
+        <h5 class='card-title'>{{ name }}</h5>
         <p class='card-text'>
           <small class='text-muted'>{{ contact.email }}</small>
         </p>
@@ -16,8 +14,8 @@
     </div>
     <div class='col-4 col-sm-3'>
       <div class='btn-group-sm hide mt-4 pt-2' role='group'>
-        <a class='btn btn-dark mr-1 disabled'>Edit</a>
-        <a class='btn btn-danger disabled'>Delete</a>
+        <a (click)='onEditable()' class='btn btn-dark mr-1'>Edit</a>
+        <a (click)='onDeleted()' class='btn btn-danger'>Delete</a>
       </div>
     </div>
     <div class='offset-1'></div>

@@ -34,7 +34,7 @@ namespace Infrastructure.EntityFramework.API.Context
                 var notification = ChangeTracker.Entries<INotifiable>()
                     .Select(x => x.Entity.Notifications)
                     .SelectMany(x => x)
-                    .FirstOrDefault(domainEvent => !domainEvent.IsPublished);
+                    .FirstOrDefault(baseNotification => !baseNotification.IsPublished);
 
                 if (notification == null) break;
 

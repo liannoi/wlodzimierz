@@ -1,6 +1,8 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
+/* core */
+
 body {
   font-family: 'SF Pro Display', 'Helvetica Neue', -apple-system, sans-serif;
   scroll-behavior: smooth;
@@ -15,6 +17,39 @@ html {
 html {
   position: relative;
 }
+
+/* controls */
+
+.event-blocked {
+  cursor: not-allowed;
+}
+
+button[disabled] {
+  @extend .event-blocked;
+}
+
+.text-error {
+  @extend .mt-2;
+  @extend .mb-2;
+  @extend .text-muted;
+  color: #24292e;
+}
+
+.text-fatal {
+  @extend .text-danger;
+  @extend .mt-3;
+}
+
+.text-error,
+.text-fatal {
+  @extend .small;
+}
+
+.btn {
+  font-weight: 500 !important;
+}
+
+/* loading animation  */
 
 .app-loading {
   position: relative;
@@ -65,46 +100,4 @@ html {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -124px;
   }
-}
-
-.event-blocked {
-  cursor: not-allowed;
-}
-
-button[disabled] {
-  @extend .event-blocked;
-}
-
-.text-error {
-  @extend .mt-2;
-  @extend .mb-2;
-  @extend .text-muted;
-  color: #24292e;
-}
-
-.text-fatal {
-  @extend .text-danger;
-  @extend .mt-3;
-}
-
-.text-error,
-.text-fatal {
-  @extend .small;
-}
-
-.btn {
-  font-weight: 500 !important;
-}
-
-.form-control-label {
-  @extend .font-weight-bold;
-}
-
-.form-control-label + .form-control {
-  background-color: #fafbfc;
-  transition: 0.4s;
-}
-
-.form-control-label + .form-control:focus {
-  @extend .bg-white;
 }

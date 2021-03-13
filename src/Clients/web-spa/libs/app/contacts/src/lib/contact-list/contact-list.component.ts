@@ -24,6 +24,8 @@ import { ConversationsFacade } from '../../../../conversations/src/lib/+state/co
 import { Conversation } from '../../../../conversations/src/lib/shared/models/conversation.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { defaultModel } from '../../../../../shared/storage/src/lib/common/defaults/model.default';
+import { DeletedNotification } from '../shared/notifications/deleted.notification';
+import { EditedNotification } from '../shared/notifications/edited.notification';
 
 @Component({
   selector: 'wlodzimierz-contact-list',
@@ -78,6 +80,14 @@ export class ContactListComponent
 
   public identify(index: number, model: Contact): number {
     return model.contactId;
+  }
+
+  public onDeleted(notification: DeletedNotification): void {
+    this.contactsFacade.delete(notification.contact);
+  }
+
+  public onEdited(notification: EditedNotification): void {
+    console.log(notification);
   }
 
   ///////////////////////////////////////////////////////////////////////////

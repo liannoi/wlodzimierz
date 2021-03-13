@@ -9,8 +9,8 @@ namespace Infrastructure.Persistence.API.Configurations
         public void Configure(EntityTypeBuilder<Contact> builder)
         {
             builder.Ignore(e => e.Notifications);
-            builder.Property(e => e.Email).IsRequired().HasMaxLength(128);
-            builder.Property(e => e.FirstName).IsRequired().HasMaxLength(64);
+            builder.Property(e => e.Email).HasMaxLength(128);
+            builder.Property(e => e.FirstName).HasMaxLength(64);
             builder.Property(e => e.LastName).HasMaxLength(64);
             builder.Property(e => e.OwnerUserId).IsRequired().HasMaxLength(450);
             builder.Property(e => e.ContactUserId).IsRequired().HasMaxLength(450);

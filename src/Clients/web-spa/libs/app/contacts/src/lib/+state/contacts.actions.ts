@@ -32,3 +32,16 @@ export const createFailure = createAction(
   '[Contacts/API] Create Failure',
   props<{ error: HttpErrorResponse }>()
 );
+
+export const deleteAction = createAction(
+  '[Contacts/API Delete',
+  props<{ contact: Contact }>()
+);
+export const deleteActionSuccess = createAction(
+  '[Contacts/API] Delete Success',
+  props<{ contact: Contact }>()
+);
+export const deleteActionFailure = createAction(
+  '[Contacts/API] Delete Failure',
+  props<{ error: HttpErrorResponse }>()
+);

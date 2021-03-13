@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { of } from 'rxjs';
 import { catchError, concatMap, map, tap } from 'rxjs/operators';
@@ -53,12 +52,34 @@ export class ContactsEffects {
     { dispatch: false }
   );
 
+  delete$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ContactsActions.deleteAction),
+      concatMap((action) =>
+        this.contactsService.delete(action.contact).pipe(
+          map(() =>
+            ContactsActions.deleteActionSuccess({ contact: action.contact })
+          ),
+          catchError((error) => of(ContactsActions.deleteActionFailure(error)))
+        )
+      )
+    )
+  );
+
+  deleteSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(ContactsActions.deleteActionSuccess),
+        tap((action) => this.contactsFacade.getAll(action.contact.ownerUser))
+      ),
+    { dispatch: false }
+  );
+
   public constructor(
     private actions$: Actions,
     private usersService: UsersService,
     private contactsService: ContactsService,
-    private contactsFacade: ContactsFacade,
-    private router: Router
+    private contactsFacade: ContactsFacade
   ) {
   }
 }

@@ -14,9 +14,9 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Create
         public UserDto OwnerUser { get; set; }
         public string? ContactUserId { get; set; }
         public UserDto ContactUser { get; set; }
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public string Email { get; set; }
+        public string? Email { get; set; }
         public string? Photo { get; set; }
 
         private class Handler : IRequestHandler<CreateCommand, int>

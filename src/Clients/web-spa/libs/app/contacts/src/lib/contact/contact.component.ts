@@ -1,7 +1,15 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 
 import { Contact } from '../shared/models/contact.model';
 import { SelectedNotification } from '../shared/notifications/selected.notification';
+import { DeletedNotification } from '../shared/notifications/deleted.notification';
+import { EditedNotification } from '../shared/notifications/edited.notification';
 
 @Component({
   selector: 'wlodzimierz-contact',
@@ -13,12 +21,34 @@ export class ContactComponent {
   @Input() public contact: Contact;
   @Output()
   public selected: EventEmitter<SelectedNotification> = new EventEmitter<SelectedNotification>();
+  @Output()
+  public deleted: EventEmitter<DeletedNotification> = new EventEmitter<DeletedNotification>();
+  @Output()
+  public edited: EventEmitter<EditedNotification> = new EventEmitter<EditedNotification>();
 
   public get photo(): string {
     return this.contact.photo ? this.contact.photo : 'assets/mock-user.png';
   }
 
+  public get name(): string {
+    let result = '';
+
+    if (this.contact?.firstName) result += this.contact.firstName + ' ';
+    else if (this.contact?.lastName) result += this.contact.lastName;
+    else result = this.contact.contactUser.userName;
+
+    return result;
+  }
+
   public onSelected(): void {
     this.selected.emit({ contact: this.contact });
+  }
+
+  public onDeleted(): void {
+    this.deleted.emit({ contact: this.contact });
+  }
+
+  public onEditable(): void {
+    this.edited.emit({ contact: this.contact });
   }
 }

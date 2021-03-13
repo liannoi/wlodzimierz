@@ -30,7 +30,15 @@ const contactsReducer = createReducer(
     ...state,
     contacts
   })),
-  on(ContactsActions.getAllFailure, () => ({ ...initialState }))
+  on(ContactsActions.getAllFailure, () => ({ ...initialState })),
+  on(ContactsActions.deleteActionSuccess, (state, action) => {
+    const data: ContactsList = { ...state.contacts };
+    data.items = data.items.filter(
+      (e) => e.contactId != action.contact.contactId
+    );
+
+    return { ...state, data };
+  })
 );
 
 export function reducer(state: State | undefined, action: Action) {

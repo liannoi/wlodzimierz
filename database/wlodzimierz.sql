@@ -1,4 +1,4 @@
--- Copyright 2021 Maksym Liannoi
+-- Copyright 2020-2021 Maksym Liannoi
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
 
-USE master;
+/*USE master;
 GO
 
 IF DB_ID('Wlodzimierz') IS NOT NULL DROP DATABASE Wlodzimierz;
@@ -21,7 +21,7 @@ CREATE DATABASE Wlodzimierz;
 GO
 
 USE Wlodzimierz;
-GO
+GO*/
 
 ---------------------------------------------------------------------
 -- Create Tables
@@ -34,28 +34,12 @@ GO
 -- Create table dbo.Groups
 CREATE TABLE dbo.Groups
 (
-    GroupId   INT NOT NULL IDENTITY,
+    GroupId   INT          NOT NULL IDENTITY,
     Name      NVARCHAR(64) NOT NULL,
-    IsRemoved BIT NOT NULL
+    IsRemoved BIT          NOT NULL
         CONSTRAINT DFT_Groups_IsRemoved DEFAULT (0),
     CONSTRAINT PK_Groups PRIMARY KEY (GroupId),
     CONSTRAINT CHK_Groups_Name CHECK (DATALENGTH(Name) >= 2)
-);
-
--- Drop table dbo.UserGroups
-IF OBJECT_ID('dbo.UserGroups') IS NOT NULL DROP TABLE dbo.UserGroups;
-GO
-
--- Create table dbo.UserGroups
-CREATE TABLE dbo.UserGroups
-(
-    GroupId   INT NOT NULL,
-    UserId    NVARCHAR(450) NOT NULL,
-    IsRemoved BIT NOT NULL
-        CONSTRAINT DFT_UserGroups_IsRemoved DEFAULT (0),
-    CONSTRAINT PK_UserGroups PRIMARY KEY (GroupId, UserId),
-    CONSTRAINT PK_UserGroups_GroupId FOREIGN KEY (GroupId) REFERENCES dbo.Groups (GroupId),
-    CONSTRAINT CHK_UserGroups_UserId CHECK (DATALENGTH(UserId) >= 2)
 );
 
 -- Drop table dbo.GroupBlacklists
@@ -65,10 +49,10 @@ GO
 -- Create table dbo.GroupBlacklists
 CREATE TABLE dbo.GroupBlacklists
 (
-    GroupBlacklistId INT NOT NULL IDENTITY,
-    GroupId          INT NOT NULL,
+    GroupBlacklistId INT           NOT NULL IDENTITY,
+    GroupId          INT           NOT NULL,
     BlockedUserId    NVARCHAR(450) NOT NULL,
-    IsRemoved        BIT NOT NULL
+    IsRemoved        BIT           NOT NULL
         CONSTRAINT DFT_GroupBlacklists_IsRemoved DEFAULT (0),
     CONSTRAINT PK_GroupBlacklists PRIMARY KEY (GroupBlacklistId),
     CONSTRAINT FK_GroupBlacklists_GroupId FOREIGN KEY (GroupId) REFERENCES dbo.Groups (GroupId),
@@ -82,10 +66,10 @@ GO
 -- Create table dbo.GroupAdministrators
 CREATE TABLE dbo.GroupAdministrators
 (
-    GroupAdministratorId INT NOT NULL IDENTITY,
-    GroupId              INT NOT NULL,
+    GroupAdministratorId INT           NOT NULL IDENTITY,
+    GroupId              INT           NOT NULL,
     AdministratorUserId  NVARCHAR(450) NOT NULL,
-    IsRemoved            BIT NOT NULL
+    IsRemoved            BIT           NOT NULL
         CONSTRAINT DFT_GroupAdministrators_IsRemoved DEFAULT (0),
     CONSTRAINT PK_GroupAdministrators PRIMARY KEY (GroupAdministratorId),
     CONSTRAINT FK_GroupAdministrators_GroupId FOREIGN KEY (GroupId) REFERENCES dbo.Groups (GroupId),
@@ -99,19 +83,35 @@ GO
 -- Create table dbo.GroupMessages
 CREATE TABLE dbo.GroupMessages
 (
-    GroupMessageId INT      NOT NULL IDENTITY,
-    GroupId        INT      NOT NULL,
-    OwnerUserId    NVARCHAR(450) NOT NULL,
+    GroupMessageId INT            NOT NULL IDENTITY,
+    GroupId        INT            NOT NULL,
+    OwnerUserId    NVARCHAR(450)  NOT NULL,
     Message        NVARCHAR(1024) NOT NULL,
-    Publish        DATETIME NOT NULL
+    Publish        DATETIME       NOT NULL
         CONSTRAINT DFT_GroupMessages_Publish DEFAULT (GETDATE()),
-    IsRemoved      BIT      NOT NULL
+    IsRemoved      BIT            NOT NULL
         CONSTRAINT DFT_GroupMessages_IsRemoved DEFAULT (0),
     CONSTRAINT PK_GroupMessages PRIMARY KEY (GroupMessageId),
     CONSTRAINT FK_GroupMessages_GroupId FOREIGN KEY (GroupId) REFERENCES dbo.Groups (GroupId),
     CONSTRAINT CHK_GroupMessages_OwnerUserId CHECK (DATALENGTH(OwnerUserId) >= 2),
     CONSTRAINT CHK_GroupMessages_Message CHECK (DATALENGTH(Message) >= 2),
     CONSTRAINT CHK_GroupMessages_Publish CHECK (Publish <= GETDATE())
+);
+
+-- Drop table dbo.UserGroups
+IF OBJECT_ID('dbo.UserGroups') IS NOT NULL DROP TABLE dbo.UserGroups;
+GO
+
+-- Create table dbo.UserGroups
+CREATE TABLE dbo.UserGroups
+(
+    GroupId   INT           NOT NULL,
+    UserId    NVARCHAR(450) NOT NULL,
+    IsRemoved BIT           NOT NULL
+        CONSTRAINT DFT_UserGroups_IsRemoved DEFAULT (0),
+    CONSTRAINT PK_UserGroups PRIMARY KEY (GroupId, UserId),
+    CONSTRAINT FK_UserGroups_GroupId FOREIGN KEY (GroupId) REFERENCES dbo.Groups (GroupId),
+    CONSTRAINT CHK_UserGroups_UserId CHECK (DATALENGTH(UserId) >= 2)
 );
 
 -- Drop table dbo.Conversations
@@ -121,10 +121,10 @@ GO
 -- Create table dbo.Conversations
 CREATE TABLE dbo.Conversations
 (
-    ConversationId INT NOT NULL IDENTITY,
+    ConversationId INT           NOT NULL IDENTITY,
     LeftUserId     NVARCHAR(450) NOT NULL,
     RightUserId    NVARCHAR(450) NOT NULL,
-    IsRemoved      BIT NOT NULL
+    IsRemoved      BIT           NOT NULL
         CONSTRAINT DFT_Conversations_IsRemoved DEFAULT (0),
     CONSTRAINT PK_Conversations PRIMARY KEY (ConversationId),
     CONSTRAINT CHK_Conversations_LeftUserId CHECK (DATALENGTH(LeftUserId) >= 2),
@@ -138,13 +138,13 @@ GO
 -- Create table dbo.ConversationMessages
 CREATE TABLE dbo.ConversationMessages
 (
-    ConversationMessageId INT      NOT NULL IDENTITY,
-    ConversationId        INT      NOT NULL,
-    OwnerUserId           NVARCHAR(450) NOT NULL,
+    ConversationMessageId INT            NOT NULL IDENTITY,
+    ConversationId        INT            NOT NULL,
+    OwnerUserId           NVARCHAR(450)  NOT NULL,
     Message               NVARCHAR(1024) NOT NULL,
-    Publish               DATETIME NOT NULL
+    Publish               DATETIME       NOT NULL
         CONSTRAINT DFT_ConversationMessages_Publish DEFAULT (GETDATE()),
-    IsRemoved             BIT      NOT NULL
+    IsRemoved             BIT            NOT NULL
         CONSTRAINT DFT_ConversationMessages_IsRemoved DEFAULT (0),
     CONSTRAINT PK_ConversationMessages PRIMARY KEY (ConversationMessageId),
     CONSTRAINT FK_ConversationMessages_ConversationId FOREIGN KEY (ConversationId) REFERENCES dbo.Conversations (ConversationId),
@@ -160,20 +160,18 @@ GO
 -- Create table dbo.Contacts
 CREATE TABLE dbo.Contacts
 (
-    ContactId     INT NOT NULL IDENTITY,
+    ContactId     INT           NOT NULL IDENTITY,
     OwnerUserId   NVARCHAR(450) NOT NULL,
     ContactUserId NVARCHAR(450) NOT NULL,
-    FirstName     NVARCHAR(64) NOT NULL,
-    LastName      NVARCHAR(64) NULL,
-    Email         NVARCHAR(128) NOT NULL,
+    FirstName     NVARCHAR(64)  NULL,
+    LastName      NVARCHAR(64)  NULL,
+    Email         NVARCHAR(128) NULL,
     Photo         NVARCHAR(256) NULL,
-    IsRemoved     BIT NOT NULL
+    IsRemoved     BIT           NOT NULL
         CONSTRAINT DFT_Contacts_IsRemoved DEFAULT (0),
     CONSTRAINT PK_Contacts PRIMARY KEY (ContactId),
     CONSTRAINT CHK_Contacts_OwnerUserId CHECK (DATALENGTH(OwnerUserId) >= 2),
-    CONSTRAINT CHK_Contacts_ContactUserId CHECK (DATALENGTH(ContactUserId) >= 2),
-    CONSTRAINT CHK_Contacts_FirstName CHECK (DATALENGTH(FirstName) >= 2),
-    CONSTRAINT CHK_Contacts_Email CHECK (DATALENGTH(Email) >= 2)
+    CONSTRAINT CHK_Contacts_ContactUserId CHECK (DATALENGTH(ContactUserId) >= 2)
 );
 
 -- Drop table dbo.UserBlacklists
@@ -183,10 +181,10 @@ GO
 -- Create table dbo.UserBlacklists
 CREATE TABLE dbo.UserBlacklists
 (
-    UserBlacklistId INT NOT NULL IDENTITY,
+    UserBlacklistId INT           NOT NULL IDENTITY,
     OwnerUserId     NVARCHAR(450) NOT NULL,
     BlockedUserId   NVARCHAR(450) NOT NULL,
-    IsRemoved       BIT NOT NULL
+    IsRemoved       BIT           NOT NULL
         CONSTRAINT DFT_UserBlacklists_IsRemoved DEFAULT (0),
     CONSTRAINT PK_UserBlacklists PRIMARY KEY (UserBlacklistId),
     CONSTRAINT CHK_UserBlacklists_OwnerUserId CHECK (DATALENGTH(OwnerUserId) >= 2),
@@ -434,5 +432,5 @@ INSERT INTO UserBlacklists (owneruserid, blockeduserid)
 VALUES (N'00', N'00');
 
 SET
-NOCOUNT OFF;
+    NOCOUNT OFF;
 GO
