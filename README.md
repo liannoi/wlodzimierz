@@ -86,13 +86,9 @@ The clients are:
 - AutoMapper 10.1
 - FluentValidation 9.3
 - Swagger
-- FluentAssertions 5.10
-- Moq 4.15
-- NUnit
-- Respawn 3.3
 - LinqKit 1.1
 - Redis 6
-- Serilog 2.10
+- FluentAssertions, Moq, NUnit, Respawn
 
 ## Getting Started
 
