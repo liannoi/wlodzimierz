@@ -6,9 +6,9 @@
   '
 ></ng-container>
 <ng-template #primaryMessage>
-  <div class='row mt-3'>
-    <div class='offset-6'></div>
-    <div class='col-6'>
+  <div class='row mt-2'>
+    <div class='offset-1 offset-md-2'></div>
+    <div class='col-11 col-md-10'>
       <div class='card rounded d-inline-block float-right bg-dark text-white'>
         <div class='card-body'>
           <p class='card-text'>{{ message.message }}</p>
@@ -21,8 +21,8 @@
   </div>
 </ng-template>
 <ng-template #lightMessage>
-  <div class='row mt-3'>
-    <div class='col-6'>
+  <div class='row mt-2'>
+    <div class='col-11 col-md-10'>
       <div class='card rounded d-inline-block float-left'>
         <div class='card-body'>
           <p class='card-text'>{{ message.message }}</p>
@@ -32,6 +32,6 @@
         </div>
       </div>
     </div>
-    <div class='offset-6'></div>
+    <div class='offset-1 offset-md-2'></div>
   </div>
 </ng-template>

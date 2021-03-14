@@ -6,7 +6,6 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { DateModule } from '@wlodzimierz/shared/date';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-
 import * as fromConversations from './+state/conversations.reducer';
 import { ConversationsEffects } from './+state/conversations.effects';
 import { ConversationComponent } from './conversation/conversation.component';

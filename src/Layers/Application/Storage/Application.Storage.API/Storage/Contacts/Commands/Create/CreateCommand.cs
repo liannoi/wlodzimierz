@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Infrastructure.Persistence.API.Interfaces;
@@ -5,6 +6,7 @@ using Application.Storage.API.Storage.Users.Models;
 using Domain.API.Entities;
 using Domain.API.Notifications.Contacts;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Storage.API.Storage.Contacts.Commands.Create
 {
@@ -30,7 +32,21 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Create
 
             public async Task<int> Handle(CreateCommand command, CancellationToken cancellationToken)
             {
-                var entity = new Contact
+                var entity = Restore(command);
+
+                var presentContact = await CheckIfPresentAsync(entity, cancellationToken);
+                if (presentContact != null) return presentContact.ContactId;
+
+                await CreateAsync(entity, cancellationToken);
+
+                return entity.ContactId;
+            }
+
+            // Helpers.
+
+            private Contact Restore(CreateCommand command)
+            {
+                return new()
                 {
                     OwnerUserId = command.OwnerUserId ?? command.OwnerUser.UserId,
                     ContactUserId = command.ContactUserId ?? command.ContactUser.UserId,
@@ -39,12 +55,26 @@ namespace Application.Storage.API.Storage.Contacts.Commands.Create
                     Email = command.Email,
                     Photo = command.Photo
                 };
+            }
 
+            private async Task<Contact?> CheckIfPresentAsync(Contact entity, CancellationToken cancellationToken)
+            {
+                return await _context.Contacts.Where(e =>
+                        e.ContactUserId == entity.ContactUserId && e.OwnerUserId == entity.OwnerUserId ||
+                        e.OwnerUserId == entity.ContactUserId && e.ContactUserId == entity.OwnerUserId)
+                    .FirstOrDefaultAsync(cancellationToken);
+            }
+
+            private async Task CreateAsync(Contact entity, CancellationToken cancellationToken)
+            {
                 await _context.Contacts.AddAsync(entity, cancellationToken);
-                entity.Notifications.Add(new CreatedNotification(entity));
+                Notify(entity);
                 await _context.SaveChangesAsync(cancellationToken);
+            }
 
-                return entity.ContactId;
+            private void Notify(Contact entity)
+            {
+                entity.Notifications.Add(new CreatedNotification(entity));
             }
         }
     }

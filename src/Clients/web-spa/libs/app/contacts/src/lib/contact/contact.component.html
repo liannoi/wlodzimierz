@@ -14,8 +14,10 @@
     </div>
     <div class='col-4 col-sm-3'>
       <div class='btn-group-sm hide mt-4 pt-2' role='group'>
-        <a (click)='onEditable()' class='btn btn-dark mr-1'>Edit</a>
-        <a (click)='onDeleted()' class='btn btn-danger'>Delete</a>
+        <a (click)='onDeleted()' class='btn btn-danger btn-top'>
+          <fa-icon [icon]='trashIcon' class='mr-1'></fa-icon>
+          Delete</a
+        >
       </div>
     </div>
     <div class='offset-1'></div>

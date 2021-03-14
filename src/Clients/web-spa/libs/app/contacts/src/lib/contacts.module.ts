@@ -7,6 +7,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import { ConversationsModule } from '@wlodzimierz/app/conversations';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ContactsRoutingModule } from './contacts-routing.module';
 import { ContactComponent } from './contact/contact.component';
@@ -17,7 +21,6 @@ import { ContactInitialComponent } from './contact-initial/contact-initial.compo
 import { ContactsEndpointBuilder } from './shared/storage/contacts-endpoint.builder';
 import { ContactsService } from './shared/storage/contacts.service';
 import { ContactCreateComponent } from './contact-create/contact-create.component';
-import { ConversationsModule } from '@wlodzimierz/app/conversations';
 
 @NgModule({
   imports: [
@@ -26,6 +29,7 @@ import { ConversationsModule } from '@wlodzimierz/app/conversations';
     ReactiveFormsModule,
     ConversationsModule,
     ContactsRoutingModule,
+    FontAwesomeModule,
     StoreModule.forFeature(
       fromContacts.CONTACTS_FEATURE_KEY,
       fromContacts.reducer

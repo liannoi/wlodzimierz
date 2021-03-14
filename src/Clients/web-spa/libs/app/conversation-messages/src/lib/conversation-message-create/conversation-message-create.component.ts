@@ -1,17 +1,5 @@
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  Validators
-} from '@angular/forms';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output
-} from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { CreatedNotification } from '../shared/notifications/create/created.notification';
 import { ConversationMessage } from '../shared/models/conversation-message.model';

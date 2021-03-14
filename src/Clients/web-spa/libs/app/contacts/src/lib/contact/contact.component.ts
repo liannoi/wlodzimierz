@@ -1,15 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
 import { Contact } from '../shared/models/contact.model';
 import { SelectedNotification } from '../shared/notifications/selected.notification';
 import { DeletedNotification } from '../shared/notifications/deleted.notification';
-import { EditedNotification } from '../shared/notifications/edited.notification';
 
 @Component({
   selector: 'wlodzimierz-contact',
@@ -23,8 +19,7 @@ export class ContactComponent {
   public selected: EventEmitter<SelectedNotification> = new EventEmitter<SelectedNotification>();
   @Output()
   public deleted: EventEmitter<DeletedNotification> = new EventEmitter<DeletedNotification>();
-  @Output()
-  public edited: EventEmitter<EditedNotification> = new EventEmitter<EditedNotification>();
+  public trashIcon = faTrashAlt;
 
   public get photo(): string {
     return this.contact.photo ? this.contact.photo : 'assets/mock-user.png';
@@ -45,10 +40,16 @@ export class ContactComponent {
   }
 
   public onDeleted(): void {
-    this.deleted.emit({ contact: this.contact });
-  }
-
-  public onEditable(): void {
-    this.edited.emit({ contact: this.contact });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.value) this.deleted.emit({ contact: this.contact });
+    });
   }
 }

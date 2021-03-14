@@ -6,7 +6,6 @@ import { Observable, Subscription } from 'rxjs';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UsersFacade } from '@wlodzimierz/app/users';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UserModel } from 'libs/app/users/src/lib/shared/models/user.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries

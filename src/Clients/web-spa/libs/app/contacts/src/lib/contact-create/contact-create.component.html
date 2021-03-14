@@ -1,1 +1,12 @@
-<p>contact-create works!</p>
+<div class='row'>
+  <div class='offset-2 offset-md-3 offset-lg-4'></div>
+  <div class='col-8 col-md-6 col-lg-4'>
+    <h2 class='text-center mb-4 pb-1'>Create new contact</h2>
+    <wlodzimierz-contact-initial
+      (createContact)='onCreate($event)'
+      (searchContact)='onSearch($event)'
+      [filterable$]='filterable$'
+    ></wlodzimierz-contact-initial>
+  </div>
+  <div class='offset-2 offset-md-3 offset-lg-4'></div>
+</div>
