@@ -20,7 +20,7 @@ export const ngrxErrorAdapter: EntityAdapter<NgrxError> = createEntityAdapter<Ng
 export const initialState: State = ngrxErrorAdapter.getInitialState({
   status: -1,
   message: '',
-  loaded: false
+  loaded: false,
 });
 
 const ngrxErrorReducer = createReducer(
@@ -28,7 +28,7 @@ const ngrxErrorReducer = createReducer(
   on(NgrxErrorActions.throw500Error, (state, action) => ({
     ...state,
     status: action.error.status,
-    message: action.error.message
+    message: action.error.message,
   }))
 );
 

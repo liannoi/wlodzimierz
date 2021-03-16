@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'wlodzimierz-apps',
   templateUrl: './apps.component.html',
-  styleUrls: ['./apps.component.scss']
+  styleUrls: ['./apps.component.scss'],
 })
 export class AppsComponent {
   public constructor(private titleService: Title) {

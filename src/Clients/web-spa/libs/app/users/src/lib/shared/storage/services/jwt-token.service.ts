@@ -13,6 +13,8 @@ export class JwtTokenService extends AbstractCookieService<JwtToken> {
   }
 
   public read(): JwtToken {
+    this.returnUrl = null;
+
     return { value: this.service.get(this.name) };
   }
 }

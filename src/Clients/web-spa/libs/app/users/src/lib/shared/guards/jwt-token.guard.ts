@@ -23,7 +23,9 @@ export class JwtTokenGuard implements CanActivate {
     | UrlTree {
     const token = this.tokenService.read().value;
     const tokenIsEmpty = token == '';
+
     if (!token || tokenIsEmpty) {
+      this.tokenService.returnUrl = state.url;
       this.router.navigate(['/login']);
     }
 

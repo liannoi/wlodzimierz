@@ -6,11 +6,10 @@ import { AppsComponent } from './apps/apps.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'apps', component: AppsComponent }
+  { path: 'apps', component: AppsComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)]
+  imports: [RouterModule.forChild(routes)],
 })
-export class HomeRoutingModule {
-}
+export class HomeRoutingModule {}

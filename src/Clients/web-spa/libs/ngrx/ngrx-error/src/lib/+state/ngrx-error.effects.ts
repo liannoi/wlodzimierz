@@ -4,6 +4,5 @@ import { Actions } from '@ngrx/effects';
 
 @Injectable()
 export class NgrxErrorEffects {
-  public constructor(private actions$: Actions) {
-  }
+  public constructor(private actions$: Actions) {}
 }

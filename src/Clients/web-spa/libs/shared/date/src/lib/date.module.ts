@@ -5,7 +5,6 @@ import { DateService } from './services/date.service';
 
 @NgModule({
   imports: [CommonModule],
-  providers: [DateService, DatePipe]
+  providers: [DateService, DatePipe],
 })
-export class DateModule {
-}
+export class DateModule {}

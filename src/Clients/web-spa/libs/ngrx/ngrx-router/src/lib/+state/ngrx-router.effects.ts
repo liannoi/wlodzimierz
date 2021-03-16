@@ -44,6 +44,5 @@ export class NgrxRouterEffects {
     private actions$: Actions,
     private router: Router,
     private location: Location
-  ) {
-  }
+  ) {}
 }
