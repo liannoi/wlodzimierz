@@ -6,7 +6,6 @@ import { Observable, Subscription } from 'rxjs';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UsersFacade } from '@wlodzimierz/app/users';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UserModel } from 'libs/app/users/src/lib/shared/models/user.model';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { Conversation } from '../../../../app/conversations/src/lib/shared/models/conversation.model';
@@ -27,12 +26,10 @@ import { ConversationsFacade } from '../../../../app/conversations/src/lib/+stat
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ConversationMessagesFacade } from '../../../../app/conversation-messages/src/lib/+state/conversation-messages.facade';
 
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-
 @Component({
   selector: 'wlodzimierz-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss']
+  styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit, OnDestroy {
   public user: UserModel;

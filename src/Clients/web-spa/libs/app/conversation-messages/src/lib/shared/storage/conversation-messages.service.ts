@@ -18,7 +18,7 @@ export class ConversationMessagesService extends AbstractApiService {
   public constructor(
     http: HttpClient,
     @Inject(ConversationMessagesEndpointBuilder)
-      endpointBuilder: EndpointBuilder,
+    endpointBuilder: EndpointBuilder,
     private notificationsService: NotificationsService
   ) {
     super(http, endpointBuilder);

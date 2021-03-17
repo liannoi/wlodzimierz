@@ -1,6 +1,19 @@
 /* Importing Bootstrap SCSS file. */
-@import '../../../../../../node_modules/bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap';
 
 .text-error {
   @extend .text-danger;
+}
+
+.form-control-label {
+  @extend .font-weight-bold;
+}
+
+.form-control-label + .form-control {
+  background-color: #fafbfc;
+  transition: 0.4s;
+}
+
+.form-control-label + .form-control:focus {
+  @extend .bg-white;
 }

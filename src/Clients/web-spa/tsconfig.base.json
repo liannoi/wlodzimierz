@@ -56,6 +56,9 @@
       ],
       "@wlodzimierz/shared/date": [
         "libs/shared/date/src/index.ts"
+      ],
+      "@wlodzimierz/shared-theme": [
+        "libs/shared-theme/src/index.ts"
       ]
     }
   },

@@ -1,37 +1,45 @@
 <ng-container
-  *ngIf='
+  *ngIf="
     message.ownerUser | uequals: user;
-    then primaryMessage;
-    else lightMessage
-  '
+    then sentMessage;
+    else receivedMessage
+  "
 ></ng-container>
-<ng-template #primaryMessage>
-  <div class='row mt-2'>
-    <div class='offset-1 offset-md-2'></div>
-    <div class='col-11 col-md-10'>
-      <div class='card rounded d-inline-block float-right bg-dark text-white'>
-        <div class='card-body'>
-          <p class='card-text'>{{ message.message }}</p>
-          <p class='card-text d-inline-block float-right mb-3 mt-n1'>
-            <small class='text-white-50'>{{ date }}</small>
+<ng-template #sentMessage>
+  <div class="row mt-2">
+    <div class="offset-1 offset-md-2"></div>
+    <div class="col-11 col-md-10">
+      <div
+        class="card rounded d-inline-block float-right message-primary {{
+          currentTheme
+        }}"
+      >
+        <div class="card-body">
+          <p class="card-text">{{ message.message }}</p>
+          <p class="card-text d-inline-block float-right mb-3 mt-n1">
+            <small>{{ date }}</small>
           </p>
         </div>
       </div>
     </div>
   </div>
 </ng-template>
-<ng-template #lightMessage>
-  <div class='row mt-2'>
-    <div class='col-11 col-md-10'>
-      <div class='card rounded d-inline-block float-left'>
-        <div class='card-body'>
-          <p class='card-text'>{{ message.message }}</p>
-          <p class='card-text d-inline-block float-right mb-3 mt-n1'>
-            <small class='text-muted'>{{ date }}</small>
+<ng-template #receivedMessage>
+  <div class="row mt-2">
+    <div class="col-11 col-md-10">
+      <div
+        class="card rounded d-inline-block float-left message-another {{
+          currentTheme
+        }}"
+      >
+        <div class="card-body">
+          <p class="card-text">{{ message.message }}</p>
+          <p class="card-text d-inline-block float-right mb-3 mt-n1">
+            <small>{{ date }}</small>
           </p>
         </div>
       </div>
     </div>
-    <div class='offset-1 offset-md-2'></div>
+    <div class="offset-1 offset-md-2"></div>
   </div>
 </ng-template>

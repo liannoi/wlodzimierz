@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'core-chat',
-  preset: '../../../jest.preset.js',
+  displayName: 'theme',
+  preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -14,7 +14,7 @@ module.exports = {
       },
     },
   },
-  coverageDirectory: '../../../coverage/libs/core/chat',
+  coverageDirectory: '../../coverage/libs/theme',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',

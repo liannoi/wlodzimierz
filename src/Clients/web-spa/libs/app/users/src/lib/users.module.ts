@@ -21,6 +21,9 @@ import { AuthFormFacade } from './shared/storage/form/auth-form.facade';
 import { JwtTokenService } from './shared/storage/services/jwt-token.service';
 import { UsersEndpointBuilder } from './shared/storage/users-endpoint.builder';
 import { UsersService } from './shared/storage/services/users.service';
+import { SettingsComponent } from './settings/settings.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -29,9 +32,16 @@ import { UsersService } from './shared/storage/services/users.service';
     StorageModule,
     UsersRoutingModule,
     StoreModule.forFeature(fromUsers.USERS_FEATURE_KEY, fromUsers.reducer),
-    EffectsModule.forFeature([UsersEffects])
+    EffectsModule.forFeature([UsersEffects]),
+    FontAwesomeModule,
+    NgbModule
   ],
-  declarations: [SignInComponent, SignUpComponent, SignOutComponent],
+  declarations: [
+    SignInComponent,
+    SignUpComponent,
+    SignOutComponent,
+    SettingsComponent
+  ],
   providers: [
     UsersFacade,
     AuthService,

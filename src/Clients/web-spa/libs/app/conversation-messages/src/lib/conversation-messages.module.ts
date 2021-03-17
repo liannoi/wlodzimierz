@@ -33,25 +33,24 @@ import { DateModule } from '@wlodzimierz/shared/date';
       fromConversationMessages.CONVERSATION_MESSAGES_FEATURE_KEY,
       fromConversationMessages.reducer
     ),
-    EffectsModule.forFeature([ConversationMessagesEffects])
+    EffectsModule.forFeature([ConversationMessagesEffects]),
   ],
   declarations: [
     ConversationMessageComponent,
     ConversationMessageCreateComponent,
     ConversationMessageListComponent,
     ReversePipe,
-    UsersEqualsPipe
+    UsersEqualsPipe,
   ],
   providers: [
     ConversationMessagesEndpointBuilder,
     ConversationMessagesService,
     ConversationMessagesFacade,
-    DatePipe
+    DatePipe,
   ],
   exports: [
     ConversationMessageListComponent,
-    ConversationMessageCreateComponent
-  ]
+    ConversationMessageCreateComponent,
+  ],
 })
-export class ConversationMessagesModule {
-}
+export class ConversationMessagesModule {}

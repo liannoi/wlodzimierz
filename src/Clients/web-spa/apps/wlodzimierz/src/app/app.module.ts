@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TopMenuComponent } from './layout/top-menu/top-menu.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { environment } from '../environments/environment';
+import { ThemeModule } from '../../../../libs/shared/theme/src';
 
 export const APP_CONFIG = new InjectionToken('Application config');
 
@@ -25,6 +26,7 @@ export const APP_CONFIG = new InjectionToken('Application config');
     BrowserModule,
     NgbModule,
     UsersModule,
+    ThemeModule,
     AppRoutingModule,
     StoreModule.forRoot(
       {},

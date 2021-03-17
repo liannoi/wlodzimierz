@@ -18,14 +18,20 @@ html {
   position: relative;
 }
 
-/* controls */
+/* cursor events */
 
-.event-blocked {
+.blocked-event {
   cursor: not-allowed;
 }
 
+.default-event {
+  cursor: default;
+}
+
+/* controls */
+
 button[disabled] {
-  @extend .event-blocked;
+  @extend .blocked-event;
 }
 
 .text-error {
@@ -45,7 +51,7 @@ button[disabled] {
   @extend .small;
 }
 
-.btn {
+.btn:not(.dropdown-toggle) {
   font-weight: 500 !important;
 }
 
@@ -100,4 +106,92 @@ button[disabled] {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -124px;
   }
+}
+
+/* chat */
+
+.bg-primary-soft {
+  background-color: #f5f6fa;
+}
+
+/* another - white */
+
+.message-another,
+.message-another.theme-default-white,
+.message-another.theme-default-white-preview {
+  background-color: #ffffff !important;
+  color: #404040;
+}
+
+/* primary - white */
+
+.message-primary,
+.message-primary.theme-default-white,
+.message-primary.theme-default-white-preview {
+  background-color: #404040 !important;
+  color: #ffffff;
+}
+
+/* another - yellow */
+
+.message-another.theme-yellow,
+.message-another.theme-yellow-preview {
+  background-color: #ffc108 !important;
+  color: #00003f;
+}
+
+/* primary - yellow */
+
+.message-primary.theme-yellow,
+.message-primary.theme-yellow-preview {
+  background-color: #403002 !important;
+  color: #ffffff;
+}
+
+/* another - blue */
+
+.message-another.theme-blue,
+.message-another.theme-blue-preview {
+  background-color: #007bff !important;
+  color: #ffffff;
+}
+
+/* primary - blue */
+
+.message-primary.theme-blue,
+.message-primary.theme-blue-preview {
+  background-color: #001f40 !important;
+  color: #ffffff;
+}
+
+/* another - default dark */
+
+.message-another.theme-default-dark,
+.message-another.theme-default-dark-preview {
+  background-color: #31363d !important;
+  color: #c9d1d9;
+}
+
+/* primary - default dark */
+
+.message-primary.theme-default-dark,
+.message-primary.theme-default-dark-preview {
+  background-color: #0e1217 !important;
+  color: #c9d1d9;
+}
+
+/* another - dimmed */
+
+.message-another.theme-dark-dimmed,
+.message-another.theme-dark-dimmed-preview {
+  background-color: #2e333a !important;
+  color: #adbac7;
+}
+
+/* primary - dimmed */
+
+.message-primary.theme-dark-dimmed,
+.message-primary.theme-dark-dimmed-preview {
+  background-color: #23272e !important;
+  color: #adbac7;
 }

@@ -23,4 +23,8 @@ export class TopMenuComponent implements OnInit {
     this.currentUser$ = this.usersFacade.currentUser$;
     this.usersFacade.verify();
   }
+
+  public onCollapse(): void {
+    this.isExpanded = true;
+  }
 }
