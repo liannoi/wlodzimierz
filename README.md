@@ -66,6 +66,8 @@ The clients are:
 - Bootstrap 4.6 (ng-bootstrap)
 - RxJS 6.6
 - NgRx 10.1
+- Font Awesome
+- SweetAlert2
 
 #### Native mobile app
 
