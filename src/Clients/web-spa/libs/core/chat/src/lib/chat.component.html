@@ -1,35 +1,35 @@
 <ng-container
-  *ngIf="
+  *ngIf='
     (conversations$ | async).items <= 0;
     then initialBlock;
     else presentBlock
-  "
+  '
 ></ng-container>
 
 <!-- initial block -->
 <ng-template #initialBlock>
-  <div class="row mt-n2">
-    <div class="col-12">
-      <h2 class="text-center font-weight-light default-event">
+  <div class='row mt-n2'>
+    <div class='col-12'>
+      <h2 class='text-center font-weight-light default-event'>
         Start your first conversation
       </h2>
     </div>
   </div>
-  <div class="row mt-2">
-    <div class="offset-1 offset-md-2 offset-lg-3"></div>
-    <div class="col-10 col-md-8 col-lg-6">
-      <p class="text-center default-event">
+  <div class='row mt-2'>
+    <div class='offset-1 offset-md-2 offset-lg-3'></div>
+    <div class='col-10 col-md-8 col-lg-6'>
+      <p class='text-center default-event'>
         Go to your contact list, select from existing contacts or add the first
         one and start a real-time conversation with him now.
       </p>
     </div>
-    <div class="offset-1 offset-md-2 offset-lg-3"></div>
+    <div class='offset-1 offset-md-2 offset-lg-3'></div>
   </div>
-  <div class="row mt-4 pb-3">
-    <div class="col-12 d-flex justify-content-center align-content-center">
-      <a class="btn btn-light pl-5 pr-5 pt-2 pb-2 mr-2" routerLink="/">Back</a>
-      <a class="btn btn-success pl-5 pr-5 pt-2 pb-2" routerLink="/contacts"
-        >Start a conversation</a
+  <div class='row mt-4 pb-3'>
+    <div class='col-12 d-flex justify-content-center align-content-center'>
+      <a class='btn btn-light pl-5 pr-5 pt-2 pb-2 mr-2' routerLink='/'>Back</a>
+      <a class='btn btn-success pl-5 pr-5 pt-2 pb-2' routerLink='/contacts'
+      >Start a conversation</a
       >
     </div>
   </div>
@@ -38,35 +38,35 @@
 <!-- present block -->
 <ng-template #presentBlock>
   <!-- main content -->
-  <div class="row pb-3">
+  <div class='row pb-3'>
     <div
-      class="col-6 col-sm-6 col-md-5 col-lg-4 col-xl-4 ml-n3 min-vh-75 overflow-auto scroll-container d-none d-sm-none d-md-block"
+      class='col-6 col-sm-6 col-md-5 col-lg-4 col-xl-4 ml-n3 min-vh-75 overflow-auto scroll-container d-none d-sm-none d-md-block'
     >
       <wlodzimierz-conversation-list
-        (changeConversation)="onChangeConversation($event)"
-        [conversations]="conversations$ | async"
-        [user]="user"
+        (changeConversation)='onChangeConversation($event)'
+        [conversations]='conversations$ | async'
+        [user]='user'
       ></wlodzimierz-conversation-list>
     </div>
 
     <ng-container
-      *ngIf="
+      *ngIf='
         bindingConversation != null;
         then messagesList;
         else offerChooseConversation
-      "
+      '
     ></ng-container>
   </div>
 
   <!-- list of messages -->
   <ng-template #messagesList>
     <div
-      class="col-6 col-sm-6 col-md-7 col-lg-8 col-xl-8 min-vh-75 scroll-container overflow-auto border bg-primary-soft d-none d-sm-none d-md-block"
+      class='col-6 col-sm-6 col-md-7 col-lg-8 col-xl-8 min-vh-75 scroll-container overflow-auto border bg-primary-soft d-none d-sm-none d-md-block'
     >
       <wlodzimierz-conversation-message-list
-        [conversation]="bindingConversation"
-        [messages]="messages$ | async"
-        [user]="user"
+        [conversation]='bindingConversation'
+        [messages]='messages$ | async'
+        [user]='user'
       ></wlodzimierz-conversation-message-list>
     </div>
   </ng-template>
@@ -74,54 +74,54 @@
   <!-- offer to choose a conversation -->
   <ng-template #offerChooseConversation>
     <div
-      class="col-6 col-sm-6 col-md-7 col-lg-8 col-xl-8 d-md-flex align-items-center justify-content-center d-none d-sm-none d-md-block"
+      class='col-6 col-sm-6 col-md-7 col-lg-8 col-xl-8 d-md-flex align-items-center justify-content-center d-none d-sm-none d-md-block'
     >
-      <h6 class="alert alert-light bg-transparent rounded">
+      <h6 class='alert alert-light bg-transparent rounded'>
         Select a chat to start messaging
       </h6>
     </div>
   </ng-template>
 
   <!-- sending a message -->
-  <ng-container *ngIf="bindingConversation != null">
+  <ng-container *ngIf='bindingConversation != null'>
     <wlodzimierz-conversation-message-create
-      (createConversationMessage)="onCreateConversationMessage($event)"
-      [conversation]="bindingConversation"
-      [user]="user"
-      class="d-none d-sm-none d-md-block"
+      (createConversationMessage)='onCreateConversationMessage($event)'
+      [conversation]='bindingConversation'
+      [user]='user'
+      class='d-none d-sm-none d-md-block'
     ></wlodzimierz-conversation-message-create>
   </ng-container>
 
   <!-- simplified version of the main content -->
-  <div class="row">
+  <div class='row'>
     <div
-      class="col-12 min-vh-75 overflow-auto scroll-container d-block d-sm-block d-md-none"
+      class='col-12 min-vh-75 overflow-auto scroll-container d-block d-sm-block d-md-none'
     >
       <wlodzimierz-conversation-list
-        (changeConversation)="onChangeConversation($event)"
-        [conversations]="conversations$ | async"
-        [user]="user"
+        (changeConversation)='onChangeConversation($event)'
+        [conversations]='conversations$ | async'
+        [user]='user'
       ></wlodzimierz-conversation-list>
     </div>
   </div>
 
-  <ng-container *ngIf="bindingConversation != null">
-    <div class="row">
+  <ng-container *ngIf='bindingConversation != null'>
+    <div class='row'>
       <div
-        class="col-12 w-100 min-vh-75 scroll-container overflow-auto border bg-primary-soft d-block d-sm-block d-md-none"
+        class='col-12 w-100 min-vh-75 scroll-container overflow-auto border bg-primary-soft d-block d-sm-block d-md-none'
       >
         <wlodzimierz-conversation-message-list
-          [conversation]="bindingConversation"
-          [messages]="messages$ | async"
-          [user]="user"
+          [conversation]='bindingConversation'
+          [messages]='messages$ | async'
+          [user]='user'
         ></wlodzimierz-conversation-message-list>
       </div>
     </div>
     <wlodzimierz-conversation-message-create
-      (createConversationMessage)="onCreateConversationMessage($event)"
-      [conversation]="bindingConversation"
-      [user]="user"
-      class="d-block d-sm-block d-md-none"
+      (createConversationMessage)='onCreateConversationMessage($event)'
+      [conversation]='bindingConversation'
+      [user]='user'
+      class='d-block d-sm-block d-md-none'
     ></wlodzimierz-conversation-message-create>
   </ng-container>
 </ng-template>

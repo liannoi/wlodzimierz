@@ -15,15 +15,16 @@ import { NgrxErrorInterceptorService } from './services/ngrx-error-interceptor.s
       fromNgrxError.NGRX_ERROR_FEATURE_KEY,
       fromNgrxError.reducer
     ),
-    EffectsModule.forFeature([NgrxErrorEffects]),
+    EffectsModule.forFeature([NgrxErrorEffects])
   ],
   providers: [
     NgrxErrorFacade,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: NgrxErrorInterceptorService,
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
-export class NgrxErrorModule {}
+export class NgrxErrorModule {
+}

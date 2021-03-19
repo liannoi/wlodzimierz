@@ -16,5 +16,6 @@ module.exports = {
     '<rootDir>/libs/shared/date',
     '<rootDir>/libs/core/settings',
     '<rootDir>/libs/app/users-security',
-  ],
+    '<rootDir>/libs/core/sessions'
+  ]
 };

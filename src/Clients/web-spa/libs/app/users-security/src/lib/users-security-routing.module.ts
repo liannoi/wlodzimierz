@@ -12,13 +12,14 @@ const routes: Routes = [
   {
     path: 'recovery_codes',
     component: RecoveryCodesComponent,
-    canActivate: [JwtTokenGuard],
+    canActivate: [JwtTokenGuard]
   },
-  { path: 'verify', component: VerifyComponent, canActivate: [JwtTokenGuard] },
+  { path: 'verify', component: VerifyComponent, canActivate: [JwtTokenGuard] }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class UsersSecurityRoutingModule {}
+export class UsersSecurityRoutingModule {
+}

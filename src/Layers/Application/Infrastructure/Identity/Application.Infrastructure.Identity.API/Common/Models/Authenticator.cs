@@ -1,4 +1,4 @@
-namespace Application.Storage.API.Storage.Users.Security.Models
+namespace Application.Infrastructure.Identity.API.Common.Models
 {
     public class Authenticator
     {

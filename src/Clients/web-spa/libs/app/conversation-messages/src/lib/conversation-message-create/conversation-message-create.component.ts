@@ -2,7 +2,7 @@ import {
   AbstractControl,
   FormControl,
   FormGroup,
-  Validators,
+  Validators
 } from '@angular/forms';
 import {
   ChangeDetectionStrategy,
@@ -10,7 +10,7 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
 
 import { CreatedNotification } from '../shared/notifications/create/created.notification';
@@ -26,7 +26,7 @@ import { defaultModel } from '../../../../../shared/storage/src/lib/common/defau
   selector: 'wlodzimierz-conversation-message-create',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './conversation-message-create.component.html',
-  styleUrls: ['./conversation-message-create.component.scss'],
+  styleUrls: ['./conversation-message-create.component.scss']
 })
 export class ConversationMessageCreateComponent implements OnInit {
   @Input() public user: UserModel;
@@ -60,8 +60,8 @@ export class ConversationMessageCreateComponent implements OnInit {
   private setupForm(): void {
     this.formGroup = new FormGroup({
       message: new FormControl(this.messageModel.message, [
-        Validators.required,
-      ]),
+        Validators.required
+      ])
     });
   }
 

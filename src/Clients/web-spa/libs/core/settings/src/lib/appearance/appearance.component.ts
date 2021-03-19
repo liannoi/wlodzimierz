@@ -10,7 +10,7 @@ import { BehaviorSubjectItem } from '../../../../../shared/storage/src/lib/commo
 @Component({
   selector: 'wlodzimierz-appearance',
   templateUrl: './appearance.component.html',
-  styleUrls: ['./appearance.component.scss'],
+  styleUrls: ['./appearance.component.scss']
 })
 export class AppearanceComponent implements OnInit {
   public sunIcon = faSun;
@@ -44,7 +44,7 @@ export class AppearanceComponent implements OnInit {
       title: 'Appearance settings saved.',
       showConfirmButton: false,
       timer: 2500,
-      backdrop: false,
+      backdrop: false
     });
   }
 }

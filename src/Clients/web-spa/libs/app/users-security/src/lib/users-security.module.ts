@@ -9,6 +9,9 @@ import { IntroComponent } from './intro/intro.component';
 import { UsersSecurityRoutingModule } from './users-security-routing.module';
 import { VerifyComponent } from './verify/verify.component';
 import { RecoveryCodesComponent } from './recovery-codes/recovery-codes.component';
+import { UsersSecurityService } from './shared/storage/users-security.service';
+import { UsersSecurityEndpointBuilder } from './shared/storage/users-security-endpoint.builder';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -17,7 +20,10 @@ import { RecoveryCodesComponent } from './recovery-codes/recovery-codes.componen
     FontAwesomeModule,
     NgbModule,
     UsersSecurityRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [IntroComponent, VerifyComponent, RecoveryCodesComponent],
+  providers: [UsersSecurityService, UsersSecurityEndpointBuilder]
 })
-export class UsersSecurityModule {}
+export class UsersSecurityModule {
+}

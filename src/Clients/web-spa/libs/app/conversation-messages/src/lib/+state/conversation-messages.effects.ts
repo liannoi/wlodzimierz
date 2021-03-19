@@ -46,5 +46,6 @@ export class ConversationMessagesEffects {
     private actions$: Actions,
     private conversationsService: ConversationsService,
     private messagesService: ConversationMessagesService
-  ) {}
+  ) {
+  }
 }

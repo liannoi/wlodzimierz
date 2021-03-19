@@ -28,6 +28,11 @@ const routes: Routes = [
       import('@wlodzimierz/core/settings').then((m) => m.SettingsModule)
   },
   {
+    path: 'sessions',
+    loadChildren: () =>
+      import('@wlodzimierz/core/sessions').then((m) => m.SessionsModule)
+  },
+  {
     path: '**',
     loadChildren: () =>
       import('@wlodzimierz/core/statuses').then((m) => m.StatusesModule)

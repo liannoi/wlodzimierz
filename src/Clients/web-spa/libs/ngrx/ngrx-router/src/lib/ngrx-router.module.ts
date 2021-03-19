@@ -14,11 +14,12 @@ import { NgrxRouterEffects } from './+state/ngrx-router.effects';
       fromNgrxRouter.NGRX_ROUTER_FEATURE_KEY,
       fromNgrxRouter.reducer
     ),
-    EffectsModule.forFeature([NgrxRouterEffects]),
+    EffectsModule.forFeature([NgrxRouterEffects])
   ],
   providers: [
     NgrxRouterEffects,
-    { provide: RouterStateSerializer, useClass: CustomSerializer },
-  ],
+    { provide: RouterStateSerializer, useClass: CustomSerializer }
+  ]
 })
-export class NgrxRouterModule {}
+export class NgrxRouterModule {
+}

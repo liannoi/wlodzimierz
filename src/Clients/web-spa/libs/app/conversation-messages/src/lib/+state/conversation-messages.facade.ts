@@ -14,7 +14,8 @@ export class ConversationMessagesFacade {
     select(ConversationMessagesSelectors.getMessages)
   );
 
-  public constructor(private store: Store) {}
+  public constructor(private store: Store) {
+  }
 
   public getAll(conversation: Conversation): void {
     this.store.dispatch(ConversationMessagesActions.getAll({ conversation }));

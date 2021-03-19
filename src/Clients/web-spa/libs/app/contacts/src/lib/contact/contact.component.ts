@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
 
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';

@@ -1,77 +1,77 @@
 <!-- left menu -->
-<div class="row mt-n2 mb-3">
-  <div class="offset-1 offset-md-0"></div>
-  <div class="col-10 col-md-4 col-lg-3 mr-n1">
-    <div class="list-group">
-      <a class="list-group-item font-weight-bold text-dark disabled"
-        >Account settings</a
+<div class='row mt-n2 mb-3'>
+  <div class='offset-1 offset-md-0'></div>
+  <div class='col-10 col-md-4 col-lg-3 mr-n1'>
+    <div class='list-group'>
+      <a class='list-group-item font-weight-bold text-dark disabled'
+      >Account settings</a
       >
       <a
-        routerLink="/settings"
-        class="list-group-item list-group-item-action active"
-        >Appearance</a
+        class='list-group-item list-group-item-action active'
+        routerLink='/settings'
+      >Appearance</a
       >
       <a
-        routerLink="/settings/security"
-        class="list-group-item list-group-item-action"
-        >Security</a
+        class='list-group-item list-group-item-action'
+        routerLink='/settings/security'
+      >Security</a
       >
     </div>
   </div>
-  <div class="offset-1 offset-md-0"></div>
+  <div class='offset-1 offset-md-0'></div>
 
   <!-- main content -->
-  <div class="col-md-8 col-lg-9 d-none d-sm-none d-md-block">
+  <div class='col-md-8 col-lg-9 d-none d-sm-none d-md-block'>
     <h3>Theme</h3>
     <hr />
-    <p class="ml-1">Choose how Wlodzimierz looks for you.</p>
+    <p class='ml-1'>Choose how Wlodzimierz looks for you.</p>
 
     <!-- chat preview -->
-    <div class="row mt-2 ml-1 mr-1 mb-4">
+    <div class='row mt-2 ml-1 mr-1 mb-4'>
       <!-- main content -->
-      <div class="col-12 border bg-primary-soft">
-        <div class="container-fluid container-scrollable mb-4">
+      <div class='col-12 border bg-primary-soft'>
+        <div class='container-fluid container-scrollable mb-4'>
           <!-- interlocutor -->
-          <div class="row bg-dark sticky-top p-3 mb-4 zindex-sticky">
-            <div class="col-12">
-              <h5 class="text-white mt-2">Bob Harris</h5>
+          <div class='row bg-dark sticky-top p-3 mb-4 zindex-sticky'>
+            <div class='col-12'>
+              <h5 class='text-white mt-2'>Bob Harris</h5>
             </div>
           </div>
 
           <!-- received message -->
-          <div class="row mt-2">
-            <div class="col-11 col-md-10">
+          <div class='row mt-2'>
+            <div class='col-11 col-md-10'>
               <div
-                class="card rounded d-inline-block float-left message-another {{
+                class='card rounded d-inline-block float-left message-another {{
                   currentTheme.value$ | async
-                }}-preview"
+                }}-preview'
               >
-                <div class="card-body">
-                  <p class="card-text">How are you?</p>
-                  <p class="card-text d-inline-block float-right mb-3 mt-n1">
+                <div class='card-body'>
+                  <p class='card-text'>How are you?</p>
+                  <p class='card-text d-inline-block float-right mb-3 mt-n1'>
                     <small>5:02 PM</small>
                   </p>
                 </div>
               </div>
             </div>
-            <div class="offset-1 offset-md-2"></div>
+            <div class='offset-1 offset-md-2'></div>
           </div>
 
           <!-- sent message -->
-          <div class="row mt-2">
-            <div class="offset-1 offset-md-2"></div>
-            <div class="col-11 col-md-10">
+          <div class='row mt-2'>
+            <div class='offset-1 offset-md-2'></div>
+            <div class='col-11 col-md-10'>
               <div
-                class="card rounded d-inline-block float-right message-primary {{
+                class='card rounded d-inline-block float-right message-primary {{
                   currentTheme.value$ | async
-                }}-preview"
+                }}-preview'
               >
-                <div class="card-body">
-                  <p class="card-text">
+                <div class='card-body'>
+                  <p class='card-text'>
                     Everything is fine, we are developing the server side of the
                     application.
                   </p>
-                  <p class="card-text d-inline-block float-right mb-3 mt-n1">
+                  <p class='card-text d-inline-block float-right mb-3 mt-n1'>
                     <small>5:17 PM</small>
                   </p>
                 </div>
@@ -83,53 +83,53 @@
     </div>
 
     <!-- choice of theme -->
-    <div class="row">
-      <div class="col-12">
-        <div class="card-deck">
-          <div class="card">
-            <div class="card-header">
-              <fa-icon [icon]="sunIcon" class="mr-3"></fa-icon>
-              <span class="font-weight-bold">Day theme</span>
+    <div class='row'>
+      <div class='col-12'>
+        <div class='card-deck'>
+          <div class='card'>
+            <div class='card-header'>
+              <fa-icon [icon]='sunIcon' class='mr-3'></fa-icon>
+              <span class='font-weight-bold'>Day theme</span>
             </div>
-            <div class="card-body">
+            <div class='card-body'>
               <button
-                (click)="updateTheme(1)"
-                class="theme-white mr-2"
-                ngbPopover="Default light"
-                triggers="mouseenter:mouseleave"
+                (click)='updateTheme(1)'
+                class='theme-white mr-2'
+                ngbPopover='Default light'
+                triggers='mouseenter:mouseleave'
               ></button>
               <button
-                (click)="updateTheme(2)"
-                class="theme-yellow mr-2"
-                ngbPopover="Yellow"
-                triggers="mouseenter:mouseleave"
+                (click)='updateTheme(2)'
+                class='theme-yellow mr-2'
+                ngbPopover='Yellow'
+                triggers='mouseenter:mouseleave'
               ></button>
               <button
-                (click)="updateTheme(3)"
-                class="theme-blue"
-                ngbPopover="Blue"
-                triggers="mouseenter:mouseleave"
+                (click)='updateTheme(3)'
+                class='theme-blue'
+                ngbPopover='Blue'
+                triggers='mouseenter:mouseleave'
               ></button>
             </div>
           </div>
 
-          <div class="card">
-            <div class="card-header">
-              <fa-icon [icon]="moonIcon" class="mr-3"></fa-icon>
-              <span class="font-weight-bold">Night theme</span>
+          <div class='card'>
+            <div class='card-header'>
+              <fa-icon [icon]='moonIcon' class='mr-3'></fa-icon>
+              <span class='font-weight-bold'>Night theme</span>
             </div>
-            <div class="card-body">
+            <div class='card-body'>
               <button
-                (click)="updateTheme(4)"
-                class="theme-dark mr-2"
-                ngbPopover="Default dark"
-                triggers="mouseenter:mouseleave"
+                (click)='updateTheme(4)'
+                class='theme-dark mr-2'
+                ngbPopover='Default dark'
+                triggers='mouseenter:mouseleave'
               ></button>
               <button
-                (click)="updateTheme(5)"
-                class="theme-dimmed"
-                ngbPopover="Dark dimmed"
-                triggers="mouseenter:mouseleave"
+                (click)='updateTheme(5)'
+                class='theme-dimmed'
+                ngbPopover='Dark dimmed'
+                triggers='mouseenter:mouseleave'
               ></button>
             </div>
           </div>
@@ -140,8 +140,8 @@
 </div>
 
 <!-- simplified version of the main content -->
-<div class="row mt-3 ml-4 d-block d-sm-block d-md-none">
-  <div class="col-11">
+<div class='row mt-3 ml-4 d-block d-sm-block d-md-none'>
+  <div class='col-11'>
     <h3>Theme</h3>
     <hr />
     <p>Choose how Wlodzimierz looks for you.</p>
@@ -149,54 +149,54 @@
 </div>
 
 <!-- chat preview - simplified -->
-<div class="row mb-4">
+<div class='row mb-4'>
   <!-- left indent -->
-  <div class="offset-1 offset-md-2 offset-lg-3"></div>
+  <div class='offset-1 offset-md-2 offset-lg-3'></div>
 
   <!-- main content -->
-  <div class="col-10 border bg-primary-soft d-block d-sm-block d-md-none mt-2">
-    <div class="container-fluid container-scrollable mb-4">
+  <div class='col-10 border bg-primary-soft d-block d-sm-block d-md-none mt-2'>
+    <div class='container-fluid container-scrollable mb-4'>
       <!-- interlocutor -->
-      <div class="row bg-dark sticky-top p-3 mb-4 zindex-sticky">
-        <div class="col-12">
-          <h5 class="text-white mt-2">Bob Harris</h5>
+      <div class='row bg-dark sticky-top p-3 mb-4 zindex-sticky'>
+        <div class='col-12'>
+          <h5 class='text-white mt-2'>Bob Harris</h5>
         </div>
       </div>
 
       <!-- received message -->
-      <div class="row mt-2">
-        <div class="col-11 col-md-10">
+      <div class='row mt-2'>
+        <div class='col-11 col-md-10'>
           <div
-            class="card rounded d-inline-block float-left message-another {{
+            class='card rounded d-inline-block float-left message-another {{
               currentTheme.value$ | async
-            }}-preview"
+            }}-preview'
           >
-            <div class="card-body">
-              <p class="card-text">How are you?</p>
-              <p class="card-text d-inline-block float-right mb-3 mt-n1">
+            <div class='card-body'>
+              <p class='card-text'>How are you?</p>
+              <p class='card-text d-inline-block float-right mb-3 mt-n1'>
                 <small>5:02 PM</small>
               </p>
             </div>
           </div>
         </div>
-        <div class="offset-1 offset-md-2"></div>
+        <div class='offset-1 offset-md-2'></div>
       </div>
 
       <!-- sent message -->
-      <div class="row mt-2">
-        <div class="offset-1 offset-md-2"></div>
-        <div class="col-11 col-md-10">
+      <div class='row mt-2'>
+        <div class='offset-1 offset-md-2'></div>
+        <div class='col-11 col-md-10'>
           <div
-            class="card rounded d-inline-block float-right message-primary {{
+            class='card rounded d-inline-block float-right message-primary {{
               currentTheme.value$ | async
-            }}-preview"
+            }}-preview'
           >
-            <div class="card-body">
-              <p class="card-text">
+            <div class='card-body'>
+              <p class='card-text'>
                 Everything is fine, we are developing the server side of the
                 application.
               </p>
-              <p class="card-text d-inline-block float-right mb-3 mt-n1">
+              <p class='card-text d-inline-block float-right mb-3 mt-n1'>
                 <small>5:17 PM</small>
               </p>
             </div>
@@ -207,57 +207,57 @@
   </div>
 
   <!-- right indent -->
-  <div class="offset-1 offset-md-2 offset-lg-3"></div>
+  <div class='offset-1 offset-md-2 offset-lg-3'></div>
 </div>
 
 <!-- choice of theme - simplified -->
-<div class="row pb-1 pb-sm-2 ml-4 d-block d-sm-block d-md-none">
-  <div class="col-11">
-    <div class="card-deck">
-      <div class="card">
-        <div class="card-header">
-          <fa-icon [icon]="sunIcon" class="mr-3"></fa-icon>
-          <span class="font-weight-bold">Day theme</span>
+<div class='row pb-1 pb-sm-2 ml-4 d-block d-sm-block d-md-none'>
+  <div class='col-11'>
+    <div class='card-deck'>
+      <div class='card'>
+        <div class='card-header'>
+          <fa-icon [icon]='sunIcon' class='mr-3'></fa-icon>
+          <span class='font-weight-bold'>Day theme</span>
         </div>
-        <div class="card-body">
+        <div class='card-body'>
           <button
-            (click)="updateTheme(1)"
-            class="theme-white mr-2"
-            ngbPopover="Default light"
-            triggers="mouseenter:mouseleave"
+            (click)='updateTheme(1)'
+            class='theme-white mr-2'
+            ngbPopover='Default light'
+            triggers='mouseenter:mouseleave'
           ></button>
           <button
-            (click)="updateTheme(2)"
-            class="theme-yellow mr-2"
-            ngbPopover="Yellow"
-            triggers="mouseenter:mouseleave"
+            (click)='updateTheme(2)'
+            class='theme-yellow mr-2'
+            ngbPopover='Yellow'
+            triggers='mouseenter:mouseleave'
           ></button>
           <button
-            (click)="updateTheme(3)"
-            class="theme-blue"
-            ngbPopover="Blue"
-            triggers="mouseenter:mouseleave"
+            (click)='updateTheme(3)'
+            class='theme-blue'
+            ngbPopover='Blue'
+            triggers='mouseenter:mouseleave'
           ></button>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-header">
-          <fa-icon [icon]="moonIcon" class="mr-3"></fa-icon>
-          <span class="font-weight-bold">Night theme</span>
+      <div class='card'>
+        <div class='card-header'>
+          <fa-icon [icon]='moonIcon' class='mr-3'></fa-icon>
+          <span class='font-weight-bold'>Night theme</span>
         </div>
-        <div class="card-body">
+        <div class='card-body'>
           <button
-            (click)="updateTheme(4)"
-            class="theme-dark mr-2"
-            ngbPopover="Default dark"
-            triggers="mouseenter:mouseleave"
+            (click)='updateTheme(4)'
+            class='theme-dark mr-2'
+            ngbPopover='Default dark'
+            triggers='mouseenter:mouseleave'
           ></button>
           <button
-            (click)="updateTheme(5)"
-            class="theme-dimmed"
-            ngbPopover="Dark dimmed"
-            triggers="mouseenter:mouseleave"
+            (click)='updateTheme(5)'
+            class='theme-dimmed'
+            ngbPopover='Dark dimmed'
+            triggers='mouseenter:mouseleave'
           ></button>
         </div>
       </div>

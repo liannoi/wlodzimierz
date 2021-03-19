@@ -7,5 +7,6 @@ export abstract class AbstractPaginatedList<TModel> {
     public cachingKey: string = '',
     public hasPreviousPage: boolean = false,
     public hasNextPage: boolean = false
-  ) {}
+  ) {
+  }
 }

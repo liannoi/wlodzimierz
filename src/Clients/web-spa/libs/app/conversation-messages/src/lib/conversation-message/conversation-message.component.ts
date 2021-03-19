@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit,
+  OnInit
 } from '@angular/core';
 
 import { ConversationMessage } from '../shared/models/conversation-message.model';
@@ -16,7 +16,7 @@ import { ThemeService } from '../../../../../shared/theme/src/lib/services/theme
   selector: 'wlodzimierz-conversation-message',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './conversation-message.component.html',
-  styleUrls: ['./conversation-message.component.scss'],
+  styleUrls: ['./conversation-message.component.scss']
 })
 export class ConversationMessageComponent implements OnInit {
   @Input() public message: ConversationMessage;
@@ -26,7 +26,8 @@ export class ConversationMessageComponent implements OnInit {
   public constructor(
     private dateService: DateService,
     private themeService: ThemeService
-  ) {}
+  ) {
+  }
 
   public get date(): string {
     return this.dateService.toFull(this.message.publish);

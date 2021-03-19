@@ -14,7 +14,8 @@ export abstract class AbstractCookieService<TCookie>
   protected constructor(
     protected name: string,
     protected service: CookieService
-  ) {}
+  ) {
+  }
 
   public abstract read(): TCookie;
 

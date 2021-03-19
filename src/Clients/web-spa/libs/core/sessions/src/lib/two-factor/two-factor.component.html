@@ -1,0 +1,103 @@
+<div class='row'>
+  <div class='col-12'>
+    <h2 class='text-center font-weight-light'>Two-factor authentication</h2>
+  </div>
+</div>
+
+<div class='row mt-3'>
+  <div class='offset-1 offset-sm-2 offset-md-3 offset-lg-4'></div>
+  <div class='col-10 col-sm-8 col-md-6 col-lg-4'>
+    <div class='row'>
+      <div class='col-12'>
+        <form
+          (ngSubmit)='onVerify()'
+          [formGroup]='verificationForm'
+          class='p-4 bg-primary-soft border-soft'
+          method='post'
+        >
+          <div class='form-group'>
+            <!-- label -->
+            <label for='verification_code'>Authentication code</label>
+
+            <!-- input -->
+            <input
+              autocomplete='off'
+              class='form-control'
+              formControlName='verificationCode'
+              id='verification_code'
+              placeholder='6-digit code'
+              required
+              type='text'
+            />
+
+            <!-- validation -->
+            <div
+              *ngIf='
+                verificationCode.invalid &&
+                (verificationCode.dirty || verificationCode.touched)
+              '
+              class='text-error'
+            >
+              <div *ngIf='verificationCode.errors.required'>
+                <span>Code cannot be empty.</span>
+              </div>
+              <div *ngIf='verificationCode.errors.maxlength'>
+                <span>Code must be six characters long.</span>
+              </div>
+            </div>
+
+            <!-- two-factor status -->
+            <div
+              *ngIf='
+                verificationForm.errors?.twoFactorFailure &&
+                verificationForm.touched &&
+                verificationForm.pristine
+              '
+              class='text-fatal'
+            >
+              <span>Entered code is incorrect, please try again.</span>
+            </div>
+          </div>
+
+          <!-- submit -->
+          <div class='form-row mt-3'>
+            <div class='col-sm-12'>
+              <button
+                [disablePopover]='verificationForm.valid'
+                [ngClass]='{ disabled: verificationForm.invalid }'
+                class='btn btn-success w-100'
+                ngbPopover='You must provide a code.'
+                triggers='mouseenter:mouseleave'
+                type='submit'
+              >
+                Verify
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class='row mt-4'>
+      <div class='col-1'>
+        <fa-icon [icon]='phoneIcon'></fa-icon>
+      </div>
+      <div class='col-11'>
+        <p>
+          Open the two-factor authentication app on your device to view your
+          authentication code and verify your identity.
+        </p>
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='col-12 border-top'>
+        <h6 class='mt-4 mb-3'>Having problems?</h6>
+        <ul>
+          <li>Enter a two-factor recovery code</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class='offset-1 offset-sm-2 offset-md-3 offset-lg-4'></div>
+</div>

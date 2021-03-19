@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Application.Infrastructure.Identity.API.Common.Models;
@@ -8,13 +9,13 @@ namespace Application.Infrastructure.Identity.API.Common.Interfaces
     {
         #region 2FA
 
-        public Task<bool> GetTwoFactorEnabledAsync(ApplicationUser user);
+        public Task<RecoveryCodesList> GenerateRecoveryCodes(string userId);
 
-        public Task<string?> GetAuthenticatorKeyAsync(ApplicationUser user);
+        public Task<Authenticator> SetupAuthenticator(string userId);
 
-        public Task<IdentityResult> ResetAuthenticatorKeyAsync(ApplicationUser user);
+        public Task VerifyCode(string userId, string verificationCode);
 
-        public Task<bool> IsTwoFactorClientRememberedAsync(ApplicationUser user);
+        public Task<IdentityResult> DisableTwoFactor(string userId);
 
         #endregion
 
@@ -54,6 +55,26 @@ namespace Application.Infrastructure.Identity.API.Common.Interfaces
         public Task<bool> IsInRoleAsync(string userName, string role);
 
         public IdentityResult VerifyPassword(ApplicationUser user, string password);
+
+        #endregion
+
+        #region Helpers
+
+        public Task<bool> GetTwoFactorEnabledAsync(ApplicationUser user);
+
+        public Task<string?> GetAuthenticatorKeyAsync(ApplicationUser user);
+
+        public Task<IdentityResult> ResetAuthenticatorKeyAsync(ApplicationUser user);
+
+        public Task<bool> IsTwoFactorClientRememberedAsync(ApplicationUser user);
+
+        public Task<int> CountRecoveryCodesAsync(ApplicationUser user);
+
+        public Task<IEnumerable<string>> GenerateNewTwoFactorRecoveryCodesAsync(ApplicationUser user, int count);
+
+        public Task<bool> VerifyTwoFactorTokenAsync(ApplicationUser user, string verificationCode);
+
+        public Task<IdentityResult> SetTwoFactorEnabledAsync(ApplicationUser user, bool enabled = true);
 
         #endregion
     }

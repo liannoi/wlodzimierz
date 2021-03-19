@@ -41,7 +41,7 @@ export class ThemeService extends AbstractCookieService<Theme> {
       { id: 2, name: 'theme-yellow', hex: '#F8C146' },
       { id: 3, name: 'theme-blue', hex: '#157AF6' },
       { id: 4, name: 'theme-default-dark', hex: '#1E2124' },
-      { id: 5, name: 'theme-dark-dimmed', hex: '#22262D' },
+      { id: 5, name: 'theme-dark-dimmed', hex: '#22262D' }
     ];
   }
 }

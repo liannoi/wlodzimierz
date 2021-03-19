@@ -5,6 +5,7 @@ import { ThemeService } from './services/theme.service';
 
 @NgModule({
   imports: [CommonModule],
-  providers: [ThemeService],
+  providers: [ThemeService]
 })
-export class ThemeModule {}
+export class ThemeModule {
+}

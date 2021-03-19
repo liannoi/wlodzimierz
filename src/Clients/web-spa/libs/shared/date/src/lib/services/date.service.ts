@@ -3,7 +3,8 @@ import { DatePipe } from '@angular/common';
 
 @Injectable()
 export class DateService {
-  public constructor(private datePipe: DatePipe) {}
+  public constructor(private datePipe: DatePipe) {
+  }
 
   public transform(value: Date, format?: string): string {
     return this.datePipe.transform(value, format);

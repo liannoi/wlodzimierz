@@ -1,15 +1,18 @@
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
-.switcher,
-.enabler {
+.switcher {
   @extend .btn;
   @extend .btn-sm;
   @extend .btn-success;
   @extend .float-right;
   @extend .mt-1;
-  @extend .pl-2;
-  @extend .pr-2;
+  @extend .pt-1;
+  @extend .pb-1;
+  @extend .pl-3;
+  @extend .pr-3;
+  @extend .font-weight-bold;
+  transition: 0.3s;
 }
 
 .switcher:hover {
@@ -22,4 +25,20 @@
 
 .switcher:before {
   content: 'Enabled';
+}
+
+.list-group-item.disabled {
+  font-size: 14px;
+}
+
+.btn-secondary-light {
+  color: #24292e;
+  background-color: #fafbfc;
+  border-color: #1b1f2326;
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  transition-property: color, background-color, border-color;
+}
+
+.btn-secondary-light:hover {
+  background-color: #e1e4e8;
 }
