@@ -1,0 +1,133 @@
+<form (ngSubmit)='onVerify()' [formGroup]='qrCodeForm' method='post'>
+  <div class='row mb-4 pb-2'>
+    <div class='offset-3'></div>
+    <div class='col-6 border rounded'>
+      <!-- title -->
+      <div class='row mt-3 mb-3'>
+        <div class='col-12'>
+          <h5>2. Scan this barcode with your app.</h5>
+          <p class='small text-muted'>
+            Scan the image above with the two-factor authentication app on your
+            phone. If you can’t use a barcode,
+            <mark
+              [ngbPopover]='(authenticator.value$ | async).sharedKey'
+              class='ml-1 mr-1'
+            >enter this text code
+            </mark>
+            instead.
+          </p>
+        </div>
+      </div>
+
+      <!-- barcode -->
+      <div class='row d-flex justify-content-center align-items-center'>
+        <div class='col-5 border rounded box-shadow'>
+          <section
+            class='pt-2 d-flex justify-content-center align-items-center'
+          >
+            <qrcode
+              [errorCorrectionLevel]="'M'"
+              [qrdata]="
+                (authenticator.value$ | async).authenticatorUri
+                  ? (authenticator.value$ | async).authenticatorUri
+                  : ' '
+              "
+              [width]='189'
+              allowEmptyString='true'
+            ></qrcode>
+          </section>
+        </div>
+      </div>
+
+      <!-- code -->
+      <div class='row mt-5 pt-1'>
+        <div class='col-12'>
+          <div class='form-group'>
+            <!-- label -->
+            <label class='form-control-label' for='qr_code'
+            >Enter the six-digit code from the application</label
+            >
+
+            <!-- note -->
+            <p class='small text-muted mt-n1'>
+              After scanning the barcode image, the app will display a six-digit
+              code that you can enter below.
+            </p>
+
+            <!-- input -->
+            <input
+              autocomplete='off'
+              class='form-control mt-n2'
+              formControlName='qrCode'
+              id='qr_code'
+              placeholder='123456'
+              required
+              type='text'
+            />
+
+            <!-- validation -->
+            <div
+              *ngIf='
+                qrCodeInput.invalid &&
+                (qrCodeInput.dirty || qrCodeInput.touched)
+              '
+              class='text-error'
+            >
+              <div *ngIf='qrCodeInput.errors.required'>
+                <span>Code cannot be empty.</span>
+              </div>
+              <div *ngIf='qrCodeInput.errors.maxlength'>
+                <span>Code must be six characters long.</span>
+              </div>
+            </div>
+
+            <!-- two-factor status -->
+            <div
+              *ngIf='
+                qrCodeForm.errors?.twoFactorFailure &&
+                qrCodeForm.touched &&
+                qrCodeForm.pristine
+              '
+              class='text-fatal'
+            >
+              <span
+              >Setting up two-factor authentication failed. Try to enter the
+                code again.</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='offset-3'></div>
+    </div>
+  </div>
+
+  <!-- actions -->
+  <div class='row pb-3'>
+    <div class='offset-3'></div>
+    <div class='col-6'>
+      <div class='row'>
+        <div class='col-6'>
+          <button
+            [disablePopover]='qrCodeForm.valid'
+            [ngClass]='{ disabled: qrCodeForm.invalid }'
+            class='btn-success float-left ml-n3'
+            ngbPopover='You must provide a code.'
+            triggers='mouseenter:mouseleave'
+            type='submit'
+          >
+            Enable
+          </button>
+        </div>
+        <div class='col-6'>
+          <a
+            class='btn-secondary-light pl-3 pr-3 pt-1 pb-1 float-right mr-n3'
+            routerLink='/settings/two_factor_authentication'
+          >Cancel</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class='offset-3'></div>
+  </div>
+</form>

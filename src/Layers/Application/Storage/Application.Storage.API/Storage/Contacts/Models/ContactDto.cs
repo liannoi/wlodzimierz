@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 using Application.Filtration.API.Common.Interfaces;
 using Application.Storage.API.Common.Mappings.Interfaces;
-using Application.Storage.API.Storage.Users.Models;
+using Application.Storage.API.Storage.Users.Core.Models;
 using AutoMapper;
 using Domain.API.Entities;
 using LinqKit;

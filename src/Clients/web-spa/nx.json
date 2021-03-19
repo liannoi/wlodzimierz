@@ -76,7 +76,13 @@
     "shared-date": {
       "tags": []
     },
-    "shared-theme": {
+    "core-settings": {
+      "tags": []
+    },
+    "app-users-security": {
+      "tags": []
+    },
+    "core-sessions": {
       "tags": []
     }
   }

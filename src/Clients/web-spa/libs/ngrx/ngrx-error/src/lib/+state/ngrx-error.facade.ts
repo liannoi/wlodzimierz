@@ -7,7 +7,8 @@ import * as NgrxErrorActions from './ngrx-error.actions';
 
 @Injectable()
 export class NgrxErrorFacade {
-  public constructor(private store: Store) {}
+  public constructor(private store: Store) {
+  }
 
   public throw500Error(error: HttpErrorResponse): void {
     this.store.dispatch(NgrxErrorActions.throw500Error({ error }));

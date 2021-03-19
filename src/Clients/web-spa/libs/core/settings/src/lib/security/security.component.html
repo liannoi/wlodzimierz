@@ -1,0 +1,125 @@
+<!-- left menu -->
+<div class='row mt-n2 pb-3'>
+  <div class='offset-1 offset-md-0'></div>
+  <div class='col-10 col-md-4 col-lg-3 mr-n1'>
+    <div class='list-group'>
+      <a class='list-group-item font-weight-bold text-dark disabled'
+      >Account settings</a
+      >
+      <a class='list-group-item list-group-item-action' routerLink='/settings'
+      >Appearance</a
+      >
+      <a
+        class='list-group-item list-group-item-action active'
+        routerLink='/settings/security'
+      >Security</a
+      >
+    </div>
+  </div>
+  <div class='offset-1 offset-md-0'></div>
+
+  <!-- main content -->
+  <ng-container
+    *ngIf='!currentUser.twoFactorEnabled; then disabledBlock; else enabledBlock'
+  ></ng-container>
+</div>
+
+<ng-template #disabledBlock>
+  <div class='col-md-8 col-lg-9 d-none d-sm-none d-md-block'>
+    <div class='row'>
+      <div class='col-12'>
+        <h3>Two-factor authentication</h3>
+        <hr />
+      </div>
+    </div>
+
+    <div class='row mt-5'>
+      <div class='col-12 d-flex justify-content-center align-items-center'>
+        <fa-icon [icon]='lockIcon' class='text-black-50' size='2x'></fa-icon>
+      </div>
+    </div>
+
+    <div class='row mt-3'>
+      <div class='offset-1'></div>
+      <div class='col-10'>
+        <h5 class='text-center'>
+          Two factor authentication isn't enabled yet.
+        </h5>
+        <p class='text-muted text-center'>
+          Two-factor authentication adds an additional layer of security to your
+          account by requiring more than just a password to log in.
+        </p>
+        <button
+          (click)='onStartConfiguration()'
+          class='btn btn-success btn-sm pl-3 pt-1 pb-1 pr-3 mt-4 font-weight-bold mx-auto d-block'
+        >
+          Enable two-factor authentication
+        </button>
+      </div>
+      <div class='offset-1'></div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #enabledBlock>
+  <div class='col-md-8 col-lg-9 d-none d-sm-none d-md-block'>
+    <div class='row'>
+      <div class='col-12'>
+        <button (click)='onDisableTwoFactor()' class='switcher'></button>
+        <h3>Two-factor authentication</h3>
+        <hr />
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='col-11'>
+        <p>
+          Two-factor authentication adds an additional layer of security to your
+          account by requiring more than just a password to log in.
+        </p>
+      </div>
+      <div class='offset-1'></div>
+    </div>
+
+    <div class='row'>
+      <div class='col-12'>
+        <div class='list-group'>
+          <span
+            class='list-group-item font-weight-bold text-dark bg-primary-soft disabled pt-3 pb-3'
+          >Two-factor methods</span
+          >
+          <span class='list-group-item'>
+            <div class='row mt-2 mb-1'>
+              <div class='col-6'><span>Authenticator app</span></div>
+              <div class='col-6'>
+                <button
+                  (click)='onStartConfiguration()'
+                  class='btn btn-sm font-weight-bolder btn-secondary-light mt-n1 float-right ml-3 pl-3 pr-3 pt-1 pb-1'
+                >
+                  Edit
+                </button>
+                <span class='float-right text-muted'>Configured</span>
+              </div>
+            </div>
+          </span>
+          <span
+            class='list-group-item font-weight-bold text-dark bg-primary-soft disabled pt-3 pb-3'
+          >Recovery options</span
+          >
+          <span class='list-group-item'>
+            <div class='row mt-2 mb-1'>
+              <div class='col-6'><span>Recovery codes</span></div>
+              <div class='col-6'>
+                <a
+                  class='btn btn-sm font-weight-bolder btn-secondary-light mt-n1 float-right ml-3 pl-3 pr-3 pt-1 pb-1 disabled'
+                >Show</a
+                >
+                <span class='float-right text-muted'>Downloaded</span>
+              </div>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

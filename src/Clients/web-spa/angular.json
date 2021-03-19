@@ -510,28 +510,82 @@
         }
       }
     },
-    "shared-theme": {
+    "core-settings": {
       "projectType": "library",
-      "root": "libs/shared-theme",
-      "sourceRoot": "libs/shared-theme/src",
+      "root": "libs/core/settings",
+      "sourceRoot": "libs/core/settings/src",
       "prefix": "wlodzimierz",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/shared-theme/src/**/*.ts",
-              "libs/shared-theme/src/**/*.html"
+              "libs/core/settings/src/**/*.ts",
+              "libs/core/settings/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/libs/shared-theme"
+            "coverage/libs/core/settings"
           ],
           "options": {
-            "jestConfig": "libs/shared-theme/jest.config.js",
+            "jestConfig": "libs/core/settings/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "app-users-security": {
+      "projectType": "library",
+      "root": "libs/app/users-security",
+      "sourceRoot": "libs/app/users-security/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/app/users-security/src/**/*.ts",
+              "libs/app/users-security/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/app/users-security"
+          ],
+          "options": {
+            "jestConfig": "libs/app/users-security/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "core-sessions": {
+      "projectType": "library",
+      "root": "libs/core/sessions",
+      "sourceRoot": "libs/core/sessions/src",
+      "prefix": "wlodzimierz",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/core/sessions/src/**/*.ts",
+              "libs/core/sessions/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/core/sessions"
+          ],
+          "options": {
+            "jestConfig": "libs/core/sessions/jest.config.js",
             "passWithNoTests": true
           }
         }

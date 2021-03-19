@@ -1,0 +1,115 @@
+<div class='row mb-4 pb-2'>
+  <div class='offset-3'></div>
+  <div class='col-6 border rounded'>
+    <!-- title -->
+    <div class='row mt-3'>
+      <div class='col-12'>
+        <h5>1. Recovery codes</h5>
+        <p class='small text-muted'>
+          Recovery codes are used to access your account in the event you cannot
+          receive two-factor authentication codes.
+        </p>
+      </div>
+    </div>
+
+    <!-- note -->
+    <div
+      class='row mb-4 bg-warning-soft pt-4 pl-1 pr-1 pb-2 border-top border-bottom'
+    >
+      <div class='col-12'>
+        <p>
+          Download, print, or copy your recovery codes before continuing
+          two-factor authentication setup below.
+        </p>
+      </div>
+    </div>
+
+    <!-- recovery codes -->
+    <div class='row mb-3'>
+      <div class='offset-1'></div>
+      <div class='col-5 ml-3 pl-4'>
+        <ul>
+          <li
+            *ngFor='let code of recoveryCodes?.firstPart'
+            class='font-weight-bold mt-1'
+          >
+            {{ code.value }}
+          </li>
+        </ul>
+      </div>
+      <div class='col-5'>
+        <ul>
+          <li
+            *ngFor='let code of recoveryCodes?.secondPart'
+            class='font-weight-bold mt-1'
+          >
+            {{ code.value }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- actions -->
+    <div class='row mb-4'>
+      <div class='col-12 d-flex justify-content-center align-items-center'>
+        <a
+          (click)='initializeFileUrl()'
+          [href]='fileUrl'
+          class='btn-secondary-light pl-4 pt-1 pb-1 pr-4 mr-3'
+          download='wlodzimierz-recovery-codes.json'
+        >
+          <fa-icon [icon]='downloadIcon' class='mr-1'></fa-icon>
+          Download
+        </a>
+        <a class='btn-secondary-light pl-4 pt-1 pb-1 pr-4 mr-3 disabled'>
+          <fa-icon [icon]='printIcon' class='mr-1'></fa-icon>
+          Print
+        </a>
+        <a class='btn-secondary-light pl-4 pt-1 pb-1 pr-4 disabled'>
+          <fa-icon [icon]='copyIcon' class='mr-1'></fa-icon>
+          Copy
+        </a>
+      </div>
+    </div>
+
+    <!-- warning -->
+    <div class='row'>
+      <div class='col-12'>
+        <p class='small text-muted font-weight-bold'>
+          Treat your recovery codes with the same level of attention as you
+          would your password!
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class='offset-3'></div>
+</div>
+
+<!-- actions -->
+<div class='row pb-3'>
+  <div class='offset-3'></div>
+  <div class='col-6'>
+    <div class='row'>
+      <div class='col-6'>
+        <button
+          (click)='onNext()'
+          [disablePopover]='isDownloaded'
+          [ngClass]='{ disabled: !isDownloaded }'
+          class='btn-success float-left ml-n3'
+          ngbPopover='You must save the recovery codes above first.'
+          triggers='mouseenter:mouseleave'
+        >
+          Next
+        </button>
+      </div>
+      <div class='col-6'>
+        <a
+          class='btn-secondary-light pl-3 pr-3 pt-1 pb-1 float-right mr-n3'
+          routerLink='/settings/two_factor_authentication'
+        >Cancel</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class='offset-3'></div>
+</div>

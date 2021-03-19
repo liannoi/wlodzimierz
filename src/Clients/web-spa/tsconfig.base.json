@@ -59,6 +59,18 @@
       ],
       "@wlodzimierz/shared-theme": [
         "libs/shared-theme/src/index.ts"
+      ],
+      "@wlodzimierz/core-settings": [
+        "libs/core-settings/src/index.ts"
+      ],
+      "@wlodzimierz/core/settings": [
+        "libs/core/settings/src/index.ts"
+      ],
+      "@wlodzimierz/app/users-security": [
+        "libs/app/users-security/src/index.ts"
+      ],
+      "@wlodzimierz/core/sessions": [
+        "libs/core/sessions/src/index.ts"
       ]
     }
   },

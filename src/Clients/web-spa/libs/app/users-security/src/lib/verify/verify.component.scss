@@ -1,0 +1,60 @@
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+.btn-success {
+  @extend .pl-3;
+  @extend .pr-3;
+  @extend .pt-1;
+  @extend .pb-1;
+}
+
+.btn-success,
+.btn-secondary-light {
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .font-weight-bolder;
+}
+
+.btn-secondary-light {
+  color: #24292e;
+  background-color: #fafbfc;
+  border-color: #1b1f2326;
+  transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  transition-property: color, background-color, border-color;
+}
+
+.btn-secondary-light:hover {
+  background-color: #e1e4e8;
+}
+
+.text-small {
+  font-size: 11px !important;
+}
+
+.text-error {
+  @extend .text-danger;
+}
+
+.form-control-label,
+.form-control {
+  font-size: 14px !important;
+}
+
+.form-control-label {
+  font-weight: 600;
+}
+
+.box-shadow {
+  -webkit-box-shadow: 0px 5px 5px -6px rgba(34, 60, 80, 0.6);
+  -moz-box-shadow: 0px 5px 5px -6px rgba(34, 60, 80, 0.6);
+  box-shadow: 0px 5px 5px -6px rgba(34, 60, 80, 0.6);
+}
+
+.form-control {
+  background-color: #fafbfc;
+  transition: 0.4s;
+}
+
+.form-control:focus {
+  @extend .bg-white;
+}

@@ -39,6 +39,9 @@
         <Folder Include="Storage\UserGroups\Queries\Details" />
         <Folder Include="Storage\UserGroups\Queries\Filter" />
         <Folder Include="Storage\UserGroups\Queries\List" />
+        <Folder Include="Storage\Users\Core" />
+        <Folder Include="Storage\Users\Security\Models" />
+        <Folder Include="Storage\Users\Security\Queries" />
     </ItemGroup>
 
     <ItemGroup>

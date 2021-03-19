@@ -29,7 +29,7 @@ import { ConversationMessagesFacade } from '../../../../app/conversation-message
 @Component({
   selector: 'wlodzimierz-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss'],
+  styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit, OnDestroy {
   public user: UserModel;

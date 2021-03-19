@@ -1,15 +1,15 @@
-<div class="container-fluid container-scrollable mb-4">
-  <div class="row bg-dark sticky-top p-3 mb-4 zindex-sticky">
-    <div class="col-12">
-      <h5 class="text-white mt-2">{{ conversation | interlocutor: user }}</h5>
+<div class='container-fluid container-scrollable mb-4'>
+  <div class='row bg-dark sticky-top p-3 mb-4 zindex-sticky'>
+    <div class='col-12'>
+      <h5 class='text-white mt-2'>{{ conversation | interlocutor: user }}</h5>
     </div>
   </div>
   <ng-container
-    *ngFor="let message of messages.items | reverse; trackBy: identify"
+    *ngFor='let message of messages.items | reverse; trackBy: identify'
   >
     <wlodzimierz-conversation-message
-      [message]="message"
-      [user]="user"
+      [message]='message'
+      [user]='user'
     ></wlodzimierz-conversation-message>
   </ng-container>
 </div>

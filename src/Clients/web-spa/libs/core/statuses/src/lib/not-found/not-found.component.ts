@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'wlodzimierz-not-found',
   templateUrl: './not-found.component.html',
-  styleUrls: ['./not-found.component.scss'],
+  styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent {
   public constructor(private titleService: Title) {
