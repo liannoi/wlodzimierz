@@ -14,6 +14,7 @@ module.exports = {
     '<rootDir>/libs/app/conversation-messages',
     '<rootDir>/libs/app/contacts',
     '<rootDir>/libs/shared/date',
-    '<rootDir>/libs/theme'
-  ]
+    '<rootDir>/libs/core/settings',
+    '<rootDir>/libs/app/users-security',
+  ],
 };

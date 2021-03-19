@@ -20,7 +20,7 @@ html {
 
 /* cursor events */
 
-.blocked-event {
+.event-blocked {
   cursor: not-allowed;
 }
 
@@ -31,7 +31,7 @@ html {
 /* controls */
 
 button[disabled] {
-  @extend .blocked-event;
+  @extend .event-blocked;
 }
 
 .text-error {
@@ -49,6 +49,17 @@ button[disabled] {
 .text-error,
 .text-fatal {
   @extend .small;
+}
+
+.list-group-item {
+  transition: 0.3s;
+}
+
+.list-group-item.active {
+  @extend .text-dark;
+  @extend .default-event;
+  border-color: $border-color !important;
+  @extend .bg-primary-soft;
 }
 
 .btn:not(.dropdown-toggle) {
@@ -111,7 +122,7 @@ button[disabled] {
 /* chat */
 
 .bg-primary-soft {
-  background-color: #f5f6fa;
+  background-color: #f5f6fa !important;
 }
 
 /* another - white */
@@ -120,7 +131,7 @@ button[disabled] {
 .message-another.theme-default-white,
 .message-another.theme-default-white-preview {
   background-color: #ffffff !important;
-  color: #404040;
+  color: #343a40;
 }
 
 /* primary - white */
@@ -128,7 +139,7 @@ button[disabled] {
 .message-primary,
 .message-primary.theme-default-white,
 .message-primary.theme-default-white-preview {
-  background-color: #404040 !important;
+  background-color: #343a40 !important;
   color: #ffffff;
 }
 

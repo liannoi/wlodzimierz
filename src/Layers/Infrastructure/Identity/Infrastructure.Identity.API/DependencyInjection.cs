@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using Application.Infrastructure.Identity.API.Common.Interfaces;
 using Application.Infrastructure.Identity.API.Common.Models;
-using Application.Storage.API.Storage.Users.Facades;
+using Application.Storage.API.Storage.Users.Core.Facades;
 using Infrastructure.Identity.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;

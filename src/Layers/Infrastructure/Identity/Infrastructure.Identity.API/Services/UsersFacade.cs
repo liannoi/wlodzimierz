@@ -4,8 +4,8 @@ using Application.Paging.API.Common.Models;
 using Application.Storage.API.Storage.Contacts.Models;
 using Application.Storage.API.Storage.ConversationMessages.Models;
 using Application.Storage.API.Storage.Conversations.Models;
-using Application.Storage.API.Storage.Users.Facades;
-using Application.Storage.API.Storage.Users.Models;
+using Application.Storage.API.Storage.Users.Core.Facades;
+using Application.Storage.API.Storage.Users.Core.Models;
 using AutoMapper;
 
 namespace Infrastructure.Identity.API.Services

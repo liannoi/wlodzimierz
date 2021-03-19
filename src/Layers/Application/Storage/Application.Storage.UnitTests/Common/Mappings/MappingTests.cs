@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using Application.Infrastructure.Identity.API.Common.Models;
 using Application.Storage.API.Common.Mappings.Profiles;
 using Application.Storage.API.Storage.Contacts.Models;
-using Application.Storage.API.Storage.Users.Models;
+using Application.Storage.API.Storage.Users.Core.Models;
 using AutoMapper;
 using Domain.API.Entities;
 using NUnit.Framework;

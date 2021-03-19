@@ -9,7 +9,7 @@ using Application.Storage.API.Common.Exceptions;
 using Application.Storage.API.Common.Interfaces;
 using Application.Storage.API.Storage.Conversations.Extensions;
 using Application.Storage.API.Storage.Conversations.Models;
-using Application.Storage.API.Storage.Users.Facades;
+using Application.Storage.API.Storage.Users.Core.Facades;
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;

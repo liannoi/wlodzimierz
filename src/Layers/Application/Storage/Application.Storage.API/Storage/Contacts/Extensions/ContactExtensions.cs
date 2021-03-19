@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Application.Paging.API.Common.Models;
 using Application.Storage.API.Storage.Contacts.Models;
-using Application.Storage.API.Storage.Users.Facades;
+using Application.Storage.API.Storage.Users.Core.Facades;
 
 namespace Application.Storage.API.Storage.Contacts.Extensions
 {

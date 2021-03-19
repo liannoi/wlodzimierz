@@ -2,7 +2,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Infrastructure.Persistence.API.Interfaces;
-using Application.Storage.API.Storage.Users.Models;
+using Application.Storage.API.Storage.Users.Core.Models;
 using Domain.API.Entities;
 using Domain.API.Notifications.Contacts;
 using MediatR;

@@ -1,0 +1,25 @@
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+.switcher,
+.enabler {
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-success;
+  @extend .float-right;
+  @extend .mt-1;
+  @extend .pl-2;
+  @extend .pr-2;
+}
+
+.switcher:hover {
+  @extend .btn-danger;
+}
+
+.switcher:hover:before {
+  content: 'Disable';
+}
+
+.switcher:before {
+  content: 'Enabled';
+}

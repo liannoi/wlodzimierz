@@ -1,0 +1,59 @@
+<!-- left menu -->
+<div class="row mt-n2 pb-3">
+  <div class="offset-1 offset-md-0"></div>
+  <div class="col-10 col-md-4 col-lg-3 mr-n1">
+    <div class="list-group">
+      <a class="list-group-item font-weight-bold text-dark disabled"
+        >Account settings</a
+      >
+      <a routerLink="/settings" class="list-group-item list-group-item-action"
+        >Appearance</a
+      >
+      <a
+        routerLink="/settings/security"
+        class="list-group-item list-group-item-action active"
+        >Security</a
+      >
+    </div>
+  </div>
+  <div class="offset-1 offset-md-0"></div>
+
+  <!-- main content -->
+  <div class="col-md-8 col-lg-9 d-none d-sm-none d-md-block">
+    <!--<button class='switcher'></button>-->
+    <!--<button (click)='onEnable()' class='enabler'>Enable</button>-->
+    <h3>Two-factor authentication</h3>
+    <hr />
+
+    <div class="row mt-5">
+      <div class="col-12 d-flex justify-content-center align-items-center">
+        <fa-icon [icon]="lockIcon" size="2x" class="text-black-50"></fa-icon>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="offset-1"></div>
+      <div class="col-10">
+        <h5 class="text-center">
+          Two factor authentication isn't enabled yet.
+        </h5>
+        <p class="text-muted text-center">
+          Two-factor authentication adds an additional layer of security to your
+          account by requiring more than just a password to log in.
+        </p>
+        <button
+          (click)="onClick()"
+          class="btn btn-success btn-sm pl-3 pt-1 pb-1 pr-3 mt-4 font-weight-bold mx-auto d-block"
+        >
+          Enable two-factor authentication
+        </button>
+      </div>
+      <div class="offset-1"></div>
+    </div>
+
+    <!--    <p class='ml-1'>Two-factor authentication adds an additional layer of security to your account by requiring more
+      than just a password to log in.</p>-->
+
+    <!--    <qrcode [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'" allowEmptyString="true"></qrcode>-->
+  </div>
+</div>

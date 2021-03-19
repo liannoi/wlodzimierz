@@ -5,6 +5,9 @@ export interface UserModel {
   firstName: string;
   lastName: string;
   photo: string;
+  twoFactorEnabled: boolean;
+  hasAuthenticator: boolean;
+  twoFactorClientRemembered: boolean;
 
   password: string;
   shouldRemember: boolean;
