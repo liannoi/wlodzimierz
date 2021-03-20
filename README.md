@@ -90,6 +90,7 @@ The clients are:
 - Swagger
 - LinqKit 1.1
 - Redis 6
+- Serilog
 - FluentAssertions, Moq, NUnit, Respawn
 
 ## Getting Started
