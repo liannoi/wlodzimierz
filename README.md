@@ -103,7 +103,7 @@ Messenger Wlodzimierz is hosted on two hosts:
 If you want to deploy the system locally or get acquainted in more detail with
 the specification of the messenger - you should go to the [Wiki](https://github.com/liannoi/wlodzimierz/wiki) section.
 
-> Hosting on Azure and Firebase **was disabled** after demonstration and defense of the thesis at STEP Computer Academy. Therefore, in order to deploy and see this work in person - you need to go to the [Wiki](https://github.com/liannoi/wlodzimierz/wiki) section for instructions on local deployment.
+> Hosting on Azure and Firebase **was disabled** after demonstration and defense of the thesis at Computer Academy STEP. Therefore, in order to deploy and see this work in person - you need to go to the [Wiki](https://github.com/liannoi/wlodzimierz/wiki) section for instructions on local deployment.
 
 ## License
 
