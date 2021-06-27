@@ -99,7 +99,7 @@
     "jest": "27.0.5",
     "jest-preset-angular": "8.4.0",
     "open": "8.0.5",
-    "prettier": "2.3.1",
+    "prettier": "2.3.2",
     "ts-jest": "27.0.3",
     "ts-node": "9.1.1",
     "tslint": "6.1.3",
