@@ -54,7 +54,7 @@
     "@ngrx/store": "12.4.0",
     "@ngrx/store-devtools": "12.4.0",
     "angularx-qrcode": "^11.0.0",
-    "@nrwl/angular": "11.6.3",
+    "@nrwl/angular": "12.3.4",
     "bootstrap": "5.1.0",
     "es6-promisify": "7.0.0",
     "firebase": "9.0.1",
