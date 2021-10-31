@@ -97,7 +97,7 @@
     "inquirer": "8.2.0",
     "inquirer-autocomplete-prompt": "1.4.0",
     "jest": "27.0.5",
-    "jest-preset-angular": "10.0.1",
+    "jest-preset-angular": "10.1.0",
     "open": "8.0.5",
     "prettier": "2.4.1",
     "ts-jest": "27.0.4",
