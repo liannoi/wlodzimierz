@@ -94,7 +94,7 @@
     "eslint-plugin-cypress": "2.11.2",
     "firebase-tools": "7.16.2",
     "fuzzy": "0.1.3",
-    "inquirer": "8.2.2",
+    "inquirer": "8.2.4",
     "inquirer-autocomplete-prompt": "1.4.0",
     "jest": "27.0.5",
     "jest-preset-angular": "10.1.0",
