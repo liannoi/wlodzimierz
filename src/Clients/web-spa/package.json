@@ -63,7 +63,7 @@
     "rxjs": "7.4.0",
     "sweetalert2": "11.4.24",
     "tslib": "2.1.0",
-    "zone.js": "0.11.6"
+    "zone.js": "0.11.7"
   },
   "devDependencies": {
     "@angular-devkit/architect": "0.1400.5",
