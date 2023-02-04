@@ -18,7 +18,7 @@ services:
       MSSQL_PID: "Developer"
 
   redis:
-    image: redis:6.2.8
+    image: redis:6.2.10
     container_name: wlodzimierz-redis
     ports:
       - "6379:6379"
