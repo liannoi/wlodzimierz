@@ -32,7 +32,7 @@
   "dependencies": {
     "@angular-devkit/architect": "0.1501.4",
     "@angular/animations": "13.3.12",
-    "@angular/common": "13.3.12",
+    "@angular/common": "19.2.16",
     "@angular/compiler": "13.3.12",
     "@angular/core": "13.3.12",
     "@angular/fire": "7.4.1",
